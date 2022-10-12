@@ -63,7 +63,7 @@ contract Signetors {
     {
         address newContractAddress;
         address creator;
-        ST = new Signetor(_name, _symbol, crator);
+        ST = new Signetor(_name, _symbol, crator, ControllorAddr);
         newContractAddress = ST.SignetorContractAddress();
         creator = crator;
         s_creatorCollection[crator].numOfCollectionCreated++;

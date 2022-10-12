@@ -1,7 +1,9 @@
 import Image from "next/image"
-import { useState, useEffect } from "react"
+import { EmojiHappyIcon, SparklesIcon, PhotographIcon, XIcon } from "@heroicons/react/outline"
+import { useState, useEffect, useRef } from "react"
 import styles from "../styles/Dashbaord.module.css"
 import creatorcontract from "../constants/abi.json"
+import { ConnectButton } from "@rainbow-me/rainbowkit"
 import {
     usePrepareContractWrite,
     useAccount,
@@ -13,9 +15,12 @@ import {
     useWaitForTransaction,
 } from "wagmi"
 export default function Dashboard() {
+    const [input, setInput] = useState("")
     const [results, setResults] = useState(0)
+    const [selectedFile, setSelectedFile] = useState(null)
     const [numberowned, setnumberowned] = useState(0)
-
+    const [loading, setLoading] = useState(false)
+    const filePickerRef = useRef(null)
     const { address } = useAccount()
     const { chains } = useNetwork()
     const { data: number } = useContractRead({
@@ -27,6 +32,48 @@ export default function Dashboard() {
         args: address,
     })
 
+    const addImageToPost = (e) => {
+        const reader = new FileReader()
+        if (e.target.files[0]) {
+            reader.readAsDataURL(e.target.files[0])
+        }
+
+        reader.onload = (readerEvent) => {
+            console.log(readerEvent.target.result)
+            setSelectedFile(readerEvent.target.result)
+        }
+    }
+
+    const sendPost = async () => {
+        if (loading) return
+        setLoading(true)
+        var formdata = new FormData()
+        formdata.append("imageurl", selectedFile)
+        formdata.append("description", input)
+        var requestOptions = {
+            header: {
+                "Access-Control-Allow-Origin": "*",
+
+            },
+            method: "POST",
+            body: formdata,
+            redirect: "follow",
+            mode: "no-cors",
+        }
+
+        fetch("http://127.0.0.1:5000/tokenurl/", requestOptions)
+            .then((response) => response.text())
+            .then((result) => console.log(result))
+            .catch((error) => console.log("error", error))
+        
+    }
+
+    if (selectedFile) {
+        // await uploadString(imageRef, selectedFile, "data_url").then(async () => {
+        //   const downloadURL = await getDownloadURL(imageRef);
+        //   await updateDoc(doc(db, "posts", docRef.id), {
+        //     image: downloadURL,
+    }
     useEffect(() => {
         if (number) {
             setnumberowned(number.toString())
@@ -41,34 +88,6 @@ export default function Dashboard() {
     })
     const { data, isLoading, isSuccess, write } = useContractWrite(config)
 
-    // const [supplyData, setSupplyData] = useState(0)
-
-    // const { address } = useAccount()
-    // const { chains } = useNetwork()
-    // const { data: signerData } = useSigner()
-
-    ///image
-    const [image, setImage] = useState(null)
-    const [createObjectURL, setCreateObjectURL] = useState(null)
-
-    const uploadToClient = (event) => {
-        if (event.target.files && event.target.files[0]) {
-            const i = event.target.files[0]
-
-            setImage(i)
-            setCreateObjectURL(URL.createObjectURL(i))
-        }
-    }
-
-    const uploadToServer = async (event) => {
-        const body = new FormData()
-        body.append("file", image)
-        const response = await fetch("/api/file", {
-            method: "POST",
-            body,
-        })
-    }
-    ///image
     return (
         <div>
             {numberowned == 0 ? (
@@ -78,7 +97,7 @@ export default function Dashboard() {
                     </h1>
                     <input
                         type="text"
-                        placeholder=" Collection Name"
+                        placeholder="Your Signet Name"
                         onChange={(event) => {
                             setResults(event.target.value)
                         }}
@@ -90,34 +109,66 @@ export default function Dashboard() {
                     </div>
                 </div>
             ) : (
-                <div className="absolute bottom-5 right-5 items-center space-y-8">
-                    <div className=" flex items-center place-content-center h-48 caret-gray-700">
-                        <textarea
-                            className="border-2 border-rounded rounded-lg border-solid border-black"
-                            placeholder="What,s your maind"
-                            cols="50"
-                            rows="10"
-                        ></textarea>{" "}
-                        <br />
-                        {!image ? (
-                            <img src={createObjectURL} />
-                        ) : (
-                            <img
-                                className="border-2 border-rounded rounded-lg border-solid border-black"
-                                src={createObjectURL}
-                                width="244"
-                                height="244"
-                            />
-                        )}
+                <div className="h-[100vh] border-l border-r border-gray-200  xl:min-w-[576px] sm:ml-[73px] flex-grow max-w-xl">
+                    <div className="flex py-2 px-3 sticky top-0 z-50 bg-white border-b border-gray-200">
+                        <h2 className="text-lg sm:text-xl font-bold cursor-pointer">Home</h2>
                     </div>
-                    <div className="border-white space-x-20">
-                        <h4 className={styles.button}>
-                            <input type="file" id="upload" hidden onChange={uploadToClient} />
-                            <label htmlFor="upload">Choose file</label>
-                        </h4>
-                        <button className={styles.button} type="submit" onClick={uploadToServer}>
-                            Send to server
-                        </button>
+                    <div className="flex  border-b border-gray-200 p-3 space-x-3">
+                        <ConnectButton
+                            accountStatus="avatar"
+                            showBalance={{
+                                smallScreen: false,
+                                largeScreen: false,
+                            }}
+                            chainStatus="none"
+                        />
+                        <div className="w-full divide-y divide-gray-200">
+                            <div className="">
+                                <textarea
+                                    className="w-full border-none focus:ring-0 text-lg placeholder-gray-700 tracking-wide min-h-[50px] text-gray-700"
+                                    rows="2"
+                                    placeholder="What's happening?"
+                                    value={input}
+                                    onChange={(e) => setInput(e.target.value)}
+                                ></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    {selectedFile && (
+                        <div className="relative">
+                            <XIcon
+                                onClick={() => setSelectedFile(null)}
+                                className="border h-7 text-black absolute cursor-pointer shadow-md border-white m-1 rounded-full"
+                            />
+                            <img src={selectedFile} className={`${loading && "animate-pulse"}`} />
+                        </div>
+                    )}
+                    <div className="flex items-center justify-between pt-2.5">
+                        {!loading && (
+                            <>
+                                <div className="flex">
+                                    <div
+                                        className=""
+                                        onClick={() => filePickerRef.current.click()}
+                                    >
+                                        <PhotographIcon className="h-10 w-10 hoverEffect p-2 text-black hover:bg-sky-100" />
+                                        <input
+                                            type="file"
+                                            hidden
+                                            ref={filePickerRef}
+                                            onChange={addImageToPost}
+                                        />
+                                    </div>
+                                </div>
+                                <button
+                                    onClick={sendPost}
+                                    disabled={!input.trim()}
+                                    className="bg-black text-white px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50"
+                                >
+                                    Tweet
+                                </button>
+                            </>
+                        )}
                     </div>
                 </div>
             )}

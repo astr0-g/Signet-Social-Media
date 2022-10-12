@@ -13,6 +13,7 @@
     "moralis:cloudfunctions": "moralis-admin-cli watch-cloud-folder --moralisApiKey BzSCw6W35ZnBqwb --moralisApiSecret vO2A32XDSIgfVgS --moralisSubdomain cfvkglbodanj.usemoralis.com --autoSave 1 --moralisCloudfolder ./CloudFunctions/"
   },
   "dependencies": {
+    "@heroicons/react": "1.0.6",
     "@rainbow-me/rainbowkit": "^0.7.1",
     "@rainbow-me/rainbowkit-siwe-next-auth": "^0.1.4",
     "@walletconnect/web3-provider": "^1.8.0",

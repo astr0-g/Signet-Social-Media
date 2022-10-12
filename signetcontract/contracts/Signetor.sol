@@ -5,10 +5,14 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
+error Not__FromSignetControllors();
+
 contract Signetor is ERC721, Ownable {
     address public SignetorContractAddress;
+    address public SignetControllors;
     using Strings for uint256;
 
+    uint256 public token_Id;
     // Optional mapping for token URIs
     mapping(uint256 => string) private _tokenURIs;
 
@@ -18,10 +22,12 @@ contract Signetor is ERC721, Ownable {
     constructor(
         string memory _name,
         string memory _symbol,
-        address owner
+        address owner,
+        address signetControllors
     ) ERC721(_name, _symbol) {
         setAddress();
         transferOwnership(owner);
+        SignetControllors = signetControllors;
     }
 
     function setAddress() private {
@@ -59,13 +65,12 @@ contract Signetor is ERC721, Ownable {
         return string(abi.encodePacked(base, tokenId.toString()));
     }
 
-    function sendmessage(
-        address _to,
-        uint256 _tokenId,
-        string memory tokenURI_
-    ) public onlyOwner {
-        _mint(_to, _tokenId);
-        _setTokenURI(_tokenId, tokenURI_);
+    function sendmessage(string memory tokenURI_) public {
+        if (msg.sender != SignetControllors) revert Not__FromSignetControllors();
+        token_Id++;
+        address owneraddress = owner();
+        _mint(owneraddress, token_Id);
+        _setTokenURI(token_Id, tokenURI_);
     }
 
     // function totalmessage() public view returns (uint256) {

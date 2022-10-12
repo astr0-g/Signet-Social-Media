@@ -8,7 +8,7 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
 
     log("-----------------")
     const arguments = []
-    const FinesseCollectionControllor = await deploy("FinesseCollectionControllor", {
+    const SignetControllor = await deploy("SignetControllor", {
         from: deployer,
         args: arguments,
         log: true,
@@ -17,7 +17,7 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
 
     if (!developmentChains.includes(network.name) && process.env.ETHERSCAN_API_KEY) {
         log("verifying...")
-        await verify(FinesseCollectionControllor.address, arguments)
+        await verify(SignetControllor.address, arguments)
     }
     log("-----------------")
 }

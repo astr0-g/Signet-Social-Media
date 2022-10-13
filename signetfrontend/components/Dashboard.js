@@ -3,7 +3,10 @@ import { EmojiHappyIcon, SparklesIcon, PhotographIcon, XIcon } from "@heroicons/
 import { useState, useEffect, useRef } from "react"
 import styles from "../styles/Dashbaord.module.css"
 import creatorcontract from "../constants/abi.json"
+import { useToasts } from "react-toast-notifications"
+import signetorcontract from "../constants/Signetor.json"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
+import Signetor from "./Signetor"
 import {
     usePrepareContractWrite,
     useAccount,
@@ -24,27 +27,24 @@ export default function Dashboard() {
     const [newimg, setnewimg] = useState("")
     const [newpost, setnewpost] = useState("")
     const filePickerRef = useRef(null)
+    const { addToast } = useToasts()
     const { address } = useAccount()
     const { chains } = useNetwork()
     const { data: number } = useContractRead({
         addressOrName: creatorcontract.address,
         contractInterface: creatorcontract.abi,
         chains: 5,
-        functionName: "getOwnerNumContractOfCopyRight",
+        functionName: "getOwnerNumContractOfSignetor",
         watch: true,
         args: address,
     })
-    if (selectedFile) {
-        // await uploadString(imageRef, selectedFile, "data_url").then(async () => {
-        //   const downloadURL = await getDownloadURL(imageRef);
-        //   await updateDoc(doc(db, "posts", docRef.id), {
-        //     image: downloadURL,
-    }
+
     const addImageToPost = (e) => {
         const reader = new FileReader()
 
         if (e.target.files[0] && verificationPicFile(e.target) != false) {
             reader.readAsDataURL(e.target.files[0])
+            addToast("Picture Uploaded Successfully", { appearance: "success" })
         }
 
         reader.onload = (readerEvent) => {
@@ -60,11 +60,11 @@ export default function Dashboard() {
             fileSize = file.files[0].size
             var size = fileSize / 1024
             if (size > fileMaxSize) {
-                alert("File size could not exceed 2MB!")
+                addToast("File size could not exceed 2MB!", { appearance: "warning" })
                 file.value = ""
                 return false
             } else if (size <= 0) {
-                alert("File size could not be 0!")
+                addToast("File size could not be 0!", { appearance: "warning" })
                 file.value = ""
                 return false
             }
@@ -114,7 +114,6 @@ export default function Dashboard() {
                     }
 
                     setnewpost(result.description)
-                    console.log(newimg, newpost)
                 })
                 .catch((error) => console.log("error", error))
         }
@@ -125,35 +124,11 @@ export default function Dashboard() {
         }
     }, [number])
 
-    const { config } = usePrepareContractWrite({
-        addressOrName: creatorcontract.address,
-        contractInterface: creatorcontract.abi,
-        functionName: "controllorCreateCopyRightCollection",
-        args: [results, results],
-    })
-    const { data, isLoading, isSuccess, write } = useContractWrite(config)
-
     return (
         <div>
             <div>
                 {numberowned == 0 ? (
-                    <div className="h-[100vh] bg-black grid items-center justify-items-center text-center opacity-100 relative">
-                        <h1 className="text-5xl lg:text-4xl md:text-3xl sm:text-2xl font-bold text-white">
-                            Looks like you don't have a message box contract yet, lets create one!
-                        </h1>
-                        <input
-                            type="text"
-                            placeholder="Your Signet Name"
-                            onChange={(event) => {
-                                setResults(event.target.value)
-                            }}
-                        />
-                        <div className="flex flex-col justify-center items-center">
-                            <button className={styles.button1} onClick={() => write()}>
-                                Generate
-                            </button>
-                        </div>
-                    </div>
+                    <Signetor />
                 ) : (
                     <div className="h-[100vh] border-l border-r border-gray-200  xl:min-w-[576px] sm:ml-[73px] flex-grow max-w-xl">
                         <div className="flex py-2 px-3 sticky top-0 z-50 bg-white border-b border-gray-200">

@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "./Signetors.sol";
 
 /*
- * @title Finesse Marketplace Collection Controllor
+ * @title Signetors Controllor
  * @author astro
  */
 error Contract__Created();

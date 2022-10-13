@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "./Signetor.sol";
 
 /*
- * @title NFT Marketplace
+ * @title Signetors Controllor
  * @author astro
  */
 

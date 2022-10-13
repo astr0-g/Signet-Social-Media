@@ -2,6 +2,7 @@ import "../styles/globals.css"
 import { WagmiConfig, configureChains, createClient, chain } from "wagmi"
 import { alchemyProvider, infuraProvider } from "wagmi/providers/infura"
 import { RainbowKitSiweNextAuthProvider } from "@rainbow-me/rainbowkit-siwe-next-auth"
+import { ToastProvider } from "react-toast-notifications"
 import { SessionProvider } from "next-auth/react"
 import { AppProps } from "next/app"
 import {
@@ -80,7 +81,9 @@ function MyApp({ Component, pageProps }) {
                         fontStack: "system",
                     })}
                 >
-                    <Component {...pageProps} name="Access-Control-Allow-Origin" value="*" />
+                    <ToastProvider autoDismiss={true} autoDismissTimeout="2000">
+                        <Component {...pageProps} name="Access-Control-Allow-Origin" value="*" />
+                    </ToastProvider>
                 </RainbowKitProvider>
                 {/* </RainbowKitSiweNextAuthProvider>
                     </SessionProvider> */}

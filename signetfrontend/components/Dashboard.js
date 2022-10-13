@@ -21,6 +21,8 @@ export default function Dashboard() {
     const [CIDnumber, setCIDnumber] = useState()
     const [numberowned, setnumberowned] = useState(0)
     const [loading, setLoading] = useState(false)
+    const [newimg, setnewimg] = useState("")
+    const [newpost, setnewpost] = useState("")
     const filePickerRef = useRef(null)
     const { address } = useAccount()
     const { chains } = useNetwork()
@@ -95,6 +97,28 @@ export default function Dashboard() {
         setLoading(false)
     }
 
+    useEffect(() => {
+        if (CIDnumber) {
+            var requestOptions = {
+                method: "GET",
+
+                redirect: "follow",
+            }
+
+            fetch(`https://www.kulaingxd.com/tokenurl/read/${CIDnumber}`, requestOptions)
+                .then((response) => response.json())
+                .then((result) => {
+                    setnewimg("")
+                    if (result.image != "") {
+                        setnewimg(result.image)
+                    }
+
+                    setnewpost(result.description)
+                    console.log(newimg, newpost)
+                })
+                .catch((error) => console.log("error", error))
+        }
+    }, [CIDnumber])
     useEffect(() => {
         if (number) {
             setnumberowned(number.toString())
@@ -201,7 +225,21 @@ export default function Dashboard() {
                     </div>
                 )}
             </div>
-            <div>23sdfsd</div>
+            <div>
+                {newpost && (
+                    <div className="relative">
+                        <div>{newpost}</div>
+                        {newimg != "null" && (
+                            <img
+                                src={newimg}
+                                height="100px"
+                                width="100px"
+                                className={`${loading && "animate-pulse"}`}
+                            />
+                        )}
+                    </div>
+                )}
+            </div>
         </div>
     )
 }

@@ -32,7 +32,12 @@ export default function Dashboard() {
         watch: true,
         args: address,
     })
-
+    if (selectedFile) {
+        // await uploadString(imageRef, selectedFile, "data_url").then(async () => {
+        //   const downloadURL = await getDownloadURL(imageRef);
+        //   await updateDoc(doc(db, "posts", docRef.id), {
+        //     image: downloadURL,
+    }
     const addImageToPost = (e) => {
         const reader = new FileReader()
         if (e.target.files[0]) {
@@ -40,7 +45,6 @@ export default function Dashboard() {
         }
 
         reader.onload = (readerEvent) => {
-            console.log(readerEvent.target.result)
             setSelectedFile(readerEvent.target.result)
         }
     }
@@ -49,39 +53,38 @@ export default function Dashboard() {
         if (loading) return
         setLoading(true)
         var formdata = new FormData()
+
         formdata.append("imageurl", selectedFile)
+
         formdata.append("description", input)
         var requestOptions = {
             // headers: { "Content-Type": "application/json" },
-            headers: {
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "http://localhost:3000/",
-                "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
-                "Access-Control-Allow-Headers": " Origin, Content-Type, X-Auth-Token",
-            },
+            // headers: {
+            //     "Content-Type": "application/json",
+            //     "Access-Control-Allow-Origin": "*",
+            //     "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+            //     "Access-Control-Allow-Headers": " Origin, Content-Type, X-Auth-Token",
+            // },
+            statusCode: 200,
             method: "POST",
             body: formdata,
             redirect: "follow",
             // mode: "no-cors",
         }
 
-        fetch("https://www.kulaingxd.com/tokenurl/", requestOptions)
+        await fetch("https://www.kulaingxd.com/tokenurl/", requestOptions)
             .then((response) => response.text())
             .then((result) => {
                 setCIDnumber(result)
-                console.log(CIDnumber)
             })
             .catch((error) => console.log("error", error))
-
+        
+        const resultnumber =
+            "https://www.kulaingxd.com/admin/tokenurl/read/" + CIDnumber
+        console.log(resultnumber)
         setLoading(false)
     }
 
-    if (selectedFile) {
-        // await uploadString(imageRef, selectedFile, "data_url").then(async () => {
-        //   const downloadURL = await getDownloadURL(imageRef);
-        //   await updateDoc(doc(db, "posts", docRef.id), {
-        //     image: downloadURL,
-    }
     useEffect(() => {
         if (number) {
             setnumberowned(number.toString())
@@ -169,8 +172,7 @@ export default function Dashboard() {
                                     </div>
                                 </div>
                                 <button
-                                    onClick={() => sendPost()}
-                                    disabled={!input.trim()}
+                                    onClick={sendPost}
                                     className="bg-black text-white px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50"
                                 >
                                     Tweet

@@ -1,16 +1,12 @@
 import Head from "next/head"
 import styles from "../styles/Home.module.css"
 import Dashboard from "../components/Dashboard"
-import Hero from "../components/welcome"
+import Welcome from "../components/Welcome"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
-import { signIn, useSession } from "next-auth/react"
-import { useAccount, useSignMessage, useNetwork } from "wagmi"
-import { useEffect } from "react"
-import { useRouter } from "next/router"
-import { useConnect, useDisconnect } from "wagmi"
+import { useAccount } from "wagmi"
 
 export default function Home() {
-    const { address, isConnected } = useAccount()
+    const { address } = useAccount()
     return (
         <div>
             <Head>
@@ -24,7 +20,7 @@ export default function Home() {
                     {!address ? <div /> : <ConnectButton />}
                 </nav>
             </div>
-            {!address ? <Hero /> : <Dashboard />}
+            {!address ? <Welcome /> : <Dashboard />}
         </div>
     )
 }

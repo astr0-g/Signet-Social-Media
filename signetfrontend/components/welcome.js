@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
-export default function Hero() {
+export default function Welcome() {
     return (
         <>
             <div className="h-[100vh] grid items-center justify-items-center bg-no-repeat bg-cover bg-black bg-[url('https://user-images.githubusercontent.com/6901805/58038897-167f0280-7ae6-11e9-94eb-88e880a25f0f.gif')] border-black relative">

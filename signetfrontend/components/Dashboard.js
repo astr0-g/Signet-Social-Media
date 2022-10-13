@@ -26,6 +26,8 @@ export default function Dashboard() {
     const [loading, setLoading] = useState(false)
     const [newimg, setnewimg] = useState("")
     const [newpost, setnewpost] = useState("")
+    const [tokenURL, setTokenURL] = useState("")
+    const [ownersignetoraddress, setownersignetoraddress] = useState("")
     const filePickerRef = useRef(null)
     const { addToast } = useToasts()
     const { address } = useAccount()
@@ -35,6 +37,15 @@ export default function Dashboard() {
         contractInterface: creatorcontract.abi,
         chains: 5,
         functionName: "getOwnerNumContractOfSignetor",
+        watch: true,
+        args: address,
+    })
+
+    const { data: ownercontractaddress } = useContractRead({
+        addressOrName: creatorcontract.address,
+        contractInterface: creatorcontract.abi,
+        chains: 5,
+        functionName: "getOwnerContractForSignetor",
         watch: true,
         args: address,
     })
@@ -93,12 +104,37 @@ export default function Dashboard() {
                 setCIDnumber(result)
             })
             .catch((error) => console.log("error", error))
+        controllorsendmessage()
 
         setLoading(false)
     }
+    const { config } = usePrepareContractWrite({
+        addressOrName: creatorcontract.address,
+        contractInterface: creatorcontract.abi,
+        functionName: "sendmessage",
+        args: [ownersignetoraddress, tokenURL],
+    })
+    const { data: resultss, write: controllorsendmessage } = useContractWrite(config)
+    const { isLoading: CreateSignetorisLoading, isSuccess: CreateSignetorisSuccess } =
+        useWaitForTransaction({
+            hash: resultss?.hash,
+        })
+    useEffect(() => {
+        if (CreateSignetorisLoading) {
+            addToast("Transaction Submitted...", { appearance: "success" })
+        }
+    }, [CreateSignetorisLoading])
+    useEffect(() => {
+        if (CreateSignetorisSuccess) {
+            setSelectedFile(null)
+            setInput("")
+            addToast("Message sent successful!", { appearance: "success" })
+        }
+    }, [CreateSignetorisSuccess])
 
     useEffect(() => {
         if (CIDnumber) {
+            setTokenURL(`https://www.kulaingxd.com/tokenurl/read/${CIDnumber}`)
             var requestOptions = {
                 method: "GET",
 
@@ -118,6 +154,13 @@ export default function Dashboard() {
                 .catch((error) => console.log("error", error))
         }
     }, [CIDnumber])
+
+    useEffect(() => {
+        if (ownercontractaddress) {
+            setownersignetoraddress(ownercontractaddress.toString())
+        }
+    }, [ownercontractaddress])
+
     useEffect(() => {
         if (number) {
             setnumberowned(number.toString())
@@ -132,11 +175,9 @@ export default function Dashboard() {
                 ) : (
                     <div className="h-[100vh] border-l border-r border-gray-200  xl:min-w-[576px] sm:ml-[73px] flex-grow max-w-xl">
                         <div className="flex py-2 px-3 sticky top-0 z-50 bg-white border-b border-gray-200">
-                            {CIDnumber && (
-                                <h2 className="text-lg sm:text-xl font-bold cursor-pointer">
-                                    https://www.kulaingxd.com/tokenurl/read/{CIDnumber}
+                        <h2 className="text-lg sm:text-xl font-bold cursor-pointer">
+                                    Home
                                 </h2>
-                            )}
                         </div>
                         <div className="flex  border-b border-gray-200 p-3 space-x-3">
                             <ConnectButton
@@ -190,17 +231,24 @@ export default function Dashboard() {
                                     </div>
                                     <button
                                         onClick={sendPost}
+                                        disabled={!input.trim()}
                                         className="bg-black text-white px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50"
                                     >
-                                        Tweet
+                                        Post
                                     </button>
+                                    {/* <button
+                                        onClick={controllorsendmessage}
+                                        className="bg-black text-white px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50"
+                                    >
+                                        Post
+                                    </button> */}
                                 </>
                             )}
                         </div>
                     </div>
                 )}
             </div>
-            <div>
+            {/* <div>
                 {newpost && (
                     <div className="relative">
                         <div>{newpost}</div>
@@ -214,7 +262,7 @@ export default function Dashboard() {
                         )}
                     </div>
                 )}
-            </div>
+            </div> */}
         </div>
     )
 }

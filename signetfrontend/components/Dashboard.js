@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from "react"
 import styles from "../styles/Dashbaord.module.css"
 import creatorcontract from "../constants/abi.json"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
-import { Axios } from "axios"
 import {
     usePrepareContractWrite,
     useAccount,
@@ -77,7 +76,6 @@ export default function Dashboard() {
         var formdata = new FormData()
 
         formdata.append("imageurl", selectedFile)
-
         formdata.append("description", input)
         var requestOptions = {
             statusCode: 200,
@@ -96,9 +94,7 @@ export default function Dashboard() {
 
         setLoading(false)
     }
-    const handlePost = (event) => {
-        sendPost()
-    }
+
     useEffect(() => {
         if (number) {
             setnumberowned(number.toString())
@@ -137,9 +133,11 @@ export default function Dashboard() {
                 ) : (
                     <div className="h-[100vh] border-l border-r border-gray-200  xl:min-w-[576px] sm:ml-[73px] flex-grow max-w-xl">
                         <div className="flex py-2 px-3 sticky top-0 z-50 bg-white border-b border-gray-200">
-                            <h2 className="text-lg sm:text-xl font-bold cursor-pointer">
-                                {CIDnumber}
-                            </h2>
+                            {CIDnumber && (
+                                <h2 className="text-lg sm:text-xl font-bold cursor-pointer">
+                                    https://www.kulaingxd.com/tokenurl/read/{CIDnumber}
+                                </h2>
+                            )}
                         </div>
                         <div className="flex  border-b border-gray-200 p-3 space-x-3">
                             <ConnectButton

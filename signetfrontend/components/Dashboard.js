@@ -18,6 +18,7 @@ export default function Dashboard() {
     const [input, setInput] = useState("")
     const [results, setResults] = useState(0)
     const [selectedFile, setSelectedFile] = useState(null)
+    const [CIDnumber, setCIDnumber] = useState()
     const [numberowned, setnumberowned] = useState(0)
     const [loading, setLoading] = useState(false)
     const filePickerRef = useRef(null)
@@ -51,21 +52,28 @@ export default function Dashboard() {
         formdata.append("imageurl", selectedFile)
         formdata.append("description", input)
         var requestOptions = {
-            header: {
-                "Access-Control-Allow-Origin": "*",
-
+            // headers: { "Content-Type": "application/json" },
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "http://localhost:3000/",
+                "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+                "Access-Control-Allow-Headers": " Origin, Content-Type, X-Auth-Token",
             },
             method: "POST",
             body: formdata,
             redirect: "follow",
-            mode: "no-cors",
+            // mode: "no-cors",
         }
 
-        fetch("http://127.0.0.1:5000/tokenurl/", requestOptions)
+        fetch("https://www.kulaingxd.com/tokenurl/", requestOptions)
             .then((response) => response.text())
-            .then((result) => console.log(result))
+            .then((result) => {
+                setCIDnumber(result)
+                console.log(CIDnumber)
+            })
             .catch((error) => console.log("error", error))
-        
+
+        setLoading(false)
     }
 
     if (selectedFile) {
@@ -161,7 +169,7 @@ export default function Dashboard() {
                                     </div>
                                 </div>
                                 <button
-                                    onClick={sendPost}
+                                    onClick={() => sendPost()}
                                     disabled={!input.trim()}
                                     className="bg-black text-white px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50"
                                 >

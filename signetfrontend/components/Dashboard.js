@@ -21,6 +21,7 @@ export default function Dashboard() {
     const [input, setInput] = useState("")
     const [results, setResults] = useState(0)
     const [selectedFile, setSelectedFile] = useState(null)
+    const [show, setShow] = useState(false)
     const [CIDnumber, setCIDnumber] = useState()
     const [numberowned, setnumberowned] = useState(0)
     const [loading, setLoading] = useState(false)
@@ -163,6 +164,7 @@ export default function Dashboard() {
             setSelectedFile(null)
             setInput("")
             setReady(false)
+            setShow(true)
             addToast("Message sent successful!", { appearance: "success" })
         }
     }, [CreateSignetorisSuccess])
@@ -295,6 +297,8 @@ export default function Dashboard() {
                                     />
                                     <img
                                         src={selectedFile}
+                                        height="300px"
+                                        width="300px"
                                         className={`${loading && "animate-pulse"}`}
                                     />
                                 </div>
@@ -334,7 +338,6 @@ export default function Dashboard() {
                                                 {CreateSignetorisLoading ? "Posting..." : "Post"}
                                             </button>
                                         )}
-                                        
                                     </>
                                 )}
                             </div>
@@ -361,11 +364,11 @@ export default function Dashboard() {
                 )}
             </div>
             <div>
-                {newpost && (
+                {show && (
                     <div className="relative">
                         <div>Lasted post:</div>
                         <div>{newpost}</div>
-                        {newimg != "null" && <img src={newimg} />}
+                        {newimg != "null" && <img height="300px" width="300px" src={newimg} />}
                     </div>
                 )}
             </div>

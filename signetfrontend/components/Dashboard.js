@@ -148,10 +148,20 @@ export default function Dashboard() {
         args: [ownersignetoraddress, tokenURL],
     })
     const { data: resultss, write: controllorsendmessage } = useContractWrite(config)
-    const { isLoading: CreateSignetorisLoading, isSuccess: CreateSignetorisSuccess } =
-        useWaitForTransaction({
-            hash: resultss?.hash,
-        })
+    const {
+        isLoading: CreateSignetorisLoading,
+        isError: sendmessageerror,
+        isSuccess: CreateSignetorisSuccess,
+    } = useWaitForTransaction({
+        hash: resultss?.hash,
+    })
+
+    useEffect(() => {
+        if (sendmessageerror) {
+            addToast("Transaction error...", { appearance: "error" })
+            setReady(false)
+        }
+    }, [CreateSignetorisLoading])
     useEffect(() => {
         if (CreateSignetorisLoading) {
             addToast("Transaction Submitted...", { appearance: "success" })
@@ -329,13 +339,22 @@ export default function Dashboard() {
                                                 Generate Signet
                                             </button>
                                         )}
-                                        {ready && (
+                                        {ready && !CreateSignetorisLoading && (
+                                            <button
+                                                onClick={contractreact}
+                                                disabled={!input.trim()}
+                                                className="bg-black text-white px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50"
+                                            >
+                                                {"Post"}
+                                            </button>
+                                        )}
+                                        {ready && CreateSignetorisLoading && (
                                             <button
                                                 onClick={contractreact}
                                                 disabled={(!input.trim(), disable)}
                                                 className="bg-black text-white px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50"
                                             >
-                                                {CreateSignetorisLoading ? "Posting..." : "Post"}
+                                                {"Posting..."}
                                             </button>
                                         )}
                                     </>

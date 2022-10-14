@@ -175,6 +175,7 @@ export default function Dashboard() {
             setInput("")
             setReady(false)
             setShow(true)
+            setDisable(false)
             addToast("Message sent successful!", { appearance: "success" })
         }
     }, [CreateSignetorisSuccess])

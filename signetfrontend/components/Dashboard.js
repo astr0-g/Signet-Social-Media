@@ -32,6 +32,7 @@ export default function Dashboard() {
     const [ownersignetoraddress, setownersignetoraddress] = useState("")
     const [ownersignetnum, setownersignetnum] = useState("")
     const [Inumber, setInumber] = useState("")
+    const [disable, setDisable] = useState(false)
     const filePickerRef = useRef(null)
     const { addToast } = useToasts()
     const { address } = useAccount()
@@ -78,6 +79,7 @@ export default function Dashboard() {
         if (e.target.files[0] && verificationPicFile(e.target) != false) {
             reader.readAsDataURL(e.target.files[0])
             addToast("Picture Uploaded Successfully", { appearance: "success" })
+            setReady(false)
         }
 
         reader.onload = (readerEvent) => {
@@ -134,9 +136,9 @@ export default function Dashboard() {
     }
 
     const contractreact = async () => {
-        setpost(true)
+        setDisable(true)
+
         controllorsendmessage()
-        setReady(false)
     }
     const { config } = usePrepareContractWrite({
         addressOrName: creatorcontract.address,
@@ -152,6 +154,7 @@ export default function Dashboard() {
     useEffect(() => {
         if (CreateSignetorisLoading) {
             addToast("Transaction Submitted...", { appearance: "success" })
+            setpost(true)
         }
     }, [CreateSignetorisLoading])
     useEffect(() => {
@@ -159,6 +162,7 @@ export default function Dashboard() {
             setpost(false)
             setSelectedFile(null)
             setInput("")
+            setReady(false)
             addToast("Message sent successful!", { appearance: "success" })
         }
     }, [CreateSignetorisSuccess])
@@ -277,6 +281,7 @@ export default function Dashboard() {
                                             rows="2"
                                             placeholder="What's popping?"
                                             value={input}
+                                            disabled={ready}
                                             onChange={(e) => setInput(e.target.value)}
                                         ></textarea>
                                     </div>
@@ -323,24 +328,25 @@ export default function Dashboard() {
                                         {ready && (
                                             <button
                                                 onClick={contractreact}
-                                                disabled={!input.trim()}
+                                                disabled={(!input.trim(), disable)}
                                                 className="bg-black text-white px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50"
                                             >
                                                 {CreateSignetorisLoading ? "Posting..." : "Post"}
                                             </button>
                                         )}
-                                        {post && (
-                                            <button
-                                                onClick={contractreact}
-                                                disabled={!input.trim()}
-                                                className="bg-black text-white px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50"
-                                            >
-                                                {CreateSignetorisLoading ? "Posting..." : "Post"}
-                                            </button>
-                                        )}
+                                        
                                     </>
                                 )}
                             </div>
+                            {!loading && ready && !CreateSignetorisLoading && (
+                                <button
+                                    onClick={() => setReady(false)}
+                                    disabled={!input.trim()}
+                                    className="bg-black text-white px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50 absolute right-0"
+                                >
+                                    Cancel
+                                </button>
+                            )}
                             {/* <div className="flex-wrap flex items-center justify-center">
                                 {ownersignetnum &&
                                     ownersignetnum.map((item, i) => (
@@ -357,8 +363,9 @@ export default function Dashboard() {
             <div>
                 {newpost && (
                     <div className="relative">
+                        <div>Lasted post:</div>
                         <div>{newpost}</div>
-                        {/* {newpost && } */}
+                        {newimg != "null" && <img src={newimg} />}
                     </div>
                 )}
             </div>

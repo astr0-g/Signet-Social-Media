@@ -24,10 +24,14 @@ export default function Dashboard() {
     const [CIDnumber, setCIDnumber] = useState()
     const [numberowned, setnumberowned] = useState(0)
     const [loading, setLoading] = useState(false)
+    const [ready, setReady] = useState(false)
+    const [post, setpost] = useState(false)
     const [newimg, setnewimg] = useState("")
     const [newpost, setnewpost] = useState("")
     const [tokenURL, setTokenURL] = useState("")
     const [ownersignetoraddress, setownersignetoraddress] = useState("")
+    const [ownersignetnum, setownersignetnum] = useState("")
+    const [Inumber, setInumber] = useState("")
     const filePickerRef = useRef(null)
     const { addToast } = useToasts()
     const { address } = useAccount()
@@ -49,6 +53,24 @@ export default function Dashboard() {
         watch: true,
         args: address,
     })
+
+    const { data: NumTokenOwned } = useContractRead({
+        addressOrName: ownersignetoraddress,
+        contractInterface: signetorcontract.abi,
+        chains: 5,
+        functionName: "balanceOf",
+        watch: true,
+        args: address,
+    })
+
+    // const { data: tokenur } = useContractRead({
+    //     addressOrName: ownersignetoraddress,
+    //     contractInterface: signetorcontract.abi,
+    //     chains: 5,
+    //     functionName: "tokenURI",
+    //     watch: true,
+    //     args: "3",
+    // })
 
     const addImageToPost = (e) => {
         const reader = new FileReader()
@@ -87,8 +109,11 @@ export default function Dashboard() {
         if (loading) return
         setLoading(true)
         var formdata = new FormData()
-
-        formdata.append("imageurl", selectedFile)
+        if (selectedFile) {
+            formdata.append("imageurl", selectedFile)
+        } else {
+            formdata.append("imageurl", "null")
+        }
         formdata.append("description", input)
         var requestOptions = {
             statusCode: 200,
@@ -104,9 +129,14 @@ export default function Dashboard() {
                 setCIDnumber(result)
             })
             .catch((error) => console.log("error", error))
-        controllorsendmessage()
-
         setLoading(false)
+        setReady(true)
+    }
+
+    const contractreact = async () => {
+        setpost(true)
+        controllorsendmessage()
+        setReady(false)
     }
     const { config } = usePrepareContractWrite({
         addressOrName: creatorcontract.address,
@@ -126,6 +156,7 @@ export default function Dashboard() {
     }, [CreateSignetorisLoading])
     useEffect(() => {
         if (CreateSignetorisSuccess) {
+            setpost(false)
             setSelectedFile(null)
             setInput("")
             addToast("Message sent successful!", { appearance: "success" })
@@ -155,9 +186,16 @@ export default function Dashboard() {
         }
     }, [CIDnumber])
 
+    // useEffect(() => {
+    //     if (tokenURL) {
+    //         console.log(tokenURL)
+
+    //     }
+    // }, [tokenURL])
+
     useEffect(() => {
         if (ownercontractaddress) {
-            setownersignetoraddress(ownercontractaddress.toString())
+            setownersignetoraddress(ownercontractaddress)
         }
     }, [ownercontractaddress])
 
@@ -166,103 +204,173 @@ export default function Dashboard() {
             setnumberowned(number.toString())
         }
     }, [number])
+    const tokeninfo = []
 
+    // useEffect(() => {
+    //     if (tokenur) {
+    //         console.log(tokenur)
+    //     }
+    // }, [tokenur])
+
+    // for (let i = ownersignetnum.toString(); i > ownersignetnum.toString() - 5; i--) {
+    //     setInumber(i)
+    //     var requestOptions = {
+    //         method: "GET",
+
+    //         redirect: "follow",
+    //     }
+
+    //     fetch(tokenurl, requestOptions)
+    //         .then((response) => response.json())
+    //         .then((result) => {
+    //             setnewimg("")
+    //             if (result.image != "") {
+    //                 setnewimg(result.image)
+    //             }
+
+    //             setnewpost(result.description)
+    //         })
+    //         .catch((error) => console.log("error", error))
+    //     tokeninfo.push(
+    //         <div>
+    //             <div>token ID : {i}</div>
+    //             <div>result.description</div>
+    //             <img src={newimg}></img>{" "}
+    //         </div>
+    //     )
+    // }
+    // console.log(tokeninfo)
+    useEffect(() => {
+        if (NumTokenOwned) {
+            setownersignetnum(NumTokenOwned.toString())
+        }
+    }, [NumTokenOwned])
+
+    //max-w-xl//
     return (
         <div>
             <div>
                 {numberowned == 0 ? (
                     <Signetor />
                 ) : (
-                    <div className="h-[100vh] border-l border-r border-gray-200  xl:min-w-[576px] sm:ml-[73px] flex-grow max-w-xl">
-                        <div className="flex py-2 px-3 sticky top-0 z-50 bg-white border-b border-gray-200">
-                        <h2 className="text-lg sm:text-xl font-bold cursor-pointer">
+                    <div className="justify-between items-center">
+                        <div className="h-[100vh] border-l border-r bg-slate-100 border-gray-200  xl:min-w-[576px] sm:ml-[73px] flex-grow ">
+                            {" "}
+                            <div className="flex py-2 px-3 top-0 z-50 border-b border-gray-200">
+                                <h2 className="text-lg sm:text-xl font-bold cursor-pointer">
                                     Home
                                 </h2>
-                        </div>
-                        <div className="flex  border-b border-gray-200 p-3 space-x-3">
-                            <ConnectButton
-                                accountStatus="avatar"
-                                showBalance={{
-                                    smallScreen: false,
-                                    largeScreen: false,
-                                }}
-                                chainStatus="none"
-                            />
-                            <div className="w-full divide-y divide-gray-200">
-                                <div className="">
-                                    <textarea
-                                        className="w-full border-none focus:ring-0 text-lg placeholder-gray-700 tracking-wide min-h-[50px] text-gray-700"
-                                        rows="2"
-                                        placeholder="What's happening?"
-                                        value={input}
-                                        onChange={(e) => setInput(e.target.value)}
-                                    ></textarea>
+                            </div>
+                            <div className="flex  border-b border-gray-200 p-3 space-x-3">
+                                <ConnectButton
+                                    accountStatus="avatar"
+                                    showBalance={{
+                                        smallScreen: false,
+                                        largeScreen: false,
+                                    }}
+                                    chainStatus="none"
+                                />
+                                <div className="w-full divide-y divide-gray-200">
+                                    <div className="">
+                                        <textarea
+                                            className="w-full border-none focus:ring-0 text-lg placeholder-gray-700 tracking-wide min-h-[50px] text-gray-700"
+                                            rows="2"
+                                            placeholder="What's popping?"
+                                            value={input}
+                                            onChange={(e) => setInput(e.target.value)}
+                                        ></textarea>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        {selectedFile && (
-                            <div className="relative">
-                                <XIcon
-                                    onClick={() => setSelectedFile(null)}
-                                    className="border h-7 text-black absolute cursor-pointer shadow-md border-white m-1 rounded-full"
-                                />
-                                <img
-                                    src={selectedFile}
-                                    className={`${loading && "animate-pulse"}`}
-                                />
-                            </div>
-                        )}
-                        <div className="flex items-center justify-between pt-2.5">
-                            {!loading && (
-                                <>
-                                    <div className="flex">
-                                        <div
-                                            className=""
-                                            onClick={() => filePickerRef.current.click()}
-                                        >
-                                            <PhotographIcon className="h-10 w-10 hoverEffect p-2 text-black hover:bg-sky-100" />
-                                            <input
-                                                type="file"
-                                                hidden
-                                                ref={filePickerRef}
-                                                onChange={addImageToPost}
-                                            />
-                                        </div>
-                                    </div>
-                                    <button
-                                        onClick={sendPost}
-                                        disabled={!input.trim()}
-                                        className="bg-black text-white px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50"
-                                    >
-                                        Post
-                                    </button>
-                                    {/* <button
-                                        onClick={controllorsendmessage}
-                                        className="bg-black text-white px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50"
-                                    >
-                                        Post
-                                    </button> */}
-                                </>
+                            {selectedFile && (
+                                <div className="relative">
+                                    <XIcon
+                                        onClick={() => setSelectedFile(null)}
+                                        className="border h-7 text-black absolute cursor-pointer shadow-md border-white m-1 rounded-full"
+                                    />
+                                    <img
+                                        src={selectedFile}
+                                        className={`${loading && "animate-pulse"}`}
+                                    />
+                                </div>
                             )}
+                            <div className="flex items-center justify-between pt-2.5">
+                                {!loading && (
+                                    <>
+                                        <div className="flex">
+                                            <div
+                                                className=""
+                                                onClick={() => filePickerRef.current.click()}
+                                            >
+                                                <PhotographIcon className="h-10 w-10 hoverEffect p-2 text-black hover:bg-sky-100" />
+                                                <input
+                                                    type="file"
+                                                    hidden
+                                                    ref={filePickerRef}
+                                                    onChange={addImageToPost}
+                                                />
+                                            </div>
+                                        </div>
+                                        {!ready && !post && (
+                                            <button
+                                                onClick={sendPost}
+                                                disabled={!input.trim()}
+                                                className="bg-black text-white px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50"
+                                            >
+                                                Generate Signet
+                                            </button>
+                                        )}
+                                        {ready && (
+                                            <button
+                                                onClick={contractreact}
+                                                disabled={!input.trim()}
+                                                className="bg-black text-white px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50"
+                                            >
+                                                {CreateSignetorisLoading ? "Posting..." : "Post"}
+                                            </button>
+                                        )}
+                                        {post && (
+                                            <button
+                                                onClick={contractreact}
+                                                disabled={!input.trim()}
+                                                className="bg-black text-white px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50"
+                                            >
+                                                {CreateSignetorisLoading ? "Posting..." : "Post"}
+                                            </button>
+                                        )}
+                                    </>
+                                )}
+                            </div>
+                            {/* <div className="flex-wrap flex items-center justify-center">
+                                {ownersignetnum &&
+                                    ownersignetnum.map((item, i) => (
+                                        <div key={i}>// Show all things which you want</div>
+                                    ))}
+                            </div> */}
                         </div>
+                        {/* <div className="border-l border-r bg-slate-100 border-gray-200  xl:min-w-[576px] sm:ml-[73px] absolute top-0 right-0 flex-grow max-w-xl">
+                            sdf
+                        </div> */}
                     </div>
                 )}
             </div>
-            {/* <div>
+            <div>
                 {newpost && (
                     <div className="relative">
                         <div>{newpost}</div>
-                        {newimg != "null" && (
-                            <img
-                                src={newimg}
-                                height="100px"
-                                width="100px"
-                                className={`${loading && "animate-pulse"}`}
-                            />
-                        )}
+                        {/* {newpost && } */}
                     </div>
                 )}
-            </div> */}
+            </div>
         </div>
     )
 }
+
+// (
+//     <img
+//         src={newimg}
+//         height="100px"
+//         width="100px"
+//         className={`${loading && "animate-pulse"}`}
+//     />
+// )

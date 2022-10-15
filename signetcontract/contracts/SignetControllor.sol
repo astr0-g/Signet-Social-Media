@@ -23,6 +23,13 @@ contract SignetControllor is ReentrancyGuard, Ownable {
     mapping(address => ownerstruct) public collectionContractList;
     event CollectionCreated(address indexed creatoraddress, address indexed collectionaddress);
 
+    event NewMessageSent(
+        address indexed messageSender,
+        address indexed signetoraddress,
+        uint256 messageId,
+        string tokenURI_
+    );
+
     constructor() {
         ST = new Signetors();
         STCrator = Signetors(ST.ContractAddress());
@@ -56,7 +63,8 @@ contract SignetControllor is ReentrancyGuard, Ownable {
 
     function sendmessage(address addr, string memory tokenURI_) public returns (bool success) {
         sSignetor = Signetor(addr);
-        sSignetor.sendmessage(tokenURI_);
+        uint256 messageId = sSignetor.sendmessage(tokenURI_);
+        emit NewMessageSent(msg.sender, addr, messageId, tokenURI_);
         return true;
     }
 }

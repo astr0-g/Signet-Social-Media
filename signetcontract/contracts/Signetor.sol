@@ -65,12 +65,13 @@ contract Signetor is ERC721, Ownable {
         return string(abi.encodePacked(base, tokenId.toString()));
     }
 
-    function sendmessage(string memory tokenURI_) public {
+    function sendmessage(string memory tokenURI_) public returns (uint256) {
         if (msg.sender != SignetControllors) revert Not__FromSignetControllors();
         token_Id++;
         address owneraddress = owner();
         _mint(owneraddress, token_Id);
         _setTokenURI(token_Id, tokenURI_);
+        return (token_Id);
     }
 
     // function totalmessage() public view returns (uint256) {

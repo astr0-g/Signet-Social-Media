@@ -126,7 +126,7 @@ export default function Dashboard() {
             // mode: "no-cors",
         }
 
-        await fetch("https://www.kulaingxd.com/tokenurl/", requestOptions)
+        await fetch("https://api.signet.ink/tokenurl/", requestOptions)
             .then((response) => response.text())
             .then((result) => {
                 setCIDnumber(result)
@@ -182,14 +182,14 @@ export default function Dashboard() {
 
     useEffect(() => {
         if (CIDnumber) {
-            setTokenURL(`https://www.kulaingxd.com/tokenurl/read/${CIDnumber}`)
+            setTokenURL(`https://api.signet.ink/tokenurl/read/${CIDnumber}`)
             var requestOptions = {
                 method: "GET",
 
                 redirect: "follow",
             }
 
-            fetch(`https://www.kulaingxd.com/tokenurl/read/${CIDnumber}`, requestOptions)
+            fetch(`https://api.signet.ink/tokenurl/read/${CIDnumber}`, requestOptions)
                 .then((response) => response.json())
                 .then((result) => {
                     setnewimg("")
@@ -271,7 +271,7 @@ export default function Dashboard() {
                     <Signetor />
                 ) : (
                     <div className="justify-between items-center">
-                        <div className="h-[100vh] border-l border-r bg-slate-100 border-gray-200  xl:min-w-[576px] sm:ml-[73px] flex-grow ">
+                        <div className="h-[100vh] border-l border-r bg-slate-100 border-gray-200  xl:min-w-[576px] sm:ml-[73px] flex-grow">
                             {" "}
                             <div className="flex py-2 px-3 top-0 z-50 border-b border-gray-200">
                                 <h2 className="text-lg sm:text-xl font-bold cursor-pointer">

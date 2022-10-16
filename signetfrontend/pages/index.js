@@ -12,7 +12,7 @@ export default function Home() {
             <Head>
                 <title>Signet</title>
                 <meta name="description" content="2" />
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" href="/logo.ico" />
             </Head>
             <div>
                 <nav className={styles.navBar}>

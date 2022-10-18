@@ -70,7 +70,7 @@ export default function Messagelist() {
     }
 
     async function pulljson() {
-        const response = await fetch(`http://api.signet.ink/signet/read/${address}`)
+        const response = await fetch(`https://api.signet.ink/signet/read/${address}`)
         const responseData = await response.json()
         // console.log(responseData.tokenURI)
         if (responseData.length > 10) {
@@ -112,7 +112,7 @@ export default function Messagelist() {
 
     async function Loadmore() {
         setismoreLoading(true)
-        const response = await fetch(`http://api.signet.ink/signet/read/${address}`)
+        const response = await fetch(`https://api.signet.ink/signet/read/${address}`)
         const responseData = await response.json()
         // console.log(responseData.tokenURI)
 

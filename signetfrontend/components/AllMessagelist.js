@@ -99,7 +99,7 @@ export default function AllMessagelist() {
                             <Image src="" className="px-4 py-2 m-2" height="100" width="100" />
                         )}
                         <div className="px-4 py-2 m-2 italic text-sm">{msg.tokendescription}</div>
-                        <div className="absolute right-0 px-4 py-2 m-2 italic text-sm">
+                        <div className="px-4 py-2 m-2 italic text-sm">
                             from{" "}
                             {`${
                                 msg.messageSender.slice(0, 4) +
@@ -147,10 +147,7 @@ export default function AllMessagelist() {
                             <Image src="" className="px-4 py-2 m-2" height="100" width="100" />
                         )}
                         <div className="px-4 py-2 m-2 italic text-sm">{msg.tokendescription}</div>
-                        <div className="absolute right-0 px-4 py-2 m-2 italic text-sm">
-                            {Datachange(parseInt(msg.time))}
-                        </div>
-                        <div className="absolute right-0 px-4 py-2 m-2 italic text-sm">
+                        <div className="px-4 py-2 m-2 italic text-sm">
                             from{" "}
                             {`${
                                 msg.messageSender.slice(0, 4) +

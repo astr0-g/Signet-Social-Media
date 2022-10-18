@@ -7,6 +7,8 @@ import { useToasts } from "react-toast-notifications"
 import signetorcontract from "../constants/Signetor.json"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
 import Signetor from "./Signetor"
+import Messagelist from "./Messagelist"
+import AllMessagelist from "./AllMessagelist"
 import {
     usePrepareContractWrite,
     useAccount,
@@ -33,6 +35,7 @@ export default function Dashboard() {
     const [ownersignetoraddress, setownersignetoraddress] = useState("")
     const [ownersignetnum, setownersignetnum] = useState("")
     const [Inumber, setInumber] = useState("")
+    const [readstutes, setreadstutes] = useState(false)
     const [disable, setDisable] = useState(false)
     const filePickerRef = useRef(null)
     const { addToast } = useToasts()
@@ -87,7 +90,12 @@ export default function Dashboard() {
             setSelectedFile(readerEvent.target.result)
         }
     }
-
+    function toggletrue() {
+        setreadstutes(true)
+    }
+    function togglefalse() {
+        setreadstutes(false)
+    }
     function verificationPicFile(file) {
         var fileSize = 0
         var fileMaxSize = 2048 //1M
@@ -271,12 +279,21 @@ export default function Dashboard() {
                     <Signetor />
                 ) : (
                     <div className="justify-between items-center">
-                        <div className="h-[100vh] border-l border-r bg-slate-100 border-gray-200  xl:min-w-[576px] sm:ml-[73px] flex-grow">
+                        <div className="border-l border-r bg-slate-100 border-gray-200  xl:min-w-[576px] sm:ml-[73px] flex-grow">
                             {" "}
                             <div className="flex py-2 px-3 top-0 z-50 border-b border-gray-200">
-                                <h2 className="text-lg sm:text-xl font-bold cursor-pointer">
+                                <button
+                                    className="border-black border-2 rounded-lg text-lg sm:text-xl font-bold cursor-pointer"
+                                    onClick={togglefalse}
+                                >
                                     Home
-                                </h2>
+                                </button>
+                                <button
+                                    className="border-black border-2 rounded-lg absolute right-5 text-lg sm:text-xl font-bold cursor-pointer"
+                                    onClick={toggletrue}
+                                >
+                                    Explore
+                                </button>
                             </div>
                             <div className="flex  border-b border-gray-200 p-3 space-x-3">
                                 <ConnectButton
@@ -377,21 +394,34 @@ export default function Dashboard() {
                                     ))}
                             </div> */}
                         </div>
+
                         {/* <div className="border-l border-r bg-slate-100 border-gray-200  xl:min-w-[576px] sm:ml-[73px] absolute top-0 right-0 flex-grow max-w-xl">
                             sdf
                         </div> */}
                     </div>
                 )}
             </div>
-            <div>
-                {show && (
-                    <div className="relative">
-                        <div>Lasted post:</div>
-                        <div>{newpost}</div>
-                        {newimg != "null" && <img height="300px" width="300px" src={newimg} />}
-                    </div>
-                )}
-            </div>
+            {/* <div className="relative flex flex-col items-center justify-center overflow-hidden">
+                <div className="flex">
+                    <label class="inline-flex relative items-center mr-5 cursor-pointer">
+                        <input
+                            type="checkbox"
+                            className="sr-only peer"
+                            // checked={enabled}
+                            readOnly
+                        />
+                        <div
+                            onClick={() => {
+                                setreadstutes(!readstutes)
+                            }}
+                            className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
+                        ></div>
+                        <span className="ml-2 text-sm font-medium text-gray-900">Read Others</span>
+                    </label>
+                </div>
+            </div> */}
+            <div>{!readstutes && numberowned != 0 && <Messagelist />}</div>
+            <div>{readstutes && numberowned != 0 && <AllMessagelist />}</div>
         </div>
     )
 }

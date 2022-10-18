@@ -27,7 +27,8 @@ contract SignetControllor is ReentrancyGuard, Ownable {
         address indexed messageSender,
         address indexed signetoraddress,
         uint256 messageId,
-        string tokenURI_
+        string tokenURI_,
+        uint256 time
     );
 
     constructor() {
@@ -64,7 +65,8 @@ contract SignetControllor is ReentrancyGuard, Ownable {
     function sendmessage(address addr, string memory tokenURI_) public returns (bool success) {
         sSignetor = Signetor(addr);
         uint256 messageId = sSignetor.sendmessage(tokenURI_);
-        emit NewMessageSent(msg.sender, addr, messageId, tokenURI_);
+        uint256 time = block.timestamp;
+        emit NewMessageSent(msg.sender, addr, messageId, tokenURI_, time);
         return true;
     }
 }

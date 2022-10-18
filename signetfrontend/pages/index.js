@@ -4,7 +4,7 @@ import Dashboard from "../components/Dashboard"
 import Welcome from "../components/Welcome"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
 import { useAccount } from "wagmi"
-
+import Footer from "../components/Footer"
 export default function Home() {
     const { address } = useAccount()
     return (
@@ -21,6 +21,7 @@ export default function Home() {
                 </nav>
             </div>
             {!address ? <Welcome /> : <Dashboard />}
+            {/* <Footer /> */}
         </div>
     )
 }

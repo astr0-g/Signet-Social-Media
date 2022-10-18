@@ -95,9 +95,7 @@ export default function AllMessagelist() {
                                 width="100px"
                             />
                         )}
-                        {msg.tokenimageURL == "null" && (
-                            <Image src="" className="px-4 py-2 m-2" height="100" width="100" />
-                        )}
+                        
                         <div className="px-4 py-2 m-2 italic text-sm">{msg.tokendescription}</div>
                         <div className="px-4 py-2 m-2 italic text-sm">
                             from{" "}
@@ -143,9 +141,7 @@ export default function AllMessagelist() {
                                 width="100"
                             />
                         )}
-                        {msg.tokenimageURL == "null" && (
-                            <Image src="" className="px-4 py-2 m-2" height="100" width="100" />
-                        )}
+                        
                         <div className="px-4 py-2 m-2 italic text-sm">{msg.tokendescription}</div>
                         <div className="px-4 py-2 m-2 italic text-sm">
                             from{" "}

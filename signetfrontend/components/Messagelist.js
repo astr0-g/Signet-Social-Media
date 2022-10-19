@@ -95,7 +95,7 @@ export default function Messagelist() {
                                 width="100px"
                             />
                         )}
-                        
+
                         <div className="px-4 py-2 m-2 italic text-sm">{msg.tokendescription}</div>
                         <div className="absolute right-0 px-4 py-2 m-2 italic text-sm">
                             {Datachange(parseInt(msg.time))}
@@ -133,7 +133,7 @@ export default function Messagelist() {
                                 width="100"
                             />
                         )}
-                        
+
                         <div className="px-4 py-2 m-2 italic text-sm">{msg.tokendescription}</div>
                         <div className="absolute right-0 px-4 py-2 m-2 italic text-sm">
                             {Datachange(parseInt(msg.time))}
@@ -169,7 +169,7 @@ export default function Messagelist() {
         <div className="justify-between items-center">
             <div className="border-l border-r bg-slate-100 border-gray-200  xl:min-w-[576px] sm:ml-[73px] flex-grow">
                 <div className="flex py-2 px-3 top-0 z-50 border-b border-gray-200 items-center ">
-                    <div className="text-lg sm:text-xl font-bold">Your Signets</div>
+                    <div className="text-lg sm:text-xl font-bold">Signets</div>
 
                     <button onClick={() => Refresh()} className="text-lg sm:text-xl font-bold">
                         <svg

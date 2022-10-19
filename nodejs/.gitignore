@@ -1,0 +1,17 @@
+node_modules
+.env
+coverage
+coverage.json
+typechain
+typechain-types
+deployments
+
+#Hardhat files
+cache
+artifacts
+gas-reports.txt
+.DS_Store
+.prettierrc
+.solhint.json
+.solhintignore
+yarn-error.log

@@ -56,7 +56,7 @@ async function main() {
             redirect: "follow",
         }
 
-        fetch("https://api.signet.ink/follow/unfo/", requestOptions)
+        fetch(process.env.unfollow, requestOptions)
             .then((response) => response.text())
             .then((result) => console.log(result))
             .catch((error) => console.log("error", error))

@@ -33,9 +33,7 @@ require("dotenv").config()
 
 // getEvents(CONTRACT_ABI, CONTRACT_ADDRESS);
 async function main() {
-    const provider = new ethers.providers.WebSocketProvider(
-        process.env.RPC
-    )
+    const provider = new ethers.providers.WebSocketProvider(process.env.RPC)
     const CONTRACT_ADDRESS = creatorcontract.address
     const CONTRACT_ABI = creatorcontract.abi
     const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, provider)
@@ -58,7 +56,7 @@ async function main() {
             redirect: "follow",
         }
 
-        fetch("https://api.signet.ink/follow/fo/", requestOptions)
+        fetch(process.env.follow, requestOptions)
             .then((response) => response.text())
             .then((result) => console.log(result))
             .catch((error) => console.log("error", error))

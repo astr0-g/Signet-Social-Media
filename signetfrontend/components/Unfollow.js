@@ -18,10 +18,14 @@ import { useState, useEffect } from "react"
 
 export default function Ununfollow() {
     const router = useRouter()
+    const account = useAccount()
+    const { connector: activeConnector, isConnected } = useAccount()
     const { useraddress } = router.query
     const { addToast } = useToasts()
     const [disable, setDisable] = useState(false)
-
+    const [unfollowtrue, setunfollowtrue] = useState(false)
+    const [Word, setWord] = useState()
+    const [stylea, setstylea] = useState(styles1.button171)
     const { config } = usePrepareContractWrite({
         addressOrName: creatorcontract.address,
         contractInterface: creatorcontract.abi,
@@ -48,15 +52,35 @@ export default function Ununfollow() {
     }, [unfollowisLoading])
     useEffect(() => {
         if (unfollowisSuccess) {
-            // setDisable(false)
+            setWord("unfollowed")
+            setstylea(styles1.button17)
+            setunfollowtrue(true)
             addToast("unfollowed successful!", { appearance: "success" })
         }
     }, [unfollowisSuccess])
+    function sendto() {
+        addToast("Please connect wallet", { appearance: "error" })
+    }
+    function sendtoast() {
+        addToast("You have already unfollowed!", { appearance: "error" })
+    }
     return (
         <div>
-            <button className={styles1.button17} onClick={unfollow}>
-                <div className="btn btn-primary btn-sm">unfollow </div>
-            </button>
+            {!isConnected && (
+                <button className={stylea} disable={true} onClick={toasterror()}>
+                    <div className="btn btn-primary btn-sm">{Word}</div>
+                </button>
+            )}
+            {!unfollowtrue && isConnected && (
+                <button className={stylea} disable={true} onClick={unfollow}>
+                    <div className="btn btn-primary btn-sm">{Word}</div>
+                </button>
+            )}
+            {unfollowtrue && isConnected && (
+                <button className={stylea} disable={true} onClick={sendtoast}>
+                    <div className="btn btn-primary btn-sm">{Word}</div>
+                </button>
+            )}
         </div>
     )
 }

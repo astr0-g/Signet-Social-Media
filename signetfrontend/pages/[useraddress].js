@@ -75,7 +75,6 @@ export default function Signetor() {
         watch: true,
         args: useraddress,
     })
-    followstatues
     useEffect(() => {
         if (followstatues) {
             setfollowstatue(followstatues)
@@ -114,15 +113,6 @@ export default function Signetor() {
         setshowcontractaddress(!showcontractaddress)
     }
 
-    ///// follow
-
-    ////
-
-    ///
-    // function clickunfollow() {
-    //     unfollow
-    // }
-    //
     return (
         <div>
             <Head>
@@ -374,6 +364,7 @@ export default function Signetor() {
                     </div>
                 )}
             </p>
+            
         </div>
     )
 }

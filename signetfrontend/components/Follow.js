@@ -15,10 +15,13 @@ import {
 import { useState, useEffect } from "react"
 
 export default function Follow() {
+    const { connector: activeConnector, isConnected } = useAccount()
     const router = useRouter()
     const { useraddress } = router.query
     const { addToast } = useToasts()
     const [disable, setDisable] = useState(false)
+    const [Word, setWord] = useState("follow")
+    const [stylea, setstylea] = useState(styles1.button17)
     const { config } = usePrepareContractWrite({
         addressOrName: creatorcontract.address,
         contractInterface: creatorcontract.abi,
@@ -40,20 +43,32 @@ export default function Follow() {
     }, [followerror])
     useEffect(() => {
         if (followisLoading) {
+            setWord("Processing...")
             addToast("Following...", { appearance: "success" })
         }
     }, [followisLoading])
     useEffect(() => {
         if (followisSuccess) {
-            // setDisable(false)
+            setWord()
+            setstylea(styles1.button171)
             addToast("Followed successful!", { appearance: "success" })
         }
     }, [followisSuccess])
+    function sendto() {
+        addToast("Please connect wallet", { appearance: "error" })
+    }
     return (
         <div>
-            <button className={styles1.button17} onClick={follow}>
-                <div className="btn btn-primary btn-sm">Follow </div>
-            </button>
+            {!isConnected && (
+                <button className={stylea} disable={true} onClick={sendto}>
+                    <div className="btn btn-primary btn-sm">{Word}</div>
+                </button>
+            )}
+            {isConnected && (
+                <button className={stylea} disable={true} onClick={follow}>
+                    <div className="btn btn-primary btn-sm">{Word}</div>
+                </button>
+            )}
         </div>
     )
 }

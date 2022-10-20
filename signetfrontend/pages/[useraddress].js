@@ -160,7 +160,7 @@ export default function Signetor() {
                                     <div className={stylesprofile.card}>
                                         <div className={stylesprofile.upper}>
                                             <img
-                                                src="https://media.istockphoto.com/vectors/dark-prism-textured-abstract-background-vector-id1286354786?k=20&m=1286354786&s=612x612&w=0&h=_GDyhERwWkugkVLBHjiy1fRhVa-VZeNbOut6H-tpUeM="
+                                                src="/background-03.jpg"
                                                 className={stylesprofile.upperimg}
                                             />
                                         </div>
@@ -307,7 +307,7 @@ export default function Signetor() {
                                     <div className={stylesprofile.card}>
                                         <div className={stylesprofile.upper}>
                                             <img
-                                                src="https://media.istockphoto.com/vectors/dark-prism-textured-abstract-background-vector-id1286354786?k=20&m=1286354786&s=612x612&w=0&h=_GDyhERwWkugkVLBHjiy1fRhVa-VZeNbOut6H-tpUeM="
+                                                src="/background-03.jpg"
                                                 className={stylesprofile.upperimg}
                                             />
                                         </div>

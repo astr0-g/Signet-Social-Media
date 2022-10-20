@@ -26,13 +26,15 @@
     "moralis-v1": "^1.11.0",
     "next": "12.2.5",
     "next-auth": "^4.13.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
     "react-moralis": "^1.4.2",
     "react-toast-notifications": "^2.5.1",
     "requests": "^0.3.0",
     "siwe": "^1.1.6",
     "wagmi": "^0.6.8"
+  },
+  "peerDependencies": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.21",

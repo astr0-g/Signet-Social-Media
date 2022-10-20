@@ -82,7 +82,7 @@ export default function AllMessagelist() {
                     key={msg.messageId}
                     className="p-2 rounded-sm border-2 border-inherit border-r border-l"
                 >
-                    <div className="flex flex-no-wrap">
+                    <div className="flex items-center justify-between pt-2.5 flex-no-wrap">
                         {/* <div>#{msg.messageId}</div> */}
                         {/* <div className="italic text-sm">Owned by {msg.messageSender}</div> */}
 
@@ -95,19 +95,21 @@ export default function AllMessagelist() {
                                 width="100px"
                             />
                         )}
-                        
+
                         <div className="px-4 py-2 m-2 italic text-sm">{msg.tokendescription}</div>
-                        <div className="px-4 py-2 m-2 italic text-sm">
-                            from{" "}
-                            {`${
-                                msg.messageSender.slice(0, 4) +
-                                msg.messageSender.slice(
-                                    msg.messageSender.length - 3,
-                                    msg.messageSender.length
-                                )
-                            }   `}
-                            {"--"} {Datachange(parseInt(msg.time))}
-                        </div>
+                        <Link href={"/" + msg.messageSender}>
+                            <button className="px-4 py-2 m-2 italic text-sm">
+                                from{" "}
+                                {`${
+                                    msg.messageSender.slice(0, 4) +
+                                    msg.messageSender.slice(
+                                        msg.messageSender.length - 3,
+                                        msg.messageSender.length
+                                    )
+                                }   `}
+                                {"--"} {Datachange(parseInt(msg.time))}
+                            </button>
+                        </Link>
                     </div>
                 </div>
             )
@@ -128,7 +130,7 @@ export default function AllMessagelist() {
                     key={msg.messageId}
                     className="p-2 rounded-sm border-2 border-inherit border-r border-l"
                 >
-                    <div className="flex flex-no-wrap">
+                    <div className="flex items-center justify-between pt-2.5 flex-no-wrap">
                         {/* <div>#{msg.messageId}</div> */}
                         {/* <div className="italic text-sm">Owned by {msg.messageSender}</div> */}
 
@@ -141,20 +143,22 @@ export default function AllMessagelist() {
                                 width="100"
                             />
                         )}
-                        
+
                         <div className="px-4 py-2 m-2 italic text-sm">{msg.tokendescription}</div>
-                        <div className="px-4 py-2 m-2 italic text-sm">
-                            from{" "}
-                            {`${
-                                msg.messageSender.slice(0, 4) +
-                                msg.messageSender.slice(
-                                    msg.messageSender.length - 3,
-                                    msg.messageSender.length
-                                )
-                            }   `}
-                            {"--"}
-                            {Datachange(parseInt(msg.time))}
-                        </div>
+                        <Link href={"/" + msg.messageSender}>
+                            <button className="px-4 py-2 m-2 italic text-sm right-0">
+                                from{" "}
+                                {`${
+                                    msg.messageSender.slice(0, 4) +
+                                    msg.messageSender.slice(
+                                        msg.messageSender.length - 3,
+                                        msg.messageSender.length
+                                    )
+                                }   `}
+                                {"--"}
+                                {Datachange(parseInt(msg.time))}
+                            </button>
+                        </Link>
                     </div>
                 </div>
             )

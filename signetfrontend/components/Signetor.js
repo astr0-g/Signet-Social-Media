@@ -48,7 +48,7 @@ export default function Signetor() {
                 </h1>
                 <div className="flex flex-col justify-center items-center">
                     <button
-                        className={styles.button1}
+                        className={styles.button85}
                         disabled={!controllorCreateSignetor || CreateSignetorisLoading}
                         onClick={controllorCreateSignetor}
                     >

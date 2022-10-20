@@ -2,14 +2,16 @@ import Image from "next/image"
 import { EmojiHappyIcon, SparklesIcon, PhotographIcon, XIcon } from "@heroicons/react/outline"
 import { useState, useEffect, useRef } from "react"
 import styles from "../styles/Dashbaord.module.css"
+import Welcome from "../components/Welcome"
+import styles1 from "../styles/Home.module.css"
+import Head from "next/head"
 import creatorcontract from "../constants/abi.json"
 import { useToasts } from "react-toast-notifications"
 import signetorcontract from "../constants/Signetor.json"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
-import Signetor from "./Signetor"
-import Messagelist from "./Messagelist"
-import AllMessagelist from "./AllMessagelist"
-import Messagebox from "./Messagebox"
+import Signetor from "../components/Signetor"
+import AllMessagelist from "../components/AllMessagelist"
+import Messagebox from "../components/Messagebox"
 import Link from "next/link"
 import {
     usePrepareContractWrite,
@@ -37,6 +39,7 @@ export default function Dashboard() {
     const [ownersignetoraddress, setownersignetoraddress] = useState("")
     const [ownersignetnum, setownersignetnum] = useState("")
     const [Inumber, setInumber] = useState("")
+    const [explorestutes, setexplorestutes] = useState(false)
     const [disable, setDisable] = useState(false)
     const [Profile, setProfile] = useState("")
     const filePickerRef = useRef(null)
@@ -70,6 +73,13 @@ export default function Dashboard() {
         args: address,
     })
 
+    function toggletrue() {
+        setexplorestutes(true)
+    }
+    function togglefalse() {
+        setexplorestutes(false)
+    }
+
     useEffect(() => {
         if (ownercontractaddress) {
             setownersignetoraddress(ownercontractaddress)
@@ -97,19 +107,34 @@ export default function Dashboard() {
     //max-w-xl//
     return (
         <div>
+            <Head>
+                <title>Signet</title>
+                <meta name="description" content="2" />
+                <link rel="icon" href="/logo.ico" />
+            </Head>
             <div>
-                {numberowned == 0 ? (
-                    <Signetor />
+                <nav className={styles1.navBar}>
+                    <img src="/logo2.png" />
+                    {!address ? (
+                        <div />
+                    ) : (
+                        <ConnectButton showBalance={true} accountStatus="address" />
+                    )}
+                </nav>
+            </div>
+            <div>
+                {!address ? (
+                    <Welcome />
                 ) : (
                     <div className="justify-between items-center">
                         <div className="flex flex-col justify-center items-center border-l border-r bg-slate-100 border-gray-200  xl:min-w-[576px] sm:ml-[73px] flex-grow">
                             {" "}
                             <div className="flex space-x-5 py-2 px-3 top-0 z-50 ">
-                                <button className={styles.button85}>Home</button>
-
-                                <Link href={`/explore`}>
-                                    <button className={styles.button85}>Explore</button>
+                                <Link href={`/`}>
+                                    <button className={styles.button85}>Home</button>
                                 </Link>
+
+                                <button className={styles.button85}>Explore</button>
 
                                 <Link href={`/${address}`}>
                                     <button className={styles.button85}>Profile</button>
@@ -120,7 +145,7 @@ export default function Dashboard() {
                     </div>
                 )}
             </div>
-            <div>{numberowned != 0 && <Messagelist />}</div>
+            <div>{numberowned != 0 && <AllMessagelist />}</div>
         </div>
     )
 }

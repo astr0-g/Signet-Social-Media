@@ -1,0 +1,67 @@
+.body {
+    background-color: #545454;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+}
+
+.container {
+    height: 100vh;
+}
+
+.card {
+    width: 460px;
+    border: none;
+    border-radius: 15px;
+    padding: 8px;
+    background-color: #f1f5f9;
+    position: relative;
+    height: 400px;
+}
+
+.upper {
+    height: 100px;
+}
+
+.upperimg {
+    opacity: 100%;
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.user {
+    position: relative;
+    background-color: #fff;
+}
+
+.profileimg {
+    height: 80px;
+    width: 80px;
+    margin-top: 2px;
+    background-color: #fff;
+}
+
+.profile {
+    position: absolute;
+    top: -50px;
+    left: 41%;
+    height: 80px;
+    width: 80px;
+    border: 3px solid #fff;
+
+    border-radius: 50%;
+}
+
+.profile:hover {
+}
+
+.follow {
+    border-radius: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 35px;
+}
+
+.statsspan {
+    font-size: 15px;
+}

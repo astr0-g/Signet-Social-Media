@@ -75,7 +75,7 @@ function MyApp({ Component, pageProps }) {
                 <RainbowKitProvider
                     chains={chains}
                     theme={darkTheme({
-                        accentColor: "#f542f2",
+                        accentColor: "#37383b",
                         accentColorForeground: "white",
                         borderRadius: "large",
                         fontStack: "system",

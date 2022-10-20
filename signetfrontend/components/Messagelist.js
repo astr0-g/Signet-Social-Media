@@ -82,7 +82,7 @@ export default function Messagelist() {
                     key={msg.messageId}
                     className="p-2 rounded-sm border-2 border-inherit border-r border-l"
                 >
-                    <div className="flex flex-no-wrap">
+                    <div className="flex items-center justify-between pt-2.5 flex-no-wrap">
                         {/* <div>#{msg.messageId}</div> */}
                         {/* <div className="italic text-sm">Owned by {msg.messageSender}</div> */}
 
@@ -97,7 +97,7 @@ export default function Messagelist() {
                         )}
 
                         <div className="px-4 py-2 m-2 italic text-sm">{msg.tokendescription}</div>
-                        <div className="absolute right-0 px-4 py-2 m-2 italic text-sm">
+                        <div className="px-4 py-2 m-2 italic text-sm">
                             {Datachange(parseInt(msg.time))}
                         </div>
                     </div>
@@ -135,7 +135,7 @@ export default function Messagelist() {
                         )}
 
                         <div className="px-4 py-2 m-2 italic text-sm">{msg.tokendescription}</div>
-                        <div className="absolute right-0 px-4 py-2 m-2 italic text-sm">
+                        <div className="px-4 py-2 m-2 italic text-sm">
                             {Datachange(parseInt(msg.time))}
                         </div>
                     </div>

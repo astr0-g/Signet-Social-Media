@@ -17,7 +17,7 @@ export default function Home() {
             <div>
                 <nav className={styles.navBar}>
                     <img src="/logo2.png" />
-                    {!address ? <div /> : <ConnectButton />}
+                    {!address ? <div /> : <ConnectButton showBalance={true} accountStatus="address" />}
                 </nav>
             </div>
             {!address ? <Welcome /> : <Dashboard />}

@@ -94,11 +94,7 @@ contract SignetControllor is ReentrancyGuard, Ownable {
     //     return arrey;
     // }
 
-    function checkfollowed(address signetor, address followersaddress)
-        internal
-        view
-        returns (bool)
-    {
+    function checkfollowed(address signetor, address followersaddress) public view returns (bool) {
         uint256 i;
         for (i = 0; i < follower[signetor].whoFollowed.length; i++) {
             if (follower[signetor].whoFollowed[i].followed == followersaddress) {

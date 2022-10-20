@@ -100,6 +100,29 @@ export default function Messagebox() {
     } = useWaitForTransaction({
         hash: resultss?.hash,
     })
+    useEffect(() => {
+        if (sendmessageerror) {
+            addToast("Transaction error...", { appearance: "error" })
+            setReady(false)
+        }
+    }, [CreateSignetorisLoading])
+    useEffect(() => {
+        if (CreateSignetorisLoading) {
+            addToast("Transaction Submitted...", { appearance: "success" })
+            setpost(true)
+        }
+    }, [CreateSignetorisLoading])
+    useEffect(() => {
+        if (CreateSignetorisSuccess) {
+            setpost(false)
+            setSelectedFile(null)
+            setInput("")
+            setReady(false)
+            setShow(true)
+            setDisable(false)
+            addToast("Message sent successful!", { appearance: "success" })
+        }
+    }, [CreateSignetorisSuccess])
     const sendPost = async () => {
         if (loading) return
         setLoading(true)
@@ -133,29 +156,7 @@ export default function Messagebox() {
         controllorsendmessage()
     }
 
-    useEffect(() => {
-        if (sendmessageerror) {
-            addToast("Transaction error...", { appearance: "error" })
-            setReady(false)
-        }
-    }, [CreateSignetorisLoading])
-    useEffect(() => {
-        if (CreateSignetorisLoading) {
-            addToast("Transaction Submitted...", { appearance: "success" })
-            setpost(true)
-        }
-    }, [CreateSignetorisLoading])
-    useEffect(() => {
-        if (CreateSignetorisSuccess) {
-            setpost(false)
-            setSelectedFile(null)
-            setInput("")
-            setReady(false)
-            setShow(true)
-            setDisable(false)
-            addToast("Message sent successful!", { appearance: "success" })
-        }
-    }, [CreateSignetorisSuccess])
+    
 
     useEffect(() => {
         if (CIDnumber) {
@@ -171,7 +172,7 @@ export default function Messagebox() {
         <div>
             <div className="flex  border-b border-gray-200 p-3 space-x-3">
                 <ConnectButton
-                    accountStatus="avatar"
+                    accountStatus="address"
                     showBalance={{
                         smallScreen: false,
                         largeScreen: false,

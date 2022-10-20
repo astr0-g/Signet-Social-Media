@@ -20,7 +20,7 @@ export default function Welcome() {
                         Your dreams is my first priority. So, let&apos;s enjoy this decentralized
                         World.
                     </p>
-                    <ConnectButton />
+                    <ConnectButton accountStatus="address" />
                 </div>
                 <div className="h-[54vh] absolute top-1 right-0 rounded-md overflow-hidden opacity-100 z-[1500]"></div>
             </div>

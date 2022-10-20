@@ -46,7 +46,7 @@ export default function Follow() {
     useEffect(() => {
         if (followisSuccess) {
             // setDisable(false)
-            addToast("Message sent successful!", { appearance: "success" })
+            addToast("Followed successful!", { appearance: "success" })
         }
     }, [followisSuccess])
     return (

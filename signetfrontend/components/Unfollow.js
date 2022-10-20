@@ -16,46 +16,47 @@ import {
 } from "wagmi"
 import { useState, useEffect } from "react"
 
-export default function Unfollow() {
+export default function Ununfollow() {
     const router = useRouter()
     const { useraddress } = router.query
     const { addToast } = useToasts()
     const [disable, setDisable] = useState(false)
 
     const { config } = usePrepareContractWrite({
-        address: creatorcontract.address,
-        abi: creatorcontract.abi,
+        addressOrName: creatorcontract.address,
+        contractInterface: creatorcontract.abi,
         functionName: "unfollow",
         args: useraddress,
     })
-    const { write } = useContractWrite(config)
-    // const { data: unfollowresults, write: unfollow } = useContractWrite(config)
-    // const {
-    //     isLoading: unfollowisLoading,
-    //     isError: unfollowerror,
-    //     isSuccess: unfollowisSuccess,
-    // } = useWaitForTransaction({
-    //     hash: unfollowresults?.hash,
-    // })
-    // useEffect(() => {
-    //     if (unfollowerror) {
-    //         addToast("Transaction error...", { appearance: "error" })
-    //     }
-    // }, [unfollowerror])
-    // useEffect(() => {
-    //     if (unfollowisLoading) {
-    //         addToast("Following...", { appearance: "success" })
-    //     }
-    // }, [unfollowisLoading])
-    // useEffect(() => {
-    //     if (unfollowisSuccess) {
-    //         setDisable(false)
-    //         addToast("Message sent successful!", { appearance: "success" })
-    //     }
-    // }, [unfollowisSuccess])
+    const { data: unfollowresults, write: unfollow } = useContractWrite(config)
+    const {
+        isLoading: unfollowisLoading,
+        isError: unfollowerror,
+        isSuccess: unfollowisSuccess,
+    } = useWaitForTransaction({
+        hash: unfollowresults?.hash,
+    })
+    useEffect(() => {
+        if (unfollowerror) {
+            addToast("Transaction error...", { appearance: "error" })
+        }
+    }, [unfollowerror])
+    useEffect(() => {
+        if (unfollowisLoading) {
+            addToast("unfollowing...", { appearance: "success" })
+        }
+    }, [unfollowisLoading])
+    useEffect(() => {
+        if (unfollowisSuccess) {
+            // setDisable(false)
+            addToast("unfollowed successful!", { appearance: "success" })
+        }
+    }, [unfollowisSuccess])
     return (
-        <form className={styles1.button17} onSubmit={write}>
-            <div className="btn btn-primary btn-sm">unfollow</div>
-        </form>
+        <div>
+            <button className={styles1.button17} onClick={unfollow}>
+                <div className="btn btn-primary btn-sm">unfollow </div>
+            </button>
+        </div>
     )
 }

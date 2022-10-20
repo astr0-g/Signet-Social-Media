@@ -1,7 +1,7 @@
 import { useRouter } from "next/router"
 import Head from "next/head"
 import Link from "next/link"
-// import Follow from "../components/Follow"
+import Follow from "../components/Follow"
 import Unfollow from "../components/Unfollow"
 import stylesprofile from "../styles/profile.module.css"
 import styles from "../styles/Home.module.css"
@@ -190,6 +190,7 @@ export default function Signetor() {
                                                     `${shortenaddress(useraddress)}`}
                                                 {showwalletaddress && useraddress}
                                             </button>
+
                                             <h4 className="mt-2 text-white">
                                                 {ownersignetoraddress && `signetor address:`}
                                             </h4>
@@ -203,25 +204,77 @@ export default function Signetor() {
                                                 {showcontractaddress && ownersignetoraddress}
                                             </button>
 
-                                            {/* {!followstatue && <Follow />} */}
-                                            {followstatue && <Unfollow />}
+                                            {!ownersignetoraddress && (
+                                                <h4 className="mt-0 text-white">
+                                                    signetor have not
+                                                </h4>
+                                            )}
 
-                                            <div className="flex items-center justify-between pt-2.5 space-x-5">
-                                                <div className={stylesprofile.statsspan}>
-                                                    <h6 className="mt-0">Following</h6>
-                                                    <span>{followingsnum && followingsnum}</span>
-                                                </div>
+                                            {!ownersignetoraddress && (
+                                                <button className="nderline-offset-auto max-w-none mb-2 text-white">
+                                                    been created yet
+                                                </button>
+                                            )}
 
-                                                <div className={stylesprofile.statsspan}>
-                                                    <h6 className="mt-0">Follower</h6>
-                                                    <span>{followersnum && followersnum}</span>
-                                                </div>
+                                            {!followstatue && ownersignetoraddress && <Follow />}
+                                            {followstatue && ownersignetoraddress && <Unfollow />}
 
-                                                <div className={stylesprofile.statsspan}>
-                                                    <h6 className="mt-0">Signets</h6>
-                                                    <span>{signetsnum && signetsnum}</span>
+                                            {ownersignetoraddress && (
+                                                <div className="flex items-center justify-between pt-2.5 space-x-5">
+                                                    <div className={stylesprofile.statsspan}>
+                                                        <h6 className="mt-0">Following</h6>
+                                                        <span>
+                                                            {followingsnum && followingsnum}
+                                                        </span>
+                                                    </div>
+
+                                                    <div className={stylesprofile.statsspan}>
+                                                        <h6 className="mt-0">Follower</h6>
+                                                        <span>{followersnum && followersnum}</span>
+                                                    </div>
+
+                                                    {signetsnum && (
+                                                        <div className={stylesprofile.statsspan}>
+                                                            <h6 className="mt-0">Signets</h6>
+                                                            <span>{signetsnum && signetsnum}</span>
+                                                        </div>
+                                                    )}
+                                                    {!signetsnum && (
+                                                        <div className={stylesprofile.statsspan}>
+                                                            <h6 className="mt-0">Signets</h6>
+                                                            <span>{"0"}</span>
+                                                        </div>
+                                                    )}
                                                 </div>
-                                            </div>
+                                            )}
+                                            {!ownersignetoraddress && (
+                                                <div className="flex items-center justify-between pt-2.5 space-x-5">
+                                                    <div className={stylesprofile.statsspan}>
+                                                        <h6 className="mt-9">Following</h6>
+                                                        <span>
+                                                            {followingsnum && followingsnum}
+                                                        </span>
+                                                    </div>
+
+                                                    <div className={stylesprofile.statsspan}>
+                                                        <h6 className="mt-9">Follower</h6>
+                                                        <span>{followersnum && followersnum}</span>
+                                                    </div>
+
+                                                    {signetsnum && (
+                                                        <div className={stylesprofile.statsspan}>
+                                                            <h6 className="mt-9">Signets</h6>
+                                                            <span>{signetsnum && signetsnum}</span>
+                                                        </div>
+                                                    )}
+                                                    {!signetsnum && (
+                                                        <div className={stylesprofile.statsspan}>
+                                                            <h6 className="mt-9">Signets</h6>
+                                                            <span>{"0"}</span>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
                                 </div>

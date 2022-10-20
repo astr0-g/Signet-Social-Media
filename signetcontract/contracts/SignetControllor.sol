@@ -99,8 +99,6 @@ contract SignetControllor is ReentrancyGuard, Ownable {
         for (i = 0; i < follower[signetor].whoFollowed.length; i++) {
             if (follower[signetor].whoFollowed[i].followed == followersaddress) {
                 return (true);
-            } else {
-                return (false);
             }
         }
     }

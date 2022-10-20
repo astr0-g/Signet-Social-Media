@@ -18,33 +18,60 @@ const { developmentChains } = require("../../helper-hardhat-config")
               // nftmarketplace = await nftmarketplace.connet(player)
           })
 
-          //   it("Initilizes the NFT Correctly.", async function () {
-          //     const name = await basicNft.name()
-          //     const symbol = await basicNft.symbol()
-          //     const tokenCounter = await basicNft.getTokenCOunter()
-          //     assert.equal(name, "dogie")
-          //     assert.equal(symbol, "DOG")
-          //     console.log(tokenCounter.toString())
-          //     assert.equal(tokenCounter.toString(), "1")
-          //   })
-
           describe("Construtor", () => {
               it("follow 2 address and read following number equal to 2.", async () => {
+                  await Signet.controllorCreateSignetor("name", "name")
+                  await Signet.connect(player1).controllorCreateSignetor("name", "name")
+                  await Signet.connect(player2).controllorCreateSignetor("name", "name")
                   await Signet.follow(player1.address)
                   await Signet.follow(player2.address)
                   const flowingnumber = await Signet.following(deployer).FollowingNum
                   expect(flowingnumber, "2")
               })
               it("follow 2 address and read following number equal to 2.", async () => {
+                  await Signet.controllorCreateSignetor("name", "name")
+                  await Signet.connect(player1).controllorCreateSignetor("name", "name")
+                  await Signet.connect(player2).controllorCreateSignetor("name", "name")
                   await Signet.follow(player1.address)
+                  await Signet.connect(player1).follow(deployer)
                   await Signet.follow(player2.address)
-                  const flowernumber1 = await Signet.follower(player2.address).followerNum
-                  expect(flowernumber1, "1")
+                  await Signet.connect(player2).follow(deployer)
+                  //   await Signet.connect(player2).follow(deployer)
+                  //   await Signet.connect(player2).follow(deployer)
+                  await expect(Signet.connect(player2).follow(deployer)).to.be.reverted
+                  const flowernumber1 = await Signet.follower(deployer)
+                  assert.equal(flowernumber1.toString(), "2")
                   await Signet.unfollow(player2.address)
-                  const flowingnumber = await Signet.following(deployer).FollowingNum
-                  expect(flowingnumber, "1")
-                  const flowernumber = await Signet.follower(player2.address).followerNum
-                  expect(flowernumber, "0")
+                  const flowingnumber = await Signet.following(deployer)
+                  assert.equal(flowingnumber.toString(), "1")
+                  const flowernumber = await Signet.follower(player2.address)
+                  assert.equal(flowernumber.toString(), "0")
+                  await expect(Signet.unfollow(player2.address)).to.be.reverted
+              })
+              it("checker check", async () => {
+                  await Signet.controllorCreateSignetor("name", "name")
+                  await Signet.connect(player1).controllorCreateSignetor("name", "name")
+                  await Signet.connect(player2).controllorCreateSignetor("name", "name")
+                  await Signet.follow(player1.address)
+                  await Signet.connect(player1).follow(deployer)
+                  const result = await Signet.checkfollowed(player1.address, deployer)
+                  console.log(result)
+                  assert.equal(result, true)
+                  //   await Signet.connect(player2).follow(deployer)
+                  //   await Signet.connect(player2).follow(deployer)
+                  //   await Signet.connect(player2).follow(deployer)
+                  //   await Signet.connect(player2).follow(deployer)
+                  const result1 = await Signet.checkfollowed(deployer, player2.address)
+                  console.log(result1)
+                  assert.equal(result1, false)
+                  //   await expect(Signet.connect(player2).follow(deployer)).to.be.reverted
+                  //   const flowernumber1 = await Signet.follower(player2.address).followerNum
+                  //   expect(flowernumber1, "1")
+                  //   await Signet.unfollow(player2.address)
+                  //   const flowingnumber = await Signet.following(deployer).FollowingNum
+                  //   expect(flowingnumber, "1")
+                  //   const flowernumber = await Signet.follower(player2.address).followerNum
+                  //   expect(flowernumber, "0")
               })
           })
       })

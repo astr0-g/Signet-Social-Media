@@ -1,6 +1,8 @@
 import { useRouter } from "next/router"
 import Head from "next/head"
 import Link from "next/link"
+// import Follow from "../components/Follow"
+import Unfollow from "../components/Unfollow"
 import stylesprofile from "../styles/profile.module.css"
 import styles from "../styles/Home.module.css"
 import styles1 from "../styles/Dashbaord.module.css"
@@ -113,71 +115,10 @@ export default function Signetor() {
     }
 
     ///// follow
-    
-    const { config } = usePrepareContractWrite({
-        addressOrName: creatorcontract.address,
-        contractInterface: creatorcontract.abi,
-        functionName: "follow",
-        args: useraddress,
-    })
-    const { data: followresults, write: follow } = useContractWrite(config)
-    const {
-        isLoading: followisLoading,
-        isError: followerror,
-        isSuccess: followisSuccess,
-    } = useWaitForTransaction({
-        hash: followresults?.hash,
-    })
-    useEffect(() => {
-        if (followerror) {
-            addToast("Transaction error...", { appearance: "error" })
-        }
-    }, [followerror])
-    useEffect(() => {
-        if (followisLoading) {
-            addToast("Following...", { appearance: "success" })
-        }
-    }, [followisLoading])
-    useEffect(() => {
-        if (followisSuccess) {
-            setDisable(false)
-            addToast("Message sent successful!", { appearance: "success" })
-        }
-    }, [followisSuccess])
 
     ////
 
-    /// unfollow
-    // const { aconfig } = usePrepareContractWrite({
-    //     address: creatorcontract.address,
-    //     abi: creatorcontract.abi,
-    //     functionName: "unfollow",
-    //     args: useraddress,
-    // })
-    // const { data: unfollowresults, write: unfollow } = useContractWrite(aconfig)
-    // const {
-    //     isLoading: unfollowisLoading,
-    //     isError: unfollowerror,
-    //     isSuccess: unfollowisSuccess,
-    // } = useWaitForTransaction({
-    //     hash: unfollowresults?.hash,
-    // })
-    // useEffect(() => {
-    //     if (unfollowerror) {
-    //         addToast("Transaction error...", { appearance: "error" })
-    //     }
-    // }, [unfollowerror])
-    // useEffect(() => {
-    //     if (unfollowisLoading) {
-    //         addToast("Following...", { appearance: "success" })
-    //     }
-    // }, [unfollowisLoading])
-    // useEffect(() => {
-    //     if (unfollowisSuccess) {
-    //         setDisable(false)
-    //         addToast("Message sent successful!", { appearance: "success" })
-    //     }
-    // }, [unfollowisSuccess])
+    ///
     // function clickunfollow() {
     //     unfollow
     // }
@@ -262,26 +203,8 @@ export default function Signetor() {
                                                 {showcontractaddress && ownersignetoraddress}
                                             </button>
 
-                                            {!followstatue && (
-                                                <button
-                                                    className={styles1.button17}
-                                                    onClick={follow}
-                                                >
-                                                    <div className="btn btn-primary btn-sm">
-                                                        Follow{" "}
-                                                    </div>
-                                                </button>
-                                            )}
-                                            {followstatue && (
-                                                <button
-                                                    className={styles1.button17}
-                                                    // onClick={unfollow}
-                                                >
-                                                    <div className="btn btn-primary btn-sm">
-                                                        unfollow{" "}
-                                                    </div>
-                                                </button>
-                                            )}
+                                            {/* {!followstatue && <Follow />} */}
+                                            {followstatue && <Unfollow />}
 
                                             <div className="flex items-center justify-between pt-2.5 space-x-5">
                                                 <div className={stylesprofile.statsspan}>

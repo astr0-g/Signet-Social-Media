@@ -97,7 +97,7 @@ export default function AllMessagelist() {
                         )}
 
                         <div className="px-4 py-2 m-2 italic text-sm">{msg.tokendescription}</div>
-                        <Link href={"/signetor/" + msg.messageSender}>
+                        <Link href={"/" + msg.messageSender}>
                             <button className="px-4 py-2 m-2 italic text-sm">
                                 from{" "}
                                 {`${

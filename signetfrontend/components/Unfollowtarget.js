@@ -65,6 +65,9 @@ export default function Unfollowtarget(props) {
     function sendtoast() {
         addToast("You have already unfollowed!", { appearance: "error" })
     }
+    function contractunfollow() {
+        unfollow()
+    }
     return (
         <div>
             {!isConnected && (
@@ -73,7 +76,7 @@ export default function Unfollowtarget(props) {
                 </button>
             )}
             {!unfollowtrue && isConnected && (
-                <button className={stylea} disable={true} onClick={unfollow}>
+                <button className={stylea} disable={true} onClick={contractunfollow}>
                     <div className="btn btn-primary btn-sm">{Word}</div>
                 </button>
             )}

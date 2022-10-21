@@ -57,6 +57,9 @@ export default function Follow() {
     function sendto() {
         addToast("Please connect wallet", { appearance: "error" })
     }
+    function contractfollow() {
+        follow()
+    }
     return (
         <div>
             {!isConnected && (
@@ -65,7 +68,7 @@ export default function Follow() {
                 </button>
             )}
             {isConnected && (
-                <button className={stylea} disable={true} onClick={follow}>
+                <button className={stylea} disable={true} onClick={contractfollow}>
                     <div className="btn btn-primary btn-sm">{Word}</div>
                 </button>
             )}

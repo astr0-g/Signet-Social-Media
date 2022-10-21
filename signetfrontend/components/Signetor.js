@@ -39,7 +39,9 @@ export default function Signetor() {
             addToast("Signetor Generated Successful!", { appearance: "success" })
         }
     }, [CreateSignetorisSuccess])
-
+    function CreateSignetor() {
+        controllorCreateSignetor()
+    }
     return (
         <div>
             <div className="h-[100vh] bg-black grid items-center justify-items-center text-center opacity-100 relative">
@@ -50,7 +52,7 @@ export default function Signetor() {
                     <button
                         className={styles.button85}
                         disabled={!controllorCreateSignetor || CreateSignetorisLoading}
-                        onClick={controllorCreateSignetor}
+                        onClick={CreateSignetor}
                     >
                         {CreateSignetorisLoading ? "Generating..." : "Generate"}
                     </button>

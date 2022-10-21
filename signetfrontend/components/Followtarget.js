@@ -62,6 +62,9 @@ export default function Followtarget(props) {
     function sendto1() {
         addToast("You can't follow yourself", { appearance: "error" })
     }
+    function contractfollow() {
+        follow()
+    }
     return (
         <div>
             {isConnected && address == props.address && (
@@ -75,7 +78,7 @@ export default function Followtarget(props) {
                 </button>
             )}
             {isConnected && address != props.address && (
-                <button className={stylea} disable={true} onClick={follow}>
+                <button className={stylea} disable={true} onClick={contractfollow}>
                     <div className="btn btn-primary btn-sm">{Word}</div>
                 </button>
             )}

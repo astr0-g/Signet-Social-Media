@@ -111,7 +111,7 @@ export default function Dashboard() {
                                     <button className={styles.button85}>Explore</button>
                                 </Link>
 
-                                <Link href={`/api.signet.ink${address}`}>
+                                <Link href={`/${address}`}>
                                     <button className={styles.button85}>Profile</button>
                                 </Link>
                             </div>

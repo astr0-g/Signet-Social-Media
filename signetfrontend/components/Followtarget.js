@@ -15,6 +15,7 @@ import {
 import { useState, useEffect } from "react"
 
 export default function Followtarget(props) {
+    const { address } = useAccount()
     const { connector: activeConnector, isConnected } = useAccount()
     const router = useRouter()
     const { useraddress } = router.query
@@ -58,14 +59,22 @@ export default function Followtarget(props) {
     function sendto() {
         addToast("Please connect wallet", { appearance: "error" })
     }
+    function sendto1() {
+        addToast("You can't follow yourself", { appearance: "error" })
+    }
     return (
         <div>
-            {!isConnected && (
+            {isConnected && address == props.address && (
+                <button className={stylea} disable={true} onClick={sendto1}>
+                    <div className="btn btn-primary btn-sm">{Word}</div>
+                </button>
+            )}
+            {!isConnected && address != props.address && (
                 <button className={stylea} disable={true} onClick={sendto}>
                     <div className="btn btn-primary btn-sm">{Word}</div>
                 </button>
             )}
-            {isConnected && (
+            {isConnected && address != props.address && (
                 <button className={stylea} disable={true} onClick={follow}>
                     <div className="btn btn-primary btn-sm">{Word}</div>
                 </button>

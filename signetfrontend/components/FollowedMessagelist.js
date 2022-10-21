@@ -98,16 +98,18 @@ export default function FollowedMessagelist() {
 
                         <div className="px-4 py-2 m-2 italic text-sm">{msg.tokendescription}</div>
                         <Link href={"/" + msg.messageSender}>
-                            <button className="px-4 py-2 m-2 italic text-sm">
-                                from{" "}
-                                {`${
-                                    msg.messageSender.slice(0, 4) +
-                                    msg.messageSender.slice(
-                                        msg.messageSender.length - 3,
-                                        msg.messageSender.length
-                                    )
-                                }   `}
-                                {"--"} {Datachange(parseInt(msg.time))}
+                            <button className="px-4 py-2 m-2 italic text-sm right-0">
+                                from{"  "}
+                                {msg.messageSender == address
+                                    ? "me"
+                                    : `${
+                                          msg.messageSender.slice(0, 4) +
+                                          msg.messageSender.slice(
+                                              msg.messageSender.length - 3,
+                                              msg.messageSender.length
+                                          )
+                                      }`}{" "}
+                                <div>{Datachange(parseInt(msg.time))}</div>
                             </button>
                         </Link>
                     </div>
@@ -147,15 +149,16 @@ export default function FollowedMessagelist() {
                         <Link href={"/" + msg.messageSender}>
                             <button className="px-4 py-2 m-2 italic text-sm right-0">
                                 from{" "}
-                                {`${
-                                    msg.messageSender.slice(0, 4) +
-                                    msg.messageSender.slice(
-                                        msg.messageSender.length - 3,
-                                        msg.messageSender.length
-                                    )
-                                }   `}
-                                {"--"}
-                                {Datachange(parseInt(msg.time))}
+                                {msg.messageSender == address
+                                    ? "me"
+                                    : `${
+                                          msg.messageSender.slice(0, 4) +
+                                          msg.messageSender.slice(
+                                              msg.messageSender.length - 3,
+                                              msg.messageSender.length
+                                          )
+                                      }`}{" "}
+                                <div>{Datachange(parseInt(msg.time))}</div>
                             </button>
                         </Link>
                     </div>

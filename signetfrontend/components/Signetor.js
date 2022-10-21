@@ -45,8 +45,8 @@ export default function Signetor() {
     return (
         <div>
             <div className="h-[100vh] bg-black grid items-center justify-items-center text-center opacity-100 relative">
-                <h1 className="text-5xl lg:text-4xl md:text-3xl sm:text-2xl font-bold text-white">
-                    Looks like you don't have a message box contract yet, lets create one!
+                <h1 className="text-5xl lg:text-3xl md:text-3xl sm:text-2xl font-bold text-white">
+                    Looks like you don't have a signet contract yet, lets create one!
                 </h1>
                 <div className="flex flex-col justify-center items-center">
                     <button

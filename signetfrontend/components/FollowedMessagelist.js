@@ -70,7 +70,7 @@ export default function FollowedMessagelist() {
     }
 
     async function pulljson() {
-        const response = await fetch(`http://api.signet.ink/signet/followby/${address}/`)
+        const response = await fetch(`https://api.signet.ink/signet/followby/${address}/`)
         const responseData = await response.json()
         console.log(responseData)
         if (responseData.length > 10) {
@@ -120,7 +120,7 @@ export default function FollowedMessagelist() {
 
     async function Loadmore() {
         setismoreLoading(true)
-        const response = await fetch(`http://api.signet.ink/signet/followby/${address}/`)
+        const response = await fetch(`https://api.signet.ink/signet/followby/${address}/`)
         const responseData = await response.json()
 
         displayData = responseData.slice(10, responseData.length).map(function (msg) {

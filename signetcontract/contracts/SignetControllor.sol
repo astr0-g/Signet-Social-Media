@@ -99,32 +99,41 @@ contract SignetControllor is ReentrancyGuard, Ownable {
         for (i = 0; i < follower[signetor].whoFollowed.length; i++) {
             if (follower[signetor].whoFollowed[i].followed == followersaddress) {
                 return (true);
+                console.log(i);
             }
         }
         return (false);
     }
 
     function findfollowerId(address signetor, address followersaddress)
-        internal
+        public
         view
         returns (uint256)
     {
         uint256 i = 1;
-        for (i = 1; i < follower[signetor].whoFollowed.length; i++) {
-            if (follower[signetor].whoFollowed[i - 1].followed != followersaddress) {
+        for (i = 1; i < follower[signetor].whoFollowed.length + 1; i++) {
+            if (follower[signetor].whoFollowed[i - 1].followed == followersaddress) {
+                console.log("----------------------------");
+                console.log("checked findfollowerId is :");
+                console.log(i);
+                console.log("----------------------------");
                 return i;
             }
         }
     }
 
     function findFollwingId(address signetor, address followingAaddress)
-        internal
+        public
         view
         returns (uint256)
     {
         uint256 i = 1;
-        for (i = 1; i < following[signetor].followedWho.length; i++) {
+        for (i = 1; i < following[signetor].followedWho.length + 1; i++) {
             if (following[signetor].followedWho[i - 1].followinged == followingAaddress) {
+                console.log("----------------------------");
+                console.log("checked findFollwingId is :");
+                console.log(i);
+                console.log("----------------------------");
                 return i;
             }
         }
@@ -151,34 +160,49 @@ contract SignetControllor is ReentrancyGuard, Ownable {
         if (msg.sender == signetor) revert Can__notfollow();
         bool result = checkfollowed(signetor, msg.sender);
         if (result == false) revert Never__Followed();
-        address a = 0x0000000000000000000000000000000000000000;
-        uint256 totalFollower = follower[signetor].followerNum;
-        uint256 i = findFollwingId(signetor, msg.sender);
 
+        uint256 totalFollower = follower[signetor].followerNum;
+        uint256 i = findfollowerId(signetor, msg.sender);
+        console.log("----------------------------");
+        console.log("total follower:");
+        console.log(totalFollower);
+        console.log("findFollwingId:");
+        console.log(i);
+        console.log("----------------------------");
         if (totalFollower == i) {
             follower[signetor].followerNum -= 1;
             follower[signetor].whoFollowed.pop();
         } else {
             follower[signetor].followerNum -= 1;
-            followers memory flws = followers(a);
-            follower[signetor].whoFollowed.push(flws);
-            // for (i; i < follower[signetor].whoFollowed.length - 1; i++) {
-            //     follower[signetor].whoFollowed[i - 1] = follower[signetor].whoFollowed[i];
+            follower[signetor].whoFollowed[i - 1] = follower[signetor].whoFollowed[
+                follower[signetor].whoFollowed.length - 1
+            ];
+            // for (i; i < follower[signetor].whoFollowed.length; i++) {
+            //     ;
             //     console.log();
             // }
             follower[signetor].whoFollowed.pop();
         }
 
         uint256 totalFollowing = following[msg.sender].FollowingNum;
-        uint256 j = findfollowerId(msg.sender, signetor);
+        uint256 j = findFollwingId(msg.sender, signetor);
+        console.log("----------------------------");
+        console.log("total following:");
+        console.log(totalFollowing);
+        console.log("findfollowerId:");
+        console.log(j);
+        console.log("----------------------------");
         if (totalFollowing == j) {
             following[msg.sender].FollowingNum -= 1;
             following[msg.sender].followedWho.pop();
         } else {
             following[msg.sender].FollowingNum -= 1;
-            for (j; j < following[msg.sender].followedWho.length - 1; j++) {
-                following[msg.sender].followedWho[j - 1] = following[msg.sender].followedWho[j];
-            }
+            following[msg.sender].followedWho[j - 1] = following[msg.sender].followedWho[
+                following[msg.sender].followedWho.length - 1
+            ];
+            // for (j; j < ; j++) {
+            //     ;
+            // }
             following[msg.sender].followedWho.pop();
         }
 

@@ -7,7 +7,7 @@ import { useToasts } from "react-toast-notifications"
 import signetorcontract from "../constants/Signetor.json"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
 import Signetor from "./Signetor"
-import Messagelist from "./Messagelist"
+import FollowedMessagelist from "./FollowedMessagelist"
 import AllMessagelist from "./AllMessagelist"
 import Messagebox from "./Messagebox"
 import Link from "next/link"
@@ -111,7 +111,7 @@ export default function Dashboard() {
                                     <button className={styles.button85}>Explore</button>
                                 </Link>
 
-                                <Link href={`/${address}`}>
+                                <Link href={`/signetor/${address}`}>
                                     <button className={styles.button85}>Profile</button>
                                 </Link>
                             </div>
@@ -120,7 +120,7 @@ export default function Dashboard() {
                     </div>
                 )}
             </div>
-            <div>{numberowned != 0 && <Messagelist />}</div>
+            <div>{numberowned != 0 && <FollowedMessagelist />}</div>
         </div>
     )
 }

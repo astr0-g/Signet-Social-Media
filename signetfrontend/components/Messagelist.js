@@ -5,6 +5,7 @@ import creatorcontract from "../constants/abi.json"
 import { useToasts } from "react-toast-notifications"
 import signetorcontract from "../constants/Signetor.json"
 import Loading from "./Loading"
+import { useRouter } from "next/router"
 import {
     usePrepareContractWrite,
     useAccount,
@@ -17,6 +18,8 @@ import {
 } from "wagmi"
 
 export default function Messagelist() {
+    const router = useRouter()
+    const { useraddress } = router.query
     const [ownersignetoraddress, setownersignetoraddress] = useState("")
     const [startmessagefetch, setstartmessagefetch] = useState("")
     const [messagejson, setMessagejson] = useState()
@@ -70,7 +73,7 @@ export default function Messagelist() {
     }
 
     async function pulljson() {
-        const response = await fetch(`https://api.signet.ink/signet/read/${address}`)
+        const response = await fetch(`https://api.signet.ink/signet/read/${useraddress}`)
         const responseData = await response.json()
         // console.log(responseData.tokenURI)
         if (responseData.length > 10) {
@@ -110,7 +113,7 @@ export default function Messagelist() {
 
     async function Loadmore() {
         setismoreLoading(true)
-        const response = await fetch(`https://api.signet.ink/signet/read/${address}`)
+        const response = await fetch(`https://api.signet.ink/signet/read/${useraddress}`)
         const responseData = await response.json()
         // console.log(responseData.tokenURI)
 
@@ -148,7 +151,7 @@ export default function Messagelist() {
     }
 
     useEffect(() => {
-        if (address) {
+        if (useraddress) {
             setLoading(true)
             pulljson()
         }

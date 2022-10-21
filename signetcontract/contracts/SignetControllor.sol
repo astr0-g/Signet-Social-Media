@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "./Signetors.sol";
-
+import "hardhat/console.sol";
 /*
  * @title Signetors Controllor
  * @author astro
@@ -101,6 +101,7 @@ contract SignetControllor is ReentrancyGuard, Ownable {
                 return (true);
             }
         }
+        return (false);
     }
 
     function findfollowerId(address signetor, address followersaddress)
@@ -108,11 +109,12 @@ contract SignetControllor is ReentrancyGuard, Ownable {
         view
         returns (uint256)
     {
-        uint256 i = 0;
-        for (i = 0; i < follower[signetor].whoFollowed.length; i++) {
-            follower[signetor].whoFollowed[i].followed != followersaddress;
+        uint256 i = 1;
+        for (i = 1; i < follower[signetor].whoFollowed.length; i++) {
+            if (follower[signetor].whoFollowed[i - 1].followed != followersaddress) {
+                return i;
+            }
         }
-        return i;
     }
 
     function findFollwingId(address signetor, address followingAaddress)
@@ -120,11 +122,12 @@ contract SignetControllor is ReentrancyGuard, Ownable {
         view
         returns (uint256)
     {
-        uint256 i = 0;
-        for (i = 0; i < following[signetor].followedWho.length; i++) {
-            following[signetor].followedWho[i].followinged != followingAaddress;
+        uint256 i = 1;
+        for (i = 1; i < following[signetor].followedWho.length; i++) {
+            if (following[signetor].followedWho[i - 1].followinged == followingAaddress) {
+                return i;
+            }
         }
-        return i;
     }
 
     function follow(address signetor) public {
@@ -148,30 +151,33 @@ contract SignetControllor is ReentrancyGuard, Ownable {
         if (msg.sender == signetor) revert Can__notfollow();
         bool result = checkfollowed(signetor, msg.sender);
         if (result == false) revert Never__Followed();
-
+        address a = 0x0000000000000000000000000000000000000000;
         uint256 totalFollower = follower[signetor].followerNum;
-        uint256 i = findfollowerId(signetor, msg.sender);
+        uint256 i = findFollwingId(signetor, msg.sender);
 
         if (totalFollower == i) {
             follower[signetor].followerNum -= 1;
             follower[signetor].whoFollowed.pop();
         } else {
             follower[signetor].followerNum -= 1;
-            for (i; i < follower[signetor].whoFollowed.length - 1; i++) {
-                follower[signetor].whoFollowed[i] = follower[signetor].whoFollowed[i + 1];
-            }
+            followers memory flws = followers(a);
+            follower[signetor].whoFollowed.push(flws);
+            // for (i; i < follower[signetor].whoFollowed.length - 1; i++) {
+            //     follower[signetor].whoFollowed[i - 1] = follower[signetor].whoFollowed[i];
+            //     console.log();
+            // }
             follower[signetor].whoFollowed.pop();
         }
 
         uint256 totalFollowing = following[msg.sender].FollowingNum;
-        uint256 j = findFollwingId(msg.sender, signetor);
+        uint256 j = findfollowerId(msg.sender, signetor);
         if (totalFollowing == j) {
             following[msg.sender].FollowingNum -= 1;
             following[msg.sender].followedWho.pop();
         } else {
             following[msg.sender].FollowingNum -= 1;
-            for (j; j < follower[signetor].whoFollowed.length - 1; j++) {
-                following[msg.sender].followedWho[i] = following[msg.sender].followedWho[i + 1];
+            for (j; j < following[msg.sender].followedWho.length - 1; j++) {
+                following[msg.sender].followedWho[j - 1] = following[msg.sender].followedWho[j];
             }
             following[msg.sender].followedWho.pop();
         }

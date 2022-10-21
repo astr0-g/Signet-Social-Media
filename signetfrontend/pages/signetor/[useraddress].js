@@ -1,17 +1,20 @@
 import { useRouter } from "next/router"
 import Head from "next/head"
 import Link from "next/link"
-import Follow from "../components/Follow"
-import Unfollow from "../components/Unfollow"
-import stylesprofile from "../styles/profile.module.css"
-import styles from "../styles/Home.module.css"
-import styles1 from "../styles/Dashbaord.module.css"
-import Dashboard from "../components/Dashboard"
-import Welcome from "../components/Welcome"
+import Follow from "../../components/Follow"
+import Unfollow from "../../components/Unfollow"
+import stylesprofile from "../../styles/profile.module.css"
+import styles from "../../styles/Home.module.css"
+import styles1 from "../../styles/Dashbaord.module.css"
+import Dashboard from "../../components/Dashboard"
+import FollowingList from "../../components/Following"
+import FollowerList from "../../components/Followers"
+import Messagelist from "../../components/Messagelist"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
-import creatorcontract from "../constants/abi.json"
+import creatorcontract from "../../constants/abi.json"
 import { useToasts } from "react-toast-notifications"
-import signetorcontract from "../constants/Signetor.json"
+import signetorcontract from "../../constants/Signetor.json"
+import Welcome from "../../components/Welcome"
 import {
     usePrepareContractWrite,
     useAccount,
@@ -36,6 +39,7 @@ export default function Signetor() {
     const [followstatue, setfollowstatue] = useState(false)
     const [disable, setDisable] = useState(false)
     const { addToast } = useToasts()
+    const [watchstatus, setwatchstatues] = useState("")
     const { data: followstatues } = useContractRead({
         addressOrName: creatorcontract.address,
         contractInterface: creatorcontract.abi,
@@ -112,7 +116,18 @@ export default function Signetor() {
     function show2() {
         setshowcontractaddress(!showcontractaddress)
     }
-
+    function seefollower() {
+        setwatchstatues("follower")
+        console.log(watchstatus)
+    }
+    function seefollwing() {
+        setwatchstatues("follwing")
+        console.log(watchstatus)
+    }
+    function seesignets() {
+        setwatchstatues("signets")
+        console.log(watchstatus)
+    }
     return (
         <div>
             <Head>
@@ -123,11 +138,12 @@ export default function Signetor() {
             <div>
                 <nav className={styles.navBar}>
                     <img src="/logo2.png" />
-                    {<ConnectButton showBalance={true} accountStatus="address" />}
+                    {<ConnectButton accountStatus="address" />}
                 </nav>
             </div>
             <p>
-                {useraddress != address && (
+                {useraddress == "undefined" && <Welcome />}
+                {useraddress != address && useraddress != "undefined" && (
                     <div>
                         <div>
                             <div className="justify-between items-center">
@@ -169,10 +185,10 @@ export default function Signetor() {
 
                                         <div className="mt-15 text-center flex flex-col justify-center items-center">
                                             <h4 className="mt-10 text-white">
-                                                {useraddress && `wallet address: `}
+                                                {useraddress && `wallet address `}
                                             </h4>
                                             <button
-                                                className="nderline-offset-auto max-w-none mb-2 text-white"
+                                                className="nderline-offset-auto max-w-none mb-2 text-white text-xs"
                                                 onClick={show1}
                                             >
                                                 {!showwalletaddress &&
@@ -182,10 +198,10 @@ export default function Signetor() {
                                             </button>
 
                                             <h4 className="mt-2 text-white">
-                                                {ownersignetoraddress && `signetor address:`}
+                                                {ownersignetoraddress && `signetor address`}
                                             </h4>
                                             <button
-                                                className="nderline-offset-auto max-w-none mb-2 text-white"
+                                                className="nderline-offset-auto max-w-none mb-2 text-white text-xs"
                                                 onClick={show2}
                                             >
                                                 {!showcontractaddress &&
@@ -212,27 +228,33 @@ export default function Signetor() {
                                             {ownersignetoraddress && (
                                                 <div className="flex items-center justify-between pt-2.5 space-x-5">
                                                     <div className={stylesprofile.statsspan}>
-                                                        <h6 className="mt-0">Following</h6>
-                                                        <span>
+                                                        <h5 className="mt-0">Following</h5>
+                                                        <button onClick={seefollwing}>
                                                             {followingsnum && followingsnum}
-                                                        </span>
+                                                        </button>
                                                     </div>
 
                                                     <div className={stylesprofile.statsspan}>
-                                                        <h6 className="mt-0">Follower</h6>
-                                                        <span>{followersnum && followersnum}</span>
+                                                        <h5 className="mt-0">Follower</h5>
+                                                        <button onClick={seefollower}>
+                                                            {followersnum && followersnum}
+                                                        </button>
                                                     </div>
 
                                                     {signetsnum && (
                                                         <div className={stylesprofile.statsspan}>
-                                                            <h6 className="mt-0">Signets</h6>
-                                                            <span>{signetsnum && signetsnum}</span>
+                                                            <h5 className="mt-0">Signets</h5>
+                                                            <button onClick={seesignets}>
+                                                                {signetsnum && signetsnum}
+                                                            </button>
                                                         </div>
                                                     )}
                                                     {!signetsnum && (
                                                         <div className={stylesprofile.statsspan}>
-                                                            <h6 className="mt-0">Signets</h6>
-                                                            <span>{"0"}</span>
+                                                            <h5 className="mt-0">Signets</h5>
+                                                            <button onClick={seesignets}>
+                                                                {"0"}
+                                                            </button>
                                                         </div>
                                                     )}
                                                 </div>
@@ -240,27 +262,33 @@ export default function Signetor() {
                                             {!ownersignetoraddress && (
                                                 <div className="flex items-center justify-between pt-2.5 space-x-5">
                                                     <div className={stylesprofile.statsspan}>
-                                                        <h6 className="mt-9">Following</h6>
-                                                        <span>
+                                                        <h5 className="mt-10">Following</h5>
+                                                        <button onClick={seefollwing}>
                                                             {followingsnum && followingsnum}
-                                                        </span>
+                                                        </button>
                                                     </div>
 
                                                     <div className={stylesprofile.statsspan}>
-                                                        <h6 className="mt-9">Follower</h6>
-                                                        <span>{followersnum && followersnum}</span>
+                                                        <h5 className="mt-10">Follower</h5>
+                                                        <button onClick={seefollower}>
+                                                            {followersnum && followersnum}
+                                                        </button>
                                                     </div>
 
                                                     {signetsnum && (
                                                         <div className={stylesprofile.statsspan}>
-                                                            <h6 className="mt-9">Signets</h6>
-                                                            <span>{signetsnum && signetsnum}</span>
+                                                            <h5 className="mt-10">Signets</h5>
+                                                            <button onClick={seesignets}>
+                                                                {signetsnum && signetsnum}
+                                                            </button>
                                                         </div>
                                                     )}
                                                     {!signetsnum && (
                                                         <div className={stylesprofile.statsspan}>
-                                                            <h6 className="mt-9">Signets</h6>
-                                                            <span>{"0"}</span>
+                                                            <h5 className="mt-10">Signets</h5>
+                                                            <button onClick={seesignets}>
+                                                                {"0"}
+                                                            </button>
                                                         </div>
                                                     )}
                                                 </div>
@@ -268,6 +296,9 @@ export default function Signetor() {
                                         </div>
                                     </div>
                                 </div>
+                                {watchstatus == "follwing" && <FollowingList />}
+                                {watchstatus == "follower" && <FollowerList />}
+                                {watchstatus == "signets" && <Messagelist />}
                             </div>
                         </div>
                     </div>
@@ -316,10 +347,10 @@ export default function Signetor() {
 
                                         <div className="mt-15 text-center flex flex-col justify-center items-center">
                                             <h4 className="mt-10 text-white">
-                                                {useraddress && `wallet address: `}
+                                                {useraddress && `wallet address `}
                                             </h4>
                                             <button
-                                                className="nderline-offset-auto max-w-none mb-2 text-white"
+                                                className="nderline-offset-auto max-w-none mb-2 text-white text-xs"
                                                 onClick={show1}
                                             >
                                                 {!showwalletaddress &&
@@ -328,10 +359,10 @@ export default function Signetor() {
                                                 {showwalletaddress && useraddress}
                                             </button>
                                             <h4 className="mt-2 text-white">
-                                                {ownersignetoraddress && `signetor address:`}
+                                                {ownersignetoraddress && `signetor address`}
                                             </h4>
                                             <button
-                                                className="nderline-offset-auto max-w-none mb-2 text-white"
+                                                className="nderline-offset-auto max-w-none mb-2 text-white text-xs"
                                                 onClick={show2}
                                             >
                                                 {!showcontractaddress &&
@@ -342,29 +373,45 @@ export default function Signetor() {
 
                                             <div className="flex items-center justify-between pt-2.5 space-x-5">
                                                 <div className={stylesprofile.statsspan}>
-                                                    <h6 className="mt-9">Following</h6>
-                                                    <span>{followingsnum && followingsnum}</span>
+                                                    <h5 className="mt-10">Following</h5>
+                                                    <button onClick={seefollwing}>
+                                                        {followingsnum && followingsnum}
+                                                    </button>
                                                 </div>
 
                                                 <div className={stylesprofile.statsspan}>
-                                                    <h6 className="mt-9">Follower</h6>
-                                                    <span>{followersnum && followersnum}</span>
+                                                    <h5 className="mt-10">Follower</h5>
+                                                    <button onClick={seefollower}>
+                                                        {followersnum && followersnum}
+                                                    </button>
                                                 </div>
 
-                                                <div className={stylesprofile.statsspan}>
-                                                    <h6 className="mt-9">Signets</h6>
-                                                    <span>{signetsnum && signetsnum}</span>
-                                                </div>
+                                                {signetsnum && (
+                                                    <div className={stylesprofile.statsspan}>
+                                                        <h5 className="mt-10">Signets</h5>
+                                                        <button onClick={seesignets}>
+                                                            {signetsnum && signetsnum}
+                                                        </button>
+                                                    </div>
+                                                )}
+                                                {!signetsnum && (
+                                                    <div className={stylesprofile.statsspan}>
+                                                        <h5 className="mt-10">Signets</h5>
+                                                        <button onClick={seesignets}>{"0"}</button>
+                                                    </div>
+                                                )}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                {watchstatus == "follwing" && <FollowingList />}
+                                {watchstatus == "follower" && <FollowerList />}
+                                {watchstatus == "signets" && <Messagelist />}
                             </div>
                         </div>
                     </div>
                 )}
             </p>
-            
         </div>
     )
 }

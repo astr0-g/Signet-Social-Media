@@ -16,7 +16,7 @@ import {
     useWaitForTransaction,
 } from "wagmi"
 
-export default function AllMessagelist() {
+export default function FollowedMessagelist() {
     const [ownersignetoraddress, setownersignetoraddress] = useState("")
     const [startmessagefetch, setstartmessagefetch] = useState("")
     const [messagejson, setMessagejson] = useState()
@@ -70,7 +70,7 @@ export default function AllMessagelist() {
     }
 
     async function pulljson() {
-        const response = await fetch(`https://api.signet.ink/signet/all/`)
+        const response = await fetch(`http://api.signet.ink/signet/followby/${address}/`)
         const responseData = await response.json()
         console.log(responseData)
         if (responseData.length > 10) {
@@ -97,7 +97,7 @@ export default function AllMessagelist() {
                         )}
 
                         <div className="px-4 py-2 m-2 italic text-sm">{msg.tokendescription}</div>
-                        <Link href={"/signetor/" + msg.messageSender}>
+                        <Link href={"/" + msg.messageSender}>
                             <button className="px-4 py-2 m-2 italic text-sm">
                                 from{" "}
                                 {`${
@@ -120,7 +120,7 @@ export default function AllMessagelist() {
 
     async function Loadmore() {
         setismoreLoading(true)
-        const response = await fetch(`https://api.signet.ink/signet/all/`)
+        const response = await fetch(`http://api.signet.ink/signet/followby/${address}/`)
         const responseData = await response.json()
 
         displayData = responseData.slice(10, responseData.length).map(function (msg) {
@@ -144,7 +144,7 @@ export default function AllMessagelist() {
                         )}
 
                         <div className="px-4 py-2 m-2 italic text-sm">{msg.tokendescription}</div>
-                        <Link href={"/signetor/" + msg.messageSender}>
+                        <Link href={"/" + msg.messageSender}>
                             <button className="px-4 py-2 m-2 italic text-sm right-0">
                                 from{" "}
                                 {`${
@@ -168,8 +168,10 @@ export default function AllMessagelist() {
     }
 
     useEffect(() => {
-        setLoading(true)
-        pulljson()
+        if (address) {
+            setLoading(true)
+            pulljson()
+        }
     }, [])
 
     function Refresh() {
@@ -187,7 +189,7 @@ export default function AllMessagelist() {
         <div className="justify-between items-center">
             <div className="border-l border-r bg-slate-100 border-gray-200  xl:min-w-[576px] sm:ml-[73px] flex-grow">
                 <div className="flex py-2 px-3 top-0 z-50 border-b border-gray-200 items-center ">
-                    <div className="text-lg sm:text-xl font-bold">Signets from Worldwide </div>
+                    <div className="text-lg sm:text-xl font-bold">Followed Signets</div>
 
                     <button onClick={() => Refresh()} className="text-lg sm:text-xl font-bold">
                         <svg
@@ -207,7 +209,8 @@ export default function AllMessagelist() {
                 </div>
                 {messagejson == "" && (
                     <div className="text-sm flex flex-col justify-center items-center">
-                        Looks like you don't have any signet yet, genearte and post one!
+                        Looks like you don't have any signet yet or you haven't follow any other
+                        user, genearte and post one or follow other users!
                     </div>
                 )}
                 {isLoading && <Loading />}

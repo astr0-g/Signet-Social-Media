@@ -16,7 +16,7 @@ import {
 } from "wagmi"
 import { useState, useEffect } from "react"
 
-export default function Unfollow() {
+export default function Unfollowtarget(props) {
     const router = useRouter()
     const { useraddress } = router.query
     const account = useAccount()
@@ -31,7 +31,7 @@ export default function Unfollow() {
         addressOrName: creatorcontract.address,
         contractInterface: creatorcontract.abi,
         functionName: "unfollow",
-        args: useraddress,
+        args: props.address,
     })
     const { data: unfollowresults, write: unfollow } = useContractWrite(config)
     const {
@@ -68,7 +68,7 @@ export default function Unfollow() {
     return (
         <div>
             {!isConnected && (
-                <button className={stylea} disable={true}>
+                <button className={stylea} disable={true} onClick={toasterror()}>
                     <div className="btn btn-primary btn-sm">{Word}</div>
                 </button>
             )}

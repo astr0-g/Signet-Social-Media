@@ -98,16 +98,18 @@ export default function AllMessagelist() {
 
                         <div className="px-4 py-2 m-2 italic text-sm">{msg.tokendescription}</div>
                         <Link href={"/" + msg.messageSender}>
-                            <button className="px-4 py-2 m-2 italic text-sm">
+                            <button className="px-4 py-2 m-2 italic text-sm right-0">
                                 from{" "}
-                                {`${
-                                    msg.messageSender.slice(0, 4) +
-                                    msg.messageSender.slice(
-                                        msg.messageSender.length - 3,
-                                        msg.messageSender.length
-                                    )
-                                }   `}
-                                {"--"} {Datachange(parseInt(msg.time))}
+                                {msg.messageSender == address
+                                    ? "me"
+                                    : `${
+                                          msg.messageSender.slice(0, 4) +
+                                          msg.messageSender.slice(
+                                              msg.messageSender.length - 3,
+                                              msg.messageSender.length
+                                          )
+                                      }`}{" "}
+                                <div>{Datachange(parseInt(msg.time))}</div>
                             </button>
                         </Link>
                     </div>
@@ -147,15 +149,16 @@ export default function AllMessagelist() {
                         <Link href={"/signetor/" + msg.messageSender}>
                             <button className="px-4 py-2 m-2 italic text-sm right-0">
                                 from{" "}
-                                {`${
-                                    msg.messageSender.slice(0, 4) +
-                                    msg.messageSender.slice(
-                                        msg.messageSender.length - 3,
-                                        msg.messageSender.length
-                                    )
-                                }   `}
-                                {"--"}
-                                {Datachange(parseInt(msg.time))}
+                                {msg.messageSender == address
+                                    ? "me"
+                                    : `${
+                                          msg.messageSender.slice(0, 4) +
+                                          msg.messageSender.slice(
+                                              msg.messageSender.length - 3,
+                                              msg.messageSender.length
+                                          )
+                                      }`}{" "}
+                                <div>{Datachange(parseInt(msg.time))}</div>
                             </button>
                         </Link>
                     </div>
@@ -187,7 +190,7 @@ export default function AllMessagelist() {
         <div className="justify-between items-center">
             <div className="border-l border-r bg-slate-100 border-gray-200  xl:min-w-[576px] sm:ml-[73px] flex-grow">
                 <div className="flex py-2 px-3 top-0 z-50 border-b border-gray-200 items-center ">
-                    <div className="text-lg sm:text-xl font-bold">Signets from Worldwide </div>
+                    <div className="text-lg sm:text-xl font-bold">signets from worldwide </div>
 
                     <button onClick={() => Refresh()} className="text-lg sm:text-xl font-bold">
                         <svg

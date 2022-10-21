@@ -1,20 +1,20 @@
 import { useRouter } from "next/router"
 import Head from "next/head"
 import Link from "next/link"
-import Follow from "../../components/Follow"
-import Unfollow from "../../components/Unfollow"
-import stylesprofile from "../../styles/profile.module.css"
-import styles from "../../styles/Home.module.css"
-import styles1 from "../../styles/Dashbaord.module.css"
-import Dashboard from "../../components/Dashboard"
-import FollowingList from "../../components/Following"
-import FollowerList from "../../components/Followers"
-import Messagelist from "../../components/Messagelist"
+import Follow from "../components/Follow"
+import Unfollow from "../components/Unfollow"
+import stylesprofile from "../styles/profile.module.css"
+import styles from "../styles/Home.module.css"
+import styles1 from "../styles/Dashbaord.module.css"
+import Dashboard from "../components/Dashboard"
+import FollowingList from "../components/Following"
+import FollowerList from "../components/Followers"
+import Messagelist from "../components/Messagelist"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
-import creatorcontract from "../../constants/abi.json"
+import creatorcontract from "../constants/abi.json"
 import { useToasts } from "react-toast-notifications"
-import signetorcontract from "../../constants/Signetor.json"
-import Welcome from "../../components/Welcome"
+import signetorcontract from "../constants/Signetor.json"
+import Welcome from "../components/Welcome"
 import {
     usePrepareContractWrite,
     useAccount,
@@ -129,6 +129,10 @@ export default function Signetor() {
         console.log(watchstatus)
     }
     return (
+        // <div>
+        //     {!address ? (
+        //         <Welcome />
+        //     ) : (
         <div>
             <Head>
                 <title>Signet</title>
@@ -413,5 +417,7 @@ export default function Signetor() {
                 )}
             </p>
         </div>
+        //     )}
+        // </div>
     )
 }

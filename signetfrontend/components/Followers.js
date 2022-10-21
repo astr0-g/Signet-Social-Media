@@ -50,7 +50,7 @@ export default function FollowerList() {
                     <div className="flex items-center justify-between pt-2.5 flex-no-wrap">
                         {/* <div>#{msg.messageId}</div> */}
                         {/* <div className="italic text-sm">Owned by {msg.messageSender}</div> */}
-                        <Link href={"/signetor/" + msg.follower}>
+                        <Link href={"/" + msg.follower}>
                             <button className="px-4 py-2 m-2 italic text-sm">
                                 {" "}
                                 {`${
@@ -98,7 +98,7 @@ export default function FollowerList() {
     //                     )}
 
     //                     <div className="px-4 py-2 m-2 italic text-sm">{msg.tokendescription}</div>
-    //                     <Link href={"/signetor/" + msg.messageSender}>
+    //                     <Link href={"/" + msg.messageSender}>
     //                         <button className="px-4 py-2 m-2 italic text-sm right-0">
     //                             from{" "}
     //                             {`${

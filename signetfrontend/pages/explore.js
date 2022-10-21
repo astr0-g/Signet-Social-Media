@@ -100,45 +100,50 @@ export default function Dashboard() {
 
     // useEffect(() => {
     //     if (address) {
-    //         const route = `/Signetor/${address}`
+    //         const route = `/${address}`
     //         setProfile(route)
     //     }
     // }, [])
     //max-w-xl//
     return (
-        <div>
-            <Head>
-                <title>Signet</title>
-                <meta name="description" content="2" />
-                <link rel="icon" href="/logo.ico" />
-            </Head>
-            <div>
-                <nav className={styles1.navBar}>
-                    <img src="/logo2.png" />
-                    {!address ? <div /> : <ConnectButton accountStatus="address" />}
-                </nav>
-            </div>
-            <div>
-                <div className="justify-between items-center">
-                    <div className="flex flex-col justify-center items-center border-l border-r bg-slate-100 border-gray-200  xl:min-w-[576px] sm:ml-[73px] flex-grow">
-                        {" "}
-                        <div className="flex space-x-5 py-2 px-3 top-0 z-50 ">
-                            <Link href={`/`}>
-                                <button className={styles.button85}>Home</button>
-                            </Link>
+    <div>
+            {!address ? (<Welcome />) : (
+                <div>
+                    <Head>
+                        <title>Signet</title>
+                        <meta name="description" content="2" />
+                        <link rel="icon" href="/logo.ico" />
+                    </Head>
+                    <div>
+                        <nav className={styles1.navBar}>
+                            <img src="/logo2.png" />
+                            {!address ? <div /> : <ConnectButton accountStatus="address" />}
+                        </nav>
+                    </div>
+                    <div>
+                        <div className="justify-between items-center">
+                            <div className="flex flex-col justify-center items-center border-l border-r bg-slate-100 border-gray-200  xl:min-w-[576px] sm:ml-[73px] flex-grow">
+                                {" "}
+                                <div className="flex space-x-5 py-2 px-3 top-0 z-50 ">
+                                    <Link href={`/`}>
+                                        <button className={styles.button85}>Home</button>
+                                    </Link>
 
-                            <button className={styles.button85}>Explore</button>
+                                    <button className={styles.button85}>Explore</button>
 
-                            <Link href={`/signetor/${address}`}>
-                                <button className={styles.button85}>Profile</button>
-                            </Link>
+                                    <Link href={`/${address}`}>
+                                        <button className={styles.button85}>Profile</button>
+                                    </Link>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <div>
+                        <AllMessagelist />
+                    </div>
                 </div>
+            )}
             </div>
-            <div>
-                <AllMessagelist />
-            </div>
-        </div>
     )
 }
+

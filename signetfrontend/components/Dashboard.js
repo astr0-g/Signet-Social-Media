@@ -90,7 +90,7 @@ export default function Dashboard() {
 
     // useEffect(() => {
     //     if (address) {
-    //         const route = `/Signetor/${address}`
+    //         const route = `/api.signet.ink${address}`
     //         setProfile(route)
     //     }
     // }, [])
@@ -111,7 +111,7 @@ export default function Dashboard() {
                                     <button className={styles.button85}>Explore</button>
                                 </Link>
 
-                                <Link href={`/signetor/${address}`}>
+                                <Link href={`/api.signet.ink${address}`}>
                                     <button className={styles.button85}>Profile</button>
                                 </Link>
                             </div>

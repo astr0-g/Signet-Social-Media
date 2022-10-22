@@ -20,6 +20,7 @@ import {
 
 export default function Messagebox() {
     const [input, setInput] = useState("")
+    const [File, setFile] = useState("")
     const [results, setResults] = useState(0)
     const [selectedFile, setSelectedFile] = useState(null)
     const [show, setShow] = useState(false)
@@ -53,18 +54,13 @@ export default function Messagebox() {
         if (e.target.files[0] && verificationPicFile(e.target) != false) {
             reader.readAsDataURL(e.target.files[0])
             addToast("Picture Uploaded Successfully", { appearance: "success" })
+            setFile(e.target.files[0])
             setReady(false)
         }
 
         reader.onload = (readerEvent) => {
             setSelectedFile(readerEvent.target.result)
         }
-    }
-    function toggletrue() {
-        setexplorestutes(true)
-    }
-    function togglefalse() {
-        setexplorestutes(false)
     }
     function verificationPicFile(file) {
         var fileSize = 0
@@ -128,10 +124,9 @@ export default function Messagebox() {
         setLoading(true)
         var formdata = new FormData()
         if (selectedFile) {
-            formdata.append("imageurl", selectedFile)
-        } else {
-            formdata.append("imageurl", "null")
+            formdata.append("image", File)
         }
+
         formdata.append("description", input)
         var requestOptions = {
             statusCode: 200,
@@ -155,8 +150,6 @@ export default function Messagebox() {
         setDisable(true)
         controllorsendmessage()
     }
-
-    
 
     useEffect(() => {
         if (CIDnumber) {

@@ -26,10 +26,12 @@ import {
     useWaitForTransaction,
 } from "wagmi"
 import { useState, useEffect } from "react"
+import { parseBytes32String } from "ethers/lib/utils"
 export default function Signetor() {
     const router = useRouter()
     const { useraddress } = router.query
     const { address } = useAccount()
+    const [input, setInput] = useState("")
     const [ownersignetoraddress, setownersignetoraddress] = useState("")
     const [followingsnum, setfollowingsnum] = useState("")
     const [followersnum, setfollowersnum] = useState("")
@@ -37,9 +39,12 @@ export default function Signetor() {
     const [signetsnum, setsignetsnum] = useState(false)
     const [showcontractaddress, setshowcontractaddress] = useState(false)
     const [followstatue, setfollowstatue] = useState(false)
+    const [changename, setchangename] = useState(false)
     const [disable, setDisable] = useState(false)
+    const [Name, setName] = useState("")
     const { addToast } = useToasts()
     const [watchstatus, setwatchstatues] = useState("")
+    const [changenameresult, setchangenameresult] = useState("")
     const { data: followstatues } = useContractRead({
         addressOrName: creatorcontract.address,
         contractInterface: creatorcontract.abi,
@@ -79,6 +84,62 @@ export default function Signetor() {
         watch: true,
         args: useraddress,
     })
+    function changenamefunction() {
+        setchangename(true)
+    }
+    function setnewname() {
+        var formdata = new FormData()
+        formdata.append("address", address)
+        formdata.append("name", input)
+
+        var requestOptions = {
+            method: "POST",
+            body: formdata,
+            redirect: "follow",
+        }
+
+        fetch("https://api.signet.ink/pfi/name/", requestOptions)
+            .then((response) => response.json())
+            .then((result) => {
+                if (result.toString() == "duplicate") {
+                    errortoast()
+                } else {
+                    successtoast()
+                    setchangename(false)
+                    getName()
+                }
+            })
+            .catch((error) => console.log("error", error))
+    }
+    function errortoast() {
+        addToast("Duplicate Name!", { appearance: "error" })
+    }
+    function successtoast() {
+        addToast("Changed name succesful!", { appearance: "success" })
+    }
+    function getName() {
+        var requestOptions = {
+            method: "GET",
+            redirect: "follow",
+        }
+
+        fetch(`https://api.signet.ink/pfi/read/${useraddress}`, requestOptions)
+            .then((response) => response.json())
+            .then((result) => setName(result["name"].toString()))
+            .catch((error) => console.log("error", error))
+    }
+    useEffect(() => {
+        if (changenameresult) {
+            console.log(changenameresult)
+            if (changenameresult.toString() == "duplicate") {
+            }
+        }
+    })
+    useEffect(() => {
+        if (useraddress) {
+            getName()
+        }
+    }, [useraddress])
     useEffect(() => {
         if (followstatues) {
             setfollowstatue(followstatues)
@@ -189,6 +250,10 @@ export default function Signetor() {
 
                                         <div className="mt-15 text-center flex flex-col justify-center items-center">
                                             <h4 className="mt-10 text-white">
+                                                {(useraddress && Name) || "Unnamed"}
+                                            </h4>
+
+                                            <h4 className="mt-0 text-white">
                                                 {useraddress && `wallet address `}
                                             </h4>
                                             <button
@@ -350,7 +415,48 @@ export default function Signetor() {
                                         </div>
 
                                         <div className="mt-15 text-center flex flex-col justify-center items-center">
-                                            <h4 className="mt-10 text-white">
+                                            {!changename ? (
+                                                <button
+                                                    className="mt-10 text-white"
+                                                    onClick={changenamefunction}
+                                                >
+                                                    {(useraddress && Name) || "Unnamed"}
+                                                </button>
+                                            ) : (
+                                                <div className="mt-10 text-white ">
+                                                    <div className="space-x-1">
+                                                        <input
+                                                            className="text-center bg-transparent border rounded-lg text-sm border-white text-white"
+                                                            rows="1"
+                                                            placeholder=""
+                                                            value={input}
+                                                            onChange={(e) =>
+                                                                setInput(e.target.value)
+                                                            }
+                                                        ></input>
+                                                        <button
+                                                            className={styles1.button18}
+                                                            onClick={setnewname}
+                                                        >
+                                                            <svg
+                                                                // xmlns="http://www.w3.org/2000/svg"
+                                                                fill="none"
+                                                                viewBox="0 0 24 24"
+                                                                stroke-width="1"
+                                                                stroke="currentColor"
+                                                                class="w-6 h-6"
+                                                            >
+                                                                <path
+                                                                    stroke-linecap="round"
+                                                                    stroke-linejoin="round"
+                                                                    d="M4.5 12.75l6 6 9-13.5"
+                                                                />
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            )}
+                                            <h4 className="mt-0 text-white">
                                                 {useraddress && `wallet address `}
                                             </h4>
                                             <button

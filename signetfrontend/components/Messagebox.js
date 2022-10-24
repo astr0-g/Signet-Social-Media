@@ -64,13 +64,13 @@ export default function Messagebox() {
     }
     function verificationPicFile(file) {
         var fileSize = 0
-        var fileMaxSize = 2048 //1M
+        var fileMaxSize = 20480 //1M
         var filePath = file.value
         if (filePath) {
             fileSize = file.files[0].size
             var size = fileSize / 1024
             if (size > fileMaxSize) {
-                addToast("File size could not exceed 2MB!", { appearance: "warning" })
+                addToast("File size could not exceed 20MB!", { appearance: "warning" })
                 file.value = ""
                 return false
             } else if (size <= 0) {

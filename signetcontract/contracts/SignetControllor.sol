@@ -5,6 +5,7 @@ import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "./Signetors.sol";
+import "./PriceConverter.sol";
 import "hardhat/console.sol";
 /*
  * @title Signetors Controllor
@@ -15,12 +16,16 @@ error Already__Followed();
 error Never__Followed();
 error Can__notfollow();
 error No__ContractCreated();
+error Not__EnoughAmount();
 
 contract SignetControllor is ReentrancyGuard, Ownable {
     Signetor public sSignetor;
     Signetors ST;
     Signetors public STCrator;
+    using PriceConverter for uint256;
+    AggregatorV3Interface public priceFeed;
     uint256 public TotalSignetorsNum;
+    uint256 public constant appreciateAmount = 10* 10**18;
     struct ownerstruct {
         address owner;
     }
@@ -62,9 +67,10 @@ contract SignetControllor is ReentrancyGuard, Ownable {
         uint256 time
     );
 
-    constructor() {
+    constructor(address priceFeedAddress) {
         ST = new Signetors();
         STCrator = Signetors(ST.ContractAddress());
+        priceFeed = AggregatorV3Interface(priceFeedAddress);
     }
 
     /*
@@ -207,6 +213,21 @@ contract SignetControllor is ReentrancyGuard, Ownable {
         }
 
         emit UnFollowed(msg.sender, signetor);
+    }
+
+    function like() public {}
+
+    function appreciate(address reciever) public payable {
+        if (msg.value.getConversionRate(priceFeed) < appreciateAmount) revert Not__EnoughAmount();
+        // require(
+        //     PriceConverter.getConversionRate(msg.value) >= appreciateAmount,
+        //     "You need to spend more ETH!"
+        // );
+        uint256 commissionNumerator = 95;
+        uint256 commissionDenominator = 100;
+        uint256 afterCommission = (msg.value * commissionNumerator) / commissionDenominator;
+        (bool callSuccess, ) = payable(reciever).call{value: afterCommission}("");
+        require(callSuccess, "Call failed");
     }
 
     function controllorCreateSignetor(string memory _name, string memory _symbol) external {

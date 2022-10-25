@@ -1,13 +1,19 @@
+const { getContractFactory } = require("@nomiclabs/hardhat-ethers/types")
 const { network } = require("hardhat")
-const { developmentChains } = require("../helper-hardhat-config")
 const { verify } = require("../utils/verify")
-
+const { networkConfig, developmentChains, get } = require("../helper-hardhat-config")
 module.exports = async function ({ getNamedAccounts, deployments }) {
     const { deploy, log } = deployments
     const { deployer } = await getNamedAccounts()
-
+    const chainId = network.config.chainId
     log("-----------------")
-    const arguments = []
+    if (developmentChains.includes(network.name)) {
+        const ethUsdAggregator = await deployments.get("MockV3Aggregator")
+        ethUsdPriceAddress = ethUsdAggregator.address
+    } else {
+        ethUsdPriceAddress = networkConfig[chainId]["ethUsdPriceFeed"]
+    }
+    const arguments = [ethUsdPriceAddress]
     const SignetControllor = await deploy("SignetControllor", {
         from: deployer,
         args: arguments,

@@ -123,8 +123,8 @@ contract SignetControllor is ReentrancyGuard, Ownable {
         uint256 i;
         for (i = 0; i < follower[signetor].whoFollowed.length; i++) {
             if (follower[signetor].whoFollowed[i] == followersaddress) {
-                return (true);
                 console.log(i);
+                return (true);
             }
         }
         return (false);
@@ -134,30 +134,17 @@ contract SignetControllor is ReentrancyGuard, Ownable {
         uint256 i;
         for (i = 0; i < signetState[signetID].likeContributors.length; i++) {
             if (signetState[signetID].likeContributors[i] == likedAddress) {
-                return (true);
                 console.log(i);
+                return (true);
             }
         }
         return (false);
     }
 
-    function findLikeId(uint256 signetID, address likedAddress) public view returns (uint256) {
-        uint256 i = 1;
-        for (i = 1; i < signetState[signetID].likeContributors.length + 1; i++) {
-            if (signetState[signetID].likeContributors[i - 1] == likedAddress) {
-                console.log("----------------------------");
-                console.log("checked findFollwingId is :");
-                console.log(i);
-                console.log("----------------------------");
-                return i;
-            }
-        }
-    }
-
     function findfollowerId(address signetor, address followersaddress)
         public
         view
-        returns (uint256)
+        returns (uint256 id)
     {
         uint256 i = 1;
         for (i = 1; i < follower[signetor].whoFollowed.length + 1; i++) {
@@ -174,11 +161,24 @@ contract SignetControllor is ReentrancyGuard, Ownable {
     function findFollwingId(address signetor, address followingAaddress)
         public
         view
-        returns (uint256)
+        returns (uint256 id)
     {
         uint256 i = 1;
         for (i = 1; i < following[signetor].followedWho.length + 1; i++) {
             if (following[signetor].followedWho[i - 1] == followingAaddress) {
+                console.log("----------------------------");
+                console.log("checked findFollwingId is :");
+                console.log(i);
+                console.log("----------------------------");
+                return i;
+            }
+        }
+    }
+
+    function findLikeId(uint256 signetID, address likedAddress) public view returns (uint256 id) {
+        uint256 i = 1;
+        for (i = 1; i < signetState[signetID].likeContributors.length + 1; i++) {
+            if (signetState[signetID].likeContributors[i - 1] == likedAddress) {
                 console.log("----------------------------");
                 console.log("checked findFollwingId is :");
                 console.log(i);
@@ -298,7 +298,7 @@ contract SignetControllor is ReentrancyGuard, Ownable {
 
     function star(address SignetIdOwner, uint256 SignetId) public payable {
         if (msg.value.getConversionRate(priceFeed) < appreciateAmount) revert Not__EnoughAmount();
-        if (SignetId > signetId || signetId == 0) revert Wrong__SignetId();
+        if (SignetId > signetId || signetId == 0 || SignetId == 0) revert Wrong__SignetId();
         if (
             signetState[SignetId].SignetIdOwner == msg.sender ||
             signetState[SignetId].SignetIdOwner != SignetIdOwner
@@ -347,6 +347,10 @@ contract SignetControllor is ReentrancyGuard, Ownable {
 
     function getStarNum(uint256 SignetId) public view returns (uint256) {
         return (signetState[SignetId].starNum);
+    }
+
+    function getLiedNum(uint256 SignetId) public view returns (uint256) {
+        return (signetState[SignetId].likeNum);
     }
 
     function getStarContributor(uint256 SignetId) public view returns (address[] memory) {

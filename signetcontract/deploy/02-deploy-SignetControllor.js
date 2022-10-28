@@ -13,7 +13,9 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
     } else {
         ethUsdPriceAddress = networkConfig[chainId]["ethUsdPriceFeed"]
     }
-    const arguments = [ethUsdPriceAddress]
+    const SignetName = await deployments.get("SignetName")
+    SignetNameAddress = SignetName.address
+    const arguments = [ethUsdPriceAddress, SignetNameAddress]
     const SignetControllor = await deploy("SignetControllor", {
         from: deployer,
         args: arguments,

@@ -4,6 +4,7 @@ pragma solidity ^0.8.7;
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "../interfaces/ISignetName.sol";
 import "./Signetors.sol";
 import "./PriceConverter.sol";
 import "hardhat/console.sol";
@@ -11,28 +12,20 @@ import "hardhat/console.sol";
  * @title Signetors Controllor
  * @author astro
  */
-error Contract__Created();
-error Wrong__Contract();
+
 error Already__Followed();
 error Never__Followed();
 error Can__notfollow();
-error No__ContractCreated();
 error Not__EnoughAmount();
 error Wrong__SignetId();
 error Wrong__UserSubmitted();
 
-contract SignetControllor is ReentrancyGuard, Ownable {
-    Signetor private sSignetor;
-    Signetors ST;
-    Signetors private STCrator;
-    using PriceConverter for uint256;
+contract SignetFollowSystem is ReentrancyGuard, Ownable {
     AggregatorV3Interface public priceFeed;
+    using PriceConverter for uint256;
     uint256 public TotalSignetorsNum;
     uint256 public signetId;
     uint256 private constant appreciateAmount = 10 * 10**18;
-    struct ownerstruct {
-        address owner;
-    }
 
     //followers struct
 
@@ -66,19 +59,8 @@ contract SignetControllor is ReentrancyGuard, Ownable {
 
     mapping(address => uint256) public Stars;
 
-    mapping(address => ownerstruct) public collectionContractList;
-
-    event CollectionCreated(address indexed creatoraddress, address indexed collectionaddress);
     event Followed(address indexed isfollowing, address indexed isfollowed);
     event UnFollowed(address indexed isunfollowing, address indexed isunfollowed);
-    event NewMessageSent(
-        address indexed messageSender,
-        address indexed signetoraddress,
-        uint256 messageId,
-        uint256 signetId,
-        string tokenURI_,
-        uint256 time
-    );
     event Liked(
         address indexed messageSender,
         uint256 signetId,
@@ -98,10 +80,8 @@ contract SignetControllor is ReentrancyGuard, Ownable {
         uint256 time
     );
 
-    constructor(address priceFeedAddress) {
-        ST = new Signetors();
-        STCrator = Signetors(ST.ContractAddress());
-        priceFeed = AggregatorV3Interface(priceFeedAddress);
+    constructor(address _priceFeedAddress) {
+        priceFeed = AggregatorV3Interface(_priceFeedAddress);
     }
 
     /*
@@ -110,14 +90,6 @@ contract SignetControllor is ReentrancyGuard, Ownable {
      * @param creating copyright collection.
      * @param store all infos into contract.
      */
-
-    function getFollowers(address signetor) public view returns (address[] memory) {
-        return (follower[signetor].whoFollowed);
-    }
-
-    function getFollowings(address signetor) public view returns (address[] memory) {
-        return (following[signetor].followedWho);
-    }
 
     function checkfollowed(address signetor, address followersaddress) public view returns (bool) {
         uint256 i;
@@ -188,32 +160,24 @@ contract SignetControllor is ReentrancyGuard, Ownable {
         }
     }
 
-    function follow(address signetor) public {
-        if (
-            getOwnerNumContractOfSignetor(msg.sender) == 0 ||
-            getOwnerNumContractOfSignetor(signetor) == 0
-        ) revert No__ContractCreated();
-        if (msg.sender == signetor) revert Can__notfollow();
-        bool result = checkfollowed(signetor, msg.sender);
+    function follow(address msgSender, address signetor) external {
+        if (msgSender == signetor) revert Can__notfollow();
+        bool result = checkfollowed(signetor, msgSender);
         if (result == true) revert Already__Followed();
         follower[signetor].followerNum++;
-        follower[signetor].whoFollowed.push(msg.sender);
-        following[msg.sender].FollowingNum++;
-        following[msg.sender].followedWho.push(signetor);
-        emit Followed(msg.sender, signetor);
+        follower[signetor].whoFollowed.push(msgSender);
+        following[msgSender].FollowingNum++;
+        following[msgSender].followedWho.push(signetor);
+        emit Followed(msgSender, signetor);
     }
 
-    function unfollow(address signetor) public {
-        if (
-            getOwnerNumContractOfSignetor(msg.sender) == 0 ||
-            getOwnerNumContractOfSignetor(signetor) == 0
-        ) revert No__ContractCreated();
-        if (msg.sender == signetor) revert Can__notfollow();
-        bool result = checkfollowed(signetor, msg.sender);
+    function unfollow(address msgSender, address signetor) external {
+        if (msgSender == signetor) revert Can__notfollow();
+        bool result = checkfollowed(signetor, msgSender);
         if (result == false) revert Never__Followed();
 
         uint256 totalFollower = follower[signetor].followerNum;
-        uint256 i = findfollowerId(signetor, msg.sender);
+        uint256 i = findfollowerId(signetor, msgSender);
         console.log("----------------------------");
         console.log("total follower:");
         console.log(totalFollower);
@@ -235,8 +199,8 @@ contract SignetControllor is ReentrancyGuard, Ownable {
             follower[signetor].whoFollowed.pop();
         }
 
-        uint256 totalFollowing = following[msg.sender].FollowingNum;
-        uint256 j = findFollwingId(msg.sender, signetor);
+        uint256 totalFollowing = following[msgSender].FollowingNum;
+        uint256 j = findFollwingId(msgSender, signetor);
         console.log("----------------------------");
         console.log("total following:");
         console.log(totalFollowing);
@@ -244,45 +208,53 @@ contract SignetControllor is ReentrancyGuard, Ownable {
         console.log(j);
         console.log("----------------------------");
         if (totalFollowing == j) {
-            following[msg.sender].FollowingNum -= 1;
-            following[msg.sender].followedWho.pop();
+            following[msgSender].FollowingNum -= 1;
+            following[msgSender].followedWho.pop();
         } else {
-            following[msg.sender].FollowingNum -= 1;
-            following[msg.sender].followedWho[j - 1] = following[msg.sender].followedWho[
-                following[msg.sender].followedWho.length - 1
+            following[msgSender].FollowingNum -= 1;
+            following[msgSender].followedWho[j - 1] = following[msgSender].followedWho[
+                following[msgSender].followedWho.length - 1
             ];
             // for (j; j < ; j++) {
             //     ;
             // }
-            following[msg.sender].followedWho.pop();
+            following[msgSender].followedWho.pop();
         }
 
-        emit UnFollowed(msg.sender, signetor);
+        emit UnFollowed(msgSender, signetor);
     }
 
-    function like(uint256 SignetId, address SignetIdOwner) public {
+    function like(
+        address msgSender,
+        uint256 SignetId,
+        address SignetIdOwner
+    ) external {
         if (SignetId > signetId || signetId == 0 || SignetId == 0) revert Wrong__SignetId();
         if (
-            signetState[SignetId].SignetIdOwner == msg.sender ||
+            signetState[SignetId].SignetIdOwner == msgSender ||
             signetState[SignetId].SignetIdOwner != SignetIdOwner
         ) revert Wrong__UserSubmitted();
-        bool result = checkliked(SignetId, msg.sender);
+        bool result = checkliked(SignetId, msgSender);
         if (result == true) revert Wrong__UserSubmitted();
         signetState[SignetId].likeNum++;
-        signetState[SignetId].likeContributors.push(msg.sender);
-        emit Liked(msg.sender, SignetId, SignetIdOwner, block.timestamp);
+        signetState[SignetId].likeContributors.push(msgSender);
+        emit Liked(msgSender, SignetId, SignetIdOwner, block.timestamp);
     }
 
-    function unlike(uint256 SignetId, address SignetIdOwner) public {
+    function unlike(
+        address msgSender,
+        uint256 SignetId,
+        address SignetIdOwner
+    ) external {
         if (SignetId > signetId || signetId == 0 || SignetId == 0) revert Wrong__SignetId();
         if (
-            signetState[SignetId].SignetIdOwner == msg.sender ||
+            signetState[SignetId].SignetIdOwner == msgSender ||
             signetState[SignetId].SignetIdOwner != SignetIdOwner
         ) revert Wrong__UserSubmitted();
-        bool result = checkliked(SignetId, msg.sender);
+        bool result = checkliked(SignetId, msgSender);
         if (result == false) revert Wrong__UserSubmitted();
         uint256 totalFollower = signetState[SignetId].likeNum;
-        uint256 i = findLikeId(SignetId, msg.sender);
+        uint256 i = findLikeId(SignetId, msgSender);
         if (totalFollower == i) {
             signetState[SignetId].likeNum -= 1;
             signetState[SignetId].likeContributors.pop();
@@ -293,10 +265,10 @@ contract SignetControllor is ReentrancyGuard, Ownable {
             ];
             signetState[SignetId].likeContributors.pop();
         }
-        emit Unlike(msg.sender, SignetId, SignetIdOwner, block.timestamp);
+        emit Unlike(msgSender, SignetId, SignetIdOwner, block.timestamp);
     }
 
-    function star(address SignetIdOwner, uint256 SignetId) public payable {
+    function star(address SignetIdOwner, uint256 SignetId) external payable {
         if (msg.value.getConversionRate(priceFeed) < appreciateAmount) revert Not__EnoughAmount();
         if (SignetId > signetId || signetId == 0 || SignetId == 0) revert Wrong__SignetId();
         if (
@@ -313,51 +285,27 @@ contract SignetControllor is ReentrancyGuard, Ownable {
         emit Stared(msg.sender, SignetId, SignetIdOwner, block.timestamp);
     }
 
-    function controllorCreateSignetor(string memory _name, string memory _symbol) external {
-        if (getOwnerNumContractOfSignetor(msg.sender) != 0) revert Contract__Created();
-        (, address b, ) = STCrator.createSignetor(_name, _symbol, msg.sender);
-        TotalSignetorsNum++;
-        ownerstruct memory OWS = ownerstruct(msg.sender);
-        collectionContractList[b] = OWS;
-        emit CollectionCreated(msg.sender, b);
+    function getFollowers(address signetor) external view returns (address[] memory) {
+        return (follower[signetor].whoFollowed);
     }
 
-    function getOwnerContractForSignetor(address contractOwner) public view returns (address) {
-        (, address b, ) = STCrator.getresponse(0, contractOwner);
-        return b;
+    function getFollowings(address signetor) external view returns (address[] memory) {
+        return (following[signetor].followedWho);
     }
 
-    function getOwnerNumContractOfSignetor(address contractOwner) public view returns (uint256) {
-        uint256 a = STCrator.s_creatorCollection(contractOwner);
-        return (a);
-    }
-
-    function sendmessage(address addr, string memory tokenURI_) public returns (bool success) {
-        if (getOwnerNumContractOfSignetor(msg.sender) == 0) revert No__ContractCreated();
-        address ownercontract = getOwnerContractForSignetor(msg.sender);
-        if (addr != ownercontract) revert Wrong__Contract();
-        sSignetor = Signetor(addr);
-        uint256 messageId = sSignetor.sendmessage(tokenURI_);
-        uint256 time = block.timestamp;
-        signetId++;
-        signetState[signetId].SignetIdOwner = msg.sender;
-        emit NewMessageSent(msg.sender, addr, messageId, signetId, tokenURI_, time);
-        return true;
-    }
-
-    function getStarNum(uint256 SignetId) public view returns (uint256) {
+    function getStarNum(uint256 SignetId) external view returns (uint256) {
         return (signetState[SignetId].starNum);
     }
 
-    function getLiedNum(uint256 SignetId) public view returns (uint256) {
+    function getLiedNum(uint256 SignetId) external view returns (uint256) {
         return (signetState[SignetId].likeNum);
     }
 
-    function getStarContributor(uint256 SignetId) public view returns (address[] memory) {
+    function getStarContributor(uint256 SignetId) external view returns (address[] memory) {
         return (signetState[SignetId].starContributors);
     }
 
-    function getLikeContributor(uint256 SignetId) public view returns (address[] memory) {
+    function getLikeContributor(uint256 SignetId) external view returns (address[] memory) {
         return (signetState[SignetId].likeContributors);
     }
 }

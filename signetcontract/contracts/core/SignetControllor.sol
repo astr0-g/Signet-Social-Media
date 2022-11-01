@@ -4,8 +4,8 @@ pragma solidity ^0.8.7;
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "../interfaces/ISignetName.sol";
-import "../interfaces/ISignetFollowSystem.sol";
+import "../interfaces/ISignetProfileSys.sol";
+import "../interfaces/ISignetFollowSys.sol";
 import "./Signetors.sol";
 import "./PriceConverter.sol";
 import "hardhat/console.sol";
@@ -31,8 +31,8 @@ contract SignetControllor is ReentrancyGuard, Ownable {
     AggregatorV3Interface public priceFeed;
     uint256 public TotalSignetorsNum;
 
-    address private signetname;
-    address private signetFollowSystem;
+    address private signetprofileSys;
+    address private signetFollowSys;
     struct ownerstruct {
         address owner;
     }
@@ -41,15 +41,9 @@ contract SignetControllor is ReentrancyGuard, Ownable {
 
     mapping(address => ownerstruct) public collectionContractList;
 
-    event CollectionCreated(
-        address indexed creatoraddress,
-        address indexed collectionaddress
-    );
+    event CollectionCreated(address indexed creatoraddress, address indexed collectionaddress);
     event Followed(address indexed isfollowing, address indexed isfollowed);
-    event UnFollowed(
-        address indexed isunfollowing,
-        address indexed isunfollowed
-    );
+    event UnFollowed(address indexed isunfollowing, address indexed isunfollowed);
     event NewMessageSent(
         address indexed messageSender,
         address indexed signetoraddress,
@@ -77,11 +71,11 @@ contract SignetControllor is ReentrancyGuard, Ownable {
         uint256 time
     );
 
-    constructor(address _signetName, address _signetFollowSystem) {
+    constructor(address _signetprofileSys, address _signetFollowSys) {
         ST = new Signetors();
         STCrator = Signetors(ST.ContractAddress());
-        signetname = _signetName;
-        signetFollowSystem = _signetFollowSystem;
+        signetprofileSys = _signetprofileSys;
+        signetFollowSys = _signetFollowSys;
     }
 
     /*
@@ -91,24 +85,17 @@ contract SignetControllor is ReentrancyGuard, Ownable {
      * @param store all infos into contract.
      */
     modifier Joined() {
-        if (getOwnerNumContractOfSignetor(msg.sender) == 0)
-            revert No__ContractCreated();
+        if (getOwnerNumContractOfSignetor(msg.sender) == 0) revert No__ContractCreated();
         _;
     }
 
     // function _init() public onlyOwner {
-    //     ISignetFollowSystem(signetFollowSystem).setSignetControllor(
-    //         address(this)
-    //     );
-    //     ISignetName(signetname).setSignetControllor(address(this));
+    //     ISignetFollowSys(signetFollowSys).setSignetControllor(address(this));
+    //     ISignetProfileSys(signetprofileSys).setSignetControllor(address(this));
     // }
 
-    function controllorCreateSignetor(
-        string memory _name,
-        string memory _symbol
-    ) external {
-        if (getOwnerNumContractOfSignetor(msg.sender) != 0)
-            revert Contract__Created();
+    function controllorCreateSignetor(string memory _name, string memory _symbol) external {
+        if (getOwnerNumContractOfSignetor(msg.sender) != 0) revert Contract__Created();
         (, address b, ) = STCrator.createSignetor(_name, _symbol, msg.sender);
         TotalSignetorsNum++;
         ownerstruct memory OWS = ownerstruct(msg.sender);
@@ -126,77 +113,49 @@ contract SignetControllor is ReentrancyGuard, Ownable {
         sSignetor = Signetor(addr);
         uint256 messageId = sSignetor.sendmessage(tokenURI_);
         uint256 time = block.timestamp;
-        uint256 signetId = ISignetFollowSystem(signetFollowSystem)
-            .messageSender(msg.sender);
-        emit NewMessageSent(
-            msg.sender,
-            addr,
-            messageId,
-            signetId,
-            tokenURI_,
-            time
-        );
+        uint256 signetId = ISignetFollowSys(signetFollowSys).messageSender(msg.sender);
+        emit NewMessageSent(msg.sender, addr, messageId, signetId, tokenURI_, time);
         return true;
     }
 
     function follow(address signetor) public Joined {
-        ISignetFollowSystem(signetFollowSystem).follow(msg.sender, signetor);
+        ISignetFollowSys(signetFollowSys).follow(msg.sender, signetor);
     }
 
     function unfollow(address signetor) public Joined {
-        ISignetFollowSystem(signetFollowSystem).unfollow(msg.sender, signetor);
+        ISignetFollowSys(signetFollowSys).unfollow(msg.sender, signetor);
     }
 
     function like(address SignetIdOwner, uint256 SignetId) public Joined {
-        ISignetFollowSystem(signetFollowSystem).like(
-            msg.sender,
-            SignetId,
-            SignetIdOwner
-        );
+        ISignetFollowSys(signetFollowSys).like(msg.sender, SignetId, SignetIdOwner);
     }
 
     function unlike(address SignetIdOwner, uint256 SignetId) public Joined {
-        ISignetFollowSystem(signetFollowSystem).unlike(
-            msg.sender,
-            SignetId,
-            SignetIdOwner
-        );
+        ISignetFollowSys(signetFollowSys).unlike(msg.sender, SignetId, SignetIdOwner);
     }
 
-    function star(address SignetIdOwner, uint256 SignetId)
-        public
-        payable
-        Joined
-    {
-        ISignetFollowSystem(signetFollowSystem).star{value: msg.value}(
+    function star(address SignetIdOwner, uint256 SignetId) public payable Joined {
+        ISignetFollowSys(signetFollowSys).star{value: msg.value}(
             msg.sender,
             SignetIdOwner,
             SignetId
         );
     }
 
-    function createNameForNewUser(string memory _newname) public {
-        ISignetName(signetname).createNameForNewUser(_newname, msg.sender);
+    function createNameForNewUser(string memory _newname) public Joined {
+        ISignetProfileSys(signetprofileSys).createNameForNewUser(_newname, msg.sender);
     }
 
-    function changeNameForUser(string memory _newname) public {
-        ISignetName(signetname).changeNameForUser(_newname, msg.sender);
+    function changeNameForUser(string memory _newname) public Joined {
+        ISignetProfileSys(signetprofileSys).changeNameForUser(_newname, msg.sender);
     }
 
-    function getOwnerContractForSignetor(address contractOwner)
-        public
-        view
-        returns (address)
-    {
+    function getOwnerContractForSignetor(address contractOwner) public view returns (address) {
         (, address b, ) = STCrator.getresponse(0, contractOwner);
         return b;
     }
 
-    function getOwnerNumContractOfSignetor(address contractOwner)
-        public
-        view
-        returns (uint256)
-    {
+    function getOwnerNumContractOfSignetor(address contractOwner) public view returns (uint256) {
         uint256 a = STCrator.s_creatorCollection(contractOwner);
         return a;
     }
@@ -206,98 +165,54 @@ contract SignetControllor is ReentrancyGuard, Ownable {
         view
         returns (bool)
     {
-        return (
-            ISignetFollowSystem(signetFollowSystem).checkfollowed(
-                signetor,
-                followersaddress
-            )
-        );
+        return (ISignetFollowSys(signetFollowSys).checkfollowed(signetor, followersaddress));
     }
 
-    function checkliked(uint256 signetID, address likedAddress)
-        external
-        view
-        returns (bool)
-    {
-        return (
-            ISignetFollowSystem(signetFollowSystem).checkliked(
-                signetID,
-                likedAddress
-            )
-        );
+    function checkliked(uint256 signetID, address likedAddress) external view returns (bool) {
+        return (ISignetFollowSys(signetFollowSys).checkliked(signetID, likedAddress));
     }
 
     function getFollowersNum(address signetor) public view returns (uint256) {
-        return (
-            ISignetFollowSystem(signetFollowSystem).getFollowersNum(signetor)
-        );
+        return (ISignetFollowSys(signetFollowSys).getFollowersNum(signetor));
     }
 
     function getFollowingsNum(address signetor) public view returns (uint256) {
-        return (
-            ISignetFollowSystem(signetFollowSystem).getFollowingsNum(signetor)
-        );
+        return (ISignetFollowSys(signetFollowSys).getFollowingsNum(signetor));
     }
 
-    function getFollowers(address signetor)
-        public
-        view
-        returns (address[] memory)
-    {
-        return (ISignetFollowSystem(signetFollowSystem).getFollowers(signetor));
+    function getFollowers(address signetor) public view returns (address[] memory) {
+        return (ISignetFollowSys(signetFollowSys).getFollowers(signetor));
     }
 
-    function getFollowings(address signetor)
-        public
-        view
-        returns (address[] memory)
-    {
-        return (
-            ISignetFollowSystem(signetFollowSystem).getFollowings(signetor)
-        );
+    function getFollowings(address signetor) public view returns (address[] memory) {
+        return (ISignetFollowSys(signetFollowSys).getFollowings(signetor));
     }
 
     function getStaredNum(address SignetorAddress) public view returns (uint256) {
-        return (ISignetFollowSystem(signetFollowSystem).getStaredNum(SignetorAddress));
+        return (ISignetFollowSys(signetFollowSys).getStaredNum(SignetorAddress));
     }
 
     function getLikedNum(uint256 SignetId) public view returns (uint256) {
-        return (ISignetFollowSystem(signetFollowSystem).getLikedNum(SignetId));
+        return (ISignetFollowSys(signetFollowSys).getLikedNum(SignetId));
     }
 
-    function getStarContributor(uint256 SignetId)
-        public
-        view
-        returns (address[] memory)
-    {
-        return (
-            ISignetFollowSystem(signetFollowSystem).getStarContributor(SignetId)
-        );
+    function getStarContributor(uint256 SignetId) public view returns (address[] memory) {
+        return (ISignetFollowSys(signetFollowSys).getStarContributor(SignetId));
     }
 
-    function getLikeContributor(uint256 SignetId)
-        public
-        view
-        returns (address[] memory)
-    {
-        return (
-            ISignetFollowSystem(signetFollowSystem).getLikeContributor(SignetId)
-        );
+    function getLikeContributor(uint256 SignetId) public view returns (address[] memory) {
+        return (ISignetFollowSys(signetFollowSys).getLikeContributor(SignetId));
     }
 
     function hasName(address signetUserAddress) public view returns (bool) {
-        return (ISignetName(signetname).hasName(signetUserAddress));
+        return (ISignetProfileSys(signetprofileSys).hasName(signetUserAddress));
     }
 
-    function checkName(address signetUserAddress)
-        public
-        view
-        returns (string memory)
-    {
-        return (ISignetName(signetname).checkName(signetUserAddress));
+    function checkName(address signetUserAddress) public view returns (string memory) {
+        return (ISignetProfileSys(signetprofileSys).checkName(signetUserAddress));
     }
 
     function checkNameAvalable(string memory _name) public view returns (bool) {
-        return (ISignetName(signetname).checkNameAvalable(_name));
+        return (ISignetProfileSys(signetprofileSys).checkNameAvalable(_name));
     }
 }

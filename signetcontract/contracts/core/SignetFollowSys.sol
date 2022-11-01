@@ -3,7 +3,6 @@ pragma solidity ^0.8.7;
 
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
-import "../interfaces/ISignetName.sol";
 import "./Signetors.sol";
 import "./PriceConverter.sol";
 import "hardhat/console.sol";
@@ -62,10 +61,7 @@ contract SignetFollowSystem is ReentrancyGuard {
     mapping(address => uint256) public Stars;
 
     event Followed(address indexed isfollowing, address indexed isfollowed);
-    event UnFollowed(
-        address indexed isunfollowing,
-        address indexed isunfollowed
-    );
+    event UnFollowed(address indexed isunfollowing, address indexed isunfollowed);
     event Liked(
         address indexed messageSender,
         uint256 signetId,
@@ -107,20 +103,13 @@ contract SignetFollowSystem is ReentrancyGuard {
      * @param store all infos into contract.
      */
 
-    function messageSender(address msgSender)
-        external
-        fromSignetControllor
-        returns (uint256)
-    {
+    function messageSender(address msgSender) external fromSignetControllor returns (uint256) {
         signetId++;
         signetState[signetId].SignetIdOwner = msgSender;
         return (signetId);
     }
 
-    function follow(address msgSender, address signetor)
-        external
-        fromSignetControllor
-    {
+    function follow(address msgSender, address signetor) external fromSignetControllor {
         if (msgSender == signetor) revert Can__notfollow();
         bool result = checkfollowed(signetor, msgSender);
         if (result == true) revert Already__Followed();
@@ -131,10 +120,7 @@ contract SignetFollowSystem is ReentrancyGuard {
         emit Followed(msgSender, signetor);
     }
 
-    function unfollow(address msgSender, address signetor)
-        external
-        fromSignetControllor
-    {
+    function unfollow(address msgSender, address signetor) external fromSignetControllor {
         if (msgSender == signetor) revert Can__notfollow();
         bool result = checkfollowed(signetor, msgSender);
         if (result == false) revert Never__Followed();
@@ -152,8 +138,9 @@ contract SignetFollowSystem is ReentrancyGuard {
             follower[signetor].whoFollowed.pop();
         } else {
             follower[signetor].followerNum -= 1;
-            follower[signetor].whoFollowed[i - 1] = follower[signetor]
-                .whoFollowed[follower[signetor].whoFollowed.length - 1];
+            follower[signetor].whoFollowed[i - 1] = follower[signetor].whoFollowed[
+                follower[signetor].whoFollowed.length - 1
+            ];
             // for (i; i < follower[signetor].whoFollowed.length; i++) {
             //     ;
             //     console.log();
@@ -174,8 +161,9 @@ contract SignetFollowSystem is ReentrancyGuard {
             following[msgSender].followedWho.pop();
         } else {
             following[msgSender].FollowingNum -= 1;
-            following[msgSender].followedWho[j - 1] = following[msgSender]
-                .followedWho[following[msgSender].followedWho.length - 1];
+            following[msgSender].followedWho[j - 1] = following[msgSender].followedWho[
+                following[msgSender].followedWho.length - 1
+            ];
             // for (j; j < ; j++) {
             //     ;
             // }
@@ -190,8 +178,7 @@ contract SignetFollowSystem is ReentrancyGuard {
         uint256 SignetId,
         address SignetIdOwner
     ) external fromSignetControllor {
-        if (SignetId > signetId || signetId == 0 || SignetId == 0)
-            revert Wrong__SignetId();
+        if (SignetId > signetId || signetId == 0 || SignetId == 0) revert Wrong__SignetId();
         if (
             signetState[SignetId].SignetIdOwner == msgSender ||
             signetState[SignetId].SignetIdOwner != SignetIdOwner
@@ -208,8 +195,7 @@ contract SignetFollowSystem is ReentrancyGuard {
         uint256 SignetId,
         address SignetIdOwner
     ) external fromSignetControllor {
-        if (SignetId > signetId || signetId == 0 || SignetId == 0)
-            revert Wrong__SignetId();
+        if (SignetId > signetId || signetId == 0 || SignetId == 0) revert Wrong__SignetId();
         if (
             signetState[SignetId].SignetIdOwner == msgSender ||
             signetState[SignetId].SignetIdOwner != SignetIdOwner
@@ -223,11 +209,9 @@ contract SignetFollowSystem is ReentrancyGuard {
             signetState[SignetId].likeContributors.pop();
         } else {
             signetState[SignetId].likeNum -= 1;
-            signetState[SignetId].likeContributors[i - 1] = signetState[
-                SignetId
-            ].likeContributors[
-                    signetState[SignetId].likeContributors.length - 1
-                ];
+            signetState[SignetId].likeContributors[i - 1] = signetState[SignetId].likeContributors[
+                signetState[SignetId].likeContributors.length - 1
+            ];
             signetState[SignetId].likeContributors.pop();
         }
         emit Unlike(msgSender, SignetId, SignetIdOwner, block.timestamp);
@@ -240,10 +224,8 @@ contract SignetFollowSystem is ReentrancyGuard {
     ) external payable fromSignetControllor {
         console.log(msg.value.getConversionRate(priceFeed));
         console.log(appreciateAmount);
-        if (msg.value.getConversionRate(priceFeed) < appreciateAmount)
-            revert Not__EnoughAmount();
-        if (SignetId > signetId || signetId == 0 || SignetId == 0)
-            revert Wrong__SignetId();
+        if (msg.value.getConversionRate(priceFeed) < appreciateAmount) revert Not__EnoughAmount();
+        if (SignetId > signetId || signetId == 0 || SignetId == 0) revert Wrong__SignetId();
         if (
             signetState[SignetId].SignetIdOwner == msgSender ||
             signetState[SignetId].SignetIdOwner != SignetIdOwner
@@ -253,21 +235,14 @@ contract SignetFollowSystem is ReentrancyGuard {
         signetState[SignetId].starContributors.push(msgSender);
         uint256 commissionNumerator = 95;
         uint256 commissionDenominator = 100;
-        uint256 afterCommission = (msg.value * commissionNumerator) /
-            commissionDenominator;
-        (bool callSuccess, ) = payable(SignetIdOwner).call{
-            value: afterCommission
-        }("");
+        uint256 afterCommission = (msg.value * commissionNumerator) / commissionDenominator;
+        (bool callSuccess, ) = payable(SignetIdOwner).call{value: afterCommission}("");
 
         require(callSuccess, "Call failed");
         emit Stared(msg.sender, SignetId, SignetIdOwner, block.timestamp);
     }
 
-    function checkfollowed(address signetor, address followersaddress)
-        public
-        view
-        returns (bool)
-    {
+    function checkfollowed(address signetor, address followersaddress) public view returns (bool) {
         uint256 i;
         for (i = 0; i < follower[signetor].whoFollowed.length; i++) {
             if (follower[signetor].whoFollowed[i] == followersaddress) {
@@ -278,11 +253,7 @@ contract SignetFollowSystem is ReentrancyGuard {
         return (false);
     }
 
-    function checkliked(uint256 signetID, address likedAddress)
-        public
-        view
-        returns (bool)
-    {
+    function checkliked(uint256 signetID, address likedAddress) public view returns (bool) {
         uint256 i;
         for (i = 0; i < signetState[signetID].likeContributors.length; i++) {
             if (signetState[signetID].likeContributors[i] == likedAddress) {
@@ -327,17 +298,9 @@ contract SignetFollowSystem is ReentrancyGuard {
         }
     }
 
-    function findLikeId(uint256 signetID, address likedAddress)
-        public
-        view
-        returns (uint256 id)
-    {
+    function findLikeId(uint256 signetID, address likedAddress) public view returns (uint256 id) {
         uint256 i = 1;
-        for (
-            i = 1;
-            i < signetState[signetID].likeContributors.length + 1;
-            i++
-        ) {
+        for (i = 1; i < signetState[signetID].likeContributors.length + 1; i++) {
             if (signetState[signetID].likeContributors[i - 1] == likedAddress) {
                 console.log("----------------------------");
                 console.log("checked findFollwingId is :");
@@ -348,11 +311,7 @@ contract SignetFollowSystem is ReentrancyGuard {
         }
     }
 
-    function getFollowingsNum(address signetor)
-        external
-        view
-        returns (uint256)
-    {
+    function getFollowingsNum(address signetor) external view returns (uint256) {
         return (following[signetor].FollowingNum);
     }
 
@@ -360,27 +319,15 @@ contract SignetFollowSystem is ReentrancyGuard {
         return (follower[signetor].followerNum);
     }
 
-    function getFollowers(address signetor)
-        external
-        view
-        returns (address[] memory)
-    {
+    function getFollowers(address signetor) external view returns (address[] memory) {
         return (follower[signetor].whoFollowed);
     }
 
-    function getFollowings(address signetor)
-        external
-        view
-        returns (address[] memory)
-    {
+    function getFollowings(address signetor) external view returns (address[] memory) {
         return (following[signetor].followedWho);
     }
 
-    function getStaredNum(address SignetorAddress)
-        external
-        view
-        returns (uint256)
-    {
+    function getStaredNum(address SignetorAddress) external view returns (uint256) {
         return (Stars[SignetorAddress]);
     }
 
@@ -388,19 +335,11 @@ contract SignetFollowSystem is ReentrancyGuard {
         return (signetState[SignetId].likeNum);
     }
 
-    function getStarContributor(uint256 SignetId)
-        external
-        view
-        returns (address[] memory)
-    {
+    function getStarContributor(uint256 SignetId) external view returns (address[] memory) {
         return (signetState[SignetId].starContributors);
     }
 
-    function getLikeContributor(uint256 SignetId)
-        external
-        view
-        returns (address[] memory)
-    {
+    function getLikeContributor(uint256 SignetId) external view returns (address[] memory) {
         return (signetState[SignetId].likeContributors);
     }
 }

@@ -14,9 +14,9 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
 
   const SignetFollowSystem = await deployments.get("SignetFollowSystem");
 
-  const SignetName = await deployments.get("SignetName");
+  const SignetProfile = await deployments.get("SignetProfile");
 
-  const arguments = [SignetName.address, SignetFollowSystem.address];
+  const arguments = [SignetProfile.address, SignetFollowSystem.address];
   const SignetControllor = await deploy("SignetControllor", {
     from: deployer,
     args: arguments,

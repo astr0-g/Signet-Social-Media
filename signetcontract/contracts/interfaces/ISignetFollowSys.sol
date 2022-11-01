@@ -6,7 +6,7 @@ pragma solidity ^0.8.7;
  * @author astro
  */
 
-interface ISignetFollowSystem {
+interface ISignetFollowSys {
     function messageSender(address msgSender) external returns (uint256);
 
     function setSignetControllor(address _signetControllor) external;
@@ -16,10 +16,7 @@ interface ISignetFollowSystem {
         view
         returns (bool);
 
-    function checkliked(uint256 signetID, address likedAddress)
-        external
-        view
-        returns (bool);
+    function checkliked(uint256 signetID, address likedAddress) external view returns (bool);
 
     function findfollowerId(address signetor, address followersaddress)
         external
@@ -31,10 +28,7 @@ interface ISignetFollowSystem {
         view
         returns (uint256 id);
 
-    function findLikeId(uint256 signetID, address likedAddress)
-        external
-        view
-        returns (uint256 id);
+    function findLikeId(uint256 signetID, address likedAddress) external view returns (uint256 id);
 
     function follow(address msgSender, address signetor) external;
 
@@ -62,27 +56,15 @@ interface ISignetFollowSystem {
 
     function getFollowersNum(address signetor) external view returns (uint256);
 
-    function getFollowers(address signetor)
-        external
-        view
-        returns (address[] memory);
+    function getFollowers(address signetor) external view returns (address[] memory);
 
-    function getFollowings(address signetor)
-        external
-        view
-        returns (address[] memory);
+    function getFollowings(address signetor) external view returns (address[] memory);
 
     function getStaredNum(address Signetor) external view returns (uint256);
 
     function getLikedNum(uint256 SignetId) external view returns (uint256);
 
-    function getStarContributor(uint256 SignetId)
-        external
-        view
-        returns (address[] memory);
+    function getStarContributor(uint256 SignetId) external view returns (address[] memory);
 
-    function getLikeContributor(uint256 SignetId)
-        external
-        view
-        returns (address[] memory);
+    function getLikeContributor(uint256 SignetId) external view returns (address[] memory);
 }

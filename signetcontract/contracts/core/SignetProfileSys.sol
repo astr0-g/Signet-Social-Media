@@ -15,7 +15,7 @@ error no__NameCreated();
 error name__Created();
 error not__FromSignetControllor();
 
-contract SignetName is ReentrancyGuard {
+contract SignetProfile is ReentrancyGuard {
     /*
      * @notice Method creating collection.
      * @param creating non-copyright collection.
@@ -25,12 +25,20 @@ contract SignetName is ReentrancyGuard {
     address public signetControllor;
     address public owner;
     uint256 public totalName;
+    uint256 public totalpfp;
     struct nameStruct {
         string name;
         uint256 timeUpdated;
         address owner;
     }
     mapping(uint256 => nameStruct) public name;
+
+    struct pfpStruct {
+        string pfp;
+        uint256 timeUpdated;
+        address owner;
+    }
+    mapping(uint256 => pfpStruct) public pfp;
 
     constructor() {
         owner = msg.sender;
@@ -55,26 +63,18 @@ contract SignetName is ReentrancyGuard {
         return false;
     }
 
-    function checkName(address signetUserAddress)
-        public
-        view
-        returns (string memory)
-    {
+    function checkName(address signetUserAddress) public view returns (string memory) {
         for (uint256 i = 0; i < totalName + 1; i++) {
             if (name[i].owner == signetUserAddress) {
                 return (name[i].name);
             }
         }
-        return
-            "You seeing this message is becuase this address don't have any name created!";
+        return "You seeing this message is becuase this address don't have any name created!";
     }
 
     function checkNameAvalable(string memory _name) public view returns (bool) {
         for (uint256 i = 0; i < totalName + 1; i++) {
-            if (
-                keccak256(abi.encodePacked(name[i].name)) ==
-                keccak256(abi.encodePacked(_name))
-            ) {
+            if (keccak256(abi.encodePacked(name[i].name)) == keccak256(abi.encodePacked(_name))) {
                 return false;
             }
         }
@@ -83,20 +83,17 @@ contract SignetName is ReentrancyGuard {
 
     function findNameId(string memory _name) public view returns (uint256 id) {
         for (uint256 i = 0; i < totalName + 1; i++) {
-            if (
-                keccak256(abi.encodePacked(name[i].name)) ==
-                keccak256(abi.encodePacked(_name))
-            ) {
+            if (keccak256(abi.encodePacked(name[i].name)) == keccak256(abi.encodePacked(_name))) {
                 return (i);
             }
         }
         return (0);
     }
 
-    function createNameForNewUser(
-        string memory _newname,
-        address signetUserAddress
-    ) external fromSignetControllor {
+    function createNameForNewUser(string memory _newname, address signetUserAddress)
+        external
+        fromSignetControllor
+    {
         if (hasName(signetUserAddress) == true) revert name__Created();
         if (bytes(_newname).length > 12) revert name__IsTooLong();
         if (checkNameAvalable(_newname) == false) revert name__IsNotAvalable();
@@ -106,10 +103,10 @@ contract SignetName is ReentrancyGuard {
         name[totalName].owner = signetUserAddress;
     }
 
-    function changeNameForUser(
-        string memory _newname,
-        address signetUserAddress
-    ) external fromSignetControllor {
+    function changeNameForUser(string memory _newname, address signetUserAddress)
+        external
+        fromSignetControllor
+    {
         if (hasName(signetUserAddress) == false) revert no__NameCreated();
         if (bytes(_newname).length > 12) revert name__IsTooLong();
         if (checkNameAvalable(_newname) == false) revert name__IsNotAvalable();
@@ -117,5 +114,54 @@ contract SignetName is ReentrancyGuard {
         uint256 oldNameId = findNameId(_oldname);
         name[oldNameId].name = _newname;
         name[oldNameId].timeUpdated = block.timestamp;
+    }
+
+    function hasPfp(address signetUserAddress) public view returns (bool) {
+        for (uint256 i = 0; i < totalpfp + 1; i++) {
+            if (pfp[i].owner == signetUserAddress) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function checkPfp(address signetUserAddress) public view returns (string memory) {
+        for (uint256 i = 0; i < totalpfp + 1; i++) {
+            if (pfp[i].owner == signetUserAddress) {
+                return (pfp[i].pfp);
+            }
+        }
+        return "You seeing this message is becuase this address don't have any pfp created!";
+    }
+
+    function findPfpId(string memory _pfp) public view returns (uint256 id) {
+        for (uint256 i = 0; i < totalName + 1; i++) {
+            if (keccak256(abi.encodePacked(pfp[i].pfp)) == keccak256(abi.encodePacked(_pfp))) {
+                return (i);
+            }
+        }
+        return (0);
+    }
+
+    function createPfpForNewUser(string memory _pfp, address signetUserAddress)
+        external
+        fromSignetControllor
+    {
+        if (hasPfp(signetUserAddress) == true) revert name__Created();
+        totalName++;
+        pfp[totalName].pfp = _pfp;
+        pfp[totalName].timeUpdated = block.timestamp;
+        pfp[totalName].owner = signetUserAddress;
+    }
+
+    function changePfpForUser(string memory _newpfp, address signetUserAddress)
+        external
+        fromSignetControllor
+    {
+        if (hasPfp(signetUserAddress) == false) revert no__NameCreated();
+        string memory _oldname = checkName(signetUserAddress);
+        uint256 oldNameId = findNameId(_oldname);
+        pfp[oldNameId].pfp = _newpfp;
+        pfp[oldNameId].timeUpdated = block.timestamp;
     }
 }

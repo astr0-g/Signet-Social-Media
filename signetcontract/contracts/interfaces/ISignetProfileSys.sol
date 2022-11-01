@@ -5,7 +5,7 @@ pragma solidity ^0.8.7;
  * @title Signetors Controllor
  * @author astro
  */
-interface ISignetName {
+interface ISignetProfileSys {
     /*
      * @notice Method creating collection.
      * @param creating non-copyright collection.

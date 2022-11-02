@@ -10,6 +10,7 @@ import Dashboard from "../components/Dashboard"
 import FollowingList from "../components/Following"
 import FollowerList from "../components/Followers"
 import Messagelist from "../components/Messagelist"
+import Signetorpfp from "../components/Signetorpfpchange"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
 import creatorcontract from "../constants/abi.json"
 import { useToasts } from "react-toast-notifications"
@@ -32,8 +33,10 @@ export default function Signetor() {
     const { useraddress } = router.query
     const { address } = useAccount()
     const [input, setInput] = useState("")
+    const [ChangeProfile, setChangeProfile] = useState(false)
     const [ownersignetoraddress, setownersignetoraddress] = useState("")
     const [followingsnum, setfollowingsnum] = useState("")
+    const [starNum, setstarNum] = useState("")
     const [followersnum, setfollowersnum] = useState("")
     const [showwalletaddress, setshowwalletaddress] = useState(false)
     const [signetsnum, setsignetsnum] = useState(false)
@@ -41,7 +44,9 @@ export default function Signetor() {
     const [followstatue, setfollowstatue] = useState(false)
     const [changename, setchangename] = useState(false)
     const [disable, setDisable] = useState(false)
+    const [changeNameReady, setchangeNameReady] = useState(false)
     const [Name, setName] = useState("")
+    const [Pfp, setPfp] = useState("")
     const { addToast } = useToasts()
     const [watchstatus, setwatchstatues] = useState("")
     const [changenameresult, setchangenameresult] = useState("")
@@ -52,6 +57,22 @@ export default function Signetor() {
         functionName: "checkfollowed",
         watch: true,
         args: [useraddress, address],
+    })
+    const { data: userNameData } = useContractRead({
+        addressOrName: creatorcontract.address,
+        contractInterface: creatorcontract.abi,
+        chains: 5,
+        functionName: "checkName",
+        watch: true,
+        args: useraddress,
+    })
+    const { data: userPfpData } = useContractRead({
+        addressOrName: creatorcontract.address,
+        contractInterface: creatorcontract.abi,
+        chains: 5,
+        functionName: "checkPfp",
+        watch: true,
+        args: useraddress,
     })
     const { data: ownercontractaddress } = useContractRead({
         addressOrName: creatorcontract.address,
@@ -68,11 +89,19 @@ export default function Signetor() {
         functionName: "token_Id",
         watch: true,
     })
+    const { data: StaredNum } = useContractRead({
+        addressOrName: creatorcontract.address,
+        contractInterface: creatorcontract.abi,
+        chains: 5,
+        functionName: "getStaredNum",
+        watch: true,
+        args: useraddress,
+    })
     const { data: followings } = useContractRead({
         addressOrName: creatorcontract.address,
         contractInterface: creatorcontract.abi,
         chains: 5,
-        functionName: "following",
+        functionName: "getFollowingsNum",
         watch: true,
         args: useraddress,
     })
@@ -80,36 +109,44 @@ export default function Signetor() {
         addressOrName: creatorcontract.address,
         contractInterface: creatorcontract.abi,
         chains: 5,
-        functionName: "follower",
+        functionName: "getFollowersNum",
         watch: true,
         args: useraddress,
     })
+    const { data: nameavaila } = useContractRead({
+        addressOrName: creatorcontract.address,
+        contractInterface: creatorcontract.abi,
+        chains: 5,
+        functionName: "checkNameAvalable",
+        watch: true,
+        args: input,
+    })
+    function checknameavaila() {
+        if (input.length <= 13) {
+            if (nameavaila == true) {
+                successtoaste("Name is available!")
+                setchangeNameReady(true)
+            } else {
+                errortoaste("Please choose your profile pic!")
+            }
+        } else {
+            errortoaste(
+                "Name can not exceed 12 letters, and also special charactors might not be able to set in the contract storage!"
+            )
+        }
+    }
     function changenamefunction() {
         setchangename(true)
     }
-    function setnewname() {
-        var formdata = new FormData()
-        formdata.append("address", address)
-        formdata.append("name", input)
-
-        var requestOptions = {
-            method: "POST",
-            body: formdata,
-            redirect: "follow",
-        }
-
-        fetch("https://api.signet.ink/pfi/name/", requestOptions)
-            .then((response) => response.json())
-            .then((result) => {
-                if (result.toString() == "duplicate") {
-                    errortoast()
-                } else {
-                    successtoast()
-                    setchangename(false)
-                    getName()
-                }
-            })
-            .catch((error) => console.log("error", error))
+    function changenamefunction1() {
+        setchangename(false)
+    }
+    function changeprofilefunction() {
+        setChangeProfile(!ChangeProfile)
+    }
+    async function finishchange() {
+        setChangeProfile(!ChangeProfile)
+        router.reload(window.location.pathname)
     }
     function errortoast() {
         addToast("Duplicate Name!", { appearance: "error" })
@@ -117,16 +154,39 @@ export default function Signetor() {
     function successtoast() {
         addToast("Changed name succesful!", { appearance: "success" })
     }
-    function getName() {
-        var requestOptions = {
-            method: "GET",
-            redirect: "follow",
-        }
+    function errortoaste(e) {
+        addToast(e, { appearance: "error" })
+    }
 
-        fetch(`https://api.signet.ink/pfi/read/${useraddress}`, requestOptions)
-            .then((response) => response.json())
-            .then((result) => setName(result["name"].toString()))
-            .catch((error) => console.log("error", error))
+    function successtoaste(e) {
+        addToast(e, { appearance: "success" })
+    }
+    const { config } = usePrepareContractWrite({
+        addressOrName: creatorcontract.address,
+        contractInterface: creatorcontract.abi,
+        functionName: "changeNameForUser",
+        args: input,
+    })
+    const { data: resultss, write: createNameForUser } = useContractWrite(config)
+
+    const { isLoading: createNameForNewUserisLoading, isSuccess: createNameForNewUserisSuccess } =
+        useWaitForTransaction({
+            hash: resultss?.hash,
+        })
+    useEffect(() => {
+        if (createNameForNewUserisLoading) {
+            addToast("Transaction Submitted...", { appearance: "success" })
+        }
+    }, [createNameForNewUserisLoading])
+    useEffect(() => {
+        if (createNameForNewUserisSuccess) {
+            addToast("Signetor Generated Successful!", { appearance: "success" })
+            setchangename(false)
+            setName(input)
+        }
+    }, [createNameForNewUserisSuccess])
+    function changeName() {
+        createNameForUser()
     }
     useEffect(() => {
         if (changenameresult) {
@@ -136,11 +196,6 @@ export default function Signetor() {
         }
     })
     useEffect(() => {
-        if (useraddress) {
-            getName()
-        }
-    }, [useraddress])
-    useEffect(() => {
         if (followstatues) {
             setfollowstatue(followstatues)
         }
@@ -149,12 +204,30 @@ export default function Signetor() {
         if (ownercontractaddress) {
             setownersignetoraddress(ownercontractaddress)
         }
+        if (userNameData) {
+            setName(userNameData)
+        }
+        if (
+            userPfpData !=
+            "You seeing this message is becuase this address don't have any pfp created!"
+        ) {
+            setPfp(userPfpData)
+        } else {
+            setPfp(
+                "https://www.pngkey.com/png/detail/52-522921_kathrine-vangen-profile-pic-empty-png.png"
+            )
+        }
     }, [ownercontractaddress])
     useEffect(() => {
         if (followings) {
             setfollowingsnum(followings.toString())
         }
     }, [followings])
+    useEffect(() => {
+        if (StaredNum) {
+            setstarNum(StaredNum.toString())
+        }
+    }, [StaredNum])
     useEffect(() => {
         if (followers) {
             setfollowersnum(followers.toString())
@@ -238,9 +311,14 @@ export default function Signetor() {
 
                                         <div className={stylesprofile.user}>
                                             <div className="text-center">
-                                                <button className={stylesprofile.profile}>
+                                                <button
+                                                    disabled={
+                                                        ChangeProfile || !ownersignetoraddress
+                                                    }
+                                                    className={stylesprofile.profile}
+                                                >
                                                     <img
-                                                        src="https://www.pngkey.com/png/detail/52-522921_kathrine-vangen-profile-pic-empty-png.png"
+                                                        src={Pfp}
                                                         className="rounded-full"
                                                         width="83"
                                                     />
@@ -250,7 +328,11 @@ export default function Signetor() {
 
                                         <div className="mt-15 text-center flex flex-col justify-center items-center">
                                             <h4 className="mt-10 text-white">
-                                                {(useraddress && Name) || "Unnamed"}
+                                                {useraddress &&
+                                                Name !=
+                                                    "You seeing this message is becuase this address don't have any name created!"
+                                                    ? Name
+                                                    : "Unname"}
                                             </h4>
 
                                             <h4 className="mt-0 text-white">
@@ -318,6 +400,7 @@ export default function Signetor() {
                                                             </button>
                                                         </div>
                                                     )}
+
                                                     {!signetsnum && (
                                                         <div className={stylesprofile.statsspan}>
                                                             <h5 className="mt-0">Signets</h5>
@@ -326,6 +409,25 @@ export default function Signetor() {
                                                             </button>
                                                         </div>
                                                     )}
+                                                    <div className={stylesprofile.statsspan}>
+                                                        <h5 className="mt-0">
+                                                            <svg
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                fill="none"
+                                                                viewBox="0 0 24 24"
+                                                                stroke-width="1.5"
+                                                                stroke="currentColor"
+                                                                class="w-6 h-6"
+                                                            >
+                                                                <path
+                                                                    stroke-linecap="round"
+                                                                    stroke-linejoin="round"
+                                                                    d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"
+                                                                />
+                                                            </svg>
+                                                        </h5>
+                                                        {starNum && starNum}
+                                                    </div>
                                                 </div>
                                             )}
                                             {!ownersignetoraddress && (
@@ -360,6 +462,26 @@ export default function Signetor() {
                                                             </button>
                                                         </div>
                                                     )}
+                                                    <div className={stylesprofile.statsspan}>
+                                                        <h5 className="mt-10">
+                                                            <svg
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                fill="none"
+                                                                viewBox="0 0 24 24"
+                                                                stroke-width="1.5"
+                                                                stroke="currentColor"
+                                                                class="w-6 h-6"
+                                                            >
+                                                                
+                                                                <path
+                                                                    stroke-linecap="round"
+                                                                    stroke-linejoin="round"
+                                                                    d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"
+                                                                />
+                                                            </svg>
+                                                        </h5>
+                                                        {starNum && starNum}
+                                                    </div>
                                                 </div>
                                             )}
                                         </div>
@@ -404,12 +526,29 @@ export default function Signetor() {
 
                                         <div className={stylesprofile.user}>
                                             <div className="text-center">
-                                                <button className={stylesprofile.profile}>
-                                                    <img
-                                                        src="https://www.pngkey.com/png/detail/52-522921_kathrine-vangen-profile-pic-empty-png.png"
-                                                        className="rounded-full"
-                                                        width="83"
-                                                    />
+                                                <button
+                                                    disabled={
+                                                        ChangeProfile || !ownersignetoraddress
+                                                    }
+                                                    className={stylesprofile.profile}
+                                                    onClick={changeprofilefunction}
+                                                >
+                                                    {ChangeProfile == false && (
+                                                        <img
+                                                            src={Pfp}
+                                                            className="rounded-full"
+                                                            width="83"
+                                                        />
+                                                    )}
+                                                    {ChangeProfile == true && <Signetorpfp />}
+                                                    {ChangeProfile == true && (
+                                                        <button
+                                                            className={styles1.button18}
+                                                            onClick={finishchange}
+                                                        >
+                                                            done
+                                                        </button>
+                                                    )}
                                                 </button>
                                             </div>
                                         </div>
@@ -420,7 +559,11 @@ export default function Signetor() {
                                                     className="mt-10 text-white"
                                                     onClick={changenamefunction}
                                                 >
-                                                    {(useraddress && Name) || "Unnamed"}
+                                                    {useraddress &&
+                                                    Name !=
+                                                        "You seeing this message is becuase this address don't have any name created!"
+                                                        ? Name
+                                                        : "Unname"}
                                                 </button>
                                             ) : (
                                                 <div className="mt-10 text-white ">
@@ -430,28 +573,31 @@ export default function Signetor() {
                                                             rows="1"
                                                             placeholder=""
                                                             value={input}
-                                                            onChange={(e) =>
+                                                            onChange={(e) => {
                                                                 setInput(e.target.value)
-                                                            }
+                                                                setchangeNameReady(false)
+                                                            }}
                                                         ></input>
+                                                        {!changeNameReady ? (
+                                                            <button
+                                                                className={styles1.button18}
+                                                                onClick={checknameavaila}
+                                                            >
+                                                                check
+                                                            </button>
+                                                        ) : (
+                                                            <button
+                                                                className={styles1.button18}
+                                                                onClick={changeName}
+                                                            >
+                                                                submit
+                                                            </button>
+                                                        )}
                                                         <button
                                                             className={styles1.button18}
-                                                            onClick={setnewname}
+                                                            onClick={changenamefunction1}
                                                         >
-                                                            <svg
-                                                                // xmlns="http://www.w3.org/2000/svg"
-                                                                fill="none"
-                                                                viewBox="0 0 24 24"
-                                                                stroke-width="1"
-                                                                stroke="currentColor"
-                                                                class="w-6 h-6"
-                                                            >
-                                                                <path
-                                                                    stroke-linecap="round"
-                                                                    stroke-linejoin="round"
-                                                                    d="M4.5 12.75l6 6 9-13.5"
-                                                                />
-                                                            </svg>
+                                                            cancel
                                                         </button>
                                                     </div>
                                                 </div>
@@ -480,7 +626,17 @@ export default function Signetor() {
                                                     `${shortenaddress(ownersignetoraddress)}`}
                                                 {showcontractaddress && ownersignetoraddress}
                                             </button>
+                                            {!ownersignetoraddress && (
+                                                <h4 className="mt-0 text-white">
+                                                    signetor have not
+                                                </h4>
+                                            )}
 
+                                            {!ownersignetoraddress && (
+                                                <button className="nderline-offset-auto max-w-none mb-2 text-white">
+                                                    been created yet
+                                                </button>
+                                            )}
                                             <div className="flex items-center justify-between pt-2.5 space-x-5">
                                                 <div className={stylesprofile.statsspan}>
                                                     <h5 className="mt-10">Following</h5>
@@ -510,6 +666,26 @@ export default function Signetor() {
                                                         <button onClick={seesignets}>{"0"}</button>
                                                     </div>
                                                 )}
+                                                <div className={stylesprofile.statsspan}>
+                                                    <h5 className="mt-10">
+                                                    
+                                                        <svg
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            fill="none"
+                                                            viewBox="0 0 24 24"
+                                                            stroke-width="1.5"
+                                                            stroke="currentColor"
+                                                            class="w-6 h-6"
+                                                        >
+                                                            <path
+                                                                stroke-linecap="round"
+                                                                stroke-linejoin="round"
+                                                                d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"
+                                                            />
+                                                        </svg>
+                                                    </h5>
+                                                    {starNum && starNum}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

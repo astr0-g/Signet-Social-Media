@@ -81,7 +81,7 @@ function MyApp({ Component, pageProps }) {
                         fontStack: "system",
                     })}
                 >
-                    <ToastProvider autoDismiss={true} autoDismissTimeout="2000">
+                    <ToastProvider autoDismiss={true} autoDismissTimeout="4000">
                         <Component {...pageProps} name="Access-Control-Allow-Origin" value="*" />
                     </ToastProvider>
                 </RainbowKitProvider>

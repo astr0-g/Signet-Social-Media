@@ -39,6 +39,7 @@ export default function Dashboard() {
     const [Inumber, setInumber] = useState("")
     const [disable, setDisable] = useState(false)
     const [Profile, setProfile] = useState("")
+    const [ProfileGood, setProfileGood] = useState(false)
     const filePickerRef = useRef(null)
     const { addToast } = useToasts()
     const { address } = useAccount()
@@ -51,7 +52,11 @@ export default function Dashboard() {
         watch: true,
         args: address,
     })
-
+    useEffect(() => {
+        if (number) {
+            setnumberowned(number.toString())
+        }
+    }, [number])
     const { data: ownercontractaddress } = useContractRead({
         addressOrName: creatorcontract.address,
         contractInterface: creatorcontract.abi,
@@ -70,17 +75,34 @@ export default function Dashboard() {
         args: address,
     })
 
+    const { data: hasName } = useContractRead({
+        addressOrName: creatorcontract.address,
+        contractInterface: creatorcontract.abi,
+        chains: 5,
+        functionName: "hasName",
+        watch: true,
+        args: address,
+    })
+
+    const { data: hasPfp } = useContractRead({
+        addressOrName: creatorcontract.address,
+        contractInterface: creatorcontract.abi,
+        chains: 5,
+        functionName: "hasPfp",
+        watch: true,
+        args: address,
+    })
+
+    useEffect(() => {
+        if (hasPfp == true || hasPfp == true) {
+            setProfileGood(true)
+        }
+    }, [ownercontractaddress])
     useEffect(() => {
         if (ownercontractaddress) {
             setownersignetoraddress(ownercontractaddress)
         }
     }, [ownercontractaddress])
-
-    useEffect(() => {
-        if (number) {
-            setnumberowned(number.toString())
-        }
-    }, [number])
 
     useEffect(() => {
         if (NumTokenOwned) {
@@ -98,7 +120,7 @@ export default function Dashboard() {
     return (
         <div>
             <div>
-                {numberowned == 0 ? (
+                {numberowned == 0 || !ProfileGood ? (
                     <Signetor />
                 ) : (
                     <div className="justify-between items-center">

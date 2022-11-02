@@ -3,7 +3,6 @@ import { useState, useEffect, useRef } from "react"
 import styles from "../styles/Dashbaord.module.css"
 import creatorcontract from "../constants/abi.json"
 import Signetorpfp from "./Signetorpfp.js"
-import Signetorname from "./Signetorname.js"
 import { useToasts } from "react-toast-notifications"
 import styles1 from "../styles/Dashbaord.module.css"
 import stylesprofile from "../styles/profile.module.css"
@@ -18,9 +17,8 @@ import {
     useNetwork,
     useWaitForTransaction,
 } from "wagmi"
-export default function Signetor() {
+export default function Signetorname() {
     const { address } = useAccount()
-    const [numberowned, setnumberowned] = useState(0)
     const [input, setInput] = useState("")
     const [File, setFile] = useState("")
     const [selectedFile, setSelectedFile] = useState(null)
@@ -73,74 +71,89 @@ export default function Signetor() {
     function successtoast() {
         addToast("Name is available!", { appearance: "success" })
     }
-
+    const { data: nameavaila } = useContractRead({
+        addressOrName: creatorcontract.address,
+        contractInterface: creatorcontract.abi,
+        chains: 5,
+        functionName: "checkNameAvalable",
+        watch: true,
+        args: input,
+    })
+    function checknameavaila() {
+        if (input.length <= 13) {
+            if (nameavaila == true) {
+                addToast("Name is available!", { appearance: "success" })
+                setready(true)
+            } else {
+                errortoast("Please choose your profile pic!")
+            }
+        } else {
+            errortoast(
+                "Name can not exceed 12 letters, and also special charactors might not be able to set in the contract storage!"
+            )
+        }
+    }
     const { config } = usePrepareContractWrite({
         addressOrName: creatorcontract.address,
         contractInterface: creatorcontract.abi,
-        functionName: "controllorCreateSignetor",
-        args: ["Signetor", "SG"],
+        functionName: "createNameForNewUser",
+        args: input,
     })
-    const { data: resultss, write: controllorCreateSignetor } = useContractWrite(config)
+    const { data: resultss, write: createNameForNewUser } = useContractWrite(config)
 
-    const { isLoading: CreateSignetorisLoading, isSuccess: CreateSignetorisSuccess } =
+    const { isLoading: createNameForNewUserisLoading, isSuccess: createNameForNewUserisSuccess } =
         useWaitForTransaction({
             hash: resultss?.hash,
         })
     useEffect(() => {
-        if (CreateSignetorisLoading) {
+        if (createNameForNewUserisLoading) {
             addToast("Transaction Submitted...", { appearance: "success" })
         }
-    }, [CreateSignetorisLoading])
+    }, [createNameForNewUserisLoading])
     useEffect(() => {
-        if (CreateSignetorisSuccess) {
+        if (createNameForNewUserisSuccess) {
             addToast("Signetor Generated Successful!", { appearance: "success" })
             setgene(true)
         }
-    }, [CreateSignetorisSuccess])
-    function CreateSignetor() {
-        controllorCreateSignetor()
+    }, [createNameForNewUserisSuccess])
+    function createNameForNewUserName() {
+        createNameForNewUser()
     }
-    async function submit() {
-        controllorCreateSignetor()
-    }
-    const { data: number } = useContractRead({
-        addressOrName: creatorcontract.address,
-        contractInterface: creatorcontract.abi,
-        chains: 5,
-        functionName: "getOwnerNumContractOfSignetor",
-        watch: true,
-        args: address,
-    })
-    useEffect(() => {
-        if (number) {
-            setnumberowned(number.toString())
-        }
-    }, [number])
+
     return (
         <div>
-            <div className="h-[100vh] bg-black ">
-                <h1 className="grid items-center justify-items-center text-center opacity-100 relative text-3xl lg:text-2xl md:text-1xl sm:text-sm font-bold text-white">
-                    You seems new to here, lets generate your signet account!
-                </h1>
-                {numberowned != 0 ? (
-                    <div>
-                        <div className="mt-15 text-center flex flex-col justify-center items-center mt-20 items-center justify-items-center text-center opacity-100 relative font-bold text-white">
-                            <Signetorpfp />
-                            <Signetorname />
-                        </div>
-                    </div>
-                ) : (
-                    <div className="mt-20 flex flex-col justify-center items-center">
+            <div className="mt-15 text-center flex flex-col justify-center items-center mt-20 items-center justify-items-center text-center opacity-100 relative font-bold text-white">
+                <div className="mt-20 font-bold text-white">username</div>
+                <input
+                    className="text-center bg-transparent border rounded-lg text-sm border-white text-white"
+                    rows="1"
+                    placeholder=""
+                    value={input}
+                    onChange={(e) => {
+                        setInput(e.target.value)
+                        setready(false)
+                    }}
+                ></input>
+                <div className="mt-1">
+                    {!ready && (
                         <button
-                            className={styles.button85}
-                            disabled={!controllorCreateSignetor || CreateSignetorisLoading}
-                            onClick={CreateSignetor}
+                            disabled={!input.trim()}
+                            className={styles1.button18}
+                            onClick={checknameavaila}
                         >
-                            {CreateSignetorisLoading ? "Generating..." : "Generate"}
+                            check
                         </button>
-                        {CreateSignetorisLoading && <div>......</div>}
-                    </div>
-                )}
+                    )}
+                    {ready && (
+                        <button
+                            disabled={!input.trim()}
+                            className={styles1.button18}
+                            onClick={createNameForNewUserName}
+                        >
+                            submit
+                        </button>
+                    )}
+                </div>
             </div>
         </div>
     )

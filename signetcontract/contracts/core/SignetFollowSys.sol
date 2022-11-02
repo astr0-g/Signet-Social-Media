@@ -19,7 +19,7 @@ error Wrong__SignetId();
 error Wrong__UserSubmitted();
 error not__FromSignetControllor();
 
-contract SignetFollowSystem is ReentrancyGuard {
+contract SignetFollowSys is ReentrancyGuard {
     AggregatorV3Interface public priceFeed;
     using PriceConverter for uint256;
     uint256 public TotalSignetorsNum;

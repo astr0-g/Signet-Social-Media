@@ -19,7 +19,7 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
     ethUsdPriceAddress = networkConfig[chainId]["ethUsdPriceFeed"];
   }
   arguments = [ethUsdPriceAddress];
-  const SignetFollowSystem = await deploy("SignetFollowSystem", {
+  const SignetFollowSys = await deploy("SignetFollowSys", {
     from: deployer,
     args: arguments,
     log: true,
@@ -31,7 +31,7 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
     process.env.ETHERSCAN_API_KEY
   ) {
     log("verifying...");
-    await verify(SignetFollowSystem.address, arguments);
+    await verify(SignetFollowSys.address, arguments);
   }
   log("-----------------");
 };

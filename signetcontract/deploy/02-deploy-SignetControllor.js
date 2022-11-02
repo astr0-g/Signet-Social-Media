@@ -12,11 +12,11 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
   const chainId = network.config.chainId;
   log("-----------------");
 
-  const SignetFollowSystem = await deployments.get("SignetFollowSystem");
+  const SignetFollowSys = await deployments.get("SignetFollowSys");
 
-  const SignetProfile = await deployments.get("SignetProfile");
+  const SignetProfileSys = await deployments.get("SignetProfileSys");
 
-  const arguments = [SignetProfile.address, SignetFollowSystem.address];
+  const arguments = [SignetProfileSys.address, SignetFollowSys.address];
   const SignetControllor = await deploy("SignetControllor", {
     from: deployer,
     args: arguments,

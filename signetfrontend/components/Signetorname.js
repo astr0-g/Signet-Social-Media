@@ -85,7 +85,7 @@ export default function Signetorname() {
                 addToast("Name is available!", { appearance: "success" })
                 setready(true)
             } else {
-                errortoast("Please choose your profile pic!")
+                errortoast("Duplicated name, choose another name please!")
             }
         } else {
             errortoast(

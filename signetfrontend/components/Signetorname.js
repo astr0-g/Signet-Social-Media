@@ -5,6 +5,8 @@ import creatorcontract from "../constants/abi.json"
 import Signetorpfp from "./Signetorpfp.js"
 import { useToasts } from "react-toast-notifications"
 import styles1 from "../styles/Dashbaord.module.css"
+
+
 import stylesprofile from "../styles/profile.module.css"
 import { EmojiHappyIcon, SparklesIcon, PhotographIcon, XIcon } from "@heroicons/react/outline"
 import {
@@ -18,6 +20,7 @@ import {
     useWaitForTransaction,
 } from "wagmi"
 export default function Signetorname() {
+    const router = useRouter()
     const { address } = useAccount()
     const [input, setInput] = useState("")
     const [File, setFile] = useState("")

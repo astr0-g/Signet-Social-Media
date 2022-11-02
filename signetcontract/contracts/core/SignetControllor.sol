@@ -7,7 +7,6 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "../interfaces/ISignetProfileSys.sol";
 import "../interfaces/ISignetFollowSys.sol";
 import "./Signetors.sol";
-import "./PriceConverter.sol";
 import "hardhat/console.sol";
 /*
  * @title Signetors Controllor
@@ -15,59 +14,29 @@ import "hardhat/console.sol";
  */
 error Contract__Created();
 error Wrong__Contract();
-error Already__Followed();
-error Never__Followed();
-error Can__notfollow();
 error No__ContractCreated();
-error Not__EnoughAmount();
-error Wrong__SignetId();
-error Wrong__UserSubmitted();
 
 contract SignetControllor is ReentrancyGuard, Ownable {
     Signetor private sSignetor;
     Signetors ST;
     Signetors private STCrator;
-    using PriceConverter for uint256;
-    AggregatorV3Interface public priceFeed;
-    uint256 public TotalSignetorsNum;
 
+    uint256 public TotalSignetorsNum;
     address private signetprofileSys;
     address private signetFollowSys;
     struct ownerstruct {
         address owner;
     }
 
-    //followers struct
-
     mapping(address => ownerstruct) public collectionContractList;
 
     event CollectionCreated(address indexed creatoraddress, address indexed collectionaddress);
-    event Followed(address indexed isfollowing, address indexed isfollowed);
-    event UnFollowed(address indexed isunfollowing, address indexed isunfollowed);
     event NewMessageSent(
         address indexed messageSender,
         address indexed signetoraddress,
         uint256 messageId,
         uint256 signetId,
         string tokenURI_,
-        uint256 time
-    );
-    event Liked(
-        address indexed messageSender,
-        uint256 signetId,
-        address indexed signetoraddress,
-        uint256 time
-    );
-    event Stared(
-        address indexed messageSender,
-        uint256 signetId,
-        address indexed signetoraddress,
-        uint256 time
-    );
-    event Unlike(
-        address indexed messageSender,
-        uint256 signetId,
-        address indexed signetoraddress,
         uint256 time
     );
 
@@ -88,11 +57,6 @@ contract SignetControllor is ReentrancyGuard, Ownable {
         if (getOwnerNumContractOfSignetor(msg.sender) == 0) revert No__ContractCreated();
         _;
     }
-
-    // function _init() public onlyOwner {
-    //     ISignetFollowSys(signetFollowSys).setSignetControllor(address(this));
-    //     ISignetProfileSys(signetprofileSys).setSignetControllor(address(this));
-    // }
 
     function controllorCreateSignetor(string memory _name, string memory _symbol) external {
         if (getOwnerNumContractOfSignetor(msg.sender) != 0) revert Contract__Created();
@@ -148,6 +112,14 @@ contract SignetControllor is ReentrancyGuard, Ownable {
 
     function changeNameForUser(string memory _newname) public Joined {
         ISignetProfileSys(signetprofileSys).changeNameForUser(_newname, msg.sender);
+    }
+
+    function createPfpForNewUser(string memory _pfp) public Joined {
+        ISignetProfileSys(signetprofileSys).createPfpForNewUser(_pfp, msg.sender);
+    }
+
+    function changePfpForUser(string memory _newpfp) public Joined {
+        ISignetProfileSys(signetprofileSys).changePfpForUser(_newpfp, msg.sender);
     }
 
     function getOwnerContractForSignetor(address contractOwner) public view returns (address) {
@@ -214,5 +186,13 @@ contract SignetControllor is ReentrancyGuard, Ownable {
 
     function checkNameAvalable(string memory _name) public view returns (bool) {
         return (ISignetProfileSys(signetprofileSys).checkNameAvalable(_name));
+    }
+
+    function hasPfp(address signetUserAddress) external view returns (bool) {
+        return (ISignetProfileSys(signetprofileSys).hasPfp(signetUserAddress));
+    }
+
+    function checkPfp(address signetUserAddress) external view returns (string memory) {
+        return (ISignetProfileSys(signetprofileSys).checkPfp(signetUserAddress));
     }
 }

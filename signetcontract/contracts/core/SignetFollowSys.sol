@@ -7,7 +7,7 @@ import "./Signetors.sol";
 import "./PriceConverter.sol";
 import "hardhat/console.sol";
 /*
- * @title Signetors Controllor
+ * @title Signetors SignetFollowSystem
  * @author astro
  */
 

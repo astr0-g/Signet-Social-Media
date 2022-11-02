@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "hardhat/console.sol";
 
 /*
- * @title Signetors Controllor
+ * @title Signetors SignetProfileSys
  * @author astro
  */
 error name__IsTooLong();
@@ -15,7 +15,7 @@ error no__NameCreated();
 error name__Created();
 error not__FromSignetControllor();
 
-contract SignetProfile is ReentrancyGuard {
+contract SignetProfileSys is ReentrancyGuard {
     /*
      * @notice Method creating collection.
      * @param creating non-copyright collection.
@@ -39,6 +39,8 @@ contract SignetProfile is ReentrancyGuard {
         address owner;
     }
     mapping(uint256 => pfpStruct) public pfp;
+
+    event ProfileUpdated(address indexed messageSender, string indexed _name, string indexed _pfp);
 
     constructor() {
         owner = msg.sender;
@@ -101,6 +103,8 @@ contract SignetProfile is ReentrancyGuard {
         name[totalName].name = _newname;
         name[totalName].timeUpdated = block.timestamp;
         name[totalName].owner = signetUserAddress;
+
+        emit ProfileUpdated(signetUserAddress, _newname, "");
     }
 
     function changeNameForUser(string memory _newname, address signetUserAddress)
@@ -114,6 +118,7 @@ contract SignetProfile is ReentrancyGuard {
         uint256 oldNameId = findNameId(_oldname);
         name[oldNameId].name = _newname;
         name[oldNameId].timeUpdated = block.timestamp;
+        emit ProfileUpdated(signetUserAddress, _newname, "");
     }
 
     function hasPfp(address signetUserAddress) public view returns (bool) {
@@ -152,6 +157,7 @@ contract SignetProfile is ReentrancyGuard {
         pfp[totalName].pfp = _pfp;
         pfp[totalName].timeUpdated = block.timestamp;
         pfp[totalName].owner = signetUserAddress;
+        emit ProfileUpdated(signetUserAddress, "", _pfp);
     }
 
     function changePfpForUser(string memory _newpfp, address signetUserAddress)
@@ -163,5 +169,6 @@ contract SignetProfile is ReentrancyGuard {
         uint256 oldNameId = findNameId(_oldname);
         pfp[oldNameId].pfp = _newpfp;
         pfp[oldNameId].timeUpdated = block.timestamp;
+        emit ProfileUpdated(signetUserAddress, "", _newpfp);
     }
 }

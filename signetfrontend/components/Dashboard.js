@@ -94,7 +94,7 @@ export default function Dashboard() {
     })
 
     useEffect(() => {
-        if (hasPfp == true || hasPfp == true) {
+        if (hasPfp == true && hasPfp == true) {
             setProfileGood(true)
         }
     }, [ownercontractaddress])
@@ -120,7 +120,7 @@ export default function Dashboard() {
     return (
         <div>
             <div>
-                {numberowned == 0 || !ProfileGood ? (
+                {ProfileGood == false ? (
                     <Signetor />
                 ) : (
                     <div className="justify-between items-center">

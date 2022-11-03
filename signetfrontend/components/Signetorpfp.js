@@ -5,6 +5,7 @@ import creatorcontract from "../constants/abi.json"
 import { useToasts } from "react-toast-notifications"
 import styles1 from "../styles/Dashbaord.module.css"
 import stylesprofile from "../styles/profile.module.css"
+import Router from "next/router"
 import { EmojiHappyIcon, SparklesIcon, PhotographIcon, XIcon } from "@heroicons/react/outline"
 import {
     usePrepareContractWrite,
@@ -102,7 +103,6 @@ export default function Signetorpfp() {
     useEffect(() => {
         if (createPfpForNewUserisSuccess) {
             addToast("Signetor Creates Profile Pic Successful!", { appearance: "success" })
-            setgene(true)
         }
     }, [createPfpForNewUserisSuccess])
     function createPfpForNewUser() {

@@ -5,6 +5,7 @@ import creatorcontract from "../constants/abi.json"
 import Signetorpfp from "./Signetorpfp.js"
 import { useToasts } from "react-toast-notifications"
 import styles1 from "../styles/Dashbaord.module.css"
+import Router from "next/router"
 
 import stylesprofile from "../styles/profile.module.css"
 import { EmojiHappyIcon, SparklesIcon, PhotographIcon, XIcon } from "@heroicons/react/outline"
@@ -114,7 +115,6 @@ export default function Signetorname() {
     useEffect(() => {
         if (createNameForNewUserisSuccess) {
             addToast("Signetor Generated Successful!", { appearance: "success" })
-            setgene(true)
         }
     }, [createNameForNewUserisSuccess])
     function createNameForNewUserName() {

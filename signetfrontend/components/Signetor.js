@@ -7,7 +7,7 @@ import Signetorname from "./Signetorname.js"
 import { useToasts } from "react-toast-notifications"
 import styles1 from "../styles/Dashbaord.module.css"
 import stylesprofile from "../styles/profile.module.css"
-import Router from "next/router"
+
 import { EmojiHappyIcon, SparklesIcon, PhotographIcon, XIcon } from "@heroicons/react/outline"
 import {
     usePrepareContractWrite,
@@ -121,11 +121,6 @@ export default function Signetor() {
         watch: true,
         args: address,
     })
-    useEffect(() => {
-        if (hasPfp == true && hasName == true) {
-            setRR(true)
-        }
-    }, [number])
     const { data: number } = useContractRead({
         addressOrName: creatorcontract.address,
         contractInterface: creatorcontract.abi,
@@ -139,9 +134,7 @@ export default function Signetor() {
             setnumberowned(number.toString())
         }
     }, [number])
-    function go() {
-        Router.reload(window.location.pathname)
-    }
+
     return (
         <div>
             <div className="h-[100vh] bg-black ">
@@ -153,9 +146,7 @@ export default function Signetor() {
                         <div className="mt-15 text-center flex flex-col justify-center items-center mt-20 items-center justify-items-center text-center opacity-100 relative font-bold text-white">
                             <Signetorpfp />
                             <Signetorname />
-                            <button className={styles.button85} disabled={!setRR} onClick={go}>
-                                enter signet
-                            </button>
+    
                         </div>
                     </div>
                 ) : (

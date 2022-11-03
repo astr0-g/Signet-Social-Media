@@ -7,6 +7,7 @@ import Signetorname from "./Signetorname.js"
 import { useToasts } from "react-toast-notifications"
 import styles1 from "../styles/Dashbaord.module.css"
 import stylesprofile from "../styles/profile.module.css"
+import Router from "next/router"
 import { EmojiHappyIcon, SparklesIcon, PhotographIcon, XIcon } from "@heroicons/react/outline"
 import {
     usePrepareContractWrite,
@@ -18,12 +19,13 @@ import {
     useNetwork,
     useWaitForTransaction,
 } from "wagmi"
+import { serializeTransaction } from "ethers/lib/utils"
 export default function Signetor() {
     const { address } = useAccount()
     const [numberowned, setnumberowned] = useState(0)
     const [input, setInput] = useState("")
     const [File, setFile] = useState("")
-    const [selectedFile, setSelectedFile] = useState(null)
+    const [RR, setRR] = useState(false)
     const [ready, setready] = useState(false)
     const [gene, setgene] = useState(false)
     const [uploadFile, setuploadFile] = useState("")
@@ -103,6 +105,27 @@ export default function Signetor() {
     async function submit() {
         controllorCreateSignetor()
     }
+    const { data: hasPfp } = useContractRead({
+        addressOrName: creatorcontract.address,
+        contractInterface: creatorcontract.abi,
+        chains: 5,
+        functionName: "hasPfp",
+        watch: true,
+        args: address,
+    })
+    const { data: hasName } = useContractRead({
+        addressOrName: creatorcontract.address,
+        contractInterface: creatorcontract.abi,
+        chains: 5,
+        functionName: "hasName",
+        watch: true,
+        args: address,
+    })
+    useEffect(() => {
+        if (hasPfp == true && hasName == true) {
+            setRR(true)
+        }
+    }, [number])
     const { data: number } = useContractRead({
         addressOrName: creatorcontract.address,
         contractInterface: creatorcontract.abi,
@@ -116,6 +139,9 @@ export default function Signetor() {
             setnumberowned(number.toString())
         }
     }, [number])
+    function go() {
+        Router.reload(window.location.pathname)
+    }
     return (
         <div>
             <div className="h-[100vh] bg-black ">
@@ -127,6 +153,9 @@ export default function Signetor() {
                         <div className="mt-15 text-center flex flex-col justify-center items-center mt-20 items-center justify-items-center text-center opacity-100 relative font-bold text-white">
                             <Signetorpfp />
                             <Signetorname />
+                            <button className={styles.button85} disabled={!setRR} onClick={go}>
+                                enter signet
+                            </button>
                         </div>
                     </div>
                 ) : (

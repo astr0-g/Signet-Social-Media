@@ -1,6 +1,5 @@
 import Image from "next/image"
 import { useState, useEffect, useRef } from "react"
-import { useRouter } from "next/router"
 import styles from "../styles/Dashbaord.module.css"
 import creatorcontract from "../constants/abi.json"
 import { useToasts } from "react-toast-notifications"
@@ -18,7 +17,6 @@ import {
     useWaitForTransaction,
 } from "wagmi"
 export default function Signetorpfp() {
-    const router = useRouter()
     const { address } = useAccount()
     const [input, setInput] = useState("")
     const [File, setFile] = useState("")
@@ -104,7 +102,7 @@ export default function Signetorpfp() {
     useEffect(() => {
         if (createPfpForNewUserisSuccess) {
             addToast("Signetor Creates Profile Pic Successful!", { appearance: "success" })
-            router.reload(window.location.pathname)
+            setgene(true)
         }
     }, [createPfpForNewUserisSuccess])
     function createPfpForNewUser() {

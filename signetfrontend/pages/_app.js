@@ -35,7 +35,8 @@ const { chains, provider } = configureChains(
     [/*chain.mainnet, chain.polygon, chain.polygonMumbai,*/ chain.goerli],
     [
         infuraProvider("2154a2e0bb8941d1ab13f80fd7b7b05b", { priority: 0 }),
-        publicProvider({ priority: 1 }),
+        infuraProvider("b72c182a206247f3b3a7f80c32696594", { priority: 1 }),
+        publicProvider({ priority: 2 }),
     ]
 )
 // const { connectors } = getDefaultWallets({

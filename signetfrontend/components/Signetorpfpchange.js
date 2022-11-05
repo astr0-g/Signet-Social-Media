@@ -104,7 +104,7 @@ export default function Signetorpfp() {
                 "Signetor changes Profile Pic Successful! It might takes a second to update on your end, please refresh if you aware of this issue!",
                 { appearance: "success" }
             )
-            router.reload(window.location.pathname)
+            Router.reload(window.location.pathname)
         }
     }, [createPfpForNewUserisSuccess])
     function createPfpForNewUser() {

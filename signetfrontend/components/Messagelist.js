@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { useState, useEffect, useRef } from "react"
+import SignetLikeandStar from "./SignetLikeandStar"
 import creatorcontract from "../constants/abi.json"
 import { useToasts } from "react-toast-notifications"
 import signetorcontract from "../constants/Signetor.json"
@@ -106,6 +107,10 @@ export default function Messagelist() {
                             {Datachange(parseInt(msg.time))}
                         </div>
                     </div>
+                    <SignetLikeandStar
+                        SignetId={msg.messageId}
+                        SignetIdOwner={msg.messageSender}
+                    />
                 </div>
             )
         })
@@ -145,6 +150,10 @@ export default function Messagelist() {
                             {Datachange(parseInt(msg.time))}
                         </div>
                     </div>
+                    <SignetLikeandStar
+                        SignetId={msg.messageId}
+                        SignetIdOwner={msg.messageSender}
+                    />
                 </div>
             )
         })

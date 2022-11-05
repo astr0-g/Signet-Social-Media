@@ -168,6 +168,10 @@ export default function FollowedMessagelist() {
                             <div>{Datachange(parseInt(msg.time))}</div>
                         </button>
                     </div>
+                    <SignetLikeandStar
+                        SignetId={msg.messageId}
+                        SignetIdOwner={msg.messageSender}
+                    />
                 </div>
             )
         })

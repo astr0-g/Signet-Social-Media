@@ -33,7 +33,10 @@ const NEXT_PUBLIC_Application_ID = process.env.NEXT_PUBLIC_APP_ID
 const NEXT_PUBLIC_Dapp_URL = process.env.NEXT_PUBLIC_SERVER_URL
 const { chains, provider } = configureChains(
     [/*chain.mainnet, chain.polygon, chain.polygonMumbai,*/ chain.goerli],
-    [infuraProvider("2154a2e0bb8941d1ab13f80fd7b7b05b"), publicProvider()]
+    [
+        infuraProvider("2154a2e0bb8941d1ab13f80fd7b7b05b", { priority: 0 }),
+        publicProvider({ priority: 1 }),
+    ]
 )
 // const { connectors } = getDefaultWallets({
 //     appName: "My app",

@@ -94,7 +94,7 @@ export default function Signetor() {
         addressOrName: creatorcontract.address,
         contractInterface: creatorcontract.abi,
         chains: 5,
-        functionName: "getStaredNum",
+        functionName: "getStaredNumForSignetor",
         watch: true,
         args: useraddress,
     })
@@ -474,7 +474,6 @@ export default function Signetor() {
                                                                 stroke="currentColor"
                                                                 class="w-6 h-6"
                                                             >
-                                                                
                                                                 <path
                                                                     stroke-linecap="round"
                                                                     stroke-linejoin="round"
@@ -670,7 +669,6 @@ export default function Signetor() {
                                                 )}
                                                 <div className={stylesprofile.statsspan}>
                                                     <h5 className="mt-10">
-                                                    
                                                         <svg
                                                             xmlns="http://www.w3.org/2000/svg"
                                                             fill="none"

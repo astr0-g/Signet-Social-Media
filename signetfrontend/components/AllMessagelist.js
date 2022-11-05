@@ -102,16 +102,6 @@ export default function AllMessagelist() {
                         <div className="px-4 py-2 m-2 italic text-sm">{msg.tokendescription}</div>
 
                         <button className="px-4 py-2 m-2 italic text-sm right-0">
-                            from{" "}
-                            {msg.messageSender == address
-                                ? "me"
-                                : `${
-                                      msg.messageSender.slice(0, 4) +
-                                      msg.messageSender.slice(
-                                          msg.messageSender.length - 3,
-                                          msg.messageSender.length
-                                      )
-                                  }`}{" "}
                             <div>{Datachange(parseInt(msg.time))}</div>
                         </button>
                     </div>
@@ -147,24 +137,14 @@ export default function AllMessagelist() {
                                 className="px-4 py-2 m-2"
                                 loader={() => msg.tokenimageURL}
                                 src={msg.tokenimageURL}
-                                height="100"
-                                width="100"
+                                height="100px"
+                                width="100px"
                             />
                         )}
 
                         <div className="px-4 py-2 m-2 italic text-sm">{msg.tokendescription}</div>
 
                         <button className="px-4 py-2 m-2 italic text-sm right-0">
-                            from{" "}
-                            {msg.messageSender == address
-                                ? "me"
-                                : `${
-                                      msg.messageSender.slice(0, 4) +
-                                      msg.messageSender.slice(
-                                          msg.messageSender.length - 3,
-                                          msg.messageSender.length
-                                      )
-                                  }`}{" "}
                             <div>{Datachange(parseInt(msg.time))}</div>
                         </button>
                     </div>

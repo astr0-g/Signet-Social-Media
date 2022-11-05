@@ -36,8 +36,7 @@ const { chains, provider } = configureChains(
     [
         infuraProvider("2154a2e0bb8941d1ab13f80fd7b7b05b", { priority: 0 }),
         infuraProvider("b72c182a206247f3b3a7f80c32696594", { priority: 1 }),
-        infuraProvider("be819d15039f41ca9e45081e212d1c9a", { priority: 2 }),
-        publicProvider({ priority: 3 }),
+        publicProvider({ priority: 2 }),
     ]
 )
 // const { connectors } = getDefaultWallets({

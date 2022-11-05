@@ -60,9 +60,11 @@ interface ISignetFollowSys {
 
     function getFollowings(address signetor) external view returns (address[] memory);
 
-    function getStaredNum(address Signetor) external view returns (uint256);
+    function getStaredNumForSignetor(address SignetorAddress) external view returns (uint256);
 
     function getLikedNum(uint256 SignetId) external view returns (uint256);
+
+    function getStaredNum(uint256 SignetId) external view returns (uint256);
 
     function getStarContributor(uint256 SignetId) external view returns (address[] memory);
 

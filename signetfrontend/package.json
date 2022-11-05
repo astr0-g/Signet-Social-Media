@@ -20,6 +20,7 @@
     "@web3auth/web3auth": "^2.1.2",
     "discord.js": "^14.6.0",
     "dotenv": "^16.0.2",
+    "ether": "^0.0.9",
     "ethers": "^5.7.1",
     "magic-sdk": "^9.0.0",
     "moralis": "1.11.0",

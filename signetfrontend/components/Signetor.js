@@ -146,7 +146,6 @@ export default function Signetor() {
                         <div className="mt-15 text-center flex flex-col justify-center items-center mt-20 items-center justify-items-center text-center opacity-100 relative font-bold text-white">
                             <Signetorpfp />
                             <Signetorname />
-    
                         </div>
                     </div>
                 ) : (

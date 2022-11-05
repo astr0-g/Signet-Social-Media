@@ -327,12 +327,16 @@ contract SignetFollowSys is ReentrancyGuard {
         return (following[signetor].followedWho);
     }
 
-    function getStaredNum(address SignetorAddress) external view returns (uint256) {
+    function getStaredNumForSignetor(address SignetorAddress) external view returns (uint256) {
         return (Stars[SignetorAddress]);
     }
 
     function getLikedNum(uint256 SignetId) external view returns (uint256) {
         return (signetState[SignetId].likeNum);
+    }
+
+    function getStaredNum(uint256 SignetId) external view returns (uint256) {
+        return (signetState[SignetId].starNum);
     }
 
     function getStarContributor(uint256 SignetId) external view returns (address[] memory) {

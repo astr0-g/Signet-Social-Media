@@ -165,7 +165,7 @@ export default function Signetor() {
     const { config } = usePrepareContractWrite({
         addressOrName: creatorcontract.address,
         contractInterface: creatorcontract.abi,
-        functionName: "changeNameForUser",
+        functionName: "modifyNameForUser",
         args: input,
     })
     const { data: resultss, write: createNameForUser } = useContractWrite(config)
@@ -221,6 +221,7 @@ export default function Signetor() {
     }, [ownercontractaddress])
     useEffect(() => {
         if (followings) {
+            console.log(followings.toString())
             setfollowingsnum(followings.toString())
         }
     }, [followings])

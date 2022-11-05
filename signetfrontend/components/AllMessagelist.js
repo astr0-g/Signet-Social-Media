@@ -1,5 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
+import Signetprofile from "./SignetorProfile"
 import { useState, useEffect, useRef } from "react"
 import creatorcontract from "../constants/abi.json"
 import { useToasts } from "react-toast-notifications"
@@ -82,6 +83,7 @@ export default function AllMessagelist() {
                     key={msg.messageId}
                     className="p-2 rounded-sm border-2 border-inherit border-r border-l"
                 >
+                    <Signetprofile address={msg.messageSender} />
                     <div className="flex items-center justify-between pt-2.5 flex-no-wrap">
                         {/* <div>#{msg.messageId}</div> */}
                         {/* <div className="italic text-sm">Owned by {msg.messageSender}</div> */}
@@ -97,7 +99,7 @@ export default function AllMessagelist() {
                         )}
 
                         <div className="px-4 py-2 m-2 italic text-sm">{msg.tokendescription}</div>
-                        <Link href={"/" + msg.messageSender}>
+                        
                             <button className="px-4 py-2 m-2 italic text-sm right-0">
                                 from{" "}
                                 {msg.messageSender == address
@@ -111,7 +113,7 @@ export default function AllMessagelist() {
                                       }`}{" "}
                                 <div>{Datachange(parseInt(msg.time))}</div>
                             </button>
-                        </Link>
+                     
                     </div>
                 </div>
             )
@@ -131,6 +133,7 @@ export default function AllMessagelist() {
                     key={msg.messageId}
                     className="p-2 rounded-sm border-2 border-inherit border-r border-l"
                 >
+                    <Signetprofile address={msg.messageSender} />
                     <div className="flex items-center justify-between pt-2.5 flex-no-wrap">
                         {/* <div>#{msg.messageId}</div> */}
                         {/* <div className="italic text-sm">Owned by {msg.messageSender}</div> */}
@@ -146,21 +149,20 @@ export default function AllMessagelist() {
                         )}
 
                         <div className="px-4 py-2 m-2 italic text-sm">{msg.tokendescription}</div>
-                        <Link href={"/signetor/" + msg.messageSender}>
-                            <button className="px-4 py-2 m-2 italic text-sm right-0">
-                                from{" "}
-                                {msg.messageSender == address
-                                    ? "me"
-                                    : `${
-                                          msg.messageSender.slice(0, 4) +
-                                          msg.messageSender.slice(
-                                              msg.messageSender.length - 3,
-                                              msg.messageSender.length
-                                          )
-                                      }`}{" "}
-                                <div>{Datachange(parseInt(msg.time))}</div>
-                            </button>
-                        </Link>
+
+                        <button className="px-4 py-2 m-2 italic text-sm right-0">
+                            from{" "}
+                            {msg.messageSender == address
+                                ? "me"
+                                : `${
+                                      msg.messageSender.slice(0, 4) +
+                                      msg.messageSender.slice(
+                                          msg.messageSender.length - 3,
+                                          msg.messageSender.length
+                                      )
+                                  }`}{" "}
+                            <div>{Datachange(parseInt(msg.time))}</div>
+                        </button>
                     </div>
                 </div>
             )

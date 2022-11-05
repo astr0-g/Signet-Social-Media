@@ -84,7 +84,7 @@ export default function Signetorpfp() {
     const { config } = usePrepareContractWrite({
         addressOrName: creatorcontract.address,
         contractInterface: creatorcontract.abi,
-        functionName: "changePfpForUser",
+        functionName: "modifyPfpForUser",
         args: uploadFile,
     })
     const { data: resultsss, write: createPfpForNewUser1 } = useContractWrite(config)

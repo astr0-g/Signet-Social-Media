@@ -22,9 +22,7 @@ interface ISignetProfileSys {
 
     function findNameId(string memory _name) external view returns (uint256 id);
 
-    function createNameForNewUser(string memory _newname, address signetUserAddress) external;
-
-    function changeNameForUser(string memory _newname, address signetUserAddress) external;
+    function modifyNameForUser(string memory _newname, address signetUserAddress) external;
 
     function hasPfp(address signetUserAddress) external view returns (bool);
 
@@ -32,7 +30,5 @@ interface ISignetProfileSys {
 
     function findPfpId(string memory _pfp) external view returns (uint256 id);
 
-    function createPfpForNewUser(string memory _pfp, address signetUserAddress) external;
-
-    function changePfpForUser(string memory _newpfp, address signetUserAddress) external;
+    function modifyPfpForUser(string memory _newpfp, address signetUserAddress) external;
 }

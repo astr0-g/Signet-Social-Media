@@ -120,7 +120,7 @@ export default function Dashboard() {
     return (
         <div>
             <div>
-                {ProfileGood == false ? (
+                {numberowned == 0 ? (
                     <Signetor />
                 ) : (
                     <div className="justify-between items-center">

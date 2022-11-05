@@ -6,6 +6,7 @@ import { useToasts } from "react-toast-notifications"
 import signetorcontract from "../constants/Signetor.json"
 import Loading from "./Loading"
 import { useRouter } from "next/router"
+import Signetprofile from "./SignetorProfile"
 import {
     usePrepareContractWrite,
     useAccount,
@@ -85,6 +86,7 @@ export default function Messagelist() {
                     key={msg.messageId}
                     className="p-2 rounded-sm border-2 border-inherit border-r border-l"
                 >
+                    <Signetprofile address={msg.messageSender} />
                     <div className="flex items-center justify-between pt-2.5 flex-no-wrap">
                         {/* <div>#{msg.messageId}</div> */}
                         {/* <div className="italic text-sm">Owned by {msg.messageSender}</div> */}
@@ -123,6 +125,7 @@ export default function Messagelist() {
                     key={msg.messageId}
                     className="p-2 rounded-sm border-2 border-inherit border-r border-l"
                 >
+                    <Signetprofile address={msg.messageSender} />
                     <div className="flex flex-no-wrap">
                         {/* <div>#{msg.messageId}</div> */}
                         {/* <div className="italic text-sm">Owned by {msg.messageSender}</div> */}

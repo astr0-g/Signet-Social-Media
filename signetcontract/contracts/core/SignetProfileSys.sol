@@ -92,33 +92,28 @@ contract SignetProfileSys is ReentrancyGuard {
         return (0);
     }
 
-    function createNameForNewUser(string memory _newname, address signetUserAddress)
+    function modifyNameForUser(string memory _newname, address signetUserAddress)
         external
         fromSignetControllor
     {
-        if (hasName(signetUserAddress) == true) revert name__Created();
         if (bytes(_newname).length > 12) revert name__IsTooLong();
         if (checkNameAvalable(_newname) == false) revert name__IsNotAvalable();
-        totalName++;
-        name[totalName].name = _newname;
-        name[totalName].timeUpdated = block.timestamp;
-        name[totalName].owner = signetUserAddress;
 
-        emit ProfileUpdated(signetUserAddress, _newname, "");
-    }
+        if (hasName(signetUserAddress) == false) {
+            totalName++;
+            name[totalName].name = _newname;
+            name[totalName].timeUpdated = block.timestamp;
+            name[totalName].owner = signetUserAddress;
+            emit ProfileUpdated(signetUserAddress, _newname, "");
+        }
 
-    function changeNameForUser(string memory _newname, address signetUserAddress)
-        external
-        fromSignetControllor
-    {
-        if (hasName(signetUserAddress) == false) revert no__NameCreated();
-        if (bytes(_newname).length > 12) revert name__IsTooLong();
-        if (checkNameAvalable(_newname) == false) revert name__IsNotAvalable();
-        string memory _oldname = checkName(signetUserAddress);
-        uint256 oldNameId = findNameId(_oldname);
-        name[oldNameId].name = _newname;
-        name[oldNameId].timeUpdated = block.timestamp;
-        emit ProfileUpdated(signetUserAddress, _newname, "");
+        if (hasName(signetUserAddress) == true) {
+            string memory _oldname = checkName(signetUserAddress);
+            uint256 oldNameId = findNameId(_oldname);
+            name[oldNameId].name = _newname;
+            name[oldNameId].timeUpdated = block.timestamp;
+            emit ProfileUpdated(signetUserAddress, _newname, "");
+        }
     }
 
     function hasPfp(address signetUserAddress) public view returns (bool) {
@@ -140,7 +135,7 @@ contract SignetProfileSys is ReentrancyGuard {
     }
 
     function findPfpId(string memory _pfp) public view returns (uint256 id) {
-        for (uint256 i = 0; i < totalName + 1; i++) {
+        for (uint256 i = 0; i < totalpfp + 1; i++) {
             if (keccak256(abi.encodePacked(pfp[i].pfp)) == keccak256(abi.encodePacked(_pfp))) {
                 return (i);
             }
@@ -148,27 +143,24 @@ contract SignetProfileSys is ReentrancyGuard {
         return (0);
     }
 
-    function createPfpForNewUser(string memory _pfp, address signetUserAddress)
+    function modifyPfpForUser(string memory _pfp, address signetUserAddress)
         external
         fromSignetControllor
     {
-        if (hasPfp(signetUserAddress) == true) revert name__Created();
-        totalName++;
-        pfp[totalName].pfp = _pfp;
-        pfp[totalName].timeUpdated = block.timestamp;
-        pfp[totalName].owner = signetUserAddress;
-        emit ProfileUpdated(signetUserAddress, "", _pfp);
-    }
+        if (hasPfp(signetUserAddress) == false) {
+            totalpfp++;
+            pfp[totalpfp].pfp = _pfp;
+            pfp[totalpfp].timeUpdated = block.timestamp;
+            pfp[totalpfp].owner = signetUserAddress;
+            emit ProfileUpdated(signetUserAddress, "", _pfp);
+        }
 
-    function changePfpForUser(string memory _newpfp, address signetUserAddress)
-        external
-        fromSignetControllor
-    {
-        if (hasPfp(signetUserAddress) == false) revert no__NameCreated();
-        string memory _oldname = checkName(signetUserAddress);
-        uint256 oldNameId = findNameId(_oldname);
-        pfp[oldNameId].pfp = _newpfp;
-        pfp[oldNameId].timeUpdated = block.timestamp;
-        emit ProfileUpdated(signetUserAddress, "", _newpfp);
+        if (hasPfp(signetUserAddress) == true) {
+            string memory _oldPfp = checkPfp(signetUserAddress);
+            uint256 oldPfpId = findPfpId(_oldPfp);
+            pfp[oldPfpId].pfp = _pfp;
+            pfp[oldPfpId].timeUpdated = block.timestamp;
+            emit ProfileUpdated(signetUserAddress, "", _pfp);
+        }
     }
 }

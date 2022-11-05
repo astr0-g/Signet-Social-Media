@@ -106,20 +106,12 @@ contract SignetControllor is ReentrancyGuard, Ownable {
         );
     }
 
-    function createNameForNewUser(string memory _newname) public Joined {
-        ISignetProfileSys(signetprofileSys).createNameForNewUser(_newname, msg.sender);
+    function modifyNameForUser(string memory _newname) public Joined {
+        ISignetProfileSys(signetprofileSys).modifyNameForUser(_newname, msg.sender);
     }
 
-    function changeNameForUser(string memory _newname) public Joined {
-        ISignetProfileSys(signetprofileSys).changeNameForUser(_newname, msg.sender);
-    }
-
-    function createPfpForNewUser(string memory _pfp) public Joined {
-        ISignetProfileSys(signetprofileSys).createPfpForNewUser(_pfp, msg.sender);
-    }
-
-    function changePfpForUser(string memory _newpfp) public Joined {
-        ISignetProfileSys(signetprofileSys).changePfpForUser(_newpfp, msg.sender);
+    function modifyPfpForUser(string memory _newpfp) public Joined {
+        ISignetProfileSys(signetprofileSys).modifyPfpForUser(_newpfp, msg.sender);
     }
 
     function getOwnerContractForSignetor(address contractOwner) public view returns (address) {
@@ -160,8 +152,12 @@ contract SignetControllor is ReentrancyGuard, Ownable {
         return (ISignetFollowSys(signetFollowSys).getFollowings(signetor));
     }
 
-    function getStaredNum(address SignetorAddress) public view returns (uint256) {
-        return (ISignetFollowSys(signetFollowSys).getStaredNum(SignetorAddress));
+    function getStaredNumForSignetor(address SignetorAddress) public view returns (uint256) {
+        return (ISignetFollowSys(signetFollowSys).getStaredNumForSignetor(SignetorAddress));
+    }
+
+    function getStaredNum(uint256 SignetId) public view returns (uint256) {
+        return (ISignetFollowSys(signetFollowSys).getStaredNum(SignetId));
     }
 
     function getLikedNum(uint256 SignetId) public view returns (uint256) {

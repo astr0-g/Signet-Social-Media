@@ -125,6 +125,8 @@ export default function Messagebox() {
         var formdata = new FormData()
         if (selectedFile) {
             formdata.append("image", File)
+        } else {
+            formdata.append("image", "")
         }
 
         formdata.append("description", input)

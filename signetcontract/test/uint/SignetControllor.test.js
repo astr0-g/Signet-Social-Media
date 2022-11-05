@@ -354,13 +354,12 @@ const { developmentChains } = require("../../helper-hardhat-config")
               })
               it("create name and test name and check name and check again", async () => {
                   await Signet.controllorCreateSignetor("name", "name")
-                  await Signet.createNameForNewUser("A$TRO")
+                  await Signet.modifyNameForUser("A$TRO")
                   const name = await Signet.checkName(deployer)
                   assert.equal(name, "A$TRO")
-                  await expect(Signet.createNameForNewUser("A$TROa")).to.be.reverted
-                  await expect(Signet.changeNameForUser("A$TRObulowidasdfrtegrewecsdc")).to.be
+                  await expect(Signet.modifyNameForUser("A$TRObulowidasdfrtegrewecsdc")).to.be
                       .reverted
-                  await Signet.changeNameForUser("A$TRO1")
+                  await Signet.modifyNameForUser("A$TRO1")
                   const name1 = await Signet.checkName(deployer)
                   assert.equal(name1, "A$TRO1")
               })

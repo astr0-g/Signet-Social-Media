@@ -1,10 +1,11 @@
 import "../styles/globals.css"
 import { WagmiConfig, configureChains, createClient, chain } from "wagmi"
-import { alchemyProvider, infuraProvider } from "wagmi/providers/infura"
+import { infuraProvider } from "wagmi/providers/infura"
 import { RainbowKitSiweNextAuthProvider } from "@rainbow-me/rainbowkit-siwe-next-auth"
 import { ToastProvider } from "react-toast-notifications"
 import { SessionProvider } from "next-auth/react"
 import { AppProps } from "next/app"
+import { alchemyProvider } from "wagmi/providers/alchemy"
 import {
     getDefaultWallets,
     RainbowKitProvider,
@@ -34,9 +35,11 @@ const NEXT_PUBLIC_Dapp_URL = process.env.NEXT_PUBLIC_SERVER_URL
 const { chains, provider } = configureChains(
     [/*chain.mainnet, chain.polygon, chain.polygonMumbai,*/ chain.goerli],
     [
-        infuraProvider("2154a2e0bb8941d1ab13f80fd7b7b05b", { priority: 0 }),
-        infuraProvider("b72c182a206247f3b3a7f80c32696594", { priority: 1 }),
-        publicProvider({ priority: 2 }),
+        alchemyProvider({ apiKey: "Bhro-rO9XMWf7T0bapuprbv1WVF7Z4Jg" }, { priority: 0 }),
+        infuraProvider("2154a2e0bb8941d1ab13f80fd7b7b05b", { priority: 1 }),
+        alchemyProvider({ apiKey: "n7iZIuguaMdEzpnIgTN3xs3_zQ2rWjw6" }, { priority: 2 }),
+        infuraProvider("b72c182a206247f3b3a7f80c32696594", { priority: 3 }),
+        publicProvider({ priority: 4 }),
     ]
 )
 // const { connectors } = getDefaultWallets({

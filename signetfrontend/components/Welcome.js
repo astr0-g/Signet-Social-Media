@@ -3,7 +3,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit"
 export default function Welcome() {
     return (
         <>
-            <div className="h-[100vh] grid items-center justify-items-center bg-no-repeat bg-cover bg-black bg-[url('https://user-images.githubusercontent.com/6901805/58038897-167f0280-7ae6-11e9-94eb-88e880a25f0f.gif')] border-black relative">
+            <div className="h-[100vh] grid items-center justify-items-center bg-no-repeat bg-cover bg-black bg-[url('https://www.thisiscolossal.com/wp-content/uploads/2018/12/agifcolossal3opt1.gif')] border-black relative">
                 <div className="grid items-center justify-items-center text-center opacity-100 z-[1700]">
                     <h1 className="text-5xl lg:text-4xl md:text-3xl sm:text-2xl font-bold text-white">
                         SIGNET
@@ -14,7 +14,7 @@ export default function Welcome() {
                     <h1 className="text-5xl lg:text-4xl md:text-3xl sm:text-2xl font-bold text-slate-300">
                         Social Media Platform
                     </h1>
-                    <p className="my-5 text-slate-400 text-sm sm:text-xs w-[50vw] lg:w-11/12">
+                    <p className="my-5 text-slate-200 text-sm sm:text-xs w-[50vw] lg:w-11/12">
                         I Design Your Dreams. I believe you have a unique taste, discover the
                         possibilities of Decentralized World. Posts your ideas, Make new friends.
                         Your dreams is my first priority. So, let&apos;s enjoy this decentralized

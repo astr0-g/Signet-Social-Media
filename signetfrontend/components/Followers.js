@@ -37,7 +37,7 @@ export default function FollowerList() {
     async function pulljson() {
         const response = await fetch(`https://api.signet.ink/follow/follower/${useraddress}`)
         const responseData = await response.json()
-        console.log(responseData)
+
         // if (responseData.length > 10) {
         //     setmoreloading(true)
         // }

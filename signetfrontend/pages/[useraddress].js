@@ -181,7 +181,7 @@ export default function Signetor() {
     }, [createNameForNewUserisLoading])
     useEffect(() => {
         if (createNameForNewUserisSuccess) {
-            addToast("Signetor Generated Successful!", { appearance: "success" })
+            addToast("Signetor Name Successful!", { appearance: "success" })
             setchangename(false)
             setName(input)
         }
@@ -191,7 +191,6 @@ export default function Signetor() {
     }
     useEffect(() => {
         if (changenameresult) {
-            console.log(changenameresult)
             if (changenameresult.toString() == "duplicate") {
             }
         }
@@ -221,7 +220,6 @@ export default function Signetor() {
     }, [ownercontractaddress])
     useEffect(() => {
         if (followings) {
-            console.log(followings.toString())
             setfollowingsnum(followings.toString())
         }
     }, [followings])
@@ -254,15 +252,15 @@ export default function Signetor() {
     }
     function seefollower() {
         setwatchstatues("follower")
-        console.log(watchstatus)
+
     }
     function seefollwing() {
         setwatchstatues("follwing")
-        console.log(watchstatus)
+
     }
     function seesignets() {
         setwatchstatues("signets")
-        console.log(watchstatus)
+
     }
     return (
         // <div>

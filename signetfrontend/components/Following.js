@@ -38,7 +38,7 @@ export default function Following() {
     async function pulljson() {
         const response = await fetch(`https://api.signet.ink/follow/following/${useraddress}`)
         const responseData = await response.json()
-        console.log(responseData)
+
         displayData = responseData.map(function (msg) {
             return (
                 <div

@@ -20,8 +20,7 @@ export default function Home() {
                     {!address ? <div /> : <ConnectButton accountStatus="address" />}
                 </nav>
             </div>
-            {!address ? <Welcome /> : <Dashboard />}
-            {/* <Footer /> */}
+        
         </div>
     )
 }

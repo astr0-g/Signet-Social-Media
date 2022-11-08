@@ -66,7 +66,7 @@ export default function FollowedMessagelist() {
                 dateObject.getMinutes() +
                 ":" +
                 dateObject.getSeconds()
-            console.log(humanDateFormat)
+            // console.log(humanDateFormat)
             return humanDateFormat
         }
     }
@@ -74,7 +74,7 @@ export default function FollowedMessagelist() {
     async function pulljson() {
         const response = await fetch(`https://api.signet.ink/signet/followby/${address}/`)
         const responseData = await response.json()
-        console.log(responseData)
+        // console.log(responseData)
         if (responseData.length > 10) {
             setmoreloading(true)
         }

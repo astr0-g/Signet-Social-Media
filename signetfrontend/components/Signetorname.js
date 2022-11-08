@@ -54,7 +54,7 @@ export default function Signetorname() {
                     fetch("https://api.signet.ink/pfi/pfp/", requestOptions)
                         .then((response) => response.json())
                         .then((result) => {
-                            console.log(result)
+                            // console.log(result)
                             if (result.toString() == "updated") {
                                 setready(true)
                             } else {

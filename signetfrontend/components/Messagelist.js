@@ -69,7 +69,7 @@ export default function Messagelist() {
                 dateObject.getMinutes() +
                 ":" +
                 dateObject.getSeconds()
-            console.log(humanDateFormat)
+            // console.log(humanDateFormat)
             return humanDateFormat
         }
     }

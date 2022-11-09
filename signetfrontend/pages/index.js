@@ -15,12 +15,14 @@ export default function Home() {
                 <link rel="icon" href="/logo.ico" />
             </Head>
             <div>
-                <nav className={styles.navBar}>
-                    <img src="/logo2.png" />
-                    {!address ? <div /> : <ConnectButton accountStatus="address" />}
-                </nav>
+                {address && (
+                    <nav className={styles.navBar}>
+                        <img src="/logo2.png" />
+                        {!address ? <div /> : <ConnectButton accountStatus="address" />}
+                    </nav>
+                )}
+                {!address ? <Welcome /> : <Dashboard />}
             </div>
-        
         </div>
     )
 }

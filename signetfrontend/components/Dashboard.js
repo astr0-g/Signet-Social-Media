@@ -116,7 +116,7 @@ export default function Dashboard() {
     //         setProfile(route)
     //     }
     // }, [])
-    //max-w-xl//
+    //max-w-sxl//
     return (
         <div>
             <div>

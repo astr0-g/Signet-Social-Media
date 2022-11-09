@@ -7,6 +7,7 @@ import creatorcontract from "../constants/abi.json"
 import { useToasts } from "react-toast-notifications"
 import signetorcontract from "../constants/Signetor.json"
 import Loading from "./Loading"
+import Signetprofile from "./SignetorProfile"
 import {
     usePrepareContractWrite,
     useAccount,
@@ -49,7 +50,8 @@ export default function Following() {
                         {/* <div>#{msg.messageId}</div> */}
                         {/* <div className="italic text-sm">Owned by {msg.messageSender}</div> */}
                         <Link href={"/" + msg.following}>
-                            <button className="px-4 py-2 m-2 italic text-sm">
+                            <Signetprofile address={msg.following} />
+                            {/* <button className="px-4 py-2 m-2 italic text-sm">
                                 {" "}
                                 {`${
                                     msg.following.slice(0, 6) +
@@ -59,7 +61,7 @@ export default function Following() {
                                         msg.following.length
                                     )
                                 }   `}
-                            </button>
+                            </button> */}
                         </Link>
                         <Followtrigger address={msg.following} />
                     </div>

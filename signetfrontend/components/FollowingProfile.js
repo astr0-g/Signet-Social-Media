@@ -1,12 +1,12 @@
 import Link from "next/link"
 import { useRouter } from "next/router"
 import Image from "next/image"
+import Router from "next/router"
 import { useState, useEffect, useRef } from "react"
 import creatorcontract from "../constants/abi.json"
 import { useToasts } from "react-toast-notifications"
 import signetorcontract from "../constants/Signetor.json"
 import Loading from "./Loading"
-import Signetprofile from "./SignetorProfile"
 import {
     usePrepareContractWrite,
     useAccount,
@@ -18,7 +18,7 @@ import {
     useWaitForTransaction,
 } from "wagmi"
 import Followtrigger from "./Targettrigger"
-export default function FollowerList() {
+export default function Following() {
     const router = useRouter()
     const { useraddress } = router.query
     const [ownersignetoraddress, setownersignetoraddress] = useState("")
@@ -36,36 +36,32 @@ export default function FollowerList() {
     let displayData
 
     async function pulljson() {
-        const response = await fetch(`https://api.signet.ink/follow/follower/${useraddress}`)
+        const response = await fetch(`https://api.signet.ink/follow/following/${useraddress}`)
         const responseData = await response.json()
 
-        // if (responseData.length > 10) {
-        //     setmoreloading(true)
-        // }
         displayData = responseData.map(function (msg) {
             return (
                 <div
-                    key={msg.follower}
+                    key={msg.following}
                     className="p-2 rounded-sm border-2 border-inherit border-r border-l"
                 >
                     <div className="flex items-center justify-between pt-2.5 flex-no-wrap">
                         {/* <div>#{msg.messageId}</div> */}
                         {/* <div className="italic text-sm">Owned by {msg.messageSender}</div> */}
-                        <Link href={"/" + msg.follower}>
-                            <Signetprofile address={msg.follower} />
-                            {/* <button className="px-4 py-2 m-2 italic text-sm">
+                        <Link href={"/" + msg.following}>
+                            <button className="px-4 py-2 m-2 italic text-sm">
                                 {" "}
                                 {`${
-                                    msg.follower.slice(0, 6) +
+                                    msg.following.slice(0, 6) +
                                     "..." +
-                                    msg.follower.slice(
-                                        msg.follower.length - 6,
-                                        msg.follower.length
+                                    msg.following.slice(
+                                        msg.following.length - 6,
+                                        msg.following.length
                                     )
                                 }   `}
-                            </button> */}
+                            </button>
                         </Link>
-                        <Followtrigger address={msg.follower} />
+                        <Followtrigger address={msg.following} />
                     </div>
                 </div>
             )
@@ -142,12 +138,12 @@ export default function FollowerList() {
             <div className="border-l border-r bg-slate-100 border-gray-200  xl:min-w-[576px] sm:ml-[73px] flex-grow">
                 <div className="flex py-2 px-3 top-0 z-50 border-b border-gray-200 items-center ">
                     <button onClick={() => Refresh()} className="text-lg sm:text-xl font-bold">
-                        <div className="text-lg sm:text-xl font-bold">followers</div>
+                        <div className="text-lg sm:text-xl font-bold">following</div>
                     </button>
                 </div>
                 {messagejson == "" && (
                     <div className="text-sm flex flex-col justify-center items-center">
-                        User don't have any followers!
+                        User don't have any followings!
                     </div>
                 )}
                 {isLoading && <Loading />}
@@ -157,6 +153,7 @@ export default function FollowerList() {
                         <button onClick={() => Loadmore()}>Load more</button>
                     </div>
                 )}
+                
                 {MoreMessagejson && <div>{MoreMessagejson}</div>}
                 {ismoreLoading && <Loading />} */}
                 <div> </div>

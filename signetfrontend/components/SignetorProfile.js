@@ -50,7 +50,13 @@ export default function Signetprofile(props) {
             nameinfo ==
             "You seeing this message is becuase this address don't have any name created!"
         ) {
-            setName("Unname")
+            setName(
+                `Unname ${
+                    props.address.slice(0, 3) +
+                    "..." +
+                    props.address.slice(props.address.length - 3, props.address.length)
+                }`
+            )
         } else {
             setName(nameinfo)
         }

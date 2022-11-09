@@ -93,13 +93,15 @@ export default function Messagelist() {
                         {/* <div className="italic text-sm">Owned by {msg.messageSender}</div> */}
 
                         {msg.tokenimageURL != "null" && (
-                            <Image
-                                className="px-4 py-2 m-2"
-                                loader={() => msg.tokenimageURL}
-                                src={msg.tokenimageURL}
-                                height="100px"
-                                width="100px"
-                            />
+                            <Link href={msg.tokenimageURL}>
+                                <Image
+                                    className="px-4 py-2 m-2"
+                                    loader={() => msg.tokenimageURL}
+                                    src={msg.tokenimageURL}
+                                    height="100px"
+                                    width="100px"
+                                />
+                            </Link>
                         )}
 
                         <div className="px-4 py-2 m-2 italic text-sm">{msg.tokendescription}</div>
@@ -136,13 +138,15 @@ export default function Messagelist() {
                         {/* <div className="italic text-sm">Owned by {msg.messageSender}</div> */}
 
                         {msg.tokenimageURL != "null" && (
-                            <Image
-                                className="px-4 py-2 m-2"
-                                loader={() => msg.tokenimageURL}
-                                src={msg.tokenimageURL}
-                                height="100"
-                                width="100"
-                            />
+                            <Link href={msg.tokenimageURL}>
+                                <Image
+                                    className="px-4 py-2 m-2"
+                                    loader={() => msg.tokenimageURL}
+                                    src={msg.tokenimageURL}
+                                    height="100"
+                                    width="100"
+                                />
+                            </Link>
                         )}
 
                         <div className="px-4 py-2 m-2 italic text-sm">{msg.tokendescription}</div>

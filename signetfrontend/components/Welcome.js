@@ -9,7 +9,7 @@ export default function Welcome() {
                         SIGNET
                     </h1>
                     <h1 className="text-5xl lg:text-4xl md:text-3xl sm:text-2xl font-bold text-slate-300">
-                        Entrying The Fully Decentralized
+                        Entrying The Decentralized
                     </h1>
                     <h1 className="text-5xl lg:text-4xl md:text-3xl sm:text-2xl font-bold text-slate-300">
                         Social Media Platform

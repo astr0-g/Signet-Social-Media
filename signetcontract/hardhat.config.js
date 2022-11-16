@@ -41,6 +41,11 @@ module.exports = {
       accounts: [RINKEBY_PRIVATE_KEY],
       chainId: 137,
     },
+    mumbai: {
+      url: "https://polygon-mumbai.g.alchemy.com/v2/KhO9Yy5q0IngUt5Ywg8-Flz5VbSPM0ym", //
+      accounts: [RINKEBY_PRIVATE_KEY],
+      chainId: 80001,
+    },
     arb: {
       chainId: 42161,
       url: ARB_RPC_URL,

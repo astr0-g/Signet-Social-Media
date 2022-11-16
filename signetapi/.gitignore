@@ -1,0 +1,6 @@
+media
+logs
+uwsgi.ini
+databasekey.json
+.env
+pyclient

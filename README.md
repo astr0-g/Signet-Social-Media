@@ -124,7 +124,7 @@ There are four folders in this project, they are all used by signet.
   Python >= 3.7.9     
   Download from [here](https://www.python.org/downloads/)
 
-### Installation (you can skip 3-5 if you are conly testing frontend)
+### Installation (you can skip 3-5 if you are only testing frontend)
 
 1. Clone the repo
    ```sh

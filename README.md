@@ -95,10 +95,10 @@ Signet could be a good point to connect to others in this space, and I gave it a
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+This section contains frameworks/libraries used to bootstrap Signet, it includes the frontend and the backend.
 
 - [![Next][next.js]][next-url]
-- [![React][react.js]][react-url]
+- [![Wagmi][wagmi]][wagmi-url]
 - [![Vue][vue.js]][vue-url]
 - [![Angular][angular.io]][angular-url]
 - [![Svelte][svelte.dev]][svelte-url]
@@ -254,3 +254,5 @@ Use this space to list resources you find helpful and would like to give credit 
 [bootstrap-url]: https://getbootstrap.com
 [jquery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [jquery-url]: https://jquery.com
+[wagmi]: https://raw.githubusercontent.com/wagmi-dev/.github/main/content/logo-dark.svg
+[wagmi-url]: https://wagmi.sh/

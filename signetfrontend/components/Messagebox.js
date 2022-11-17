@@ -138,6 +138,7 @@ export default function Messagebox() {
     }
     const sendPost = async () => {
         if (loading) return
+        addToast("Uploading signet to IPFS...", { appearance: "success" })
         setLoading(true)
         var formdata = new FormData()
         if (selectedFile) {
@@ -172,6 +173,9 @@ export default function Messagebox() {
             .catch((error) => console.log("error", error))
         setLoading(false)
         setReady(true)
+        addToast("Uploading to IPFS successful, Feel free to sign your signet!", {
+            appearance: "success",
+        })
     }
 
     const contractreact = async () => {

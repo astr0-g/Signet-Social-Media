@@ -312,5 +312,5 @@ please dm on [twitter](https://twitter.com/lil_astr_0) if you need Goerli Testne
 [nftsotrage-url]: https://nft.storage/
 [estuary]: https://img.shields.io/badge/Estuary-55AAFF?style=for-the-badge&logo=&logoColor=61DAFB
 [estuary-url]: https://estuary.tech/
-[left]: https://img.shields.io/badge/(-55AAFF?style=for-the-badge&logo=&logoColor=61DAFB
-[right]: https://img.shields.io/badge/)-55AAFF?style=for-the-badge&logo=&logoColor=61DAFB
+[left]: https://img.shields.io/badge/[-55AAFF?style=for-the-badge&logo=&logoColor=61DAFB
+[right]: https://img.shields.io/badge/]-55AAFF?style=for-the-badge&logo=&logoColor=61DAFB

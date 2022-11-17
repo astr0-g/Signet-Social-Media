@@ -132,19 +132,40 @@ There are four folders in this project, they are all used by signet.
    ```sh
    git clone https://github.com/your_username_/Project-Name.git
    ```
-2. cd into each folder besides signetapi
-3. Install NPM packages
+2. cd into each folder besides signetapi and Install NPM packages
+
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = "ENTER YOUR API";
+
+3. cd into signetapi folder Install Python packages
+
+   ```sh
+   pip install requirements.txt
+   ```
+
+4. cd into signetcontract
+
+   ```sh
+   npm hardhat test
+   ```
+
+5. cd into signetmonitor
+
+   ```sh
+   node listenFollowed.js
+   node listenSendmessage.js
+   node listenUnFollowed.js
+   ```
+
+6. cd into signetfrontend
+
+   ```sh
+   npm dev
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- USAGE EXAMPLES -->
 
 ## Usage
 
@@ -264,5 +285,5 @@ Use this space to list resources you find helpful and would like to give credit 
 [hardhat-url]: https://hardhat.org/
 [vercel]: https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white
 [vercel-url]: https://vercel.com/docs
-[python]:https://img.shields.io/badge/Python-20232A?style=for-the-badge&logo=python&logoColor=white
-[python-url]:https://www.python.org/
+[python]: https://img.shields.io/badge/Python-20232A?style=for-the-badge&logo=python&logoColor=white
+[python-url]: https://www.python.org/

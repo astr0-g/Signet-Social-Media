@@ -233,7 +233,7 @@ There are four folders in this project, they are all used by signet.
 
 Use this repo to look at useful examples of how signet can be used. Additional screenshots, code examples and demos work well in this repo.<br/>
 
-_For more examples, please refer to the [Video](https://www.youtube.com/watch?v=uvnG4MiT0fs)_
+_For more examples, please refer to the [Video](https://www.youtube.com/watch?v=SaIfk3zUWHY)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

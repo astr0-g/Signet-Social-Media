@@ -4,6 +4,7 @@ from django.forms.models import model_to_dict
 from signetorinfos.models import Signet
 from signetorinfos.serializers import SignetSerializer
 import requests
+from rest_framework.decorators import api_view
 from tokenurl.models import TokenURL
 from tokenurl.serializers import TokenURLSerializer
 from followsystem.models import UserFollowing
@@ -39,7 +40,7 @@ def api_home(request, signetorowneraddress):
                 data = TokenURLSerializer(i).data
                 imageurl = ""
                 if data["image"]:
-                    imageurl  = "https://api.signet.ink"+data["image"]
+                    imageurl = "https://api.signet.ink"+data["image"]
                 description = data['description']
             # get_response = requests.get(endpoint)
             # imageURL = get_response.json()['image']
@@ -55,24 +56,22 @@ def api_home(request, signetorowneraddress):
         except:
             ipfsURL = TokenURI
             information = TokenURL.objects.filter(imageurl=ipfsURL)
-            for i in information:
-                data = TokenURLSerializer(i).data
-                imageurl = ""
-                if data["image"]:
-                    imageurl  = "https://api.signet.ink"+data["image"]
-                description = data['description']
-            # get_response = requests.get(endpoint)
-            # imageURL = get_response.json()['image']
-            # description = get_response.json()['description']
-                jsonobj.append({
-                    "messageSender": f"{MessageSender}",
-                    "signetoraddress": f"{Signetoraddress}",
-                    "messageId": f"{MessageId}",
-                    "tokenimageURL": f"{imageurl}",
-                    "tokendescription": f"{description}",
-                    "time": f"{Time}"
-                })
-
+            data = TokenURLSerializer(information[0]).data
+            imageurl = ""
+            if data["image"]:
+                imageurl = "https://api.signet.ink"+data["image"]
+            description = data['description']
+        # get_response = requests.get(endpoint)
+        # imageURL = get_response.json()['image']
+        # description = get_response.json()['description']
+            jsonobj.append({
+                "messageSender": f"{MessageSender}",
+                "signetoraddress": f"{Signetoraddress}",
+                "messageId": f"{MessageId}",
+                "tokenimageURL": f"{imageurl}",
+                "tokendescription": f"{description}",
+                "time": f"{Time}"
+            })
 
     # json = {
     #     "name": "Signet",

@@ -63,6 +63,7 @@ def api_home(request, signetorowneraddress):
                     "tokendescription": f"{description}",
                     "time": f"{Time}"
                 })
+                break
 
     # json = {
     #     "name": "Signet",
@@ -70,6 +71,3 @@ def api_home(request, signetorowneraddress):
     #     "image": f"{imageurl}",
     # }
     return JsonResponse(jsonobj, safe=False, status=200)
-
-    # Coupon.objects.filter(code=savedata).delete()
-    # Product.objects.create(title='used',content=savedata,price='10.00')

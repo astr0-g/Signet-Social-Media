@@ -62,6 +62,7 @@ def api_home(request):
                     "tokendescription": f"{description}",
                     "time": f"{Time}"
                 })
+                break
 
 
     # json = {
@@ -70,6 +71,3 @@ def api_home(request):
     #     "image": f"{imageurl}",
     # }
     return JsonResponse(jsonobj, safe=False, status=200)
-
-    # Coupon.objects.filter(code=savedata).delete()
-    # Product.objects.create(title='used',content=savedata,price='10.00')

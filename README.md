@@ -86,6 +86,7 @@ This section contains frameworks/libraries used to bootstrap Signet, it includes
  [![hardhat][hardhat]][hardhat-url]  
  [![vercel][vercel]][vercel-url]  
  [![python][python]][python-url]  
+ [![chainlink][chainlink]][chainlink-url]  
  [![filecoin][filecoin]][filecoin-url] [![filecoin][left]][filecoin-url] [![nftsotrage][nftsotrage]][nftsotrage-url] [![Estuary][estuary]][estuary-url] [![filecoin][right]][filecoin-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -314,3 +315,5 @@ please dm on [twitter](https://twitter.com/lil_astr_0) if you need Goerli Testne
 [estuary-url]: https://estuary.tech/
 [left]: https://img.shields.io/badge/[-55AAFF?style=for-the-badge&logo=&logoColor=61DAFB
 [right]: https://img.shields.io/badge/]-55AAFF?style=for-the-badge&logo=&logoColor=61DAFB
+[chainlink]:https://img.shields.io/badge/chainlink-949494?style=for-the-badge&logo=chainlink&logoColor=1663be
+[chainlink-url]:https://chain.link/

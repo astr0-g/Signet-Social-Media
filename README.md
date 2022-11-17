@@ -199,30 +199,28 @@ There are four folders in this project, they are all used by signet.
 
 ## Usage
 
-click connect wallet
-
 <p align="center">
+click connect wallet
   <img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202537755-24620584-4fca-4c2d-aee2-1425f53633dc.png"><br/>
   click generate if you are new to signet<br/>
-
   <img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202538033-d5dd43f9-643a-449b-bee5-fa68f5372f3f.png"><br/>
   type what to say and even choose a phone then click generate<br/>
 
-  <img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202538566-74ea29f6-269c-480f-bc39-0dced5d89a08.png"><br/>
-  wait till<br/>
+<img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202538566-74ea29f6-269c-480f-bc39-0dced5d89a08.png"><br/>
+wait till<br/>
 
-  <img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202538678-a60d983e-125b-4c5e-aa6d-c54031da6711.png"><br/>
+<img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202538678-a60d983e-125b-4c5e-aa6d-c54031da6711.png"><br/>
 
-  you will be able to check in console<br/>
-  <img alt="signet" src="https://user-images.githubusercontent.com/57165451/202538768-ffa2940c-bb4d-4b68-9150-86e668031f5d.png"><br/>
-  click sign to sign the signet<br/>
+you will be able to check in console<br/>
+<img alt="signet" src="https://user-images.githubusercontent.com/57165451/202538768-ffa2940c-bb4d-4b68-9150-86e668031f5d.png"><br/>
+click sign to sign the signet<br/>
 
-  <img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202538814-f0ae7738-509d-4bbe-b463-6e4926cfe41e.png"><br/>
-  you will be able to see your signet tokenURI has minted as expected<br/>
+<img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202538814-f0ae7738-509d-4bbe-b463-6e4926cfe41e.png"><br/>
+you will be able to see your signet tokenURI has minted as expected<br/>
 
-  <img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202539855-b9733296-3422-4a53-b4dc-0040c8b8e55e.png"><br/>
+<img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202539855-b9733296-3422-4a53-b4dc-0040c8b8e55e.png"><br/>
 
-  Use this repo to look at useful examples of how signet can be used. Additional screenshots, code examples and demos work well in this repo.<br/>
+Use this repo to look at useful examples of how signet can be used. Additional screenshots, code examples and demos work well in this repo.<br/>
 
 </p>
 _For more examples, please refer to the [Video](https://www.youtube.com/watch?v=uvnG4MiT0fs)_

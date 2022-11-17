@@ -120,8 +120,8 @@ There are four folders in this project, they are all used by signet.
   npm install npm@latest -g
   ```
 
-- python
-  Python >= 3.7.9     
+- python       
+  python version >= 3.7.9     
   Download from [here](https://www.python.org/downloads/)
 
 ### Installation

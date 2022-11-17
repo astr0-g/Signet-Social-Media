@@ -99,7 +99,7 @@ This section contains frameworks/libraries used to bootstrap Signet, it includes
 
 - [![Next][next.js]][next-url]
 - [![Wagmi][wagmi]][wagmi-url]
-- [![Vue][vue.js]][vue-url]
+- [![django][django]][django-url]
 - [![Angular][angular.io]][angular-url]
 - [![Svelte][svelte.dev]][svelte-url]
 - [![Laravel][laravel.com]][laravel-url]
@@ -256,3 +256,5 @@ Use this space to list resources you find helpful and would like to give credit 
 [jquery-url]: https://jquery.com
 [wagmi]: https://img.shields.io/badge/WAGMI-20232A?style=for-the-badge&logo=&logoColor=61DAFB
 [wagmi-url]: https://wagmi.sh/
+[django]: https://img.shields.io/badge/Django-20232A?style=for-the-badge&logo=django&logoColor=yellowgreen
+[django-url]: https://www.djangoproject.com/

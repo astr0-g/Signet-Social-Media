@@ -200,7 +200,7 @@ There are four folders in this project, they are all used by signet.
 ## Usage
 
 <p align="center" text="sm">click connect wallet</p>
-<p align="center"><img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202537755-24620584-4fca-4c2d-aee2-1425f53633dc.png"></p><br/>
+<p align="center"><img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202551106-ad81977d-5b26-4e8d-83d3-45a78d360cc9.png"></p><br/>
 <p align="center">click generate if you are new to signet</p>
 <p align="center"><img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202538033-d5dd43f9-643a-449b-bee5-fa68f5372f3f.png"></p><br/>
 <p align="center">type what to say and even choose a phone then click generate</p>

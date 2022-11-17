@@ -192,10 +192,16 @@ _For more examples, please refer to the [Video](https://www.youtube.com/watch?v=
 
 - [x] signet api
 - [x] signet smart contract monitor
-- [.] signet frontend
-- [.] signet smart contract
+- [x] signet frontend
+    - [x] home tab
+    - [x] explore tab
+    - [x] profile tab
+- [x] signet smart contract
+    - [x] signet controllor
+    - [x] signet followSys
+    - [x] signet profileSys
 - [ ] filecoin integration
-
+- [ ] NFT owner tab
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

@@ -155,7 +155,7 @@ There are four folders in this project, they are all used by signet.
 
    please have your own database access ready  
    (localhost or remote)  
-   and change the [setting](https://github.com/Astr0-G/Signet-Social-Media/blob/main/signetapi/learning/settings.py)  regarding database access
+   and change the [setting](https://github.com/Astr0-G/Signet-Social-Media/blob/main/signetapi/learning/settings.py) regarding database access
 
    ```sh
    python manage.py runserver
@@ -173,7 +173,7 @@ There are four folders in this project, they are all used by signet.
    npm hardhat node
    ```
 
-   but be sure to change the contract address in the signetfrontend constants [folder](https://github.com/Astr0-G/Signet-Social-Media/tree/main/signetfrontend/constants)
+   but be sure to change the contract address of the [json](https://github.com/Astr0-G/Signet-Social-Media/blob/main/signetfrontend/constants/Signetor.json) files in the signetfrontend constants
 
 5. cd into signetmonitor
 

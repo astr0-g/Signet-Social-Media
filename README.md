@@ -214,6 +214,23 @@ There are four folders in this project, they are all used by signet.
 <p align="center">you will be able to see your signet tokenURI has minted as expected</p>
 <p align="center"><img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202539855-b9733296-3422-4a53-b4dc-0040c8b8e55e.png"></p><br/>
 
+<p align="center">you can like other users</p>
+<p align="center"><img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202548789-9e806d5a-50cd-462b-bfe8-c494429e342f.png"></p><br/>
+
+<p align="center">you can star other users too with 10$ worth of coin</p>
+<p align="center"><img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202549019-09780d87-8dd7-42b7-99fe-1ec146cd0526.png"></p><br/>
+
+<p align="center">you can follow and unfollow other users by going to </p>
+<p align="center">other user's tab and also from user's following list or follwers list</p>
+<p align="center"><img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202549305-f686457b-9f4a-4abb-a1c0-174fecf9c6a5.png"></p><br/>
+
+<p align="center">you can change your profile by clicking photo on your profile</p>
+<p align="center">click done when you finish</p>
+<p align="center"><img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202549563-0412f02a-ccf7-40f8-ae4a-2f1136b02490.png"></p><br/>
+
+<p align="center">you can change your name by clicking name on your profile</p>
+<p align="center"><img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202549875-71435d04-6245-48d8-84d4-5507a04e5619.png"></p><br/>
+
 Use this repo to look at useful examples of how signet can be used. Additional screenshots, code examples and demos work well in this repo.<br/>
 
 _For more examples, please refer to the [Video](https://www.youtube.com/watch?v=uvnG4MiT0fs)_

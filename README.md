@@ -104,28 +104,22 @@ This section contains frameworks/libraries used to bootstrap Signet, it includes
 - [![hardhat][hardhat]][hardhat-url]
 - [![vercel][vercel]][vercel-url]
 
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
 
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+There are four folders in this project, they are all used by signet.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-
 - npm
   ```sh
-  npm install npm@latest -g
+  npm install yarn -g
   ```
 
 ### Installation
-
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
 1. Get a free API Key at [https://example.com](https://example.com)
 2. Clone the repo
@@ -261,5 +255,5 @@ Use this space to list resources you find helpful and would like to give credit 
 [node-url]: https://nodejs.org/en/
 [hardhat]: https://img.shields.io/badge/Hardhat-ffff00?style=for-the-badge&logo=&logoColor=white
 [hardhat-url]: https://hardhat.org/
-[vercel]:https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white
-[vercel-url]:https://vercel.com/docs
+[vercel]: https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white
+[vercel-url]: https://vercel.com/docs

@@ -199,12 +199,11 @@ There are four folders in this project, they are all used by signet.
 
 ## Usage
 
-<p align="center">
-click connect wallet
-  <img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202537755-24620584-4fca-4c2d-aee2-1425f53633dc.png"><br/>
-  click generate if you are new to signet<br/>
-  <img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202538033-d5dd43f9-643a-449b-bee5-fa68f5372f3f.png"><br/>
-  type what to say and even choose a phone then click generate<br/>
+<p align="center">click connect wallet</p>
+<p align="center"><img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202537755-24620584-4fca-4c2d-aee2-1425f53633dc.png"></p><br/>
+<p align="center">click generate if you are new to signet</p><br/>
+<p align="center"><img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202538033-d5dd43f9-643a-449b-bee5-fa68f5372f3f.png"></p><br/>
+<p align="center">type what to say and even choose a phone then click generate</p><br/>
 
 <img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202538566-74ea29f6-269c-480f-bc39-0dced5d89a08.png"><br/>
 wait till<br/>

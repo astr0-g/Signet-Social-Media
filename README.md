@@ -153,9 +153,9 @@ There are four folders in this project, they are all used by signet.
    secert_key= ''
    ```
 
-   please have your own database access ready   
-   (localhost or remote)   
-   and change the setting file in learning folder regarding database access
+   please have your own database access ready  
+   (localhost or remote)  
+   and change the [setting](https://github.com/Astr0-G/Signet-Social-Media/blob/main/signetapi/learning/settings.py) in learning folder regarding database access
 
    ```sh
    python manage.py runserver
@@ -166,6 +166,14 @@ There are four folders in this project, they are all used by signet.
    ```sh
    npm hardhat test
    ```
+
+   for test cases
+
+   ```sh
+   npm hardhat node
+   ```
+
+   but be sure to change the contract address in the signetfrontend constants [folder](https://github.com/Astr0-G/Signet-Social-Media/tree/main/signetfrontend/constants)
 
 5. cd into signetmonitor
 

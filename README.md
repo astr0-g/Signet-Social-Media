@@ -100,8 +100,8 @@ This section contains frameworks/libraries used to bootstrap Signet, it includes
 - [![Next][next.js]][next-url]
 - [![Wagmi][wagmi]][wagmi-url]
 - [![django][django]][django-url]
-- [![Angular][angular.io]][angular-url]
-- [![Svelte][svelte.dev]][svelte-url]
+- [![node.js][node.js]][node-url]
+- [![Svelte][hardhat]][hardhat-url]
 - [![Laravel][laravel.com]][laravel-url]
 - [![Bootstrap][bootstrap.com]][bootstrap-url]
 - [![JQuery][jquery.com]][jquery-url]
@@ -256,5 +256,9 @@ Use this space to list resources you find helpful and would like to give credit 
 [jquery-url]: https://jquery.com
 [wagmi]: https://img.shields.io/badge/WAGMI-20232A?style=for-the-badge&logo=&logoColor=61DAFB
 [wagmi-url]: https://wagmi.sh/
-[django]: https://img.shields.io/badge/Django-20232A?style=for-the-badge&logo=django&logoColor=yellowgreen
+[django]: https://img.shields.io/badge/Django-35495E?style=for-the-badge&logo=django&logoColor=yellowgreen
 [django-url]: https://www.djangoproject.com/
+[node.js]: https://img.shields.io/badge/Node.js-563D7C?style=for-the-badge&logo=nodedotjs&logoColor=white
+[node-url]: https://nodejs.org/en/
+[hardhat]: https://img.shields.io/badge/Hardhat-0769AD?style=for-the-badge&logo=&logoColor=white
+[hardhat-url]: https://hardhat.org/

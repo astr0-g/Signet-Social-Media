@@ -47,7 +47,7 @@
     ·
     <a href="https://github.com/Astr0-G/Signet-Social-Media/issues">Report Bug</a>
     <br/>
-    Signet smart contract on Goerli Testnet Network 
+    signet smart contract on Goerli Testnet Network <br/>
     <a href="https://goerli.etherscan.io/address/0x1952A8046B1e549CC05E680283219e855CAf1d9b#code">Signet Controllor smart contract</a><br/>
     <a href="https://goerli.etherscan.io/address/0x7c3FFEdd23710188be6e2eFdaC4a7d2fFA04523c#code">Signet FollowSys smart contract</a><br/>
     <a href="https://goerli.etherscan.io/address/0xf53B6145246810ee99E5A75E720550A0f38c0E00#code">Signet ProfileSys smart contract</a>

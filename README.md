@@ -22,7 +22,6 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-
 [![MIT License][license-shield]][license-url]
 
 <!-- [![LinkedIn][linkedin-shield]][linkedin-url] -->
@@ -268,7 +267,7 @@ Project Link: [github](https://github.com/Astr0-G/Signet-Social-Media) [demo](ht
 
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
 [contributors-url]: https://github.com/Astr0-G/Signet-Social-Media/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/Astr0-G/Signet-Social-Media.svg?style=for-the-badge
 [forks-url]: https://github.com/Astr0-G/Signet-Social-Media/network/members
 [stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
 [stars-url]: https://github.com/Astr0-G/Signet-Social-Media/stargazers

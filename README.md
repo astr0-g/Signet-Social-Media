@@ -153,9 +153,9 @@ There are four folders in this project, they are all used by signet.
    secert_key= ''
    ```
 
-  please have your own database access ready
-  localhost or remote
-  
+   please have your own database access ready
+   localhost or remote
+
    ```sh
    python manage.py runserver
    ```

@@ -124,7 +124,8 @@ There are four folders in this project, they are all used by signet.
   Python >= 3.7.9     
   Download from [here](https://www.python.org/downloads/)
 
-### Installation (you can skip 3-5 if you are only testing frontend)
+### Installation
+###### you can skip 3-5 if you are only testing frontend
 
 1. Clone the repo
    ```sh
@@ -246,7 +247,7 @@ Don't forget to give the project a star! Thanks again!
 
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the MIT License. See [`LICENSE.txt`](https://github.com/Astr0-G/Signet-Social-Media/blob/main/LICENSE.txt) for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

@@ -201,7 +201,7 @@ There are four folders in this project, they are all used by signet.
 
 click connect wallet
 
- <p align="center">
+<p align="center">
 <img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202537755-24620584-4fca-4c2d-aee2-1425f53633dc.png"><br/>
 click generate if you are new to signet<br/>
 
@@ -224,9 +224,9 @@ you will be able to see your signet tokenURI has minted as expected<br/>
 
 Use this repo to look at useful examples of how signet can be used. Additional screenshots, code examples and demos work well in this repo.<br/>
 
+</p>
 _For more examples, please refer to the [Video](https://www.youtube.com/watch?v=uvnG4MiT0fs)_
 
-</p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ROADMAP -->

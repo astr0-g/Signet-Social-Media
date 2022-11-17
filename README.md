@@ -123,9 +123,8 @@ There are four folders in this project, they are all used by signet.
   ```
 
 - python
-  ```sh
-  pip install requirements.txt
-  ```
+  Python >= 3.7.9     
+  Download from [here](https://www.python.org/downloads/)
 
 ### Installation
 

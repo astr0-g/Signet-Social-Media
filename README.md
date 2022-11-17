@@ -103,6 +103,7 @@ This section contains frameworks/libraries used to bootstrap Signet, it includes
 - [![node.js][node.js]][node-url]
 - [![hardhat][hardhat]][hardhat-url]
 - [![vercel][vercel]][vercel-url]
+- [![python][python]][python-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -115,17 +116,23 @@ There are four folders in this project, they are all used by signet.
 ### Prerequisites
 
 - npm
+
   ```sh
-  npm install yarn -g
+  npm install npm@latest -g
+  ```
+
+- python
+  ```sh
+  pip install requirements.txt
   ```
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
    git clone https://github.com/your_username_/Project-Name.git
    ```
+2. cd into each folder besides signetapi
 3. Install NPM packages
    ```sh
    npm install
@@ -257,3 +264,5 @@ Use this space to list resources you find helpful and would like to give credit 
 [hardhat-url]: https://hardhat.org/
 [vercel]: https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white
 [vercel-url]: https://vercel.com/docs
+[python]:https://img.shields.io/badge/Python-20232A?style=for-the-badge&logo=python&logoColor=white
+[python-url]:https://www.python.org/

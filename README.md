@@ -31,7 +31,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
+  <a href="https://github.com/Astr0-G/Signet-Social-Media">
     <img src="https://cdn.discordapp.com/attachments/960590776570626098/1042591497813504040/logo2.png" alt="Logo" height="80">
   </a>
 
@@ -46,11 +46,10 @@
     <a href="https://www.signet.ink">View Demo</a>
     ·
     <a href="https://github.com/Astr0-G/Signet-Social-Media/issues">Report Bug</a>
-    ·
     <br/>
-    <a href="https://goerli.etherscan.io/address/0x1952A8046B1e549CC05E680283219e855CAf1d9b#code">Signet Controllor Contract code</a><br/>
-    <a href="https://goerli.etherscan.io/address/0x7c3FFEdd23710188be6e2eFdaC4a7d2fFA04523c#code">Signet FollowSys Contract code</a><br/>
-    <a href="https://goerli.etherscan.io/address/0xf53B6145246810ee99E5A75E720550A0f38c0E00#code">Signet ProfileSys Contract code</a>
+    <a href="https://goerli.etherscan.io/address/0x1952A8046B1e549CC05E680283219e855CAf1d9b#code">Signet controllor contract code</a><br/>
+    <a href="https://goerli.etherscan.io/address/0x7c3FFEdd23710188be6e2eFdaC4a7d2fFA04523c#code">Signet followSys contract code</a><br/>
+    <a href="https://goerli.etherscan.io/address/0xf53B6145246810ee99E5A75E720550A0f38c0E00#code">Signet profileSys contract code</a>
   </p>
 </div>
 

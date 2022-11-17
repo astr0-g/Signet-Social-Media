@@ -254,5 +254,5 @@ Use this space to list resources you find helpful and would like to give credit 
 [bootstrap-url]: https://getbootstrap.com
 [jquery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [jquery-url]: https://jquery.com
-[wagmi]: https://raw.githubusercontent.com/wagmi-dev/.github/main/content/logo-dark.svg
+[wagmi]: https://img.shields.io/badge/WAGMI-20232A?style=for-the-badge&logo=&logoColor=61DAFB
 [wagmi-url]: https://wagmi.sh/

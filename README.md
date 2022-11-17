@@ -236,7 +236,7 @@ Distributed under the MIT License.
 
 astro - [@lil_astr_0](https://twitter.com/lil_astr_0) - wangge326@gmail.com
 
-Project Link:  [github-link](https://github.com/Astr0-G/Signet-Social-Media)  [demo-link](https://www.signet.ink)   
+Project Link: [github](https://github.com/Astr0-G/Signet-Social-Media) [demo](https://www.signet.ink)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -274,7 +274,7 @@ Project Link:  [github-link](https://github.com/Astr0-G/Signet-Social-Media)  [d
 [bootstrap-url]: https://getbootstrap.com
 [jquery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [jquery-url]: https://jquery.com
-[wagmi]: https://img.shields.io/badge/WAGMI-20232A?style=for-the-badge&logo=&logoColor=61DAFB
+[wagmi]: https://img.shields.io/badge/wagmi.sh-20232A?style=for-the-badge&logo=&logoColor=61DAFB
 [wagmi-url]: https://wagmi.sh/
 [django]: https://img.shields.io/badge/Django-35495E?style=for-the-badge&logo=django&logoColor=yellowgreen
 [django-url]: https://www.djangoproject.com/

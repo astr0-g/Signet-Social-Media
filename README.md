@@ -85,7 +85,7 @@
 
 ## About The Project
 
-[![SIGNET][product-screenshot]](https://www.signet.ink)
+[![SIGNET]](https://www.signet.ink)
 
 Always wondering if there is able to have a Blockchain Journal Book application for people to save their photos or stories on-chain which can last forever, even their offsprings could watch it which is a nice point of using blockchain.
 

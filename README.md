@@ -155,7 +155,7 @@ There are four folders in this project, they are all used by signet.
 
    please have your own database access ready  
    (localhost or remote)  
-   and change the [setting](https://github.com/Astr0-G/Signet-Social-Media/blob/main/signetapi/learning/settings.py) in learning folder regarding database access
+   and change the [setting](https://github.com/Astr0-G/Signet-Social-Media/blob/main/signetapi/learning/settings.py)  regarding database access
 
    ```sh
    python manage.py runserver

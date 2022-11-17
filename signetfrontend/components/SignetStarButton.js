@@ -74,9 +74,10 @@ export default function SignetStarButton(props) {
         fetch(process.env.NEXT_PUBLIC_etherscanapi, requestOptions)
             .then((response) => response.json())
             .then((result) => {
+                // the smart contract I did is > 10$, so at here I put 11$ to be safe, and also signet is taking 5% of the payment as commission.
                 setprice((11000000000000000000 / result["result"]["ethusd"]).toString())
                 addToast(
-                    `you are about to pay ${
+                    `Chainlink Pricefeed: you are about to pay ${
                         11 / result["result"]["ethusd"]
                     } ethers in terms of $10 to star the user, click star again to confirm!`,
                     { appearance: "success" }

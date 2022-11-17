@@ -190,14 +190,15 @@ There are four folders in this project, they are all used by signet.
    ```
 
 6. cd into signetfrontend
-   
+
    ```sh
    npm dev
    ```
-   
-   if you want to run on your own api and own chain   
-   you will need to replace all the api in files of this [folder](https://github.com/Astr0-G/Signet-Social-Media/tree/main/signetfrontend/components) that I am using   
-   
+
+   if you want to run on your own api and own chain  
+   you will need to replace all the api in files of this [folder](https://github.com/Astr0-G/Signet-Social-Media/tree/main/signetfrontend/components) that I am using  
+   simply search keyword `fetch` in the files and replace the link after it
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Usage

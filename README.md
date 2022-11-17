@@ -33,7 +33,7 @@
     <a href="https://goerli.etherscan.io/address/0x7c3FFEdd23710188be6e2eFdaC4a7d2fFA04523c#code">Signet FollowSys smart contract</a><br/>
     <a href="https://goerli.etherscan.io/address/0xf53B6145246810ee99E5A75E720550A0f38c0E00#code">Signet ProfileSys smart contract</a><br /><a href="https://github.com/Astr0-G/Signet-Social-Media/tree/main/signetcontract/deployments/goerli"><strong>Explore the deployment data »</strong></a>
     <br />
-    please dm on [twitter](https://twitter.com/lil_astr_0) if you need Goerli Testnet Native Token to test Signet, I am happy to help!
+    
   </p>
 </div>
 
@@ -253,8 +253,9 @@ Distributed under the MIT License. See [`LICENSE.txt`](https://github.com/Astr0-
 
 astro - [@lil_astr_0](https://twitter.com/lil_astr_0) - wangge326@gmail.com
 
-Project Link: [github](https://github.com/Astr0-G/Signet-Social-Media) [demo](https://www.signet.ink)
+Project Link: [github](https://github.com/Astr0-G/Signet-Social-Media) [demo](https://www.signet.ink)    
 
+please dm on [twitter](https://twitter.com/lil_astr_0) if you need Goerli Testnet Native Token to test Signet, I am happy to help!
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ACKNOWLEDGMENTS -->

@@ -130,7 +130,7 @@ There are four folders in this project, they are all used by signet.
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/Astr0-G/Signet-Social-Media.git
    ```
 2. cd into each folder besides signetapi and Install NPM packages
 
@@ -143,16 +143,18 @@ There are four folders in this project, they are all used by signet.
    ```sh
    pip install requirements.txt
    ```
-    create a .env file and put
-    ```
-    databaseusername = ''
-    databasepassword = ''
-    secert_key= ''
-    ```
 
-    ```sh
-    python manage.py runserver
-    ```
+   create a .env file and put
+
+   ```
+   databaseusername = ''
+   databasepassword = ''
+   secert_key= ''
+   ```
+
+   ```sh
+   python manage.py runserver
+   ```
 
 4. cd into signetcontract
 

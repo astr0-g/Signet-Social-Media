@@ -176,6 +176,12 @@ There are four folders in this project, they are all used by signet.
    but be sure to change the contract address of the [json](https://github.com/Astr0-G/Signet-Social-Media/blob/main/signetfrontend/constants/Signetor.json) files in the signetfrontend constants
 
 5. cd into signetmonitor
+   create a .env file and put
+
+   ```
+   rpc=''
+   api=''
+   ```
 
    ```sh
    node listenFollowed.js
@@ -184,11 +190,14 @@ There are four folders in this project, they are all used by signet.
    ```
 
 6. cd into signetfrontend
-
+   
    ```sh
    npm dev
    ```
-
+   
+   if you want to run on your own api and own chain   
+   you will need to replace all the api in files of this [folder](https://github.com/Astr0-G/Signet-Social-Media/tree/main/signetfrontend/components) that I am using   
+   
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Usage

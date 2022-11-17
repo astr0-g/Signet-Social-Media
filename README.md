@@ -199,26 +199,24 @@ There are four folders in this project, they are all used by signet.
 
 ## Usage
 click connect wallet
-![image](https://user-images.githubusercontent.com/57165451/202537755-24620584-4fca-4c2d-aee2-1425f53633dc.png)
-
+<img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202537755-24620584-4fca-4c2d-aee2-1425f53633dc.png">
 click generate if you are new to signet
-![image](https://user-images.githubusercontent.com/57165451/202538033-d5dd43f9-643a-449b-bee5-fa68f5372f3f.png)
 
+<img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202538033-d5dd43f9-643a-449b-bee5-fa68f5372f3f.png">
 type what to say and even choose a phone then click generate
-![image](https://user-images.githubusercontent.com/57165451/202538566-74ea29f6-269c-480f-bc39-0dced5d89a08.png)
 
+<img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202538566-74ea29f6-269c-480f-bc39-0dced5d89a08.png">
 wait till
-![image](https://user-images.githubusercontent.com/57165451/202538678-a60d983e-125b-4c5e-aa6d-c54031da6711.png)
 
-then you will be able to see your IPFS CID in console
-![image](https://user-images.githubusercontent.com/57165451/202538768-ffa2940c-bb4d-4b68-9150-86e668031f5d.png)
+<img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202538678-a60d983e-125b-4c5e-aa6d-c54031da6711.png">
 
+<img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202538768-ffa2940c-bb4d-4b68-9150-86e668031f5d.png">
 click sign to sign the signet
-![image](https://user-images.githubusercontent.com/57165451/202538814-f0ae7738-509d-4bbe-b463-6e4926cfe41e.png)
 
+<img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202538814-f0ae7738-509d-4bbe-b463-6e4926cfe41e.png">
 you will be able to see your signet tokenURI has minted as expected
-![image](https://user-images.githubusercontent.com/57165451/202539855-b9733296-3422-4a53-b4dc-0040c8b8e55e.png)
 
+<img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202539855-b9733296-3422-4a53-b4dc-0040c8b8e55e.png">
 
 Use this repo to look at useful examples of how signet can be used. Additional screenshots, code examples and demos work well in this repo.
 

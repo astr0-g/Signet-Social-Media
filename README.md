@@ -237,8 +237,8 @@ Distributed under the MIT License.
 astro - [@lil_astr_0](https://twitter.com/lil_astr_0) - wangge326@gmail.com
 
 Project Link:
-[github-link](https://github.com/Astr0-G/Signet-Social-Media)
-[demo-link](https://www.signet.ink)
+[github-link](https://github.com/Astr0-G/Signet-Social-Media)   
+[demo-link](https://www.signet.ink)   
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

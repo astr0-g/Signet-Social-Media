@@ -23,25 +23,46 @@ def api_home(request, signetorowneraddress):
         MessageId = data['messageId']
         TokenURI = data['tokenURI']
         Time = data['time']
-        idnumb = TokenURI.split('/read/')[1]
-        information = TokenURL.objects.filter(idnum=idnumb)
-        for i in information:
-            data = TokenURLSerializer(i).data
-            imageurl = ""
-            if data["image"]:
-                imageurl  = "https://api.signet.ink"+data["image"]
-            description = data['description']
-        # get_response = requests.get(endpoint)
-        # imageURL = get_response.json()['image']
-        # description = get_response.json()['description']
-            jsonobj.append({
-                "messageSender": f"{MessageSender}",
-                "signetoraddress": f"{Signetoraddress}",
-                "messageId": f"{MessageId}",
-                "tokenimageURL": f"{imageurl}",
-                "tokendescription": f"{description}",
-                "time": f"{Time}"
-            })
+        try:
+            idnumb = TokenURI.split('/read/')[1]
+            information = TokenURL.objects.filter(idnum=idnumb)
+            for i in information:
+                data = TokenURLSerializer(i).data
+                imageurl = ""
+                if data["image"]:
+                    imageurl  = "https://api.signet.ink"+data["image"]
+                description = data['description']
+            # get_response = requests.get(endpoint)
+            # imageURL = get_response.json()['image']
+            # description = get_response.json()['description']
+                jsonobj.append({
+                    "messageSender": f"{MessageSender}",
+                    "signetoraddress": f"{Signetoraddress}",
+                    "messageId": f"{MessageId}",
+                    "tokenimageURL": f"{imageurl}",
+                    "tokendescription": f"{description}",
+                    "time": f"{Time}"
+                })
+        except:
+            ipfsURL = TokenURI
+            information = TokenURL.objects.filter(imageurl=ipfsURL)
+            for i in information:
+                data = TokenURLSerializer(i).data
+                imageurl = ""
+                if data["image"]:
+                    imageurl  = "https://api.signet.ink"+data["image"]
+                description = data['description']
+            # get_response = requests.get(endpoint)
+            # imageURL = get_response.json()['image']
+            # description = get_response.json()['description']
+                jsonobj.append({
+                    "messageSender": f"{MessageSender}",
+                    "signetoraddress": f"{Signetoraddress}",
+                    "messageId": f"{MessageId}",
+                    "tokenimageURL": f"{imageurl}",
+                    "tokendescription": f"{description}",
+                    "time": f"{Time}"
+                })
 
     # json = {
     #     "name": "Signet",

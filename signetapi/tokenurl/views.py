@@ -1,9 +1,11 @@
 import json
 from django.http import JsonResponse
 from django.forms.models import model_to_dict
+from products.models import Product
 from tokenurl.models import TokenURL
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from products.serializers import ProductSerializer
 from tokenurl.serializers import TokenURLSerializer
 import random
 from PIL import Image
@@ -23,7 +25,7 @@ def api_home(request, *arg, **kwargs):
             image._name = str(random.randint(
                 100000000000000000000000, 999999999999999999999999))+"."+image._name.split('.')[1]
             TokenURL.objects.create(
-                idnum=idnumber, description=description, image=image)
+                idnum=idnumber, description=description,imageurl=imageurl, image=image)
             # json = {
             #     "name": "Signet",
             #     "description": f"{description}",
@@ -32,7 +34,7 @@ def api_home(request, *arg, **kwargs):
             return Response(idnumber, status=200)
         else:
             TokenURL.objects.create(
-                idnum=idnumber, description=description)
+                idnum=idnumber, description=description, imageurl=imageurl)
             return Response(idnumber, status=200)
     # Coupon.objects.filter(code=savedata).delete()
     # Product.objects.create(title='used',content=savedata,price='10.00')

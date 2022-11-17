@@ -101,10 +101,9 @@ This section contains frameworks/libraries used to bootstrap Signet, it includes
 - [![Wagmi][wagmi]][wagmi-url]
 - [![django][django]][django-url]
 - [![node.js][node.js]][node-url]
-- [![Svelte][hardhat]][hardhat-url]
-- [![Laravel][laravel.com]][laravel-url]
-- [![Bootstrap][bootstrap.com]][bootstrap-url]
-- [![JQuery][jquery.com]][jquery-url]
+- [![hardhat][hardhat]][hardhat-url]
+- [![vercel][vercel]][vercel-url]
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -262,3 +261,5 @@ Use this space to list resources you find helpful and would like to give credit 
 [node-url]: https://nodejs.org/en/
 [hardhat]: https://img.shields.io/badge/Hardhat-ffff00?style=for-the-badge&logo=&logoColor=white
 [hardhat-url]: https://hardhat.org/
+[vercel]:https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white
+[vercel-url]:https://vercel.com/docs

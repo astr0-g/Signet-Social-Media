@@ -260,5 +260,5 @@ Use this space to list resources you find helpful and would like to give credit 
 [django-url]: https://www.djangoproject.com/
 [node.js]: https://img.shields.io/badge/Node.js-563D7C?style=for-the-badge&logo=nodedotjs&logoColor=white
 [node-url]: https://nodejs.org/en/
-[hardhat]: https://img.shields.io/badge/Hardhat-0769AD?style=for-the-badge&logo=&logoColor=white
+[hardhat]: https://img.shields.io/badge/Hardhat-ffff00?style=for-the-badge&logo=&logoColor=white
 [hardhat-url]: https://hardhat.org/

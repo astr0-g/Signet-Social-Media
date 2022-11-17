@@ -198,7 +198,10 @@ There are four folders in this project, they are all used by signet.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Usage
+
 click connect wallet
+
+ <p align="center">
 <img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202537755-24620584-4fca-4c2d-aee2-1425f53633dc.png">
 click generate if you are new to signet
 
@@ -222,6 +225,7 @@ Use this repo to look at useful examples of how signet can be used. Additional s
 
 _For more examples, please refer to the [Video](https://www.youtube.com/watch?v=uvnG4MiT0fs)_
 
+</p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ROADMAP -->
@@ -332,6 +336,7 @@ please dm on [twitter](https://twitter.com/lil_astr_0) if you need Goerli Testne
 [nftsotrage-url]: https://nft.storage/
 [estuary]: https://img.shields.io/badge/Estuary-55AAFF?style=for-the-badge&logo=&logoColor=61DAFB
 [estuary-url]: https://estuary.tech/
+
 [left]: https://img.shields.io/badge/[-55AAFF?style=for-the-badge&logo=&logoColor=61DAFB
 [right]: https://img.shields.io/badge/]-55AAFF?style=for-the-badge&logo=&logoColor=61DAFB
 [chainlink]:https://img.shields.io/badge/chainlink-949494?style=for-the-badge&logo=chainlink&logoColor=1663be

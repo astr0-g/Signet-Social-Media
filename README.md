@@ -124,7 +124,7 @@ There are four folders in this project, they are all used by signet.
   Python >= 3.7.9     
   Download from [here](https://www.python.org/downloads/)
 
-### Installation
+### Installation (you can skip 3-5 if you are conly testing frontend)
 
 1. Clone the repo
    ```sh
@@ -170,7 +170,7 @@ There are four folders in this project, they are all used by signet.
    npm hardhat node
    ```
 
-   but be sure to change the contract address of the [json](https://github.com/Astr0-G/Signet-Social-Media/blob/main/signetfrontend/constants/Signetor.json) files in the signetfrontend constants
+   but be sure to change the contract address of the [json](https://github.com/Astr0-G/Signet-Social-Media/blob/main/signetfrontend/constants/abi.json) files in the signetfrontend constants
 
 5. cd into signetmonitor
    create a .env file and put

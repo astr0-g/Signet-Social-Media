@@ -86,7 +86,7 @@ This section contains frameworks/libraries used to bootstrap Signet, it includes
  [![hardhat][hardhat]][hardhat-url]  
  [![vercel][vercel]][vercel-url]  
  [![python][python]][python-url]  
- [![filecoin][filecoin]][filecoin-url] [![left][left]]() [![nftsotrage][nftsotrage]][nftsotrage-url] [![Estuary][estuary]][estuary-url] [right]
+ [![filecoin][filecoin]][filecoin-url] [![left][left]]() [![nftsotrage][nftsotrage]][nftsotrage-url] [![Estuary][estuary]][estuary-url] [![left][left]]()
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

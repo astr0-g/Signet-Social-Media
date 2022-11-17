@@ -143,9 +143,8 @@ There are four folders in this project, they are all used by signet.
    ```sh
    pip install requirements.txt
    ```
-
-    ```create a .env file
-    and put
+    create a .env file and put
+    ```
     databaseusername = ''
     databasepassword = ''
     secert_key= ''

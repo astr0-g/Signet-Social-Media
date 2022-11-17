@@ -154,7 +154,8 @@ There are four folders in this project, they are all used by signet.
    ```
 
    please have your own database access ready
-   localhost or remote
+   localhost or remote   
+   and change the setting file in learning folder regarding database access
 
    ```sh
    python manage.py runserver

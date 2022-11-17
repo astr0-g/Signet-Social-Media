@@ -98,13 +98,13 @@ Signet could be a good point to connect to others in this space, and I gave it a
 
 This section contains frameworks/libraries used to bootstrap Signet, it includes the frontend and the backend.
 
-- [![Next][next.js]][next-url]
-- [![Wagmi][wagmi]][wagmi-url]
-- [![django][django]][django-url]
-- [![node.js][node.js]][node-url]
-- [![hardhat][hardhat]][hardhat-url]
-- [![vercel][vercel]][vercel-url]
-- [![python][python]][python-url]
+   [![Next][next.js]][next-url]   
+   [![Wagmi][wagmi]][wagmi-url]   
+   [![django][django]][django-url]   
+   [![node.js][node.js]][node-url]   
+   [![hardhat][hardhat]][hardhat-url]   
+   [![vercel][vercel]][vercel-url]   
+   [![python][python]][python-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

@@ -153,8 +153,8 @@ There are four folders in this project, they are all used by signet.
    secert_key= ''
    ```
 
-   please have your own database access ready
-   localhost or remote   
+   please have your own database access ready   
+   (localhost or remote)   
    and change the setting file in learning folder regarding database access
 
    ```sh

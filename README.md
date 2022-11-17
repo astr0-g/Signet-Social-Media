@@ -1,4 +1,3 @@
-
 <a name="readme-top"></a>
 
 <!--
@@ -96,13 +95,14 @@ Signet could be a good point to connect to others in this space, and I gave it a
 
 This section contains frameworks/libraries used to bootstrap Signet, it includes the frontend and the backend.
 
-   [![Next][next.js]][next-url]   
-   [![Wagmi][wagmi]][wagmi-url]   
-   [![django][django]][django-url]   
-   [![node.js][node.js]][node-url]   
-   [![hardhat][hardhat]][hardhat-url]   
-   [![vercel][vercel]][vercel-url]   
-   [![python][python]][python-url]
+ [![Next][next.js]][next-url]  
+ [![Wagmi][wagmi]][wagmi-url]  
+ [![django][django]][django-url]  
+ [![node.js][node.js]][node-url]  
+ [![hardhat][hardhat]][hardhat-url]  
+ [![vercel][vercel]][vercel-url]  
+ [![python][python]][python-url]
+ [![filecoin][filecoin]][filecoin-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -120,11 +120,12 @@ There are four folders in this project, they are all used by signet.
   npm install npm@latest -g
   ```
 
-- python       
-  python version >= 3.7.9     
+- python  
+  python version >= 3.7.9  
   Download from [here](https://www.python.org/downloads/)
 
 ### Installation
+
 ###### you can skip 3-5 if you are only testing frontend
 
 1. Clone the repo
@@ -189,6 +190,17 @@ There are four folders in this project, they are all used by signet.
 
 6. cd into signetfrontend
 
+   create a .env file and put
+
+   ```
+   NEXT_PUBLIC_NFT_STORAGE_KEY=
+   NEXT_PUBLIC_etherscanapi=
+   NEXT_PUBLIC_ALCHEMYAPIKEY1=
+   NEXT_PUBLIC_INFURAAPIKEY1=
+   NEXT_PUBLIC_ALCHEMYAPIKEY2=
+   NEXT_PUBLIC_INFURAAPIKEY2=
+   ```
+
    ```sh
    npm dev
    ```
@@ -221,7 +233,7 @@ _For more examples, please refer to the [Video](https://www.youtube.com/watch?v=
   - [x] signet controllor
   - [x] signet followSys
   - [x] signet profileSys
-- [ ] filecoin integration
+- [X] filecoin integration with nft.storage
 - [ ] NFT owner tab
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -307,3 +319,5 @@ Project Link: [github](https://github.com/Astr0-G/Signet-Social-Media) [demo](ht
 [vercel-url]: https://vercel.com/docs
 [python]: https://img.shields.io/badge/Python-20232A?style=for-the-badge&logo=python&logoColor=white
 [python-url]: https://www.python.org/
+[filecoin]: https://img.shields.io/badge/Filecoin-20232A?style=for-the-badge&logo=&logoColor=61DAFB
+[filecoin-url]: https://filecoin.io/

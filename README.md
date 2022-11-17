@@ -79,14 +79,14 @@ Signet could be a good point to connect to others in this space, and I gave it a
 
 This section contains frameworks/libraries used to bootstrap Signet, it includes the frontend and the backend.
 
- [![Next][next.js]][next-url]  
+[![Next][next.js]][next-url]  
  [![Wagmi][wagmi]][wagmi-url]  
  [![django][django]][django-url]  
  [![node.js][node.js]][node-url]  
  [![hardhat][hardhat]][hardhat-url]  
  [![vercel][vercel]][vercel-url]  
- [![python][python]][python-url]   
- [![filecoin][filecoin]][filecoin-url]
+ [![python][python]][python-url]  
+ [![filecoin][filecoin]][filecoin-url][![nftsotrage][nftsotrage]][nftsotrage-url][![Estuary][estuary]][estuary-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -178,6 +178,7 @@ There are four folders in this project, they are all used by signet.
 
    ```
    NEXT_PUBLIC_NFT_STORAGE_KEY=
+   NEXT_PUBLIC_estuary_KEY=
    NEXT_PUBLIC_etherscanapi=
    NEXT_PUBLIC_ALCHEMYAPIKEY1=
    NEXT_PUBLIC_INFURAAPIKEY1=
@@ -217,7 +218,7 @@ _For more examples, please refer to the [Video](https://www.youtube.com/watch?v=
   - [x] signet controllor
   - [x] signet followSys
   - [x] signet profileSys
-- [X] filecoin integration with nft.storage
+- [x] filecoin integration with nft.storage/Estuary
 - [ ] NFT owner tab
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -253,9 +254,10 @@ Distributed under the MIT License. See [`LICENSE.txt`](https://github.com/Astr0-
 
 astro - [@lil_astr_0](https://twitter.com/lil_astr_0) - wangge326@gmail.com
 
-Project Link: [github](https://github.com/Astr0-G/Signet-Social-Media) [demo](https://www.signet.ink)    
+Project Link: [github](https://github.com/Astr0-G/Signet-Social-Media) [demo](https://www.signet.ink)
 
 please dm on [twitter](https://twitter.com/lil_astr_0) if you need Goerli Testnet Native Token to test Signet, I am happy to help!
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ACKNOWLEDGMENTS -->
@@ -306,3 +308,7 @@ please dm on [twitter](https://twitter.com/lil_astr_0) if you need Goerli Testne
 [python-url]: https://www.python.org/
 [filecoin]: https://img.shields.io/badge/Filecoin-55AAFF?style=for-the-badge&logo=&logoColor=61DAFB
 [filecoin-url]: https://filecoin.io/
+[nftsotrage]: https://img.shields.io/badge/nft.sotrage-55AAFF?style=for-the-badge&logo=&logoColor=61DAFB
+[nftsotrage-url]: https://nft.storage/
+[estuary]: https://img.shields.io/badge/Estuary-55AAFF?style=for-the-badge&logo=&logoColor=61DAFB
+[estuary-url]: https://estuary.tech/

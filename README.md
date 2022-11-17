@@ -193,13 +193,13 @@ _For more examples, please refer to the [Video](https://www.youtube.com/watch?v=
 - [x] signet api
 - [x] signet smart contract monitor
 - [x] signet frontend
-    - [x] home tab
-    - [x] explore tab
-    - [x] profile tab
+  - [x] home tab
+  - [x] explore tab
+  - [x] profile tab
 - [x] signet smart contract
-    - [x] signet controllor
-    - [x] signet followSys
-    - [x] signet profileSys
+  - [x] signet controllor
+  - [x] signet followSys
+  - [x] signet profileSys
 - [ ] filecoin integration
 - [ ] NFT owner tab
 
@@ -215,7 +215,7 @@ If you have a suggestion that would make this better, please fork the repo and c
 Don't forget to give the project a star! Thanks again!
 
 1. Fork the Project
-2. Create your Feature Branch 
+2. Create your Feature Branch
 3. Commit your Changes
 4. Push to the Branch
 5. Open a Pull Request
@@ -234,9 +234,11 @@ Distributed under the MIT License.
 
 ## Contact
 
-astro - [@your_twitter](https://twitter.com/lil_astr_0) - wangge326@gmail.com
+astro - [@lil_astr_0](https://twitter.com/lil_astr_0) - wangge326@gmail.com
 
-Project Link: [https://github.com/Astr0-G/Signet-Social-Media](https://github.com/Astr0-G/Signet-Social-Media)
+Project Link:
+[github-link](https://github.com/Astr0-G/Signet-Social-Media)
+[demo-link](https://www.signet.ink)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

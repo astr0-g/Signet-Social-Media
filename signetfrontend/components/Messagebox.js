@@ -22,6 +22,7 @@ const nonepic = new File([], "thismeansthissignetdoesnothavephoto.png", { type: 
 
 export default function Messagebox() {
     const NFT_STORAGE_KEY = process.env.NEXT_PUBLIC_NFT_STORAGE_KEY
+
     const [input, setInput] = useState("")
     const [File, setFile] = useState("")
     const [results, setResults] = useState(0)
@@ -127,7 +128,9 @@ export default function Messagebox() {
         const image = imagefile
 
         // create a new NFTStorage client using our API key
-        const nftstorage = new NFTStorage({ token: NFT_STORAGE_KEY })
+        const nftstorage = new NFTStorage({
+            token: `${NFT_STORAGE_KEY}`,
+        })
 
         // call client.store, passing in the image & metadata
         return nftstorage.store({
@@ -141,6 +144,7 @@ export default function Messagebox() {
         addToast("Filecoin: Uploading signet to IPFS...", { appearance: "success" })
         setLoading(true)
         var formdata = new FormData()
+        formdata.append("description", input)
         if (selectedFile) {
             formdata.append("image", File)
             const result = await storeNFT(File, "signet", input)
@@ -154,9 +158,29 @@ export default function Messagebox() {
             setipfs(result["url"])
             formdata.append("imageurl", result["url"])
         }
-
-        formdata.append("description", input)
-
+        // ----------------------------------------------------------
+        // --------below is the Estuary IPFS service code------------
+        // --------------since It is about NFT -----------------------
+        // ---------so signet will only run with nft.storage---------
+        // ----------------------------------------------------------
+        // const estuary_KEY = process.env.NEXT_PUBLIC_estuary_KEY
+        // const formData = new FormData()
+        // formData.append("data", File)
+        // await fetch("https://upload.estuary.tech/content/add", {
+        //     method: "POST",
+        //     headers: {
+        //         Authorization: `Bearer ${estuary_KEY}`,
+        //     },
+        //     body: formData,
+        // })
+        //     .then((response) => response.text())
+        //     .then((result) => {
+        //         console.log(result['cid'])
+        //     })
+        //     .catch((error) => console.log("error", error))
+        // ----------------------------------------------------------
+        // --------above is the Estuary IPFS service code------------
+        // ----------------------------------------------------------
         var requestOptions = {
             statusCode: 200,
             method: "POST",

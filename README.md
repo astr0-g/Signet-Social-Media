@@ -274,7 +274,7 @@ Project Link: [github](https://github.com/Astr0-G/Signet-Social-Media) [demo](ht
 [issues-shield]: https://img.shields.io/github/issues/Astr0-G/Signet-Social-Media.svg?style=for-the-badge
 [issues-url]: https://github.com/Astr0-G/Signet-Social-Media/issues
 [license-shield]: https://img.shields.io/github/license/Astr0-G/Signet-Social-Media.svg?style=for-the-badge
-[license-url]: https://github.com/Astr0-G/Signet-Social-Media/LICENSE.txt
+[license-url]: https://github.com/Astr0-G/Signet-Social-Media/blob/main/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
 [product-screenshot]: https://cdn.discordapp.com/attachments/960590776570626098/1042591497813504040/logo2.png

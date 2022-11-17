@@ -6,7 +6,8 @@ import creatorcontract from "../constants/abi.json"
 import { useToasts } from "react-toast-notifications"
 import signetorcontract from "../constants/Signetor.json"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
-
+// Import the NFTStorage class and File constructor from the 'nft.storage' package
+import { NFTStorage, File } from "nft.storage"
 import {
     usePrepareContractWrite,
     useAccount,
@@ -17,8 +18,10 @@ import {
     useNetwork,
     useWaitForTransaction,
 } from "wagmi"
+const nonepic = new File([], "thismeansthissignetdoesnothavephoto.png", { type: "image/png" })
 
 export default function Messagebox() {
+    const NFT_STORAGE_KEY = process.env.NEXT_PUBLIC_NFT_STORAGE_KEY
     const [input, setInput] = useState("")
     const [File, setFile] = useState("")
     const [results, setResults] = useState(0)
@@ -29,7 +32,7 @@ export default function Messagebox() {
     const [loading, setLoading] = useState(false)
     const [ready, setReady] = useState(false)
     const [post, setpost] = useState(false)
-
+    const [ipfs, setipfs] = useState("")
     const [tokenURL, setTokenURL] = useState("")
     const [ownersignetoraddress, setownersignetoraddress] = useState("")
     const [ownersignetnum, setownersignetnum] = useState("")
@@ -119,17 +122,40 @@ export default function Messagebox() {
             addToast("Message sent successful!", { appearance: "success" })
         }
     }, [CreateSignetorisSuccess])
+    async function storeNFT(imagefile, name, description) {
+        // load the file from disk
+        const image = imagefile
+
+        // create a new NFTStorage client using our API key
+        const nftstorage = new NFTStorage({ token: NFT_STORAGE_KEY })
+
+        // call client.store, passing in the image & metadata
+        return nftstorage.store({
+            image,
+            name,
+            description,
+        })
+    }
     const sendPost = async () => {
         if (loading) return
         setLoading(true)
         var formdata = new FormData()
         if (selectedFile) {
             formdata.append("image", File)
+            const result = await storeNFT(File, "signet", input)
+            console.log(`Filecoin x nft.storage ipfs storage CID result: ${result["url"]}`)
+            setipfs(result["url"])
+            formdata.append("imageurl", result["url"])
         } else {
             formdata.append("image", "")
+            const result = await storeNFT(nonepic, "signet", input)
+            console.log(`Filecoin x nft.storage ipfs storage CID result: ${result["url"]}`)
+            setipfs(result["url"])
+            formdata.append("imageurl", result["url"])
         }
 
         formdata.append("description", input)
+
         var requestOptions = {
             statusCode: 200,
             method: "POST",
@@ -155,7 +181,7 @@ export default function Messagebox() {
 
     useEffect(() => {
         if (CIDnumber) {
-            setTokenURL(`https://api.signet.ink/tokenurl/read/${CIDnumber}`)
+            setTokenURL(ipfs)
         }
     }, [CIDnumber])
     useEffect(() => {

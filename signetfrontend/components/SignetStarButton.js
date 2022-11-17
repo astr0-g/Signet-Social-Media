@@ -71,10 +71,7 @@ export default function SignetStarButton(props) {
             redirect: "follow",
         }
 
-        fetch(
-            "https://api.etherscan.io/api?module=stats&action=ethprice&apikey=PDU1U37CA2ZEGEF3JP3B86A33G19P37ZVS",
-            requestOptions
-        )
+        fetch(process.env.NEXT_PUBLIC_etherscanapi, requestOptions)
             .then((response) => response.json())
             .then((result) => {
                 setprice((11000000000000000000 / result["result"]["ethusd"]).toString())

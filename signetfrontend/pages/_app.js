@@ -35,10 +35,10 @@ const NEXT_PUBLIC_Dapp_URL = process.env.NEXT_PUBLIC_SERVER_URL
 const { chains, provider } = configureChains(
     [/*chain.mainnet, chain.polygon, chain.polygonMumbai,*/ chain.goerli],
     [
-        alchemyProvider({ apiKey: "Bhro-rO9XMWf7T0bapuprbv1WVF7Z4Jg" }, { priority: 0 }),
-        infuraProvider("2154a2e0bb8941d1ab13f80fd7b7b05b", { priority: 1 }),
-        alchemyProvider({ apiKey: "n7iZIuguaMdEzpnIgTN3xs3_zQ2rWjw6" }, { priority: 2 }),
-        infuraProvider("b72c182a206247f3b3a7f80c32696594", { priority: 3 }),
+        alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMYAPIKEY1 }, { priority: 0 }),
+        infuraProvider(process.env.NEXT_PUBLIC_INFURAAPIKEY1, { priority: 1 }),
+        alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMYAPIKEY2 }, { priority: 2 }),
+        infuraProvider(process.env.NEXT_PUBLIC_INFURAAPIKEY2, { priority: 3 }),
         publicProvider({ priority: 4 }),
     ]
 )

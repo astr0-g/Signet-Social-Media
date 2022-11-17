@@ -23,7 +23,9 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url] -->
+
 [![MIT License][license-shield]][license-url]
+
 <!-- [![LinkedIn][linkedin-shield]][linkedin-url] -->
 
 <!-- PROJECT LOGO -->
@@ -38,14 +40,16 @@
   <p align="center">
     Decentralized Social Media Platform Application
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/Astr0-G/Signet-Social-Media"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <a href="https://www.signet.ink">View Demo</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    <a href="https://github.com/Astr0-G/Signet-Social-Media/issues">Report Bug</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+    <a href="https://goerli.etherscan.io/address/0x1952A8046B1e549CC05E680283219e855CAf1d9b#code">Signet Controllor Contract</a>
+    <a href="https://goerli.etherscan.io/address/0x7c3FFEdd23710188be6e2eFdaC4a7d2fFA04523c#code">Signet FollowSys Contract</a>
+    <a href="https://goerli.etherscan.io/address/0xf53B6145246810ee99E5A75E720550A0f38c0E00#code">Signet ProfileSys Contract</a>
   </p>
 </div>
 

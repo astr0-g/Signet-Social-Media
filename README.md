@@ -144,6 +144,15 @@ There are four folders in this project, they are all used by signet.
    pip install requirements.txt
    ```
 
+````create a .env file
+and put
+databaseusername = ''
+databasepassword = ''
+secert_key= ''```
+   ```sh
+   python manage.py runserver
+````
+
 4. cd into signetcontract
 
    ```sh
@@ -165,7 +174,6 @@ There are four folders in this project, they are all used by signet.
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 ## Usage
 

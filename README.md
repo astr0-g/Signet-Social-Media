@@ -101,7 +101,7 @@ This section contains frameworks/libraries used to bootstrap Signet, it includes
  [![node.js][node.js]][node-url]  
  [![hardhat][hardhat]][hardhat-url]  
  [![vercel][vercel]][vercel-url]  
- [![python][python]][python-url]
+ [![python][python]][python-url]   
  [![filecoin][filecoin]][filecoin-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -319,5 +319,5 @@ Project Link: [github](https://github.com/Astr0-G/Signet-Social-Media) [demo](ht
 [vercel-url]: https://vercel.com/docs
 [python]: https://img.shields.io/badge/Python-20232A?style=for-the-badge&logo=python&logoColor=white
 [python-url]: https://www.python.org/
-[filecoin]: https://img.shields.io/badge/Filecoin-20232A?style=for-the-badge&logo=&logoColor=61DAFB
+[filecoin]: https://img.shields.io/badge/Filecoin-55AAFF?style=for-the-badge&logo=&logoColor=61DAFB
 [filecoin-url]: https://filecoin.io/

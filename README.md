@@ -38,7 +38,7 @@
 </div>
 <p align="center"> 
   Visitor count<br>
-  <img src="https://profile-counter.glitch.me/sagar-viradiya/count.svg" />
+  <img src="https://profile-counter.glitch.me/Astr0-G/count.svg" />
 </p>
 <!-- TABLE OF CONTENTS -->
 <details>

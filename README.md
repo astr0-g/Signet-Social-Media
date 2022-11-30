@@ -36,7 +36,10 @@
     
   </p>
 </div>
-
+<p align="center"> 
+  Visitor count<br>
+  <img src="https://profile-counter.glitch.me/Astr0-G/count.svg" />
+</p>
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
@@ -203,7 +206,7 @@ There are four folders in this project, they are all used by signet.
 <p align="center"><img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202551106-ad81977d-5b26-4e8d-83d3-45a78d360cc9.png"></p><br/>
 <p align="center">click generate if you are new to signet</p>
 <p align="center"><img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202538033-d5dd43f9-643a-449b-bee5-fa68f5372f3f.png"></p><br/>
-<p align="center">type what to say and even choose a phone then click generate</p>
+<p align="center">type what you want to say and even choose a pic then click generate</p>
 <p align="center"><img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202538566-74ea29f6-269c-480f-bc39-0dced5d89a08.png"></p><br/>
 <p align="center">wait till</p>
 <p align="center"><img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202538678-a60d983e-125b-4c5e-aa6d-c54031da6711.png"></p><br/>

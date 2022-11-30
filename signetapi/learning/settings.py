@@ -106,7 +106,7 @@ MEDIA_URL = '/media/'
 #         'NAME': 'database',
 #         'ENFORCE_SCHEMA': False,
 #         'CLIENT': {
-#                 'host': 'mongodb+srv://wangge326:q1w2e3r4t5@cluster0.vq1hrid.mongodb.net/?retryWrites=true&w=majority'
+#                 'host': mongoDB
 #         }
 #     }
 # }

@@ -97,6 +97,7 @@ DATABASES = {
         'OPTIONS': {'charset': 'utf8mb4'},
     }
 }
+# Path where media is stored
 MEDIA_URL = '/media/'
 # ------------------------------mangoDB--------------------------------------
 # DATABASES = {
@@ -109,7 +110,7 @@ MEDIA_URL = '/media/'
 #         }
 #     }
 # }
-
+# ------------------------------mangoDB--------------------------------------
 # Path where media is stored
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 # Password validation

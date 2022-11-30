@@ -16,6 +16,7 @@ from dotenv import load_dotenv
 load_dotenv()
 databasepassword = os.environ.get("databasepassword")
 databaseusername = os.environ.get("databaseusername")
+mongoDB = os.environ.get("mangoDB")
 secert_key = os.environ.get("secert_key")
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -97,6 +98,17 @@ DATABASES = {
     }
 }
 MEDIA_URL = '/media/'
+# ------------------------------mangoDB--------------------------------------
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'NAME': 'database',
+#         'ENFORCE_SCHEMA': False,
+#         'CLIENT': {
+#                 'host': 'mongodb+srv://wangge326:q1w2e3r4t5@cluster0.vq1hrid.mongodb.net/?retryWrites=true&w=majority'
+#         }
+#     }
+# }
 
 # Path where media is stored
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')

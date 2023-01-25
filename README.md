@@ -23,7 +23,7 @@
     <a href="https://github.com/Astr0-G/Signet-Social-Media"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://www.signet.ink">View Demo</a>
+    <a href="https://test.signet.ink">View Demo</a>
     ·
     <a href="https://github.com/Astr0-G/Signet-Social-Media/issues">Report Bug</a>
     <br/><br />
@@ -70,7 +70,7 @@
 
 ## About The Project
 
-[SIGNET](https://www.signet.ink)
+[SIGNET](https://test.signet.ink)
 
 Always wondering if there is able to have a Blockchain Journal Book application for people to save their photos or stories on-chain which can last forever, even their offsprings could watch it which is a nice point of using blockchain.
 

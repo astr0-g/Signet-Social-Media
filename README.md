@@ -199,7 +199,7 @@ There are four folders in this project, they are all used by signet.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Usage
+## Usage (this is old version)
 
 <p align="center" text="sm">click connect wallet</p>
 <p align="center"><img height="200" alt="signet" src="https://user-images.githubusercontent.com/57165451/202551106-ad81977d-5b26-4e8d-83d3-45a78d360cc9.png"></p><br/>

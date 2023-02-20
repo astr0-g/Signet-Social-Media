@@ -12,35 +12,28 @@ async function main() {
     const CONTRACT_ADDRESS = creatorcontract.address
     const CONTRACT_ABI = creatorcontract.abi
     const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, provider)
-    contract.on(
-        "NewMessageSent",
-        (messageSender, signetoraddress, messageId, signetId, tokenURI_, time) => {
-            console.log(
-                messageSender,
-                signetoraddress,
-                signetId.toString(),
-                tokenURI_,
-                time.toString()
-            )
-            var formdata = new FormData()
-            formdata.append("messageSender", messageSender)
-            formdata.append("signetoraddress", signetoraddress)
-            formdata.append("messageId", signetId.toString())
-            formdata.append("tokenURI", tokenURI_)
-            formdata.append("time", time.toString())
+    contract.on("NewMessageSent", (messageSender, messageId, signetId, tokenURI_, time) => {
+        console.log(messageSender, signetId.toString(), tokenURI_, time.toString())
+        var formdata = new FormData()
+        formdata.append("messageSender", messageSender)
+        formdata.append("messageId", signetId.toString())
+        formdata.append("tokenURI", tokenURI_)
+        formdata.append("time", time.toString())
+        formdata.append("liked", 0)
+        formdata.append("stared", 0)
+        formdata.append("views", 0)
 
-            var requestOptions = {
-                method: "POST",
-                body: formdata,
-                redirect: "follow",
-            }
-
-            fetch(`https://${api}/signet/`, requestOptions)
-                .then((response) => response.text())
-                .then((result) => console.log(result))
-                .catch((error) => console.log("error", error))
+        var requestOptions = {
+            method: "POST",
+            body: formdata,
+            redirect: "follow",
         }
-    )
+
+        fetch(`${process.env.api_endpoint}/signet/`, requestOptions)
+            .then((response) => response.text())
+            .then((result) => console.log(result))
+            .catch((error) => console.log("error", error))
+    })
 }
 
 main()

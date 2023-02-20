@@ -7,7 +7,6 @@ class TokenURLSerializer(serializers.ModelSerializer):
     class Meta:
         model = TokenURL
         fields = [
-            'idnum',
             'description',
             'imageurl',
             'image'

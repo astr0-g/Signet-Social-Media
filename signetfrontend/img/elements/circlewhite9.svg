@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115.03 115.03">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2, .cls-3 {
+        fill: none;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-3 {
+        stroke-width: 3px;
+      }
+    </style>
+  </defs>
+  <circle class="cls-2" cx="57.52" cy="57.52" r="57.02" transform="translate(-11.68 100.28) rotate(-76.72)"/>
+  <circle class="cls-3" cx="57.52" cy="57.52" r="52.45"/>
+  <circle class="cls-2" cx="57.52" cy="57.52" r="11.42"/>
+  <circle class="cls-3" cx="57.52" cy="57.52" r="7.19"/>
+  <polygon class="cls-1" points="57.52 93.91 51.26 104.74 63.77 104.74 57.52 93.91"/>
+  <polygon class="cls-1" points="57.52 21.12 63.77 10.29 51.26 10.29 57.52 21.12"/>
+  <polygon class="cls-1" points="21.12 57.52 10.29 51.26 10.29 63.77 21.12 57.52"/>
+  <polygon class="cls-1" points="93.91 57.52 104.74 63.77 104.74 51.26 93.91 57.52"/>
+</svg>

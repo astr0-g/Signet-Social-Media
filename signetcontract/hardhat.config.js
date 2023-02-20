@@ -17,90 +17,92 @@ const COINMARKET_KEY = process.env.COINMARKET_KEY
 const ARB_RPC_URL = process.env.ARB_RPC_URL
 const MUMBAI_RPC_URL = process.env.MUMBAI_RPC_URL
 task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
-  const accounts = await hre.ethers.getSigners()
+    const accounts = await hre.ethers.getSigners()
 
-  for (const account of accounts) {
-    console.log(account.address)
-  }
+    for (const account of accounts) {
+        console.log(account.address)
+    }
 })
 module.exports = {
-  solidity: {
-    compilers: [
-      { version: "0.8.7" },
-      { version: "0.6.6" },
-      { version: "0.8.4" },
-      { version: "0.8.0" },
-      { version: "0.8.8" },
-      { version: "0.8.13" },
-      { version: "0.8.14" },
-    ],
-  },
-  networks: {
-    polygon: {
-      url: "https://polygon-mainnet.infura.io/v3/be819d15039f41ca9e45081e212d1c9a", //
-      accounts: [RINKEBY_PRIVATE_KEY],
-      chainId: 137,
+    solidity: {
+        compilers: [
+            { version: "0.8.7" },
+            { version: "0.6.6" },
+            { version: "0.8.4" },
+            { version: "0.8.0" },
+            { version: "0.8.8" },
+            { version: "0.8.9" },
+            { version: "0.8.13" },
+            { version: "0.8.14" },
+        ],
     },
-    mumbai: {
-      url: "https://polygon-mumbai.g.alchemy.com/v2/KhO9Yy5q0IngUt5Ywg8-Flz5VbSPM0ym", //
-      accounts: [RINKEBY_PRIVATE_KEY],
-      chainId: 80001,
+    networks: {
+        polygon: {
+            url: "https://polygon-mainnet.infura.io/v3/be819d15039f41ca9e45081e212d1c9a", //
+            accounts: [RINKEBY_PRIVATE_KEY],
+            chainId: 137,
+        },
+        mumbai: {
+            url: "https://polygon-mumbai.g.alchemy.com/v2/KhO9Yy5q0IngUt5Ywg8-Flz5VbSPM0ym", //
+            accounts: [RINKEBY_PRIVATE_KEY],
+            chainId: 80001,
+        },
+        arb: {
+            chainId: 42161,
+            url: ARB_RPC_URL,
+            accounts: [RINKEBY_PRIVATE_KEY],
+            blockConfirmations: 6,
+        },
+        hardhat: {
+            // // If you want to do some forking, uncomment this
+            // forking: {
+            //   url: MAINNET_RPC_URL
+            // }
+            chainId: 31337,
+        },
+        localhost: {
+            chainId: 31337,
+        },
+        rinkeby: {
+            url: RINKEBY_RPC_URL,
+            accounts: [RINKEBY_PRIVATE_KEY],
+            chainId: 4,
+            blockConfirmations: 6,
+        },
+        mumbai: {
+            url: MUMBAI_RPC_URL,
+            accounts: [RINKEBY_PRIVATE_KEY],
+            chainId: 80001,
+            blockConfirmations: 6,
+        },
+        goerli: {
+            url: GORRLI_RPC_URL,
+            accounts: [RINKEBY_PRIVATE_KEY],
+            chainId: 5,
+            blockConfirmations: 6,
+            gasPrice: 10000000000,
+        },
     },
-    arb: {
-      chainId: 42161,
-      url: ARB_RPC_URL,
-      accounts: [RINKEBY_PRIVATE_KEY],
-      blockConfirmations: 6,
+    namedAccounts: {
+        deployer: {
+            default: 0,
+        },
+        player: {
+            default: 1,
+        },
     },
-    hardhat: {
-      // // If you want to do some forking, uncomment this
-      // forking: {
-      //   url: MAINNET_RPC_URL
-      // }
-      chainId: 31337,
+    gasReporter: {
+        enabled: true,
+        outputFile: "gas-reports.txt",
+        noColors: true,
+        currency: "USD",
+        coinmarketcap: COINMARKET_KEY,
+        coin: "ETH",
     },
-    localhost: {
-      chainId: 31337,
+    etherscan: {
+        apiKey: ETHERSCAN_API_KEY,
     },
-    rinkeby: {
-      url: RINKEBY_RPC_URL,
-      accounts: [RINKEBY_PRIVATE_KEY],
-      chainId: 4,
-      blockConfirmations: 6,
+    mocha: {
+        timeout: 2000000,
     },
-    mumbai: {
-      url: MUMBAI_RPC_URL,
-      accounts: [RINKEBY_PRIVATE_KEY],
-      chainId: 80001,
-      blockConfirmations: 6,
-    },
-    goerli: {
-      url: GORRLI_RPC_URL,
-      accounts: [RINKEBY_PRIVATE_KEY],
-      chainId: 5,
-      blockConfirmations: 6,
-    },
-  },
-  namedAccounts: {
-    deployer: {
-      default: 0,
-    },
-    player: {
-      default: 1,
-    },
-  },
-  gasReporter: {
-    enabled: true,
-    outputFile: "gas-reports.txt",
-    noColors: true,
-    currency: "USD",
-    coinmarketcap: COINMARKET_KEY,
-    coin: "ETH",
-  },
-  etherscan: {
-    apiKey: ETHERSCAN_API_KEY,
-  },
-  mocha: {
-    timeout: 2000000,
-  },
 }

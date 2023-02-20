@@ -35,7 +35,7 @@ export default function FollowerList() {
     let displayData
 
     async function pulljson() {
-        const response = await fetch(`https://api.signet.ink/follow/follower/${useraddress}`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_APIENDPOINT}/follow/follower/${useraddress}`)
         const responseData = await response.json()
 
         // if (responseData.length > 10) {
@@ -74,7 +74,7 @@ export default function FollowerList() {
 
     // async function Loadmore() {
     //     setismoreLoading(true)
-    //     const response = await fetch(`https://api.signet.ink/signet/all/`)
+    //     const response = await fetch(`${process.env.NEXT_PUBLIC_APIENDPOINT}/signet/all/`)
     //     const responseData = await response.json()
 
     //     displayData = responseData.slice(10, responseData.length).map(function (msg) {

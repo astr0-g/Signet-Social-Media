@@ -1,4 +1,5 @@
 import Image from "next/image"
+import { ethers } from "ethers"
 import { useState, useEffect, useRef } from "react"
 import styles from "../styles/Dashbaord.module.css"
 import creatorcontract from "../constants/abi.json"
@@ -22,12 +23,51 @@ import {
     useNetwork,
     useWaitForTransaction,
 } from "wagmi"
+import { FaCommentDots } from "react-icons/fa"
+import styled from "styled-components"
+
+const Container = styled.div`
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.13);
+        animation-delay: 0.3s;
+    }
+`
+
+const Wrapper = styled.div`
+    margin-left: 0.2rem;
+`
+
 export default function SignetLikeandStar(props) {
     const { address } = useAccount()
-    const [likenum, setlikenum] = useState("")
-    const [Starednum, setStarednum] = useState("")
+    const [likenum, setlikenum] = useState(0)
+    const [Starednum, setStarednum] = useState(0)
     const [liked, setLiked] = useState("")
     const { addToast } = useToasts()
+    // async function read() {
+    //     const provider = new ethers.providers.WebSocketProvider(
+    //         "wss://eth-goerli.g.alchemy.com/v2/LwCfn4XJFulYMDjkN-29D4vZOwlkiuVR"
+    //     )
+    //     const CONTRACT_ADDRESS = creatorcontract.address
+    //     const CONTRACT_ABI = creatorcontract.abi
+    //     const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, provider)
+    //     const checkliked = await contract.checkliked(props.SignetId, address)
+    //     const LikeNumdata = await contract.getLikedNum(props.SignetId)
+    //     const StaredNumdata = await contract.getStaredNum(props.SignetId)
+    //     setLiked(checkliked)
+    //     setlikenum(LikeNumdata.toString())
+    //     setStarednum(StaredNumdata.toString())
+    // }
+    // useEffect(() => {
+    //     if (address.length > 40) {
+    //         read()
+    //     }
+    // }, [address])
+
     const { data: checkliked } = useContractRead({
         addressOrName: creatorcontract.address,
         contractInterface: creatorcontract.abi,
@@ -67,6 +107,7 @@ export default function SignetLikeandStar(props) {
             setLiked(checkliked)
         }
     }, [checkliked])
+
     function sendto1() {
         addToast("Sorry! You can't like yourself", { appearance: "error" })
     }
@@ -76,8 +117,8 @@ export default function SignetLikeandStar(props) {
     const InfoSignetId = props.SignetId
     const InfoSignetIdOwner = props.SignetIdOwner
     return (
-        <div>
-            <div className="rounded-sm flex flex-row justify-center space-x-3 ">
+        <div className="flex justify-center items-center space-x-2.5 text-center">
+            <Container>
                 {liked == true && InfoSignetIdOwner != address && (
                     <SignetunlikeButton
                         SignetId={InfoSignetId}
@@ -91,11 +132,9 @@ export default function SignetLikeandStar(props) {
                     <button onClick={sendto1}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
+                            fill="white"
                             viewBox="0 0 24 24"
-                            strokeWidth="1.5"
-                            stroke="currentColor"
-                            className="w-6 h-6"
+                            className="w-4 h-4"
                         >
                             <path
                                 strokeLinecap="round"
@@ -105,8 +144,20 @@ export default function SignetLikeandStar(props) {
                         </svg>
                     </button>
                 )}
+                <div className="ml-1  text-sm text-white">{likenum}</div>
+            </Container>
 
-                <div>{likenum}</div>
+            <Container>
+                <Link href={"/posts/" + props.SignetId}>
+                    <Wrapper>
+                        <FaCommentDots color="white" size={14} />
+                    </Wrapper>
+                </Link>
+
+                <div className="ml-1.5 text-sm text-white">{props.commentNumber}</div>
+            </Container>
+
+            <Container>
                 {InfoSignetIdOwner != address && (
                     <SignetStarButton SignetId={InfoSignetId} SignetIdOwner={InfoSignetIdOwner} />
                 )}
@@ -114,11 +165,11 @@ export default function SignetLikeandStar(props) {
                     <button onClick={sendto2}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
+                            fill="yellow"
                             viewBox="0 0 24 24"
-                            strokeWidth="1.5"
-                            stroke="currentColor"
-                            className="w-6 h-6"
+                            strokeWidth={1.5}
+                            stroke="yellow"
+                            className="w-4 h-4"
                         >
                             <path
                                 strokeLinecap="round"
@@ -128,8 +179,8 @@ export default function SignetLikeandStar(props) {
                         </svg>
                     </button>
                 )}
-                <div>{Starednum}</div>
-            </div>
+                <div className="ml-1 text-sm text-white">{Starednum}</div>
+            </Container>
         </div>
     )
 }

@@ -1,0 +1,1019 @@
+{
+  "address": "0xB92c7b4a25F561Dcfb598a8CDAF4f8310e22bBdB",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "Already__Followed",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "Can__NotLike",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "Can__notfollow",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "Never__Followed",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "Not__EnoughAmount",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "Un__Registered",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "Wrong__UserSubmitted",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "isfollowing",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "isfollowed",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "time",
+          "type": "uint256"
+        }
+      ],
+      "name": "Followed",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "messageSender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "signetId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "signetoraddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "time",
+          "type": "uint256"
+        }
+      ],
+      "name": "Liked",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "messageSender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "signetId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "signetoraddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "time",
+          "type": "uint256"
+        }
+      ],
+      "name": "Stared",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "isunfollowing",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "isunfollowed",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "time",
+          "type": "uint256"
+        }
+      ],
+      "name": "UnFollowed",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "messageSender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "signetId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "signetoraddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "time",
+          "type": "uint256"
+        }
+      ],
+      "name": "Unlike",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "signetor",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "followersaddress",
+          "type": "address"
+        }
+      ],
+      "name": "checkfollowed",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "signetID",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "likedAddress",
+          "type": "address"
+        }
+      ],
+      "name": "checkliked",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "signetor",
+          "type": "address"
+        }
+      ],
+      "name": "follow",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "signetor",
+          "type": "address"
+        }
+      ],
+      "name": "getFollowersNum",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "signetor",
+          "type": "address"
+        }
+      ],
+      "name": "getFollowingsNum",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "signetId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getLikedNum",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "signetId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getStarContributor",
+      "outputs": [
+        {
+          "internalType": "address[]",
+          "name": "",
+          "type": "address[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "signetId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getStaredNum",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "signetor",
+          "type": "address"
+        }
+      ],
+      "name": "getStaredNumForSignetor",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "signetId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "signetIdOwner",
+          "type": "address"
+        }
+      ],
+      "name": "like",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "signetIdOwner",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "signetId",
+          "type": "uint256"
+        }
+      ],
+      "name": "star",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "signetor",
+          "type": "address"
+        }
+      ],
+      "name": "unfollow",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "signetId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "signetIdOwner",
+          "type": "address"
+        }
+      ],
+      "name": "unlike",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x06b9de717abd78d1932f51ec9b6c156a3c57704af433924a08ccdd94a88f89b6",
+  "receipt": {
+    "to": null,
+    "from": "0x2F327B602B7d440C107E833481e20cC8E768458c",
+    "contractAddress": "0xB92c7b4a25F561Dcfb598a8CDAF4f8310e22bBdB",
+    "transactionIndex": 2,
+    "gasUsed": "1859644",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x6716296f1523dab5c0362471112ec0bb2a67709db0129997d5856de2c9cb72fd",
+    "transactionHash": "0x06b9de717abd78d1932f51ec9b6c156a3c57704af433924a08ccdd94a88f89b6",
+    "logs": [],
+    "blockNumber": 8324808,
+    "cumulativeGasUsed": "1911128",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "numDeployments": 1,
+  "solcInputHash": "ffcf898ede1fb7e7a9698f2494d98ec3",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.9+commit.e5eed63a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"Already__Followed\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"Can__NotLike\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"Can__notfollow\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"Never__Followed\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"Not__EnoughAmount\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"Un__Registered\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"Wrong__UserSubmitted\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"isfollowing\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"isfollowed\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"time\",\"type\":\"uint256\"}],\"name\":\"Followed\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"messageSender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"signetId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"signetoraddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"time\",\"type\":\"uint256\"}],\"name\":\"Liked\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"messageSender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"signetId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"signetoraddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"time\",\"type\":\"uint256\"}],\"name\":\"Stared\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"isunfollowing\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"isunfollowed\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"time\",\"type\":\"uint256\"}],\"name\":\"UnFollowed\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"messageSender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"signetId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"signetoraddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"time\",\"type\":\"uint256\"}],\"name\":\"Unlike\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"signetor\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"followersaddress\",\"type\":\"address\"}],\"name\":\"checkfollowed\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"signetID\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"likedAddress\",\"type\":\"address\"}],\"name\":\"checkliked\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"signetor\",\"type\":\"address\"}],\"name\":\"follow\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"signetor\",\"type\":\"address\"}],\"name\":\"getFollowersNum\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"signetor\",\"type\":\"address\"}],\"name\":\"getFollowingsNum\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"signetId\",\"type\":\"uint256\"}],\"name\":\"getLikedNum\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"signetId\",\"type\":\"uint256\"}],\"name\":\"getStarContributor\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"signetId\",\"type\":\"uint256\"}],\"name\":\"getStaredNum\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"signetor\",\"type\":\"address\"}],\"name\":\"getStaredNumForSignetor\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"signetId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"signetIdOwner\",\"type\":\"address\"}],\"name\":\"like\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"signetIdOwner\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"signetId\",\"type\":\"uint256\"}],\"name\":\"star\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"signetor\",\"type\":\"address\"}],\"name\":\"unfollow\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"signetId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"signetIdOwner\",\"type\":\"address\"}],\"name\":\"unlike\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/FollowFacet.sol\":\"FollowFacet\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.0;\\n\\ninterface AggregatorV3Interface {\\n  function decimals() external view returns (uint8);\\n\\n  function description() external view returns (string memory);\\n\\n  function version() external view returns (uint256);\\n\\n  function getRoundData(uint80 _roundId)\\n    external\\n    view\\n    returns (\\n      uint80 roundId,\\n      int256 answer,\\n      uint256 startedAt,\\n      uint256 updatedAt,\\n      uint80 answeredInRound\\n    );\\n\\n  function latestRoundData()\\n    external\\n    view\\n    returns (\\n      uint80 roundId,\\n      int256 answer,\\n      uint256 startedAt,\\n      uint256 updatedAt,\\n      uint80 answeredInRound\\n    );\\n}\\n\",\"keccak256\":\"0x6e6e4b0835904509406b070ee173b5bc8f677c19421b76be38aea3b1b3d30846\",\"license\":\"MIT\"},\"contracts/FollowFacet.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity ^0.8.9;\\r\\n\\r\\nimport \\\"./libraries/LibDiamond.sol\\\";\\r\\nimport \\\"./libraries/LibSignetStorage.sol\\\";\\r\\nimport \\\"./libraries/LibPriceConverter.sol\\\";\\r\\n\\r\\n/*\\r\\n * @title Signet Follow Facet\\r\\n * @author astro - outerspace.ai\\r\\n */\\r\\n\\r\\nerror Already__Followed();\\r\\nerror Never__Followed();\\r\\nerror Can__notfollow();\\r\\nerror Not__EnoughAmount();\\r\\nerror Wrong__UserSubmitted();\\r\\nerror Can__NotLike();\\r\\nerror Not_Owner();\\r\\nerror Un__Registered();\\r\\n\\r\\ncontract FollowFacet {\\r\\n    AppStorage s;\\r\\n\\r\\n    modifier onlyOwner() {\\r\\n        address _owner = owner();\\r\\n        if (_owner != msg.sender) revert Not_Owner();\\r\\n        _;\\r\\n    }\\r\\n\\r\\n    modifier noReentrant() {\\r\\n        require(!s.locked, \\\"Reentrancy Protection\\\");\\r\\n        s.locked = true;\\r\\n        _;\\r\\n        s.locked = false;\\r\\n    }\\r\\n\\r\\n    modifier Registered() {\\r\\n        if (LibSignetStorage.checkRegistered(msg.sender) == false) revert Un__Registered();\\r\\n        _;\\r\\n    }\\r\\n\\r\\n    event Followed(address indexed isfollowing, address indexed isfollowed, uint256 time);\\r\\n    event UnFollowed(address indexed isunfollowing, address indexed isunfollowed, uint256 time);\\r\\n    event Liked(\\r\\n        address indexed messageSender,\\r\\n        uint256 signetId,\\r\\n        address indexed signetoraddress,\\r\\n        uint256 time\\r\\n    );\\r\\n    event Stared(\\r\\n        address indexed messageSender,\\r\\n        uint256 signetId,\\r\\n        address indexed signetoraddress,\\r\\n        uint256 time\\r\\n    );\\r\\n    event Unlike(\\r\\n        address indexed messageSender,\\r\\n        uint256 signetId,\\r\\n        address indexed signetoraddress,\\r\\n        uint256 time\\r\\n    );\\r\\n\\r\\n    function follow(address signetor) public Registered {\\r\\n        if (msg.sender == signetor) revert Can__notfollow();\\r\\n        if (checkfollowed(signetor, msg.sender) == true) revert Already__Followed();\\r\\n        LibSignetStorage.follow(msg.sender, signetor);\\r\\n        emit Followed(msg.sender, signetor, block.timestamp);\\r\\n    }\\r\\n\\r\\n    function unfollow(address signetor) public Registered {\\r\\n        if (msg.sender == signetor) revert Can__notfollow();\\r\\n        if (checkfollowed(signetor, msg.sender) == false) revert Never__Followed();\\r\\n        LibSignetStorage.unfollow(msg.sender, signetor);\\r\\n        emit UnFollowed(msg.sender, signetor, block.timestamp);\\r\\n    }\\r\\n\\r\\n    function like(uint256 signetId, address signetIdOwner) public Registered {\\r\\n        if (msg.sender == signetIdOwner) revert Wrong__UserSubmitted();\\r\\n        if (checklikeable(signetIdOwner, signetId) == false) revert Can__NotLike();\\r\\n        LibSignetStorage.like(msg.sender, signetId);\\r\\n        emit Liked(msg.sender, signetId, signetIdOwner, block.timestamp);\\r\\n    }\\r\\n\\r\\n    function unlike(uint256 signetId, address signetIdOwner) public Registered {\\r\\n        if (msg.sender == signetIdOwner) revert Wrong__UserSubmitted();\\r\\n        if (checklikeable(signetIdOwner, signetId) == false) revert Can__NotLike();\\r\\n        LibSignetStorage.unlike(msg.sender, signetId);\\r\\n        emit Unlike(msg.sender, signetId, signetIdOwner, block.timestamp);\\r\\n    }\\r\\n\\r\\n    function star(address signetIdOwner, uint256 signetId) external payable Registered {\\r\\n        if (msg.sender == signetIdOwner) revert Wrong__UserSubmitted();\\r\\n        if (checklikeable(signetIdOwner, signetId) == false) revert Can__NotLike();\\r\\n        if (\\r\\n            LibPriceConverter.getConversionRate(msg.value) < LibSignetStorage.getAppreciateAmount()\\r\\n        ) revert Not__EnoughAmount();\\r\\n        LibSignetStorage.star(msg.sender, signetIdOwner, signetId);\\r\\n        uint256 afterCommission = calculateComssion(msg.value);\\r\\n        (bool callSuccess, ) = payable(signetIdOwner).call{value: afterCommission}(\\\"\\\");\\r\\n        require(callSuccess, \\\"Call failed\\\");\\r\\n        emit Stared(msg.sender, signetId, signetIdOwner, block.timestamp);\\r\\n    }\\r\\n\\r\\n    function calculateComssion(uint256 _value) internal view returns (uint256) {\\r\\n        uint256 commission = LibSignetStorage.getStarCommission();\\r\\n        uint256 commissionNumerator = 100 - commission;\\r\\n        uint256 commissionDenominator = 100;\\r\\n        return (_value * commissionNumerator) / commissionDenominator;\\r\\n    }\\r\\n\\r\\n    function checklikeable(address signetIdOwner, uint256 signetId) internal view returns (bool) {\\r\\n        return (LibSignetStorage.checklikeable(signetIdOwner, signetId));\\r\\n    }\\r\\n\\r\\n    function checkfollowed(address signetor, address followersaddress) public view returns (bool) {\\r\\n        return (LibSignetStorage.checkfollowed(signetor, followersaddress));\\r\\n    }\\r\\n\\r\\n    function checkliked(uint256 signetID, address likedAddress) public view returns (bool) {\\r\\n        return (LibSignetStorage.checkliked(signetID, likedAddress));\\r\\n    }\\r\\n\\r\\n    function getFollowingsNum(address signetor) external view returns (uint256) {\\r\\n        return (LibSignetStorage.getFollowingsNum(signetor));\\r\\n    }\\r\\n\\r\\n    function getFollowersNum(address signetor) external view returns (uint256) {\\r\\n        return (LibSignetStorage.getFollowersNum(signetor));\\r\\n    }\\r\\n\\r\\n    function getStaredNumForSignetor(address signetor) external view returns (uint256) {\\r\\n        return (LibSignetStorage.getStaredNumForSignetor(signetor));\\r\\n    }\\r\\n\\r\\n    function getLikedNum(uint256 signetId) external view returns (uint256) {\\r\\n        return (LibSignetStorage.getLikedNum(signetId));\\r\\n    }\\r\\n\\r\\n    function getStaredNum(uint256 signetId) external view returns (uint256) {\\r\\n        return (LibSignetStorage.getStaredNum(signetId));\\r\\n    }\\r\\n\\r\\n    function getStarContributor(uint256 signetId) external view returns (address[] memory) {\\r\\n        return (LibSignetStorage.getStarContributor(signetId));\\r\\n    }\\r\\n\\r\\n    function owner() internal view returns (address owner_) {\\r\\n        owner_ = LibDiamond.contractOwner();\\r\\n    }\\r\\n}\\r\\n\",\"keccak256\":\"0x36c12a8f112cc7c94e9fda2c165848b495fe297b11e860dd294b8032b26943b7\",\"license\":\"MIT\"},\"contracts/interfaces/IDiamondCut.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.9;\\n\\ninterface IDiamondCut {\\n    enum FacetCutAction {Add, Replace, Remove}\\n    // Add=0, Replace=1, Remove=2\\n\\n    struct FacetCut {\\n        address facetAddress;\\n        FacetCutAction action;\\n        bytes4[] functionSelectors;\\n    }\\n\\n    /// @notice Add/replace/remove any number of functions and optionally execute\\n    ///         a function with delegatecall\\n    /// @param _diamondCut Contains the facet addresses and function selectors\\n    /// @param _init The address of the contract or facet to execute _calldata\\n    /// @param _calldata A function call, including function selector and arguments\\n    ///                  _calldata is executed with delegatecall on _init\\n    function diamondCut(\\n        FacetCut[] calldata _diamondCut,\\n        address _init,\\n        bytes calldata _calldata\\n    ) external;\\n\\n    event DiamondCut(FacetCut[] _diamondCut, address _init, bytes _calldata);\\n}\\n\",\"keccak256\":\"0x1c180ef68fa675444f89aab807a06eb7983790650dda4f693e05b52e8ff5fe4c\",\"license\":\"MIT\"},\"contracts/interfaces/IERC1155.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\n// OpenZeppelin Contracts (last updated v4.7.0) (token/ERC1155/IERC1155.sol)\\r\\n\\r\\npragma solidity ^0.8.0;\\r\\n\\r\\nimport \\\"./IERC165.sol\\\";\\r\\n\\r\\n/**\\r\\n * @dev Required interface of an ERC1155 compliant contract, as defined in the\\r\\n * https://eips.ethereum.org/EIPS/eip-1155[EIP].\\r\\n *\\r\\n * _Available since v3.1._\\r\\n */\\r\\ninterface IERC1155 is IERC165 {\\r\\n    /**\\r\\n     * @dev Emitted when `value` tokens of token type `id` are transferred from `from` to `to` by `operator`.\\r\\n     */\\r\\n    event TransferSingle(\\r\\n        address indexed operator,\\r\\n        address indexed from,\\r\\n        address indexed to,\\r\\n        uint256 id,\\r\\n        uint256 value\\r\\n    );\\r\\n\\r\\n    /**\\r\\n     * @dev Equivalent to multiple {TransferSingle} events, where `operator`, `from` and `to` are the same for all\\r\\n     * transfers.\\r\\n     */\\r\\n    event TransferBatch(\\r\\n        address indexed operator,\\r\\n        address indexed from,\\r\\n        address indexed to,\\r\\n        uint256[] ids,\\r\\n        uint256[] values\\r\\n    );\\r\\n\\r\\n    /**\\r\\n     * @dev Emitted when `account` grants or revokes permission to `operator` to transfer their tokens, according to\\r\\n     * `approved`.\\r\\n     */\\r\\n    event ApprovalForAll(address indexed account, address indexed operator, bool approved);\\r\\n\\r\\n    /**\\r\\n     * @dev Emitted when the URI for token type `id` changes to `value`, if it is a non-programmatic URI.\\r\\n     *\\r\\n     * If an {URI} event was emitted for `id`, the standard\\r\\n     * https://eips.ethereum.org/EIPS/eip-1155#metadata-extensions[guarantees] that `value` will equal the value\\r\\n     * returned by {IERC1155MetadataURI-uri}.\\r\\n     */\\r\\n    event URI(string value, uint256 indexed id);\\r\\n\\r\\n    /**\\r\\n     * @dev Returns the amount of tokens of token type `id` owned by `account`.\\r\\n     *\\r\\n     * Requirements:\\r\\n     *\\r\\n     * - `account` cannot be the zero address.\\r\\n     */\\r\\n    function balanceOf(address account, uint256 id) external view returns (uint256);\\r\\n\\r\\n    /**\\r\\n     * @dev xref:ROOT:erc1155.adoc#batch-operations[Batched] version of {balanceOf}.\\r\\n     *\\r\\n     * Requirements:\\r\\n     *\\r\\n     * - `accounts` and `ids` must have the same length.\\r\\n     */\\r\\n    function balanceOfBatch(\\r\\n        address[] calldata accounts,\\r\\n        uint256[] calldata ids\\r\\n    ) external view returns (uint256[] memory);\\r\\n\\r\\n    /**\\r\\n     * @dev Grants or revokes permission to `operator` to transfer the caller's tokens, according to `approved`,\\r\\n     *\\r\\n     * Emits an {ApprovalForAll} event.\\r\\n     *\\r\\n     * Requirements:\\r\\n     *\\r\\n     * - `operator` cannot be the caller.\\r\\n     */\\r\\n    function setApprovalForAll(address operator, bool approved) external;\\r\\n\\r\\n    /**\\r\\n     * @dev Returns true if `operator` is approved to transfer ``account``'s tokens.\\r\\n     *\\r\\n     * See {setApprovalForAll}.\\r\\n     */\\r\\n    function isApprovedForAll(address account, address operator) external view returns (bool);\\r\\n\\r\\n    /**\\r\\n     * @dev Transfers `amount` tokens of token type `id` from `from` to `to`.\\r\\n     *\\r\\n     * Emits a {TransferSingle} event.\\r\\n     *\\r\\n     * Requirements:\\r\\n     *\\r\\n     * - `to` cannot be the zero address.\\r\\n     * - If the caller is not `from`, it must have been approved to spend ``from``'s tokens via {setApprovalForAll}.\\r\\n     * - `from` must have a balance of tokens of type `id` of at least `amount`.\\r\\n     * - If `to` refers to a smart contract, it must implement {IERC1155Receiver-onERC1155Received} and return the\\r\\n     * acceptance magic value.\\r\\n     */\\r\\n    function safeTransferFrom(\\r\\n        address from,\\r\\n        address to,\\r\\n        uint256 id,\\r\\n        uint256 amount,\\r\\n        bytes calldata data\\r\\n    ) external;\\r\\n\\r\\n    /**\\r\\n     * @dev xref:ROOT:erc1155.adoc#batch-operations[Batched] version of {safeTransferFrom}.\\r\\n     *\\r\\n     * Emits a {TransferBatch} event.\\r\\n     *\\r\\n     * Requirements:\\r\\n     *\\r\\n     * - `ids` and `amounts` must have the same length.\\r\\n     * - If `to` refers to a smart contract, it must implement {IERC1155Receiver-onERC1155BatchReceived} and return the\\r\\n     * acceptance magic value.\\r\\n     */\\r\\n    function safeBatchTransferFrom(\\r\\n        address from,\\r\\n        address to,\\r\\n        uint256[] calldata ids,\\r\\n        uint256[] calldata amounts,\\r\\n        bytes calldata data\\r\\n    ) external;\\r\\n}\\r\\n\",\"keccak256\":\"0xd89585bf0c5bca650a7cd7c9487a40af9fcd8a4a3ad83a823d357e94c286b2cd\",\"license\":\"MIT\"},\"contracts/interfaces/IERC165.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.9;\\n\\ninterface IERC165 {\\n    /// @notice Query if a contract implements an interface\\n    /// @param interfaceId The interface identifier, as specified in ERC-165\\n    /// @dev Interface identification is specified in ERC-165. This function\\n    ///  uses less than 30,000 gas.\\n    /// @return `true` if the contract implements `interfaceID` and\\n    ///  `interfaceID` is not 0xffffffff, `false` otherwise\\n    function supportsInterface(bytes4 interfaceId) external view returns (bool);\\n}\\n\",\"keccak256\":\"0x3adf1411c3cea1e9c8808e7de6f6b3d9050b3ce2f8c974b3ea36e5e774870a48\",\"license\":\"MIT\"},\"contracts/interfaces/IERC721.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\n// OpenZeppelin Contracts (last updated v4.8.0) (token/ERC721/IERC721.sol)\\r\\n\\r\\npragma solidity ^0.8.0;\\r\\n\\r\\nimport \\\"./IERC165.sol\\\";\\r\\n\\r\\n/**\\r\\n * @dev Required interface of an ERC721 compliant contract.\\r\\n */\\r\\ninterface IERC721 is IERC165 {\\r\\n    /**\\r\\n     * @dev Emitted when `tokenId` token is transferred from `from` to `to`.\\r\\n     */\\r\\n    event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);\\r\\n\\r\\n    /**\\r\\n     * @dev Emitted when `owner` enables `approved` to manage the `tokenId` token.\\r\\n     */\\r\\n    event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);\\r\\n\\r\\n    /**\\r\\n     * @dev Emitted when `owner` enables or disables (`approved`) `operator` to manage all of its assets.\\r\\n     */\\r\\n    event ApprovalForAll(address indexed owner, address indexed operator, bool approved);\\r\\n\\r\\n    /**\\r\\n     * @dev Returns the number of tokens in ``owner``'s account.\\r\\n     */\\r\\n    function balanceOf(address owner) external view returns (uint256 balance);\\r\\n\\r\\n    /**\\r\\n     * @dev Returns the owner of the `tokenId` token.\\r\\n     *\\r\\n     * Requirements:\\r\\n     *\\r\\n     * - `tokenId` must exist.\\r\\n     */\\r\\n    function ownerOf(uint256 tokenId) external view returns (address owner);\\r\\n\\r\\n    /**\\r\\n     * @dev Safely transfers `tokenId` token from `from` to `to`.\\r\\n     *\\r\\n     * Requirements:\\r\\n     *\\r\\n     * - `from` cannot be the zero address.\\r\\n     * - `to` cannot be the zero address.\\r\\n     * - `tokenId` token must exist and be owned by `from`.\\r\\n     * - If the caller is not `from`, it must be approved to move this token by either {approve} or {setApprovalForAll}.\\r\\n     * - If `to` refers to a smart contract, it must implement {IERC721Receiver-onERC721Received}, which is called upon a safe transfer.\\r\\n     *\\r\\n     * Emits a {Transfer} event.\\r\\n     */\\r\\n    function safeTransferFrom(\\r\\n        address from,\\r\\n        address to,\\r\\n        uint256 tokenId,\\r\\n        bytes calldata data\\r\\n    ) external;\\r\\n\\r\\n    /**\\r\\n     * @dev Safely transfers `tokenId` token from `from` to `to`, checking first that contract recipients\\r\\n     * are aware of the ERC721 protocol to prevent tokens from being forever locked.\\r\\n     *\\r\\n     * Requirements:\\r\\n     *\\r\\n     * - `from` cannot be the zero address.\\r\\n     * - `to` cannot be the zero address.\\r\\n     * - `tokenId` token must exist and be owned by `from`.\\r\\n     * - If the caller is not `from`, it must have been allowed to move this token by either {approve} or {setApprovalForAll}.\\r\\n     * - If `to` refers to a smart contract, it must implement {IERC721Receiver-onERC721Received}, which is called upon a safe transfer.\\r\\n     *\\r\\n     * Emits a {Transfer} event.\\r\\n     */\\r\\n    function safeTransferFrom(address from, address to, uint256 tokenId) external;\\r\\n\\r\\n    /**\\r\\n     * @dev Transfers `tokenId` token from `from` to `to`.\\r\\n     *\\r\\n     * WARNING: Note that the caller is responsible to confirm that the recipient is capable of receiving ERC721\\r\\n     * or else they may be permanently lost. Usage of {safeTransferFrom} prevents loss, though the caller must\\r\\n     * understand this adds an external call which potentially creates a reentrancy vulnerability.\\r\\n     *\\r\\n     * Requirements:\\r\\n     *\\r\\n     * - `from` cannot be the zero address.\\r\\n     * - `to` cannot be the zero address.\\r\\n     * - `tokenId` token must be owned by `from`.\\r\\n     * - If the caller is not `from`, it must be approved to move this token by either {approve} or {setApprovalForAll}.\\r\\n     *\\r\\n     * Emits a {Transfer} event.\\r\\n     */\\r\\n    function transferFrom(address from, address to, uint256 tokenId) external;\\r\\n\\r\\n    /**\\r\\n     * @dev Gives permission to `to` to transfer `tokenId` token to another account.\\r\\n     * The approval is cleared when the token is transferred.\\r\\n     *\\r\\n     * Only a single account can be approved at a time, so approving the zero address clears previous approvals.\\r\\n     *\\r\\n     * Requirements:\\r\\n     *\\r\\n     * - The caller must own the token or be an approved operator.\\r\\n     * - `tokenId` must exist.\\r\\n     *\\r\\n     * Emits an {Approval} event.\\r\\n     */\\r\\n    function approve(address to, uint256 tokenId) external;\\r\\n\\r\\n    /**\\r\\n     * @dev Approve or remove `operator` as an operator for the caller.\\r\\n     * Operators can call {transferFrom} or {safeTransferFrom} for any token owned by the caller.\\r\\n     *\\r\\n     * Requirements:\\r\\n     *\\r\\n     * - The `operator` cannot be the caller.\\r\\n     *\\r\\n     * Emits an {ApprovalForAll} event.\\r\\n     */\\r\\n    function setApprovalForAll(address operator, bool approved) external;\\r\\n\\r\\n    /**\\r\\n     * @dev Returns the account approved for `tokenId` token.\\r\\n     *\\r\\n     * Requirements:\\r\\n     *\\r\\n     * - `tokenId` must exist.\\r\\n     */\\r\\n    function getApproved(uint256 tokenId) external view returns (address operator);\\r\\n\\r\\n    /**\\r\\n     * @dev Returns if the `operator` is allowed to manage all of the assets of `owner`.\\r\\n     *\\r\\n     * See {setApprovalForAll}\\r\\n     */\\r\\n    function isApprovedForAll(address owner, address operator) external view returns (bool);\\r\\n}\\r\\n\",\"keccak256\":\"0x6632c24dd5f1ea20e442b9956f659bf683b152d55d060a9db5507162d52f7388\",\"license\":\"MIT\"},\"contracts/libraries/LibDiamond.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.9;\\n\\nimport {IDiamondCut} from \\\"../interfaces/IDiamondCut.sol\\\";\\n\\nlibrary LibDiamond {\\n    error InValidFacetCutAction();\\n    error NotDiamondOwner();\\n    error NoSelectorsInFacet();\\n    error NoZeroAddress();\\n    error SelectorExists(bytes4 selector);\\n    error SameSelectorReplacement(bytes4 selector);\\n    error MustBeZeroAddress();\\n    error NoCode();\\n    error NonExistentSelector(bytes4 selector);\\n    error ImmutableFunction(bytes4 selector);\\n    error NonEmptyCalldata();\\n    error EmptyCalldata();\\n    error InitCallFailed();\\n    bytes32 constant DIAMOND_STORAGE_POSITION = keccak256(\\\"diamond.standard.diamond.storage\\\");\\n\\n    struct FacetAddressAndPosition {\\n        address facetAddress;\\n        uint96 functionSelectorPosition; // position in facetFunctionSelectors.functionSelectors array\\n    }\\n\\n    struct FacetFunctionSelectors {\\n        bytes4[] functionSelectors;\\n        uint256 facetAddressPosition; // position of facetAddress in facetAddresses array\\n    }\\n\\n    struct DiamondStorage {\\n        // maps function selector to the facet address and\\n        // the position of the selector in the facetFunctionSelectors.selectors array\\n        mapping(bytes4 => FacetAddressAndPosition) selectorToFacetAndPosition;\\n        // maps facet addresses to function selectors\\n        mapping(address => FacetFunctionSelectors) facetFunctionSelectors;\\n        // facet addresses\\n        address[] facetAddresses;\\n        // Used to query if a contract implements an interface.\\n        // Used to implement ERC-165.\\n        mapping(bytes4 => bool) supportedInterfaces;\\n        // owner of the contract\\n        address contractOwner;\\n    }\\n\\n    function diamondStorage() internal pure returns (DiamondStorage storage ds) {\\n        bytes32 position = DIAMOND_STORAGE_POSITION;\\n        assembly {\\n            ds.slot := position\\n        }\\n    }\\n\\n    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);\\n\\n    function setContractOwner(address _newOwner) internal {\\n        DiamondStorage storage ds = diamondStorage();\\n        address previousOwner = ds.contractOwner;\\n        ds.contractOwner = _newOwner;\\n        emit OwnershipTransferred(previousOwner, _newOwner);\\n    }\\n\\n    function contractOwner() internal view returns (address contractOwner_) {\\n        contractOwner_ = diamondStorage().contractOwner;\\n    }\\n\\n    function enforceIsContractOwner() internal view {\\n        if (msg.sender != diamondStorage().contractOwner) revert NotDiamondOwner();\\n    }\\n\\n    event DiamondCut(IDiamondCut.FacetCut[] _diamondCut, address _init, bytes _calldata);\\n\\n    // Internal function version of diamondCut\\n    function diamondCut(\\n        IDiamondCut.FacetCut[] memory _diamondCut,\\n        address _init,\\n        bytes memory _calldata\\n    ) internal {\\n        for (uint256 facetIndex; facetIndex < _diamondCut.length; facetIndex++) {\\n            IDiamondCut.FacetCutAction action = _diamondCut[facetIndex].action;\\n            if (action == IDiamondCut.FacetCutAction.Add) {\\n                addFunctions(\\n                    _diamondCut[facetIndex].facetAddress,\\n                    _diamondCut[facetIndex].functionSelectors\\n                );\\n            } else if (action == IDiamondCut.FacetCutAction.Replace) {\\n                replaceFunctions(\\n                    _diamondCut[facetIndex].facetAddress,\\n                    _diamondCut[facetIndex].functionSelectors\\n                );\\n            } else if (action == IDiamondCut.FacetCutAction.Remove) {\\n                removeFunctions(\\n                    _diamondCut[facetIndex].facetAddress,\\n                    _diamondCut[facetIndex].functionSelectors\\n                );\\n            } else {\\n                revert InValidFacetCutAction();\\n            }\\n        }\\n        emit DiamondCut(_diamondCut, _init, _calldata);\\n        initializeDiamondCut(_init, _calldata);\\n    }\\n\\n    function addFunctions(address _facetAddress, bytes4[] memory _functionSelectors) internal {\\n        if (_functionSelectors.length <= 0) revert NoSelectorsInFacet();\\n        DiamondStorage storage ds = diamondStorage();\\n        if (_facetAddress == address(0)) revert NoZeroAddress();\\n        uint96 selectorPosition = uint96(\\n            ds.facetFunctionSelectors[_facetAddress].functionSelectors.length\\n        );\\n        // add new facet address if it does not exist\\n        if (selectorPosition == 0) {\\n            addFacet(ds, _facetAddress);\\n        }\\n        for (uint256 selectorIndex; selectorIndex < _functionSelectors.length; selectorIndex++) {\\n            bytes4 selector = _functionSelectors[selectorIndex];\\n            address oldFacetAddress = ds.selectorToFacetAndPosition[selector].facetAddress;\\n            if (oldFacetAddress != address(0)) revert SelectorExists(selector);\\n            addFunction(ds, selector, selectorPosition, _facetAddress);\\n            selectorPosition++;\\n        }\\n    }\\n\\n    function replaceFunctions(address _facetAddress, bytes4[] memory _functionSelectors) internal {\\n        if (_functionSelectors.length <= 0) revert NoSelectorsInFacet();\\n        DiamondStorage storage ds = diamondStorage();\\n        if (_facetAddress == address(0)) revert NoZeroAddress();\\n        uint96 selectorPosition = uint96(\\n            ds.facetFunctionSelectors[_facetAddress].functionSelectors.length\\n        );\\n        // add new facet address if it does not exist\\n        if (selectorPosition == 0) {\\n            addFacet(ds, _facetAddress);\\n        }\\n        for (uint256 selectorIndex; selectorIndex < _functionSelectors.length; selectorIndex++) {\\n            bytes4 selector = _functionSelectors[selectorIndex];\\n            address oldFacetAddress = ds.selectorToFacetAndPosition[selector].facetAddress;\\n            if (oldFacetAddress == _facetAddress) revert SameSelectorReplacement(selector);\\n            removeFunction(ds, oldFacetAddress, selector);\\n            addFunction(ds, selector, selectorPosition, _facetAddress);\\n            selectorPosition++;\\n        }\\n    }\\n\\n    function removeFunctions(address _facetAddress, bytes4[] memory _functionSelectors) internal {\\n        if (_functionSelectors.length <= 0) revert NoSelectorsInFacet();\\n        DiamondStorage storage ds = diamondStorage();\\n        // if function does not exist then do nothing and return\\n        if (_facetAddress != address(0)) revert MustBeZeroAddress();\\n        for (uint256 selectorIndex; selectorIndex < _functionSelectors.length; selectorIndex++) {\\n            bytes4 selector = _functionSelectors[selectorIndex];\\n            address oldFacetAddress = ds.selectorToFacetAndPosition[selector].facetAddress;\\n            removeFunction(ds, oldFacetAddress, selector);\\n        }\\n    }\\n\\n    function addFacet(DiamondStorage storage ds, address _facetAddress) internal {\\n        enforceHasContractCode(_facetAddress);\\n        ds.facetFunctionSelectors[_facetAddress].facetAddressPosition = ds.facetAddresses.length;\\n        ds.facetAddresses.push(_facetAddress);\\n    }\\n\\n    function addFunction(\\n        DiamondStorage storage ds,\\n        bytes4 _selector,\\n        uint96 _selectorPosition,\\n        address _facetAddress\\n    ) internal {\\n        ds.selectorToFacetAndPosition[_selector].functionSelectorPosition = _selectorPosition;\\n        ds.facetFunctionSelectors[_facetAddress].functionSelectors.push(_selector);\\n        ds.selectorToFacetAndPosition[_selector].facetAddress = _facetAddress;\\n    }\\n\\n    function removeFunction(\\n        DiamondStorage storage ds,\\n        address _facetAddress,\\n        bytes4 _selector\\n    ) internal {\\n        if (_facetAddress == address(0)) revert NonExistentSelector(_selector);\\n        // an immutable function is a function defined directly in a diamond\\n        if (_facetAddress == address(this)) revert ImmutableFunction(_selector);\\n        // replace selector with last selector, then delete last selector\\n        uint256 selectorPosition = ds\\n            .selectorToFacetAndPosition[_selector]\\n            .functionSelectorPosition;\\n        uint256 lastSelectorPosition = ds\\n            .facetFunctionSelectors[_facetAddress]\\n            .functionSelectors\\n            .length - 1;\\n        // if not the same then replace _selector with lastSelector\\n        if (selectorPosition != lastSelectorPosition) {\\n            bytes4 lastSelector = ds.facetFunctionSelectors[_facetAddress].functionSelectors[\\n                lastSelectorPosition\\n            ];\\n            ds.facetFunctionSelectors[_facetAddress].functionSelectors[\\n                selectorPosition\\n            ] = lastSelector;\\n            ds.selectorToFacetAndPosition[lastSelector].functionSelectorPosition = uint96(\\n                selectorPosition\\n            );\\n        }\\n        // delete the last selector\\n        ds.facetFunctionSelectors[_facetAddress].functionSelectors.pop();\\n        delete ds.selectorToFacetAndPosition[_selector];\\n\\n        // if no more selectors for facet address then delete the facet address\\n        if (lastSelectorPosition == 0) {\\n            // replace facet address with last facet address and delete last facet address\\n            uint256 lastFacetAddressPosition = ds.facetAddresses.length - 1;\\n            uint256 facetAddressPosition = ds\\n                .facetFunctionSelectors[_facetAddress]\\n                .facetAddressPosition;\\n            if (facetAddressPosition != lastFacetAddressPosition) {\\n                address lastFacetAddress = ds.facetAddresses[lastFacetAddressPosition];\\n                ds.facetAddresses[facetAddressPosition] = lastFacetAddress;\\n                ds\\n                    .facetFunctionSelectors[lastFacetAddress]\\n                    .facetAddressPosition = facetAddressPosition;\\n            }\\n            ds.facetAddresses.pop();\\n            delete ds.facetFunctionSelectors[_facetAddress].facetAddressPosition;\\n        }\\n    }\\n\\n    function initializeDiamondCut(address _init, bytes memory _calldata) internal {\\n        if (_init == address(0)) {\\n            if (_calldata.length > 0) revert NonEmptyCalldata();\\n        } else {\\n            if (_calldata.length == 0) revert EmptyCalldata();\\n            if (_init != address(this)) {\\n                enforceHasContractCode(_init);\\n            }\\n            (bool success, bytes memory error) = _init.delegatecall(_calldata);\\n            if (!success) {\\n                if (error.length > 0) {\\n                    // bubble up the error\\n                    revert(string(error));\\n                } else {\\n                    revert InitCallFailed();\\n                }\\n            }\\n        }\\n    }\\n\\n    function enforceHasContractCode(address _contract) internal view {\\n        uint256 contractSize;\\n        assembly {\\n            contractSize := extcodesize(_contract)\\n        }\\n        if (contractSize <= 0) revert NoCode();\\n    }\\n}\\n\",\"keccak256\":\"0x7022e9c698c22b39b46a705dfcdd31e13edf71dfbcf6b13e0175f65faab111de\",\"license\":\"MIT\"},\"contracts/libraries/LibPriceConverter.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity ^0.8.9;\\r\\nimport \\\"../storage/AppStorage.sol\\\";\\r\\nimport \\\"@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol\\\";\\r\\n\\r\\nlibrary LibPriceConverter {\\r\\n    bytes32 internal constant RENTAL = keccak256(\\\"signet.lib.storage\\\");\\r\\n\\r\\n    function getStorage() internal pure returns (AppStorage storage s) {\\r\\n        bytes32 position = RENTAL;\\r\\n        assembly {\\r\\n            s.slot := position\\r\\n        }\\r\\n    }\\r\\n\\r\\n    function getPrice(address _priceFeedAddress) internal view returns (uint256) {\\r\\n        (, int256 answer, , , ) = AggregatorV3Interface(_priceFeedAddress).latestRoundData();\\r\\n        return uint256(answer * 10000000000);\\r\\n    }\\r\\n\\r\\n    function getConversionRate(uint256 ethAmount) internal view returns (uint256) {\\r\\n        AppStorage storage s = getStorage();\\r\\n        uint256 ethPrice = getPrice(s.priceFeedAddress);\\r\\n        uint256 ethAmountInUsd = (ethPrice * ethAmount) / 1000000000000000000;\\r\\n        return ethAmountInUsd;\\r\\n    }\\r\\n\\r\\n    function setPriceFeedAddress(address _priceFeedAddress) internal {\\r\\n        AppStorage storage s = getStorage();\\r\\n        s.priceFeedAddress = _priceFeedAddress;\\r\\n    }\\r\\n\\r\\n    function getPriceFeedAddress() internal view returns (address) {\\r\\n        AppStorage storage s = getStorage();\\r\\n        return (s.priceFeedAddress);\\r\\n    }\\r\\n}\\r\\n\",\"keccak256\":\"0x95e241d1a0b3789ca2a5d835eee547982ed3df5e3bd3fd8a156a1938e1ca63c3\",\"license\":\"MIT\"},\"contracts/libraries/LibSignetStorage.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity ^0.8.9;\\r\\n\\r\\nimport \\\"../storage/AppStorage.sol\\\";\\r\\nimport \\\"./SafeMath.sol\\\";\\r\\nimport \\\"../interfaces/IERC721.sol\\\";\\r\\nimport \\\"../interfaces/IERC1155.sol\\\";\\r\\n\\r\\n/*\\r\\n * @title Signet LibSignetStorage\\r\\n * @author https://outerspace.ai/\\r\\n */\\r\\n\\r\\nlibrary LibSignetStorage {\\r\\n    bytes32 internal constant RENTAL = keccak256(\\\"signet.lib.storage\\\");\\r\\n\\r\\n    function getStorage() internal pure returns (AppStorage storage s) {\\r\\n        bytes32 position = RENTAL;\\r\\n        assembly {\\r\\n            s.slot := position\\r\\n        }\\r\\n    }\\r\\n\\r\\n    function register(address _user) internal returns (uint256) {\\r\\n        AppStorage storage s = getStorage();\\r\\n        s.ma.register[_user] = true;\\r\\n        unchecked {\\r\\n            ++s.cs.totalSignetorsNum;\\r\\n        }\\r\\n        return (s.cs.totalSignetorsNum);\\r\\n    }\\r\\n\\r\\n    function setSignetorAddress(address _signetorAddress) internal {\\r\\n        AppStorage storage s = getStorage();\\r\\n        s.signetorAddress = _signetorAddress;\\r\\n    }\\r\\n\\r\\n    function getSignetorAddress() internal view returns (address) {\\r\\n        AppStorage storage s = getStorage();\\r\\n        return (s.signetorAddress);\\r\\n    }\\r\\n\\r\\n    function getAllowedTranfer() internal view returns (bool) {\\r\\n        AppStorage storage s = getStorage();\\r\\n        return (s.cs.allowTranfer);\\r\\n    }\\r\\n\\r\\n    function setAllowedTranfer(bool _allowedTranfer) internal {\\r\\n        AppStorage storage s = getStorage();\\r\\n        s.cs.allowTranfer = _allowedTranfer;\\r\\n    }\\r\\n\\r\\n    function setValueForSendMessage(uint256 _messagePrice) internal {\\r\\n        AppStorage storage s = getStorage();\\r\\n        s.cs.messagePrice = _messagePrice;\\r\\n    }\\r\\n\\r\\n    function hasName(address _signetUserAddress) internal view returns (bool) {\\r\\n        AppStorage storage s = getStorage();\\r\\n        if (s.pm.name[_signetUserAddress].timeUpdated > 0) {\\r\\n            return true;\\r\\n        } else {\\r\\n            return false;\\r\\n        }\\r\\n    }\\r\\n\\r\\n    function modifyNameForUser(string memory _newname, address _signetUserAddress) internal {\\r\\n        AppStorage storage s = getStorage();\\r\\n        unchecked {\\r\\n            ++s.ps.totalName;\\r\\n        }\\r\\n        s.pm.name[_signetUserAddress].name = _newname;\\r\\n        s.pm.name[_signetUserAddress].timeUpdated = block.timestamp;\\r\\n    }\\r\\n\\r\\n    function hasPfp(address _signetUserAddress) internal view returns (bool) {\\r\\n        AppStorage storage s = getStorage();\\r\\n        if (s.pm.pfp[_signetUserAddress].timeUpdated > 0) {\\r\\n            return true;\\r\\n        } else {\\r\\n            return false;\\r\\n        }\\r\\n    }\\r\\n\\r\\n    function modifyPfpForUser(\\r\\n        string memory _pfp,\\r\\n        address _signetUserAddress,\\r\\n        uint256 _tokenId,\\r\\n        address _collection,\\r\\n        uint256 _typeOf\\r\\n    ) internal {\\r\\n        AppStorage storage s = getStorage();\\r\\n        unchecked {\\r\\n            ++s.ps.totalpfp;\\r\\n        }\\r\\n        s.pm.pfp[_signetUserAddress].pfp = _pfp;\\r\\n        s.pm.pfp[_signetUserAddress].timeUpdated = block.timestamp;\\r\\n        s.pm.pfp[_signetUserAddress].tokenId = _tokenId;\\r\\n        s.pm.pfp[_signetUserAddress].collection = _collection;\\r\\n        s.pm.pfp[_signetUserAddress].typeOf = _typeOf;\\r\\n    }\\r\\n\\r\\n    function messageSent(address signetor) internal returns (uint256) {\\r\\n        AppStorage storage s = getStorage();\\r\\n        unchecked {\\r\\n            ++s.cs.totalSignetsNum;\\r\\n        }\\r\\n        unchecked {\\r\\n            ++s.ma.numOfSignetsSent[signetor];\\r\\n        }\\r\\n        return (s.cs.totalSignetsNum);\\r\\n    }\\r\\n\\r\\n    function messageDelete(address signetor) internal {\\r\\n        AppStorage storage s = getStorage();\\r\\n        unchecked {\\r\\n            --s.ma.numOfSignetsSent[signetor];\\r\\n        }\\r\\n    }\\r\\n\\r\\n    function follow(address msgSender, address signetor) internal {\\r\\n        AppStorage storage s = getStorage();\\r\\n        unchecked {\\r\\n            ++s.fm.follower[signetor].followerNum;\\r\\n        }\\r\\n        s.fm.follower[signetor].whoFollowed[msgSender] = true;\\r\\n        unchecked {\\r\\n            ++s.fm.following[msgSender].FollowingNum;\\r\\n        }\\r\\n        s.fm.following[msgSender].followedWho[signetor] = true;\\r\\n    }\\r\\n\\r\\n    function unfollow(address msgSender, address signetor) internal {\\r\\n        AppStorage storage s = getStorage();\\r\\n\\r\\n        unchecked {\\r\\n            --s.fm.follower[signetor].followerNum;\\r\\n        }\\r\\n        s.fm.follower[signetor].whoFollowed[msgSender] = false;\\r\\n\\r\\n        unchecked {\\r\\n            --s.fm.following[msgSender].FollowingNum;\\r\\n        }\\r\\n        s.fm.following[msgSender].followedWho[signetor] = false;\\r\\n    }\\r\\n\\r\\n    function like(address msgSender, uint256 SignetId) internal {\\r\\n        AppStorage storage s = getStorage();\\r\\n        unchecked {\\r\\n            ++s.fm.signetState[SignetId].likeNum;\\r\\n        }\\r\\n        s.fm.signetState[SignetId].likeContributors[msgSender] = true;\\r\\n    }\\r\\n\\r\\n    function unlike(address msgSender, uint256 SignetId) internal {\\r\\n        AppStorage storage s = getStorage();\\r\\n        unchecked {\\r\\n            --s.fm.signetState[SignetId].likeNum;\\r\\n        }\\r\\n        s.fm.signetState[SignetId].likeContributors[msgSender] = false;\\r\\n    }\\r\\n\\r\\n    function star(address msgSender, address SignetIdOwner, uint256 SignetId) internal {\\r\\n        AppStorage storage s = getStorage();\\r\\n        unchecked {\\r\\n            ++s.fm.Stars[SignetIdOwner];\\r\\n        }\\r\\n        unchecked {\\r\\n            ++s.fm.signetState[SignetId].starNum;\\r\\n        }\\r\\n        s.fm.signetState[SignetId].starContributors.push(msgSender);\\r\\n    }\\r\\n\\r\\n    function setAppreciateAmount(uint256 _amount) internal {\\r\\n        AppStorage storage s = getStorage();\\r\\n        s.cs.appreciateAmount = _amount;\\r\\n    }\\r\\n\\r\\n    function setStarCommission(uint256 _starCommisionPercent) internal {\\r\\n        AppStorage storage s = getStorage();\\r\\n        s.cs.commission = _starCommisionPercent;\\r\\n    }\\r\\n\\r\\n    function checkfollowed(\\r\\n        address signetor,\\r\\n        address followersaddress\\r\\n    ) internal view returns (bool) {\\r\\n        AppStorage storage s = getStorage();\\r\\n        return (s.fm.follower[signetor].whoFollowed[followersaddress]);\\r\\n    }\\r\\n\\r\\n    function checklikeable(\\r\\n        address SignetIdOwner,\\r\\n        uint256 SignetId\\r\\n    ) internal view returns (bool result) {\\r\\n        AppStorage storage s = getStorage();\\r\\n        if (SignetId <= s.cs.totalSignetsNum) {\\r\\n            if (s.cs.totalSignetsNum != 0) {\\r\\n                if (SignetId != 0) {\\r\\n                    if (IERC721(s.signetorAddress).ownerOf(SignetId) == SignetIdOwner) {\\r\\n                        return (true);\\r\\n                    }\\r\\n                }\\r\\n            }\\r\\n        } else {\\r\\n            return (false);\\r\\n        }\\r\\n    }\\r\\n\\r\\n    function checkName(address _signetUserAddress) internal view returns (string memory) {\\r\\n        AppStorage storage s = getStorage();\\r\\n        if (s.pm.name[_signetUserAddress].timeUpdated > 0) {\\r\\n            return (s.pm.name[_signetUserAddress].name);\\r\\n        } else {\\r\\n            return \\\"You seeing this message is becuase this address don't have any name created!\\\";\\r\\n        }\\r\\n    }\\r\\n\\r\\n    function checkPfp(\\r\\n        address _signetUserAddress\\r\\n    ) internal view returns (string memory, address, uint256, uint256) {\\r\\n        AppStorage storage s = getStorage();\\r\\n        if (s.pm.pfp[_signetUserAddress].timeUpdated > 0) {\\r\\n            return (\\r\\n                s.pm.pfp[_signetUserAddress].pfp,\\r\\n                s.pm.pfp[_signetUserAddress].collection,\\r\\n                s.pm.pfp[_signetUserAddress].tokenId,\\r\\n                s.pm.pfp[_signetUserAddress].typeOf\\r\\n            );\\r\\n        } else {\\r\\n            return (\\r\\n                \\\"You seeing this message is becuase this address don't have any pfp created!\\\",\\r\\n                address(0),\\r\\n                0,\\r\\n                0\\r\\n            );\\r\\n        }\\r\\n    }\\r\\n\\r\\n    function checkNameAddress(string memory _name) internal view returns (bool, address) {\\r\\n        AppStorage storage s = getStorage();\\r\\n        uint i = 0;\\r\\n        do {\\r\\n            if (\\r\\n                keccak256(abi.encodePacked(s.pm.name[s.cs.registerdUserArray[i]].name)) ==\\r\\n                keccak256(abi.encodePacked(_name))\\r\\n            ) {\\r\\n                return (true, s.cs.registerdUserArray[i]);\\r\\n            }\\r\\n            unchecked {\\r\\n                ++i;\\r\\n            }\\r\\n        } while (i < s.cs.registerdUserArray.length + 1);\\r\\n        return (false, address(0));\\r\\n    }\\r\\n\\r\\n    function checkNameAvalable(string memory _name) internal view returns (bool) {\\r\\n        AppStorage storage s = getStorage();\\r\\n        return (!s.pm.nameused[_name]);\\r\\n    }\\r\\n\\r\\n    function getValueForSendMessage() internal view returns (uint256) {\\r\\n        AppStorage storage s = getStorage();\\r\\n        return (s.cs.messagePrice);\\r\\n    }\\r\\n\\r\\n    function getTotalSignetorNum() internal view returns (uint256) {\\r\\n        AppStorage storage s = getStorage();\\r\\n        return (s.cs.totalSignetorsNum);\\r\\n    }\\r\\n\\r\\n    function getAppreciateAmount() internal view returns (uint256) {\\r\\n        AppStorage storage s = getStorage();\\r\\n        return (s.cs.appreciateAmount);\\r\\n    }\\r\\n\\r\\n    function getStarCommission() internal view returns (uint256) {\\r\\n        AppStorage storage s = getStorage();\\r\\n        return (s.cs.commission);\\r\\n    }\\r\\n\\r\\n    function checkliked(uint256 signetID, address likedAddress) internal view returns (bool) {\\r\\n        AppStorage storage s = getStorage();\\r\\n        return (s.fm.signetState[signetID].likeContributors[likedAddress]);\\r\\n    }\\r\\n\\r\\n    function getTotalSignetsNum() internal view returns (uint256) {\\r\\n        AppStorage storage s = getStorage();\\r\\n        return (s.cs.totalSignetsNum);\\r\\n    }\\r\\n\\r\\n    function getFollowingsNum(address signetor) internal view returns (uint256) {\\r\\n        AppStorage storage s = getStorage();\\r\\n        return (s.fm.following[signetor].FollowingNum);\\r\\n    }\\r\\n\\r\\n    function getFollowersNum(address signetor) internal view returns (uint256) {\\r\\n        AppStorage storage s = getStorage();\\r\\n        return (s.fm.follower[signetor].followerNum);\\r\\n    }\\r\\n\\r\\n    function getStaredNumForSignetor(address signetor) internal view returns (uint256) {\\r\\n        AppStorage storage s = getStorage();\\r\\n        return (s.fm.Stars[signetor]);\\r\\n    }\\r\\n\\r\\n    function getLikedNum(uint256 signetId) internal view returns (uint256) {\\r\\n        AppStorage storage s = getStorage();\\r\\n        return (s.fm.signetState[signetId].likeNum);\\r\\n    }\\r\\n\\r\\n    function getStaredNum(uint256 signetId) internal view returns (uint256) {\\r\\n        AppStorage storage s = getStorage();\\r\\n        return (s.fm.signetState[signetId].starNum);\\r\\n    }\\r\\n\\r\\n    function getStarContributor(uint256 SignetId) internal view returns (address[] memory) {\\r\\n        AppStorage storage s = getStorage();\\r\\n        return (s.fm.signetState[SignetId].starContributors);\\r\\n    }\\r\\n\\r\\n    function checkRegistered(address _user) internal view returns (bool) {\\r\\n        AppStorage storage s = getStorage();\\r\\n        return (s.ma.register[_user]);\\r\\n    }\\r\\n\\r\\n    function checkNumOfSignetsSent(address _user) internal view returns (uint256) {\\r\\n        AppStorage storage s = getStorage();\\r\\n        return (s.ma.numOfSignetsSent[_user]);\\r\\n    }\\r\\n}\\r\\n\",\"keccak256\":\"0xdb399fb3e631c2a09aee4396285685824205f2085bf592cb6efe12372c37d33a\",\"license\":\"MIT\"},\"contracts/libraries/SafeMath.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\n// OpenZeppelin Contracts (last updated v4.6.0) (utils/math/SafeMath.sol)\\r\\n\\r\\npragma solidity ^0.8.0;\\r\\n\\r\\n// CAUTION\\r\\n// This version of SafeMath should only be used with Solidity 0.8 or later,\\r\\n// because it relies on the compiler's built in overflow checks.\\r\\n\\r\\n/**\\r\\n * @dev Wrappers over Solidity's arithmetic operations.\\r\\n *\\r\\n * NOTE: `SafeMath` is generally not needed starting with Solidity 0.8, since the compiler\\r\\n * now has built in overflow checking.\\r\\n */\\r\\nlibrary SafeMath {\\r\\n    /**\\r\\n     * @dev Returns the addition of two unsigned integers, with an overflow flag.\\r\\n     *\\r\\n     * _Available since v3.4._\\r\\n     */\\r\\n    function tryAdd(uint256 a, uint256 b) internal pure returns (bool, uint256) {\\r\\n        unchecked {\\r\\n            uint256 c = a + b;\\r\\n            if (c < a) return (false, 0);\\r\\n            return (true, c);\\r\\n        }\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Returns the subtraction of two unsigned integers, with an overflow flag.\\r\\n     *\\r\\n     * _Available since v3.4._\\r\\n     */\\r\\n    function trySub(uint256 a, uint256 b) internal pure returns (bool, uint256) {\\r\\n        unchecked {\\r\\n            if (b > a) return (false, 0);\\r\\n            return (true, a - b);\\r\\n        }\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Returns the multiplication of two unsigned integers, with an overflow flag.\\r\\n     *\\r\\n     * _Available since v3.4._\\r\\n     */\\r\\n    function tryMul(uint256 a, uint256 b) internal pure returns (bool, uint256) {\\r\\n        unchecked {\\r\\n            // Gas optimization: this is cheaper than requiring 'a' not being zero, but the\\r\\n            // benefit is lost if 'b' is also tested.\\r\\n            // See: https://github.com/OpenZeppelin/openzeppelin-contracts/pull/522\\r\\n            if (a == 0) return (true, 0);\\r\\n            uint256 c = a * b;\\r\\n            if (c / a != b) return (false, 0);\\r\\n            return (true, c);\\r\\n        }\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Returns the division of two unsigned integers, with a division by zero flag.\\r\\n     *\\r\\n     * _Available since v3.4._\\r\\n     */\\r\\n    function tryDiv(uint256 a, uint256 b) internal pure returns (bool, uint256) {\\r\\n        unchecked {\\r\\n            if (b == 0) return (false, 0);\\r\\n            return (true, a / b);\\r\\n        }\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Returns the remainder of dividing two unsigned integers, with a division by zero flag.\\r\\n     *\\r\\n     * _Available since v3.4._\\r\\n     */\\r\\n    function tryMod(uint256 a, uint256 b) internal pure returns (bool, uint256) {\\r\\n        unchecked {\\r\\n            if (b == 0) return (false, 0);\\r\\n            return (true, a % b);\\r\\n        }\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Returns the addition of two unsigned integers, reverting on\\r\\n     * overflow.\\r\\n     *\\r\\n     * Counterpart to Solidity's `+` operator.\\r\\n     *\\r\\n     * Requirements:\\r\\n     *\\r\\n     * - Addition cannot overflow.\\r\\n     */\\r\\n    function add(uint256 a, uint256 b) internal pure returns (uint256) {\\r\\n        return a + b;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Returns the subtraction of two unsigned integers, reverting on\\r\\n     * overflow (when the result is negative).\\r\\n     *\\r\\n     * Counterpart to Solidity's `-` operator.\\r\\n     *\\r\\n     * Requirements:\\r\\n     *\\r\\n     * - Subtraction cannot overflow.\\r\\n     */\\r\\n    function sub(uint256 a, uint256 b) internal pure returns (uint256) {\\r\\n        return a - b;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Returns the multiplication of two unsigned integers, reverting on\\r\\n     * overflow.\\r\\n     *\\r\\n     * Counterpart to Solidity's `*` operator.\\r\\n     *\\r\\n     * Requirements:\\r\\n     *\\r\\n     * - Multiplication cannot overflow.\\r\\n     */\\r\\n    function mul(uint256 a, uint256 b) internal pure returns (uint256) {\\r\\n        return a * b;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Returns the integer division of two unsigned integers, reverting on\\r\\n     * division by zero. The result is rounded towards zero.\\r\\n     *\\r\\n     * Counterpart to Solidity's `/` operator.\\r\\n     *\\r\\n     * Requirements:\\r\\n     *\\r\\n     * - The divisor cannot be zero.\\r\\n     */\\r\\n    function div(uint256 a, uint256 b) internal pure returns (uint256) {\\r\\n        return a / b;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Returns the remainder of dividing two unsigned integers. (unsigned integer modulo),\\r\\n     * reverting when dividing by zero.\\r\\n     *\\r\\n     * Counterpart to Solidity's `%` operator. This function uses a `revert`\\r\\n     * opcode (which leaves remaining gas untouched) while Solidity uses an\\r\\n     * invalid opcode to revert (consuming all remaining gas).\\r\\n     *\\r\\n     * Requirements:\\r\\n     *\\r\\n     * - The divisor cannot be zero.\\r\\n     */\\r\\n    function mod(uint256 a, uint256 b) internal pure returns (uint256) {\\r\\n        return a % b;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Returns the subtraction of two unsigned integers, reverting with custom message on\\r\\n     * overflow (when the result is negative).\\r\\n     *\\r\\n     * CAUTION: This function is deprecated because it requires allocating memory for the error\\r\\n     * message unnecessarily. For custom revert reasons use {trySub}.\\r\\n     *\\r\\n     * Counterpart to Solidity's `-` operator.\\r\\n     *\\r\\n     * Requirements:\\r\\n     *\\r\\n     * - Subtraction cannot overflow.\\r\\n     */\\r\\n    function sub(\\r\\n        uint256 a,\\r\\n        uint256 b,\\r\\n        string memory errorMessage\\r\\n    ) internal pure returns (uint256) {\\r\\n        unchecked {\\r\\n            require(b <= a, errorMessage);\\r\\n            return a - b;\\r\\n        }\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Returns the integer division of two unsigned integers, reverting with custom message on\\r\\n     * division by zero. The result is rounded towards zero.\\r\\n     *\\r\\n     * Counterpart to Solidity's `/` operator. Note: this function uses a\\r\\n     * `revert` opcode (which leaves remaining gas untouched) while Solidity\\r\\n     * uses an invalid opcode to revert (consuming all remaining gas).\\r\\n     *\\r\\n     * Requirements:\\r\\n     *\\r\\n     * - The divisor cannot be zero.\\r\\n     */\\r\\n    function div(\\r\\n        uint256 a,\\r\\n        uint256 b,\\r\\n        string memory errorMessage\\r\\n    ) internal pure returns (uint256) {\\r\\n        unchecked {\\r\\n            require(b > 0, errorMessage);\\r\\n            return a / b;\\r\\n        }\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Returns the remainder of dividing two unsigned integers. (unsigned integer modulo),\\r\\n     * reverting with custom message when dividing by zero.\\r\\n     *\\r\\n     * CAUTION: This function is deprecated because it requires allocating memory for the error\\r\\n     * message unnecessarily. For custom revert reasons use {tryMod}.\\r\\n     *\\r\\n     * Counterpart to Solidity's `%` operator. This function uses a `revert`\\r\\n     * opcode (which leaves remaining gas untouched) while Solidity uses an\\r\\n     * invalid opcode to revert (consuming all remaining gas).\\r\\n     *\\r\\n     * Requirements:\\r\\n     *\\r\\n     * - The divisor cannot be zero.\\r\\n     */\\r\\n    function mod(\\r\\n        uint256 a,\\r\\n        uint256 b,\\r\\n        string memory errorMessage\\r\\n    ) internal pure returns (uint256) {\\r\\n        unchecked {\\r\\n            require(b > 0, errorMessage);\\r\\n            return a % b;\\r\\n        }\\r\\n    }\\r\\n}\\r\\n\",\"keccak256\":\"0xdd98bfe1095cbc031cd6ded0d4e8fc386dba441130fba7c9892903b76f2236d9\",\"license\":\"MIT\"},\"contracts/storage/AppStorage.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity 0.8.9;\\r\\n\\r\\nimport \\\"./ProfileSysStorage.sol\\\";\\r\\nimport \\\"./FollowSysStorage.sol\\\";\\r\\nimport \\\"./ControllorStorage.sol\\\";\\r\\n\\r\\nstruct AppStorage {\\r\\n    profileStruct ps;\\r\\n    nameStruct ns;\\r\\n    pfpStruct pfps;\\r\\n    profilemap pm;\\r\\n    Followers flwr;\\r\\n    Following flwi;\\r\\n    signetinfo signetinfo;\\r\\n    followMap fm;\\r\\n    mapSignetAddress ma;\\r\\n    controllorStorage cs;\\r\\n    bool locked;\\r\\n    address signetorAddress;\\r\\n    address priceFeedAddress;\\r\\n}\\r\\n\",\"keccak256\":\"0xfd94ba226c496ae2af727c658c8ca2f4a4679ba1e9a0f619c69a5787217ffd4a\",\"license\":\"MIT\"},\"contracts/storage/ControllorStorage.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity 0.8.9;\\r\\n\\r\\nstruct controllorStorage {\\r\\n    uint256 totalSignetorsNum;\\r\\n    uint256 totalSignetsNum;\\r\\n    uint256 appreciateAmount;\\r\\n    uint256 commission;\\r\\n    uint256 messagePrice;\\r\\n    address signetprofileSys;\\r\\n    address signetFollowSys;\\r\\n    bool allowTranfer;\\r\\n    address[] registerdUserArray;\\r\\n}\\r\\nstruct mapSignetAddress {\\r\\n    mapping(address => bool) register;\\r\\n    mapping(address => uint256) numOfSignetsSent;\\r\\n}\\r\\n\",\"keccak256\":\"0xe16a9d93e9a85dcce6fe58c497a6d3f08a801092c220568c5ef22f6108210ab3\",\"license\":\"MIT\"},\"contracts/storage/FollowSysStorage.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity 0.8.9;\\r\\n\\r\\n//followers struct\\r\\nstruct Followers {\\r\\n    uint256 followerNum;\\r\\n    mapping(address => bool) whoFollowed;\\r\\n}\\r\\n\\r\\n//following struct\\r\\n\\r\\nstruct Following {\\r\\n    uint256 FollowingNum;\\r\\n    mapping(address => bool) followedWho;\\r\\n}\\r\\n\\r\\n//star struct\\r\\n\\r\\nstruct signetinfo {\\r\\n    uint256 likeNum;\\r\\n    uint256 starNum;\\r\\n    // address SignetIdOwner;\\r\\n    address[] starContributors;\\r\\n    mapping(address => bool) likeContributors;\\r\\n}\\r\\n\\r\\nstruct followMap {\\r\\n    mapping(address => Followers) follower;\\r\\n    mapping(address => Following) following;\\r\\n    mapping(uint256 => signetinfo) signetState;\\r\\n    mapping(address => uint256) Stars;\\r\\n}\\r\\n\",\"keccak256\":\"0x07f47124af26691dd76505527b9d1bc7101a7a2d0e5e744a53cf252e6f063234\",\"license\":\"MIT\"},\"contracts/storage/ProfileSysStorage.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity 0.8.9;\\r\\n\\r\\nstruct profileStruct {\\r\\n    uint256 totalName;\\r\\n    uint256 totalpfp;\\r\\n}\\r\\nstruct nameStruct {\\r\\n    string name;\\r\\n    uint256 timeUpdated;\\r\\n}\\r\\n\\r\\nstruct pfpStruct {\\r\\n    string pfp;\\r\\n    uint256 timeUpdated;\\r\\n    address collection;\\r\\n    uint256 tokenId;\\r\\n    uint256 typeOf;\\r\\n}\\r\\n\\r\\nstruct profilemap {\\r\\n    mapping(address => pfpStruct) pfp;\\r\\n    mapping(address => nameStruct) name;\\r\\n    mapping(string => bool) nameused;\\r\\n}\\r\\n\",\"keccak256\":\"0xd11cfedbbcda374662ffc1400c3899407952e2473fcf51bce04aaa2cd002ca38\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506120d4806100206000396000f3fe6080604052600436106100c25760003560e01c806352dcdf7e1161007f57806376e262f51161005957806376e262f5146102b05780637ce11598146102ed578063abf723fe14610309578063b20be2f614610346576100c2565b806352dcdf7e146101f957806369ff24ed146102365780636c31555614610273576100c2565b8063015a4ead146100c75780631e59cebb146100f0578063292d8f061461012d57806330c9514a1461016a578063429a9aaa146101a75780634dbf27cc146101d0575b600080fd5b3480156100d357600080fd5b506100ee60048036038101906100e991906119a4565b61036f565b005b3480156100fc57600080fd5b5061011760048036038101906101129190611a07565b6104d6565b6040516101249190611af2565b60405180910390f35b34801561013957600080fd5b50610154600480360381019061014f9190611b14565b6104e8565b6040516101619190611b6f565b60405180910390f35b34801561017657600080fd5b50610191600480360381019061018c9190611a07565b6104fc565b60405161019e9190611b99565b60405180910390f35b3480156101b357600080fd5b506101ce60048036038101906101c99190611bb4565b61050e565b005b3480156101dc57600080fd5b506101f760048036038101906101f291906119a4565b610678565b005b34801561020557600080fd5b50610220600480360381019061021b91906119a4565b6107df565b60405161022d9190611b99565b60405180910390f35b34801561024257600080fd5b5061025d600480360381019061025891906119a4565b6107f1565b60405161026a9190611b99565b60405180910390f35b34801561027f57600080fd5b5061029a60048036038101906102959190611a07565b610803565b6040516102a79190611b99565b60405180910390f35b3480156102bc57600080fd5b506102d760048036038101906102d29190611bb4565b610815565b6040516102e49190611b6f565b60405180910390f35b61030760048036038101906103029190611bf4565b610829565b005b34801561031557600080fd5b50610330600480360381019061032b91906119a4565b610a98565b60405161033d9190611b99565b60405180910390f35b34801561035257600080fd5b5061036d60048036038101906103689190611bb4565b610aaa565b005b6000151561037c33610c14565b151514156103b6576040517fa109b23000000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b8073ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141561041c576040517f81db306400000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b6000151561042a82336104e8565b15151415610464576040517fd4b1512b00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b61046e3382610c7b565b8073ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff167f20d306252ff521b1e4d2cb81e0d733ec8d0afde3ab6ccbfee9d975179fc95454426040516104cb9190611b99565b60405180910390a350565b60606104e182610e72565b9050919050565b60006104f48383610f28565b905092915050565b600061050782610fd0565b9050919050565b6000151561051b33610c14565b15151415610555576040517fa109b23000000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b8073ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614156105bb576040517f6ba1f36f00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b600015156105c98284611001565b15151415610603576040517f35c940b500000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b61060d3383611015565b8073ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff167f5af3a717d9ca42ddabc7791e4a0910e15568f7a6ccc2e113f9693782badcdd58844260405161066c929190611c34565b60405180910390a35050565b6000151561068533610c14565b151514156106bf576040517fa109b23000000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b8073ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415610725576040517f81db306400000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b6001151561073382336104e8565b1515141561076d576040517f9f5ae48900000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b61077733826110c1565b8073ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff167f3c6c72719f49f1721deae7d1e022c10b064d4ce00a2d007ee158f1ea9aca4139426040516107d49190611b99565b60405180910390a350565b60006107ea826112b6565b9050919050565b60006107fc82611313565b9050919050565b600061080e82611370565b9050919050565b600061082183836113a1565b905092915050565b6000151561083633610c14565b15151415610870576040517fa109b23000000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b8173ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614156108d6576040517f6ba1f36f00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b600015156108e48383611001565b1515141561091e576040517f35c940b500000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b61092661141d565b61092f34611438565b1015610967576040517fda6aaa0400000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b6109723383836114a4565b600061097d346115ad565b905060008373ffffffffffffffffffffffffffffffffffffffff16826040516109a590611c8e565b60006040518083038185875af1925050503d80600081146109e2576040519150601f19603f3d011682016040523d82523d6000602084013e6109e7565b606091505b5050905080610a2b576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401610a2290611d00565b60405180910390fd5b8373ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff167f4985f55a2f28c7fdaaf7c572270a9c26a8dc8060aa387556323af03e3a2501628542604051610a8a929190611c34565b60405180910390a350505050565b6000610aa3826115f2565b9050919050565b60001515610ab733610c14565b15151415610af1576040517fa109b23000000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b8073ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415610b57576040517f6ba1f36f00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b60001515610b658284611001565b15151415610b9f576040517f35c940b500000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b610ba9338361164c565b8073ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff167f4ab2b086717007ed33b9d96923bc9fd0cab235296de137f5f66c4e97a766a7f28442604051610c08929190611c34565b60405180910390a35050565b600080610c1f6116f7565b90508060180160000160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16915050919050565b6000610c856116f7565b90508060140160000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160008154600190039190508190555060008160140160000160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060010160008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055508060140160010160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160008154600190039190508190555060008160140160010160008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060010160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550505050565b60606000610e7e6116f7565b9050806014016002016000848152602001908152602001600020600201805480602002602001604051908101604052809291908181526020018280548015610f1b57602002820191906000526020600020905b8160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019060010190808311610ed1575b5050505050915050919050565b600080610f336116f7565b90508060140160000160008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060010160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff1691505092915050565b600080610fdb6116f7565b905080601401600201600084815260200190815260200160002060000154915050919050565b600061100d8383611724565b905092915050565b600061101f6116f7565b9050806014016002016000838152602001908152602001600020600001600081546001900391905081905550600081601401600201600084815260200190815260200160002060030160008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550505050565b60006110cb6116f7565b90508060140160000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600001600081546001019190508190555060018160140160000160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060010160008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055508060140160010160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600001600081546001019190508190555060018160140160010160008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060010160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550505050565b6000806112c16116f7565b90508060140160000160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000154915050919050565b60008061131e6116f7565b90508060140160010160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000154915050919050565b60008061137b6116f7565b905080601401600201600084815260200190815260200160002060010154915050919050565b6000806113ac6116f7565b905080601401600201600085815260200190815260200160002060030160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff1691505092915050565b6000806114286116f7565b905080601a016002015491505090565b600080611443611859565b905060006114748260230160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16611886565b90506000670de0b6b3a7640000858361148d9190611d4f565b6114979190611dd8565b9050809350505050919050565b60006114ae6116f7565b90508060140160030160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008154600101919050819055508060140160020160008381526020019081526020016000206001016000815460010191905081905550806014016002016000838152602001908152602001600020600201849080600181540180825580915050600190039060005260206000200160009091909190916101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050505050565b6000806115b8611926565b905060008160646115c99190611e09565b90506000606490508082866115de9190611d4f565b6115e89190611dd8565b9350505050919050565b6000806115fd6116f7565b90508060140160030160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054915050919050565b60006116566116f7565b90508060140160020160008381526020019081526020016000206000016000815460010191905081905550600181601401600201600084815260200190815260200160002060030160008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550505050565b6000807f0b7cd5ad917e0ed6e2cd0c1b94ff4beaebb02b4d2d511ede3c9172a0ee7d946590508091505090565b60008061172f6116f7565b905080601a0160010154831161184757600081601a0160010154146118425760008314611841578373ffffffffffffffffffffffffffffffffffffffff168160220160019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16636352211e856040518263ffffffff1660e01b81526004016117ca9190611b99565b60206040518083038186803b1580156117e257600080fd5b505afa1580156117f6573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061181a9190611e52565b73ffffffffffffffffffffffffffffffffffffffff161415611840576001915050611853565b5b5b611851565b6000915050611853565b505b92915050565b6000807f0b7cd5ad917e0ed6e2cd0c1b94ff4beaebb02b4d2d511ede3c9172a0ee7d946590508091505090565b6000808273ffffffffffffffffffffffffffffffffffffffff1663feaf968c6040518163ffffffff1660e01b815260040160a06040518083038186803b1580156118cf57600080fd5b505afa1580156118e3573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906119079190611f0c565b5050509150506402540be4008161191e9190611f87565b915050919050565b6000806119316116f7565b905080601a016003015491505090565b600080fd5b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b600061197182611946565b9050919050565b61198181611966565b811461198c57600080fd5b50565b60008135905061199e81611978565b92915050565b6000602082840312156119ba576119b9611941565b5b60006119c88482850161198f565b91505092915050565b6000819050919050565b6119e4816119d1565b81146119ef57600080fd5b50565b600081359050611a01816119db565b92915050565b600060208284031215611a1d57611a1c611941565b5b6000611a2b848285016119f2565b91505092915050565b600081519050919050565b600082825260208201905092915050565b6000819050602082019050919050565b611a6981611966565b82525050565b6000611a7b8383611a60565b60208301905092915050565b6000602082019050919050565b6000611a9f82611a34565b611aa98185611a3f565b9350611ab483611a50565b8060005b83811015611ae5578151611acc8882611a6f565b9750611ad783611a87565b925050600181019050611ab8565b5085935050505092915050565b60006020820190508181036000830152611b0c8184611a94565b905092915050565b60008060408385031215611b2b57611b2a611941565b5b6000611b398582860161198f565b9250506020611b4a8582860161198f565b9150509250929050565b60008115159050919050565b611b6981611b54565b82525050565b6000602082019050611b846000830184611b60565b92915050565b611b93816119d1565b82525050565b6000602082019050611bae6000830184611b8a565b92915050565b60008060408385031215611bcb57611bca611941565b5b6000611bd9858286016119f2565b9250506020611bea8582860161198f565b9150509250929050565b60008060408385031215611c0b57611c0a611941565b5b6000611c198582860161198f565b9250506020611c2a858286016119f2565b9150509250929050565b6000604082019050611c496000830185611b8a565b611c566020830184611b8a565b9392505050565b600081905092915050565b50565b6000611c78600083611c5d565b9150611c8382611c68565b600082019050919050565b6000611c9982611c6b565b9150819050919050565b600082825260208201905092915050565b7f43616c6c206661696c6564000000000000000000000000000000000000000000600082015250565b6000611cea600b83611ca3565b9150611cf582611cb4565b602082019050919050565b60006020820190508181036000830152611d1981611cdd565b9050919050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052601160045260246000fd5b6000611d5a826119d1565b9150611d65836119d1565b9250817fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0483118215151615611d9e57611d9d611d20565b5b828202905092915050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052601260045260246000fd5b6000611de3826119d1565b9150611dee836119d1565b925082611dfe57611dfd611da9565b5b828204905092915050565b6000611e14826119d1565b9150611e1f836119d1565b925082821015611e3257611e31611d20565b5b828203905092915050565b600081519050611e4c81611978565b92915050565b600060208284031215611e6857611e67611941565b5b6000611e7684828501611e3d565b91505092915050565b600069ffffffffffffffffffff82169050919050565b611e9e81611e7f565b8114611ea957600080fd5b50565b600081519050611ebb81611e95565b92915050565b6000819050919050565b611ed481611ec1565b8114611edf57600080fd5b50565b600081519050611ef181611ecb565b92915050565b600081519050611f06816119db565b92915050565b600080600080600060a08688031215611f2857611f27611941565b5b6000611f3688828901611eac565b9550506020611f4788828901611ee2565b9450506040611f5888828901611ef7565b9350506060611f6988828901611ef7565b9250506080611f7a88828901611eac565b9150509295509295909350565b6000611f9282611ec1565b9150611f9d83611ec1565b9250827f7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0482116000841360008413161615611fdc57611fdb611d20565b5b817f8000000000000000000000000000000000000000000000000000000000000000058312600084126000841316161561201957612018611d20565b5b827f8000000000000000000000000000000000000000000000000000000000000000058212600084136000841216161561205657612055611d20565b5b827f7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff058212600084126000841216161561209357612092611d20565b5b82820290509291505056fea2646970667358221220b1c2a09341d7225b106060898168011cc09ec45442eae286ae29d15ca1e187dc64736f6c63430008090033",
+  "deployedBytecode": "0x6080604052600436106100c25760003560e01c806352dcdf7e1161007f57806376e262f51161005957806376e262f5146102b05780637ce11598146102ed578063abf723fe14610309578063b20be2f614610346576100c2565b806352dcdf7e146101f957806369ff24ed146102365780636c31555614610273576100c2565b8063015a4ead146100c75780631e59cebb146100f0578063292d8f061461012d57806330c9514a1461016a578063429a9aaa146101a75780634dbf27cc146101d0575b600080fd5b3480156100d357600080fd5b506100ee60048036038101906100e991906119a4565b61036f565b005b3480156100fc57600080fd5b5061011760048036038101906101129190611a07565b6104d6565b6040516101249190611af2565b60405180910390f35b34801561013957600080fd5b50610154600480360381019061014f9190611b14565b6104e8565b6040516101619190611b6f565b60405180910390f35b34801561017657600080fd5b50610191600480360381019061018c9190611a07565b6104fc565b60405161019e9190611b99565b60405180910390f35b3480156101b357600080fd5b506101ce60048036038101906101c99190611bb4565b61050e565b005b3480156101dc57600080fd5b506101f760048036038101906101f291906119a4565b610678565b005b34801561020557600080fd5b50610220600480360381019061021b91906119a4565b6107df565b60405161022d9190611b99565b60405180910390f35b34801561024257600080fd5b5061025d600480360381019061025891906119a4565b6107f1565b60405161026a9190611b99565b60405180910390f35b34801561027f57600080fd5b5061029a60048036038101906102959190611a07565b610803565b6040516102a79190611b99565b60405180910390f35b3480156102bc57600080fd5b506102d760048036038101906102d29190611bb4565b610815565b6040516102e49190611b6f565b60405180910390f35b61030760048036038101906103029190611bf4565b610829565b005b34801561031557600080fd5b50610330600480360381019061032b91906119a4565b610a98565b60405161033d9190611b99565b60405180910390f35b34801561035257600080fd5b5061036d60048036038101906103689190611bb4565b610aaa565b005b6000151561037c33610c14565b151514156103b6576040517fa109b23000000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b8073ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141561041c576040517f81db306400000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b6000151561042a82336104e8565b15151415610464576040517fd4b1512b00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b61046e3382610c7b565b8073ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff167f20d306252ff521b1e4d2cb81e0d733ec8d0afde3ab6ccbfee9d975179fc95454426040516104cb9190611b99565b60405180910390a350565b60606104e182610e72565b9050919050565b60006104f48383610f28565b905092915050565b600061050782610fd0565b9050919050565b6000151561051b33610c14565b15151415610555576040517fa109b23000000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b8073ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614156105bb576040517f6ba1f36f00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b600015156105c98284611001565b15151415610603576040517f35c940b500000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b61060d3383611015565b8073ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff167f5af3a717d9ca42ddabc7791e4a0910e15568f7a6ccc2e113f9693782badcdd58844260405161066c929190611c34565b60405180910390a35050565b6000151561068533610c14565b151514156106bf576040517fa109b23000000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b8073ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415610725576040517f81db306400000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b6001151561073382336104e8565b1515141561076d576040517f9f5ae48900000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b61077733826110c1565b8073ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff167f3c6c72719f49f1721deae7d1e022c10b064d4ce00a2d007ee158f1ea9aca4139426040516107d49190611b99565b60405180910390a350565b60006107ea826112b6565b9050919050565b60006107fc82611313565b9050919050565b600061080e82611370565b9050919050565b600061082183836113a1565b905092915050565b6000151561083633610c14565b15151415610870576040517fa109b23000000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b8173ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614156108d6576040517f6ba1f36f00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b600015156108e48383611001565b1515141561091e576040517f35c940b500000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b61092661141d565b61092f34611438565b1015610967576040517fda6aaa0400000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b6109723383836114a4565b600061097d346115ad565b905060008373ffffffffffffffffffffffffffffffffffffffff16826040516109a590611c8e565b60006040518083038185875af1925050503d80600081146109e2576040519150601f19603f3d011682016040523d82523d6000602084013e6109e7565b606091505b5050905080610a2b576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401610a2290611d00565b60405180910390fd5b8373ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff167f4985f55a2f28c7fdaaf7c572270a9c26a8dc8060aa387556323af03e3a2501628542604051610a8a929190611c34565b60405180910390a350505050565b6000610aa3826115f2565b9050919050565b60001515610ab733610c14565b15151415610af1576040517fa109b23000000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b8073ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415610b57576040517f6ba1f36f00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b60001515610b658284611001565b15151415610b9f576040517f35c940b500000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b610ba9338361164c565b8073ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff167f4ab2b086717007ed33b9d96923bc9fd0cab235296de137f5f66c4e97a766a7f28442604051610c08929190611c34565b60405180910390a35050565b600080610c1f6116f7565b90508060180160000160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16915050919050565b6000610c856116f7565b90508060140160000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160008154600190039190508190555060008160140160000160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060010160008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055508060140160010160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160008154600190039190508190555060008160140160010160008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060010160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550505050565b60606000610e7e6116f7565b9050806014016002016000848152602001908152602001600020600201805480602002602001604051908101604052809291908181526020018280548015610f1b57602002820191906000526020600020905b8160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019060010190808311610ed1575b5050505050915050919050565b600080610f336116f7565b90508060140160000160008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060010160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff1691505092915050565b600080610fdb6116f7565b905080601401600201600084815260200190815260200160002060000154915050919050565b600061100d8383611724565b905092915050565b600061101f6116f7565b9050806014016002016000838152602001908152602001600020600001600081546001900391905081905550600081601401600201600084815260200190815260200160002060030160008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550505050565b60006110cb6116f7565b90508060140160000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600001600081546001019190508190555060018160140160000160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060010160008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055508060140160010160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600001600081546001019190508190555060018160140160010160008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060010160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550505050565b6000806112c16116f7565b90508060140160000160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000154915050919050565b60008061131e6116f7565b90508060140160010160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000154915050919050565b60008061137b6116f7565b905080601401600201600084815260200190815260200160002060010154915050919050565b6000806113ac6116f7565b905080601401600201600085815260200190815260200160002060030160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff1691505092915050565b6000806114286116f7565b905080601a016002015491505090565b600080611443611859565b905060006114748260230160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16611886565b90506000670de0b6b3a7640000858361148d9190611d4f565b6114979190611dd8565b9050809350505050919050565b60006114ae6116f7565b90508060140160030160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008154600101919050819055508060140160020160008381526020019081526020016000206001016000815460010191905081905550806014016002016000838152602001908152602001600020600201849080600181540180825580915050600190039060005260206000200160009091909190916101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050505050565b6000806115b8611926565b905060008160646115c99190611e09565b90506000606490508082866115de9190611d4f565b6115e89190611dd8565b9350505050919050565b6000806115fd6116f7565b90508060140160030160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054915050919050565b60006116566116f7565b90508060140160020160008381526020019081526020016000206000016000815460010191905081905550600181601401600201600084815260200190815260200160002060030160008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550505050565b6000807f0b7cd5ad917e0ed6e2cd0c1b94ff4beaebb02b4d2d511ede3c9172a0ee7d946590508091505090565b60008061172f6116f7565b905080601a0160010154831161184757600081601a0160010154146118425760008314611841578373ffffffffffffffffffffffffffffffffffffffff168160220160019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16636352211e856040518263ffffffff1660e01b81526004016117ca9190611b99565b60206040518083038186803b1580156117e257600080fd5b505afa1580156117f6573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061181a9190611e52565b73ffffffffffffffffffffffffffffffffffffffff161415611840576001915050611853565b5b5b611851565b6000915050611853565b505b92915050565b6000807f0b7cd5ad917e0ed6e2cd0c1b94ff4beaebb02b4d2d511ede3c9172a0ee7d946590508091505090565b6000808273ffffffffffffffffffffffffffffffffffffffff1663feaf968c6040518163ffffffff1660e01b815260040160a06040518083038186803b1580156118cf57600080fd5b505afa1580156118e3573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906119079190611f0c565b5050509150506402540be4008161191e9190611f87565b915050919050565b6000806119316116f7565b905080601a016003015491505090565b600080fd5b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b600061197182611946565b9050919050565b61198181611966565b811461198c57600080fd5b50565b60008135905061199e81611978565b92915050565b6000602082840312156119ba576119b9611941565b5b60006119c88482850161198f565b91505092915050565b6000819050919050565b6119e4816119d1565b81146119ef57600080fd5b50565b600081359050611a01816119db565b92915050565b600060208284031215611a1d57611a1c611941565b5b6000611a2b848285016119f2565b91505092915050565b600081519050919050565b600082825260208201905092915050565b6000819050602082019050919050565b611a6981611966565b82525050565b6000611a7b8383611a60565b60208301905092915050565b6000602082019050919050565b6000611a9f82611a34565b611aa98185611a3f565b9350611ab483611a50565b8060005b83811015611ae5578151611acc8882611a6f565b9750611ad783611a87565b925050600181019050611ab8565b5085935050505092915050565b60006020820190508181036000830152611b0c8184611a94565b905092915050565b60008060408385031215611b2b57611b2a611941565b5b6000611b398582860161198f565b9250506020611b4a8582860161198f565b9150509250929050565b60008115159050919050565b611b6981611b54565b82525050565b6000602082019050611b846000830184611b60565b92915050565b611b93816119d1565b82525050565b6000602082019050611bae6000830184611b8a565b92915050565b60008060408385031215611bcb57611bca611941565b5b6000611bd9858286016119f2565b9250506020611bea8582860161198f565b9150509250929050565b60008060408385031215611c0b57611c0a611941565b5b6000611c198582860161198f565b9250506020611c2a858286016119f2565b9150509250929050565b6000604082019050611c496000830185611b8a565b611c566020830184611b8a565b9392505050565b600081905092915050565b50565b6000611c78600083611c5d565b9150611c8382611c68565b600082019050919050565b6000611c9982611c6b565b9150819050919050565b600082825260208201905092915050565b7f43616c6c206661696c6564000000000000000000000000000000000000000000600082015250565b6000611cea600b83611ca3565b9150611cf582611cb4565b602082019050919050565b60006020820190508181036000830152611d1981611cdd565b9050919050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052601160045260246000fd5b6000611d5a826119d1565b9150611d65836119d1565b9250817fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0483118215151615611d9e57611d9d611d20565b5b828202905092915050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052601260045260246000fd5b6000611de3826119d1565b9150611dee836119d1565b925082611dfe57611dfd611da9565b5b828204905092915050565b6000611e14826119d1565b9150611e1f836119d1565b925082821015611e3257611e31611d20565b5b828203905092915050565b600081519050611e4c81611978565b92915050565b600060208284031215611e6857611e67611941565b5b6000611e7684828501611e3d565b91505092915050565b600069ffffffffffffffffffff82169050919050565b611e9e81611e7f565b8114611ea957600080fd5b50565b600081519050611ebb81611e95565b92915050565b6000819050919050565b611ed481611ec1565b8114611edf57600080fd5b50565b600081519050611ef181611ecb565b92915050565b600081519050611f06816119db565b92915050565b600080600080600060a08688031215611f2857611f27611941565b5b6000611f3688828901611eac565b9550506020611f4788828901611ee2565b9450506040611f5888828901611ef7565b9350506060611f6988828901611ef7565b9250506080611f7a88828901611eac565b9150509295509295909350565b6000611f9282611ec1565b9150611f9d83611ec1565b9250827f7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0482116000841360008413161615611fdc57611fdb611d20565b5b817f8000000000000000000000000000000000000000000000000000000000000000058312600084126000841316161561201957612018611d20565b5b827f8000000000000000000000000000000000000000000000000000000000000000058212600084136000841216161561205657612055611d20565b5b827f7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff058212600084126000841216161561209357612092611d20565b5b82820290509291505056fea2646970667358221220b1c2a09341d7225b106060898168011cc09ec45442eae286ae29d15ca1e187dc64736f6c63430008090033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 1999,
+        "contract": "contracts/FollowFacet.sol:FollowFacet",
+        "label": "s",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_struct(AppStorage)9149_storage"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_array(t_address)dyn_storage": {
+        "base": "t_address",
+        "encoding": "dynamic_array",
+        "label": "address[]",
+        "numberOfBytes": "32"
+      },
+      "t_bool": {
+        "encoding": "inplace",
+        "label": "bool",
+        "numberOfBytes": "1"
+      },
+      "t_mapping(t_address,t_bool)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => bool)",
+        "numberOfBytes": "32",
+        "value": "t_bool"
+      },
+      "t_mapping(t_address,t_struct(Followers)9189_storage)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => struct Followers)",
+        "numberOfBytes": "32",
+        "value": "t_struct(Followers)9189_storage"
+      },
+      "t_mapping(t_address,t_struct(Following)9196_storage)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => struct Following)",
+        "numberOfBytes": "32",
+        "value": "t_struct(Following)9196_storage"
+      },
+      "t_mapping(t_address,t_struct(nameStruct)9240_storage)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => struct nameStruct)",
+        "numberOfBytes": "32",
+        "value": "t_struct(nameStruct)9240_storage"
+      },
+      "t_mapping(t_address,t_struct(pfpStruct)9251_storage)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => struct pfpStruct)",
+        "numberOfBytes": "32",
+        "value": "t_struct(pfpStruct)9251_storage"
+      },
+      "t_mapping(t_address,t_uint256)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => uint256)",
+        "numberOfBytes": "32",
+        "value": "t_uint256"
+      },
+      "t_mapping(t_string_memory_ptr,t_bool)": {
+        "encoding": "mapping",
+        "key": "t_string_memory_ptr",
+        "label": "mapping(string => bool)",
+        "numberOfBytes": "32",
+        "value": "t_bool"
+      },
+      "t_mapping(t_uint256,t_struct(signetinfo)9208_storage)": {
+        "encoding": "mapping",
+        "key": "t_uint256",
+        "label": "mapping(uint256 => struct signetinfo)",
+        "numberOfBytes": "32",
+        "value": "t_struct(signetinfo)9208_storage"
+      },
+      "t_string_memory_ptr": {
+        "encoding": "bytes",
+        "label": "string",
+        "numberOfBytes": "32"
+      },
+      "t_string_storage": {
+        "encoding": "bytes",
+        "label": "string",
+        "numberOfBytes": "32"
+      },
+      "t_struct(AppStorage)9149_storage": {
+        "encoding": "inplace",
+        "label": "struct AppStorage",
+        "members": [
+          {
+            "astId": 9115,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "ps",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_struct(profileStruct)9235_storage"
+          },
+          {
+            "astId": 9118,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "ns",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_struct(nameStruct)9240_storage"
+          },
+          {
+            "astId": 9121,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "pfps",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_struct(pfpStruct)9251_storage"
+          },
+          {
+            "astId": 9124,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "pm",
+            "offset": 0,
+            "slot": "9",
+            "type": "t_struct(profilemap)9266_storage"
+          },
+          {
+            "astId": 9127,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "flwr",
+            "offset": 0,
+            "slot": "12",
+            "type": "t_struct(Followers)9189_storage"
+          },
+          {
+            "astId": 9130,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "flwi",
+            "offset": 0,
+            "slot": "14",
+            "type": "t_struct(Following)9196_storage"
+          },
+          {
+            "astId": 9133,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "signetinfo",
+            "offset": 0,
+            "slot": "16",
+            "type": "t_struct(signetinfo)9208_storage"
+          },
+          {
+            "astId": 9136,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "fm",
+            "offset": 0,
+            "slot": "20",
+            "type": "t_struct(followMap)9228_storage"
+          },
+          {
+            "astId": 9139,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "ma",
+            "offset": 0,
+            "slot": "24",
+            "type": "t_struct(mapSignetAddress)9180_storage"
+          },
+          {
+            "astId": 9142,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "cs",
+            "offset": 0,
+            "slot": "26",
+            "type": "t_struct(controllorStorage)9171_storage"
+          },
+          {
+            "astId": 9144,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "locked",
+            "offset": 0,
+            "slot": "34",
+            "type": "t_bool"
+          },
+          {
+            "astId": 9146,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "signetorAddress",
+            "offset": 1,
+            "slot": "34",
+            "type": "t_address"
+          },
+          {
+            "astId": 9148,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "priceFeedAddress",
+            "offset": 0,
+            "slot": "35",
+            "type": "t_address"
+          }
+        ],
+        "numberOfBytes": "1152"
+      },
+      "t_struct(Followers)9189_storage": {
+        "encoding": "inplace",
+        "label": "struct Followers",
+        "members": [
+          {
+            "astId": 9184,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "followerNum",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 9188,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "whoFollowed",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_mapping(t_address,t_bool)"
+          }
+        ],
+        "numberOfBytes": "64"
+      },
+      "t_struct(Following)9196_storage": {
+        "encoding": "inplace",
+        "label": "struct Following",
+        "members": [
+          {
+            "astId": 9191,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "FollowingNum",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 9195,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "followedWho",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_mapping(t_address,t_bool)"
+          }
+        ],
+        "numberOfBytes": "64"
+      },
+      "t_struct(controllorStorage)9171_storage": {
+        "encoding": "inplace",
+        "label": "struct controllorStorage",
+        "members": [
+          {
+            "astId": 9153,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "totalSignetorsNum",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 9155,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "totalSignetsNum",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 9157,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "appreciateAmount",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 9159,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "commission",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 9161,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "messagePrice",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 9163,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "signetprofileSys",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_address"
+          },
+          {
+            "astId": 9165,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "signetFollowSys",
+            "offset": 0,
+            "slot": "6",
+            "type": "t_address"
+          },
+          {
+            "astId": 9167,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "allowTranfer",
+            "offset": 20,
+            "slot": "6",
+            "type": "t_bool"
+          },
+          {
+            "astId": 9170,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "registerdUserArray",
+            "offset": 0,
+            "slot": "7",
+            "type": "t_array(t_address)dyn_storage"
+          }
+        ],
+        "numberOfBytes": "256"
+      },
+      "t_struct(followMap)9228_storage": {
+        "encoding": "inplace",
+        "label": "struct followMap",
+        "members": [
+          {
+            "astId": 9213,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "follower",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_mapping(t_address,t_struct(Followers)9189_storage)"
+          },
+          {
+            "astId": 9218,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "following",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_mapping(t_address,t_struct(Following)9196_storage)"
+          },
+          {
+            "astId": 9223,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "signetState",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_mapping(t_uint256,t_struct(signetinfo)9208_storage)"
+          },
+          {
+            "astId": 9227,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "Stars",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_mapping(t_address,t_uint256)"
+          }
+        ],
+        "numberOfBytes": "128"
+      },
+      "t_struct(mapSignetAddress)9180_storage": {
+        "encoding": "inplace",
+        "label": "struct mapSignetAddress",
+        "members": [
+          {
+            "astId": 9175,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "register",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_mapping(t_address,t_bool)"
+          },
+          {
+            "astId": 9179,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "numOfSignetsSent",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_mapping(t_address,t_uint256)"
+          }
+        ],
+        "numberOfBytes": "64"
+      },
+      "t_struct(nameStruct)9240_storage": {
+        "encoding": "inplace",
+        "label": "struct nameStruct",
+        "members": [
+          {
+            "astId": 9237,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "name",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_string_storage"
+          },
+          {
+            "astId": 9239,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "timeUpdated",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_uint256"
+          }
+        ],
+        "numberOfBytes": "64"
+      },
+      "t_struct(pfpStruct)9251_storage": {
+        "encoding": "inplace",
+        "label": "struct pfpStruct",
+        "members": [
+          {
+            "astId": 9242,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "pfp",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_string_storage"
+          },
+          {
+            "astId": 9244,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "timeUpdated",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 9246,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "collection",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_address"
+          },
+          {
+            "astId": 9248,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "tokenId",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 9250,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "typeOf",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_uint256"
+          }
+        ],
+        "numberOfBytes": "160"
+      },
+      "t_struct(profileStruct)9235_storage": {
+        "encoding": "inplace",
+        "label": "struct profileStruct",
+        "members": [
+          {
+            "astId": 9232,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "totalName",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 9234,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "totalpfp",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_uint256"
+          }
+        ],
+        "numberOfBytes": "64"
+      },
+      "t_struct(profilemap)9266_storage": {
+        "encoding": "inplace",
+        "label": "struct profilemap",
+        "members": [
+          {
+            "astId": 9256,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "pfp",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_mapping(t_address,t_struct(pfpStruct)9251_storage)"
+          },
+          {
+            "astId": 9261,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "name",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_mapping(t_address,t_struct(nameStruct)9240_storage)"
+          },
+          {
+            "astId": 9265,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "nameused",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_mapping(t_string_memory_ptr,t_bool)"
+          }
+        ],
+        "numberOfBytes": "96"
+      },
+      "t_struct(signetinfo)9208_storage": {
+        "encoding": "inplace",
+        "label": "struct signetinfo",
+        "members": [
+          {
+            "astId": 9198,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "likeNum",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 9200,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "starNum",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 9203,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "starContributors",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_array(t_address)dyn_storage"
+          },
+          {
+            "astId": 9207,
+            "contract": "contracts/FollowFacet.sol:FollowFacet",
+            "label": "likeContributors",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_mapping(t_address,t_bool)"
+          }
+        ],
+        "numberOfBytes": "128"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}

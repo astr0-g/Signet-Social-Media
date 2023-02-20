@@ -20,7 +20,153 @@ import {
 } from "wagmi"
 const nonepic = new File([], "thismeansthissignetdoesnothavephoto.png", { type: "image/png" })
 
-export default function Messagebox() {
+import styled, { keyframes } from "styled-components"
+import { BsDashLg } from "react-icons/bs"
+import PfpImage from "./PfpImage"
+
+const Gradient = keyframes`
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+`
+
+const Section = styled.div`
+    width: 100vw;
+    height: 67vh;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    /* background: linear-gradient(
+        315deg,
+        rgba(89, 56, 115, 0.99) 3%,
+        rgba(77, 48, 121, 0.99) 38%,
+        rgba(48, 40, 90, 0.99) 68%,
+        rgba(43, 22, 68, 0.99) 98%
+    );
+    animation: ${Gradient} 28s ease infinite;
+    background-size: 400% 400%;
+    background-attachment: fixed; */
+
+    background-color: rgba(42, 32, 64, 1);
+
+    @media only screen and (min-width: 1024px) {
+        display: none;
+    }
+`
+
+const Title = styled.div`
+    width: 100%;
+    font-size: 1rem;
+    text-align: center;
+    padding: 0.75rem;
+    color: white;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`
+
+const PfpContainer = styled.div`
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 1.5px solid white;
+`
+
+const IconContainer = styled.button`
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+const InputContainer = styled.div`
+    width: 100vw;
+    background-color: rgba(32, 32, 32, 0.75);
+`
+
+const ButtonContainer = styled.div`
+    width: 100vw;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding: 0.75rem;
+`
+
+const ImgContainer = styled.div`
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-top: 0.5rem;
+`
+
+const SelectedImg = styled.img`
+    max-height: 33vh;
+    object-fit: contain;
+
+    @media only screen and (max-width: 389px) {
+        max-height: 28vh;
+    }
+`
+
+const Button = styled.button`
+    display: inline-block;
+    color: white;
+    outline: none;
+    border: none;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 0.5rem 1.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    border: 2px solid white;
+
+    @media (max-width: 48em) {
+        padding: 1rem 2rem;
+    }
+    @media (max-width: 30em) {
+        padding: 0.5rem 2rem;
+        font-size: 14px;
+    }
+
+    &:hover {
+        transform: scale(0.9);
+    }
+
+    &::after {
+        content: " ";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        border: white;
+        width: 100%;
+        height: 100%;
+        border-radius: 50px;
+        transition: all 0.2s ease;
+    }
+
+    &:hover::after {
+        transform: translate(-50%, -50%) scale(1);
+        padding: 0.3rem;
+    }
+`
+
+export default function Messagebox({ showbox, timeout, children, isPosting, setIsPosting }) {
     const NFT_STORAGE_KEY = process.env.NEXT_PUBLIC_NFT_STORAGE_KEY
 
     const [input, setInput] = useState("")
@@ -34,8 +180,8 @@ export default function Messagebox() {
     const [ready, setReady] = useState(false)
     const [post, setpost] = useState(false)
     const [ipfs, setipfs] = useState("")
+    const [value2send, setvalue2send] = useState("")
     const [tokenURL, setTokenURL] = useState("")
-    const [ownersignetoraddress, setownersignetoraddress] = useState("")
     const [ownersignetnum, setownersignetnum] = useState("")
     const [Inumber, setInumber] = useState("")
     const [explorestutes, setexplorestutes] = useState(false)
@@ -44,13 +190,13 @@ export default function Messagebox() {
     const { addToast } = useToasts()
     const { address } = useAccount()
     const { chains } = useNetwork()
-    const { data: ownercontractaddress } = useContractRead({
+
+    const { data: valuetosend } = useContractRead({
         addressOrName: creatorcontract.address,
         contractInterface: creatorcontract.abi,
         chains: 5,
-        functionName: "getOwnerContractForSignetor",
+        functionName: "getValueForSendMessage",
         watch: true,
-        args: address,
     })
     const addImageToPost = (e) => {
         const reader = new FileReader()
@@ -89,8 +235,12 @@ export default function Messagebox() {
     const { config } = usePrepareContractWrite({
         addressOrName: creatorcontract.address,
         contractInterface: creatorcontract.abi,
-        functionName: "sendmessage",
-        args: [ownersignetoraddress, tokenURL],
+        functionName: "sendMessage",
+        overrides: {
+            from: address,
+            value: value2send,
+        },
+        args: [tokenURL],
     })
     const { data: resultss, write: controllorsendmessage } = useContractWrite(config)
     const {
@@ -121,8 +271,10 @@ export default function Messagebox() {
             setShow(true)
             setDisable(false)
             addToast("Message sent successful!", { appearance: "success" })
+            setIsPosting(false)
         }
     }, [CreateSignetorisSuccess])
+
     async function storeNFT(imagefile, name, description) {
         // load the file from disk
         const image = imagefile
@@ -189,7 +341,7 @@ export default function Messagebox() {
             // mode: "no-cors",
         }
 
-        await fetch("https://api.signet.ink/tokenurl/", requestOptions)
+        await fetch(`${process.env.NEXT_PUBLIC_APIENDPOINT}/tokenurl/`, requestOptions)
             .then((response) => response.text())
             .then((result) => {
                 setCIDnumber(result)
@@ -213,13 +365,37 @@ export default function Messagebox() {
         }
     }, [CIDnumber])
     useEffect(() => {
-        if (ownercontractaddress) {
-            setownersignetoraddress(ownercontractaddress)
+        if (valuetosend) {
+            setvalue2send(valuetosend)
         }
-    }, [ownercontractaddress])
+    }, [valuetosend])
+
+    const closeModal = () => {
+        setIsPosting(false)
+    }
+
     return (
-        <div>
-            <div className="flex  border-b border-gray-200 p-3 space-x-3">
+        <Section>
+            <Title>
+                <PfpContainer>
+                    <PfpImage address={address} />
+                </PfpContainer>
+                <h1>Post</h1>
+                <IconContainer onClick={closeModal}>
+                    <BsDashLg size={24} />
+                </IconContainer>
+            </Title>
+            <InputContainer>
+                <textarea
+                    className="w-full focus:ring-0 text-md placeholder-white tracking-wide min-h-[50px] text-white bg-transparent pl-3 pt-1 text-[12px]"
+                    rows="5"
+                    placeholder="What's popping?"
+                    value={input}
+                    disabled={ready}
+                    onChange={(e) => setInput(e.target.value)}
+                ></textarea>
+            </InputContainer>
+            {/* <div className="flex border-b border-gray-200 p-3 space-x-3 text-xs">
                 <ConnectButton
                     accountStatus="address"
                     showBalance={{
@@ -228,90 +404,69 @@ export default function Messagebox() {
                     }}
                     chainStatus="none"
                 />
-                <div className="w-full divide-y divide-gray-200">
-                    <div className="">
-                        <textarea
-                            className="w-full border-none focus:ring-0 text-lg placeholder-gray-700 tracking-wide min-h-[50px] text-gray-700"
-                            rows="2"
-                            placeholder="What's popping?"
-                            value={input}
-                            disabled={ready}
-                            onChange={(e) => setInput(e.target.value)}
-                        ></textarea>
-                    </div>
-                </div>
-            </div>
+            </div> */}
+
             {selectedFile && (
-                <div className="relative">
+                <ImgContainer>
                     <XIcon
                         onClick={() => setSelectedFile(null)}
-                        className="border h-7 text-black absolute cursor-pointer shadow-md border-white m-1 rounded-full"
+                        className="text-white white w-8 h-8"
                     />
-                    <img
+                    <SelectedImg
                         src={selectedFile}
-                        height="300px"
-                        width="300px"
                         className={`${loading && "animate-pulse"}`}
-                    />
-                </div>
+                    ></SelectedImg>
+                </ImgContainer>
             )}
-            <div className="flex items-center justify-between pt-2.5">
-                {!loading && (
-                    <>
-                        <div className="flex">
-                            <div className="" onClick={() => filePickerRef.current.click()}>
-                                <PhotographIcon className="h-10 w-10 hoverEffect p-2 text-black hover:bg-sky-100" />
-                                <input
-                                    type="file"
-                                    hidden
-                                    ref={filePickerRef}
-                                    onChange={addImageToPost}
-                                />
+            <ButtonContainer>
+                <div className="flex items-center justify-between">
+                    {!loading && (
+                        <div className="w-full flex justify-center items-center mt-2">
+                            <div className="mr-2">
+                                <div className="" onClick={() => filePickerRef.current.click()}>
+                                    <PhotographIcon className="h-10 w-10 hoverEffect p-2 text-white white hover:bg-sky-100 ml-2" />
+                                    <input
+                                        type="file"
+                                        hidden
+                                        ref={filePickerRef}
+                                        onChange={addImageToPost}
+                                    />
+                                </div>
                             </div>
+                            <div>
+                                {!ready && !post && (
+                                    <Button onClick={sendPost} disabled={!input.trim()}>
+                                        Generate Signet
+                                    </Button>
+                                )}
+                            </div>
+                            <div className="mr-2">
+                                {ready && !CreateSignetorisLoading && (
+                                    <Button onClick={contractreact} disabled={!input.trim()}>
+                                        {"Sign"}
+                                    </Button>
+                                )}
+                            </div>
+                            <div className="flex">
+                                {ready && CreateSignetorisLoading && (
+                                    <Button
+                                        onClick={contractreact}
+                                        disabled={(!input.trim(), disable)}
+                                    >
+                                        {"Posting..."}
+                                    </Button>
+                                )}
+                            </div>
+                            {!loading && ready && !CreateSignetorisLoading && (
+                                <Button onClick={() => setReady(false)} disabled={!input.trim()}>
+                                    Cancel
+                                </Button>
+                            )}
                         </div>
-                        {!ready && !post && (
-                            <button
-                                onClick={sendPost}
-                                disabled={!input.trim()}
-                                className="bg-black text-white px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50"
-                            >
-                                Generate Signet
-                            </button>
-                        )}
-                        {ready && !CreateSignetorisLoading && (
-                            <button
-                                onClick={contractreact}
-                                disabled={!input.trim()}
-                                className="bg-black text-white px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50"
-                            >
-                                {"Sign"}
-                            </button>
-                        )}
-                        {ready && CreateSignetorisLoading && (
-                            <button
-                                onClick={contractreact}
-                                disabled={(!input.trim(), disable)}
-                                className="bg-black text-white px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50"
-                            >
-                                {"Posting..."}
-                            </button>
-                        )}
-                    </>
-                )}
-            </div>
-
-            {!loading && ready && !CreateSignetorisLoading && (
-                <div className="flex items-center justify-between pt-5">
-                    <button
-                        onClick={() => setReady(false)}
-                        disabled={!input.trim()}
-                        className="bg-black text-white px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50 absolute right-0"
-                    >
-                        Cancel
-                    </button>
+                    )}
                 </div>
-            )}
-            <div className="flex items-center justify-between pt-6"></div>
-        </div>
+            </ButtonContainer>
+            <div className="flex items-center justify-between pt-2"></div>
+        </Section>
     )
 }

@@ -1,149 +1,78 @@
-import Image from "next/image"
-import { EmojiHappyIcon, SparklesIcon, PhotographIcon, XIcon } from "@heroicons/react/outline"
-import { useState, useEffect, useRef } from "react"
-import styles from "../styles/Dashbaord.module.css"
-import Welcome from "../components/Welcome"
-import styles1 from "../styles/Home.module.css"
 import Head from "next/head"
-import creatorcontract from "../constants/abi.json"
-import { useToasts } from "react-toast-notifications"
-import signetorcontract from "../constants/Signetor.json"
-import { ConnectButton } from "@rainbow-me/rainbowkit"
-import Signetor from "../components/Signetor"
 import AllMessagelist from "../components/AllMessagelist"
-import Messagebox from "../components/Messagebox"
-import Link from "next/link"
-import {
-    usePrepareContractWrite,
-    useAccount,
-    useConnect,
-    useContract,
-    useContractRead,
-    useContractWrite,
-    useNetwork,
-    useWaitForTransaction,
-} from "wagmi"
+import styled, { keyframes } from "styled-components"
+import { motion } from "framer-motion"
+
+const SectionContainer = styled(motion.div)`
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+`
+
+const Gradient = keyframes`
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+`
+
+const Section = styled.div`
+    width: 100%;
+    max-width: 1920px;
+    min-height: 100vh;
+    overflow: auto;
+    /* background: linear-gradient(
+        315deg,
+        rgba(89, 56, 115, 1) 3%,
+        rgba(77, 48, 121, 1) 38%,
+        rgba(48, 40, 90, 1) 68%,
+        rgba(43, 22, 68, 1) 98%
+    );
+    animation: ${Gradient} 28s ease infinite;
+    background-size: 400% 400%;
+    background-attachment: fixed; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`
+
+const Whitespace = styled.div`
+    width: 100%;
+    max-width: 1920px;
+    height: 4rem;
+`
+
 export default function Dashboard() {
-    const [input, setInput] = useState("")
-    const [results, setResults] = useState(0)
-    const [selectedFile, setSelectedFile] = useState(null)
-    const [show, setShow] = useState(false)
-    const [CIDnumber, setCIDnumber] = useState()
-    const [numberowned, setnumberowned] = useState(0)
-    const [loading, setLoading] = useState(false)
-    const [ready, setReady] = useState(false)
-    const [post, setpost] = useState(false)
-    const [newimg, setnewimg] = useState("")
-    const [newpost, setnewpost] = useState("")
-    const [tokenURL, setTokenURL] = useState("")
-    const [ownersignetoraddress, setownersignetoraddress] = useState("")
-    const [ownersignetnum, setownersignetnum] = useState("")
-    const [Inumber, setInumber] = useState("")
-    const [explorestutes, setexplorestutes] = useState(false)
-    const [disable, setDisable] = useState(false)
-    const [Profile, setProfile] = useState("")
-    const filePickerRef = useRef(null)
-    const { addToast } = useToasts()
-    const { address } = useAccount()
-    const { chains } = useNetwork()
-    const { data: number } = useContractRead({
-        addressOrName: creatorcontract.address,
-        contractInterface: creatorcontract.abi,
-        chains: 5,
-        functionName: "getOwnerNumContractOfSignetor",
-        watch: true,
-        args: address,
-    })
-
-    const { data: ownercontractaddress } = useContractRead({
-        addressOrName: creatorcontract.address,
-        contractInterface: creatorcontract.abi,
-        chains: 5,
-        functionName: "getOwnerContractForSignetor",
-        watch: true,
-        args: address,
-    })
-
-    const { data: NumTokenOwned } = useContractRead({
-        addressOrName: ownersignetoraddress,
-        contractInterface: signetorcontract.abi,
-        chains: 5,
-        functionName: "balanceOf",
-        watch: true,
-        args: address,
-    })
-
-    function toggletrue() {
-        setexplorestutes(true)
-    }
-    function togglefalse() {
-        setexplorestutes(false)
-    }
-
-    useEffect(() => {
-        if (ownercontractaddress) {
-            setownersignetoraddress(ownercontractaddress)
-        }
-    }, [ownercontractaddress])
-
-    useEffect(() => {
-        if (number) {
-            setnumberowned(number.toString())
-        }
-    }, [number])
-
-    useEffect(() => {
-        if (NumTokenOwned) {
-            setownersignetnum(NumTokenOwned.toString())
-        }
-    }, [NumTokenOwned])
-
-    // useEffect(() => {
-    //     if (address) {
-    //         const route = `/${address}`
-    //         setProfile(route)
-    //     }
-    // }, [])
-    //max-w-xl//
     return (
-    <div>
-            {!address ? (<Welcome />) : (
-                <div>
-                    <Head>
-                        <title>Signet</title>
-                        <meta name="description" content="2" />
-                        <link rel="icon" href="/logo.ico" />
-                    </Head>
-                    <div>
-                        <nav className={styles1.navBar}>
-                            <img src="/logo2.png" />
-                            {!address ? <div /> : <ConnectButton accountStatus="address" />}
-                        </nav>
-                    </div>
-                    <div>
-                        <div className="justify-between items-center">
-                            <div className="flex flex-col justify-center items-center border-l border-r bg-slate-100 border-gray-200  xl:min-w-[576px] sm:ml-[73px] flex-grow">
-                                {" "}
-                                <div className="flex space-x-5 py-2 px-3 top-0 z-50 ">
-                                    <Link href={`/`}>
-                                        <button className={styles.button85}>Home</button>
-                                    </Link>
-
-                                    <button className={styles.button85}>Explore</button>
-
-                                    <Link href={`/${address}`}>
-                                        <button className={styles.button85}>Profile</button>
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <AllMessagelist />
-                    </div>
-                </div>
-            )}
-            </div>
+        <SectionContainer
+            initial={{ opacity: 0, scale: 1 }}
+            animate={{
+                opacity: 1,
+                scale: 1,
+                transition: { duration: 0.4, ease: "easeIn" },
+            }}
+            exit={{
+                opacity: 0,
+                scale: 1,
+                transition: { duration: 0.4, ease: "easeOut" },
+            }}
+        >
+            <Section>
+                <Head>
+                    <title>Signet</title>
+                    <meta name="description" content="2" />
+                    <link rel="icon" href="/logoBlack.png" />
+                </Head>
+                <Whitespace />
+                <AllMessagelist />
+                <div className="mt-20" />
+            </Section>
+        </SectionContainer>
     )
 }
-

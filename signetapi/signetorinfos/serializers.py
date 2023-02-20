@@ -8,8 +8,10 @@ class SignetSerializer(serializers.ModelSerializer):
         model = Signet
         fields = [
             'messageSender',
-            'signetoraddress',
             'messageId',
             'tokenURI',
             'time',
+            'liked',
+            'stared',
+            'views'
         ]

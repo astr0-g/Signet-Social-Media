@@ -13,6 +13,12 @@ import {
     useWaitForTransaction,
 } from "wagmi"
 import { useState, useEffect } from "react"
+import { MdExpandMore, MdMode, MdPersonAddAlt1 } from "react-icons/md"
+import styled from "styled-components"
+import { RiUserAddFill } from "react-icons/ri";
+
+const Icon = styled.button`
+`
 
 export default function Follow() {
     const { connector: activeConnector, isConnected } = useAccount()
@@ -61,17 +67,17 @@ export default function Follow() {
         follow()
     }
     return (
-        <div>
+        <>
             {!isConnected && (
-                <button className={stylea} disable={true} onClick={sendto}>
-                    <div className="btn btn-primary btn-sm">{Word}</div>
-                </button>
+                <Icon disable={true} onClick={sendto}>
+                    <RiUserAddFill color="green" size={18} />
+                </Icon>
             )}
             {isConnected && (
-                <button className={stylea} disable={true} onClick={contractfollow}>
-                    <div className="btn btn-primary btn-sm">{Word}</div>
-                </button>
+                <Icon disable={true} onClick={contractfollow}>
+                    <RiUserAddFill color="white" size={16} />
+                </Icon>
             )}
-        </div>
+        </>
     )
 }

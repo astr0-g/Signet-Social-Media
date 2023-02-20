@@ -72,10 +72,10 @@ export default function Signetorpfp() {
             redirect: "follow",
         }
 
-        fetch("https://api.signet.ink/pfi/pfp/", requestOptions)
+        fetch(`${process.env.NEXT_PUBLIC_APIENDPOINT}/pfi/pfp/`, requestOptions)
             .then((response) => response.json())
             .then((result) => {
-                setuploadFile(`https://api.signet.ink/media/images/` + result)
+                setuploadFile(`${process.env.NEXT_PUBLIC_APIENDPOINT}/media/images/` + result)
                 successtoasts("Profile Pic Uploaded Success!")
             })
             .catch((error) => console.log("error", error))

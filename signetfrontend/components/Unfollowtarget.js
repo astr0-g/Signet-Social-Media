@@ -53,7 +53,7 @@ export default function Unfollowtarget(props) {
     }, [unfollowisLoading])
     useEffect(() => {
         if (unfollowisSuccess) {
-            setWord("unfollowed")
+            setWord("Unfollowed")
             setstylea(styles1.button17)
             setunfollowtrue(true)
             addToast("unfollowed successful!", { appearance: "success" })

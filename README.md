@@ -8,14 +8,13 @@
 
 <!-- [![LinkedIn][linkedin-shield]][linkedin-url] -->
 
-<!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="https://github.com/Astr0-G/Signet-Social-Media">
     <img src="https://cdn.discordapp.com/attachments/960590776570626098/1042591497813504040/logo2.png" alt="Logo" height="80">
   </a>
 
-  <h3 align="center">SIGNET</h3>
+  <h3 align="center">SIGNET</h3> 
 
   <p align="center">
     Decentralized Social Media Platform Application
@@ -23,7 +22,7 @@
     <a href="https://github.com/Astr0-G/Signet-Social-Media"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://test.signet.ink">View Demo</a>
+    <a href="https://www.signet.ink">View Demo</a>
     ·
     <a href="https://github.com/Astr0-G/Signet-Social-Media/issues">Report Bug</a>
     <br/><br />
@@ -70,7 +69,7 @@
 
 ## About The Project
 
-[SIGNET](https://test.signet.ink)
+[SIGNET](https://www.signet.ink)
 
 Always wondering if there is able to have a Blockchain Journal Book application for people to save their photos or stories on-chain which can last forever, even their offsprings could watch it which is a nice point of using blockchain.
 
@@ -353,3 +352,6 @@ please dm on [twitter](https://twitter.com/lil_astr_0) if you need Goerli Testne
 [right]: https://img.shields.io/badge/]-55AAFF?style=for-the-badge&logo=&logoColor=61DAFB
 [chainlink]:https://img.shields.io/badge/chainlink-949494?style=for-the-badge&logo=chainlink&logoColor=1663be
 [chainlink-url]:https://chain.link/
+#� �S�i�g�n�e�t�-�S�o�c�i�a�l�-�M�e�d�i�a�-�P�l�a�t�f�o�r�m�
+�
+�

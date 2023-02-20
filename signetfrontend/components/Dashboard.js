@@ -21,128 +21,176 @@ import {
     useNetwork,
     useWaitForTransaction,
 } from "wagmi"
-export default function Dashboard() {
-    const [input, setInput] = useState("")
-    const [results, setResults] = useState(0)
-    const [selectedFile, setSelectedFile] = useState(null)
-    const [show, setShow] = useState(false)
-    const [CIDnumber, setCIDnumber] = useState()
-    const [numberowned, setnumberowned] = useState(0)
-    const [loading, setLoading] = useState(false)
-    const [ready, setReady] = useState(false)
-    const [post, setpost] = useState(false)
-    const [newimg, setnewimg] = useState("")
-    const [newpost, setnewpost] = useState("")
-    const [tokenURL, setTokenURL] = useState("")
+
+import styled, { keyframes } from "styled-components"
+import bg1 from "../img/bg-1.jpg"
+import { motion, AnimatePresence } from "framer-motion"
+import Welcome from "./Welcome"
+import Starscape from "./Starscape"
+import Loader1 from "./animatedelements/Loader1"
+
+const SectionContainer = styled.div`
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+`
+
+const Gradient = keyframes`
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+`
+
+const Section = styled(motion.div)`
+    width: 100vw;
+    min-height: 100vh;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+
+    /* background: linear-gradient(
+        315deg,
+        rgba(89, 56, 115, 1) 3%,
+        rgba(77, 48, 121, 1) 38%,
+        rgba(48, 40, 90, 1) 68%,
+        rgba(43, 22, 68, 1) 98%
+    );
+    animation: ${Gradient} 28s ease infinite;
+    background-size: 400% 400%;
+    background-attachment: fixed; */
+`
+
+const WaveAnimation = keyframes`
+    2% {
+        transform: translateX(1);
+    }
+
+    25% {
+        transform: translateX(-25%);
+    }
+
+    50% {
+        transform: translateX(-50%);
+    }
+
+    75% {
+        transform: translateX(-25%);
+    }
+
+    100% {
+        transform: translateX(1);
+    }
+`
+
+const TopNav = styled.nav`
+    width: 100%;
+    max-width: 1920px;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    backdrop-filter: blur(25px);
+    position: fixed;
+    top: 0;
+    z-index: 49;
+    box-shadow: 3px 5px 5px rgba(32, 32, 32, 0.2);
+`
+
+const Whitespace = styled.div`
+    width: 100vw;
+    height: 4rem;
+`
+
+const TopRight = styled.div`
+    width: 33%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+`
+
+const OnSignal = styled.div`
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    border: 0.14rem solid white;
+    background-color: green;
+    margin-right: 0.75rem;
+`
+
+const Container = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`
+
+export default function Dashboard(Refresh) {
+    const [register, setregister] = useState(Boolean)
+    const [firsttimeuser, setfirsttimeuser] = useState(Boolean)
     const [ownersignetoraddress, setownersignetoraddress] = useState("")
     const [ownersignetnum, setownersignetnum] = useState("")
-    const [Inumber, setInumber] = useState("")
-    const [disable, setDisable] = useState(false)
-    const [Profile, setProfile] = useState("")
     const [ProfileGood, setProfileGood] = useState(false)
     const filePickerRef = useRef(null)
     const { addToast } = useToasts()
     const { address } = useAccount()
     const { chains } = useNetwork()
-    const { data: number } = useContractRead({
+    const { data: ifRegistered } = useContractRead({
         addressOrName: creatorcontract.address,
         contractInterface: creatorcontract.abi,
         chains: 5,
-        functionName: "getOwnerNumContractOfSignetor",
+        functionName: "checkRegistered",
         watch: true,
         args: address,
     })
-    useEffect(() => {
-        if (number) {
-            setnumberowned(number.toString())
-        }
-    }, [number])
-    const { data: ownercontractaddress } = useContractRead({
-        addressOrName: creatorcontract.address,
-        contractInterface: creatorcontract.abi,
-        chains: 5,
-        functionName: "getOwnerContractForSignetor",
-        watch: true,
-        args: address,
-    })
-
-    const { data: NumTokenOwned } = useContractRead({
-        addressOrName: ownersignetoraddress,
-        contractInterface: signetorcontract.abi,
-        chains: 5,
-        functionName: "balanceOf",
-        watch: true,
-        args: address,
-    })
-
-    const { data: hasName } = useContractRead({
-        addressOrName: creatorcontract.address,
-        contractInterface: creatorcontract.abi,
-        chains: 5,
-        functionName: "hasName",
-        watch: true,
-        args: address,
-    })
-
-    const { data: hasPfp } = useContractRead({
-        addressOrName: creatorcontract.address,
-        contractInterface: creatorcontract.abi,
-        chains: 5,
-        functionName: "hasPfp",
-        watch: true,
-        args: address,
-    })
+    const [isLoadingPage, setIsLoadingPage] = useState(false)
 
     useEffect(() => {
-        if (hasPfp == true && hasPfp == true) {
-            setProfileGood(true)
-        }
-    }, [ownercontractaddress])
+        setTimeout(() => {
+            setIsLoadingPage(true)
+        }, 4500)
+    }, [])
+    // console.log(ifRegistered)
     useEffect(() => {
-        if (ownercontractaddress) {
-            setownersignetoraddress(ownercontractaddress)
+        if (ifRegistered == false) {
+            setfirsttimeuser(true)
         }
-    }, [ownercontractaddress])
-
-    useEffect(() => {
-        if (NumTokenOwned) {
-            setownersignetnum(NumTokenOwned.toString())
-        }
-    }, [NumTokenOwned])
-
-    // useEffect(() => {
-    //     if (address) {
-    //         const route = `/api.signet.ink${address}`
-    //         setProfile(route)
-    //     }
-    // }, [])
-    //max-w-sxl//
+        setregister(ifRegistered)
+    }, [ifRegistered])
     return (
-        <div>
-            <div>
-                {numberowned == 0 ? (
-                    <Signetor />
+        <SectionContainer>
+            <AnimatePresence>
+                {isLoadingPage ? (
+                    <Section>
+                        {!address && !ifRegistered && (
+                            <Container>
+                                {/* <TopNav>
+                                <button className="flex justify-center align-center item-center cursor-pointer">
+                                    <img src="/logoTextWhite.png" className="w-28" />
+                                </button>
+                            </TopNav>
+                            <Whitespace /> */}
+                                <Welcome />
+                            </Container>
+                        )}
+                        <Whitespace />
+                        {address && firsttimeuser && <Signetor />}
+                        {address && register && !firsttimeuser && <FollowedMessagelist />}
+                    </Section>
                 ) : (
-                    <div className="justify-between items-center">
-                        <div className="flex flex-col justify-center items-center border-l border-r bg-slate-100 border-gray-200  xl:min-w-[576px] sm:ml-[73px] flex-grow">
-                            {" "}
-                            <div className="flex space-x-5 py-2 px-3 top-0 z-50 ">
-                                <button className={styles.button85}>Home</button>
-
-                                <Link href={`/explore`}>
-                                    <button className={styles.button85}>Explore</button>
-                                </Link>
-
-                                <Link href={`/${address}`}>
-                                    <button className={styles.button85}>Profile</button>
-                                </Link>
-                            </div>
-                        </div>
-                        <Messagebox />
-                    </div>
+                    <Loader1 />
                 )}
-            </div>
-            <div>{numberowned != 0 && <FollowedMessagelist />}</div>
-        </div>
+            </AnimatePresence>
+        </SectionContainer>
     )
 }

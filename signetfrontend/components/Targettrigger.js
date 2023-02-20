@@ -25,7 +25,7 @@ export default function Followtrigger(props) {
 
     const [unfollowtrue, setunfollowtrue] = useState(false)
     const [Word, setWord] = useState()
-    const [stylea, setstylea] = useState(styles1.button171)
+    const [stylea, setstylea] = useState(styles1.button17)
     const [followstatue, setfollowstatue] = useState(false)
     const [disable, setDisable] = useState(false)
     const { addToast } = useToasts()

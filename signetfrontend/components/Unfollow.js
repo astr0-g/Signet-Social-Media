@@ -15,6 +15,12 @@ import {
     useWaitForTransaction,
 } from "wagmi"
 import { useState, useEffect } from "react"
+import { MdExpandMore, MdMode, MdPersonAddAlt1 } from "react-icons/md"
+import styled from "styled-components"
+import { RiUserAddFill } from "react-icons/ri";
+
+const Icon = styled.div`
+`
 
 export default function Unfollow() {
     const router = useRouter()
@@ -69,22 +75,17 @@ export default function Unfollow() {
         unfollow()
     }
     return (
-        <div>
-            {!isConnected && (
-                <button className={stylea} disable={true}>
-                    <div className="btn btn-primary btn-sm">{Word}</div>
-                </button>
-            )}
+        <>
             {!unfollowtrue && isConnected && (
-                <button className={stylea} disable={true} onClick={contractunfollow}>
-                    <div className="btn btn-primary btn-sm">{Word}</div>
-                </button>
+                <Icon disable={true} onClick={contractunfollow}>
+                    <RiUserAddFill color="green" size={18} />
+                </Icon>
             )}
             {unfollowtrue && isConnected && (
-                <button className={stylea} disable={true} onClick={sendtoast}>
-                    <div className="btn btn-primary btn-sm">{Word}</div>
-                </button>
+                <Icon disable={true} onClick={sendtoast}>
+                    <RiUserAddFill color="white" size={16} />
+                </Icon>
             )}
-        </div>
+        </>
     )
 }

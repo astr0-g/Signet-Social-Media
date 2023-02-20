@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Signet</string>
+    <string name="title_activity_main">Signet</string>
+    <string name="package_name">signet.ink</string>
+    <string name="custom_url_scheme">signet.ink</string>
+</resources>

@@ -22,8 +22,8 @@ export default function Followtarget(props) {
     // const { useraddress } = router.query
     const { addToast } = useToasts()
     const [disable, setDisable] = useState(false)
-    const [Word, setWord] = useState("follow")
-    const [stylea, setstylea] = useState(styles1.button17)
+    const [Word, setWord] = useState("")
+    const [stylea, setstylea] = useState(styles1.button172)
     const { config } = usePrepareContractWrite({
         addressOrName: creatorcontract.address,
         contractInterface: creatorcontract.abi,
